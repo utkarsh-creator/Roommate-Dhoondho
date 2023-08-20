@@ -1,9 +1,7 @@
 import React from "react";
-import "./Header.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../Assets/logo.png";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import "./Header.css";
 function Header() {
   const { pathname } = useLocation();
   const navigation = useNavigate();
@@ -20,6 +18,15 @@ function Header() {
         className="h-[80px] cursor-pointer "
       />
       <div className="mr-[2rem] flex justify-center items-center">
+        <select className="mr-8 p-[0.5rem]">
+          <option value="en-US" selected>
+            English (United States)
+          </option>
+          {/* <option value="en-GB">English (United Kingdom)</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option> */}
+        </select>
+
         <Link to="/">
           <button
             className={`${
