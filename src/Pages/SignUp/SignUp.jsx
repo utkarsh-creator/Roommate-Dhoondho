@@ -109,7 +109,7 @@ function SignUP() {
                 value={form.email}
                 name="email"
                 onChange={formOnChangeHandler}
-                placeholder="designer@gmail.com"
+                placeholder="mfc.vit2023@vitstudent.ac.in"
                 className=" mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
               />
               {formError?.email ? (

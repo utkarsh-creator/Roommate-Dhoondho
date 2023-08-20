@@ -62,9 +62,12 @@ function SignIn() {
         <div className="w-[45%] bg-[#D9D9D9]"></div>
         <div className="w-[55%] flex justify-center">
           <div className="flex flex-col pt-[2rem] items-center w-[80%]">
-            <h1 className="text-[#333] text-[1.75rem] font-[600] w-full mb-5 ">
-              Sign In Page
+            <h1 className="text-[#333] text-[1.75rem] font-[600] w-full  ">
+              Sign In 
             </h1>
+            <p className="mb-5 text-[#3C4242] text-[14px] w-full">
+              Sign in using your credentials
+            </p>
             <button className="flex justify-center items-center font-[600] text-[#06105A] w-[100%]  mr-2 rounded-[8px] border-[#06105A] border-[1.75px] px-[2rem] py-[0.75rem]">
               <FcGoogle size={25} className="mr-2" /> Continue with Google
             </button>
@@ -77,11 +80,12 @@ function SignIn() {
 
             <div className="w-full mb-6">
               <span className="text-[#3C4242] text-[16px]">
-                User name or email address
+                Email address
               </span>
               <input
                 name="email"
                 value={form.email}
+                placeholder="mfc.vit2023@vitstudent.ac.in"
                 onChange={formOnChangeHandler}
                 className=" mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
               />
