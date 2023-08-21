@@ -150,7 +150,7 @@ function Reset() {
     <div className="flex flex-col h-screen">
       <Header />
       <div className="flex flex-grow h-auto">
-        <div className="hidden md:inline-block md:w-[45%] bg-[#D9D9D9]"></div>
+        <div className="hidden md:inline-block md:w-[45%] bg-[#D9D9D9]"> </div>
         <div className="w-[100%] md:w-[55%] flex justify-center">
           {isReset ? (
             <div className="flex flex-col pt-[2rem] items-center w-[80%]">
@@ -168,7 +168,7 @@ function Reset() {
                   name="email"
                   value={form.email}
                   onChange={formOnChangeHandler}
-                  placeholder="designer@gmail.com"
+                  placeholder="mfc.vit2023@vitstudent.ac.in"
                   className=" mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
                 />
                 {formError?.email ? (
@@ -220,7 +220,7 @@ function Reset() {
                 className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
               >
                 {" "}
-                VerifyCode
+                Verify Code
               </button>
             </div>
           ) : null}

@@ -52,7 +52,7 @@ function SignIn() {
   function signInClickHandler() {
     console.log("form", form);
     setForm(initialFormState);
-    toast.success("You have succesfully signed up!");
+    toast.success("You have succesfully signed in!");
     navigate("/home");
   }
   return (
