@@ -79,7 +79,7 @@ function SignIn() {
             </div>
 
             <div className="w-full mb-6">
-              <span className="text-[#3C4242] text-[16px]">Email address</span>
+              <span className="text-[#3C4242] text-[16px]">Email Address</span>
               <input
                 name="email"
                 value={form.email}
