@@ -1,0 +1,162 @@
+.main-card {
+  width: 400px;
+  background-color: #ffffff1a;
+  border-radius: 11.42px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 180px;
+  padding-bottom: 10px;
+}
+.card-img {
+  border-top-left-radius: 11.42px;
+  background-color: #d9d9d9;
+}
+.card-details {
+  height: 90%;
+  display: inline-flex;
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 33% 67%;
+}
+.card-informatios {
+  padding: 10px;
+  display: flex;
+  overflow: hidden;
+  width: auto;
+  height: 48px;
+  gap: 0.1rem;
+}
+.card-preference {
+  display: inline-flex;
+}
+.card-name {
+  width: 14rem;
+  color: #000071;
+  font-size: large;
+  font-weight: 600;
+  font-family: Causten-Semi-Bold, Helvetica;
+}
+.card-preference {
+  padding: 0 10px 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  font-family: Causten-Regular, Helvetica;
+  color: #878686;
+  font-weight: 400;
+  font-size: small;
+}
+.card-downers {
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 174px;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-family: Causten-Regular, Helvetica;
+  color: #878686;
+  font-weight: 400;
+  font-size: small;
+}
+.card-downers2 {
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 145px;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-family: Causten-Regular, Helvetica;
+  color: #878686;
+  font-weight: 400;
+  font-size: small;
+}
+.card-preference-title {
+  padding-bottom: 5px;
+}
+.card-hr hr {
+  margin-top: 0px;
+  border-top: 1px dashed #bebcbd;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+@media screen and (max-width: 468px) {
+  .main-card {
+    width: 280px;
+    background-color: #ffffff1a;
+    border-radius: 11.42px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 150px;
+    padding-bottom: 10px;
+  }
+  .card-img {
+    border-top-left-radius: 11.42px;
+    background-color: #d9d9d9;
+  }
+  .card-details {
+    height: 90%;
+    display: inline-flex;
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: 33% 67%;
+  }
+  .card-informatios {
+    padding: 10px;
+    display: flex;
+    overflow: hidden;
+    width: auto;
+    height: 48px;
+    gap: 0.1rem;
+  }
+  .card-preference {
+    display: inline-flex;
+  }
+  .card-name {
+    width: 14rem;
+    color: #000071;
+    font-size: medium;
+    font-weight: 600;
+    font-family: Causten-Semi-Bold, Helvetica;
+  }
+  .card-preference {
+    padding: 0 10px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Causten-Regular, Helvetica;
+    color: #878686;
+    font-weight: 400;
+    font-size: xx-small;
+  }
+  .card-downers {
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 120px;
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Causten-Regular, Helvetica;
+    color: #878686;
+    font-weight: 400;
+    font-size: xx-small;
+  }
+  .card-downers2 {
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 101px;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Causten-Regular, Helvetica;
+    color: #878686;
+    font-weight: 400;
+    font-size: xx-small;
+  }
+  .card-preference-title {
+    padding-bottom: 5px;
+  }
+  .card-hr hr {
+    margin-top: 0px;
+    border-top: 1px dashed #bebcbd;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+}

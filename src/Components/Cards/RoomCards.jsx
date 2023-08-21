@@ -1,0 +1,59 @@
+import React, { useState, useEffect } from "react";
+
+import "./Cards.css";
+function RoomCards() {
+  return (
+    <>
+      <span className="cards">
+        <div className="main-card">
+          <div className="card-details">
+            <div className="card-img"></div>
+            <div className="card-info">
+              <div className="card-informatios">
+                <div className="card-name">E-Block</div>
+                <div className="card-add">
+                  <img
+                    src="./image/add-icon.png"
+                    alt=""
+                    style={{ height: "24px", width: "24px" }}
+                  />
+                </div>
+              </div>
+              <div className="card-preference">
+                <div className="card-rank">
+                  <div className="card-preference-title">Rank</div>
+                  <div className="card-preference-content">0600</div>
+                </div>
+                <div className="card-block">
+                  <div className="card-preference-title">Prefered Bed</div>
+                  <div className="card-preference-content">4,5</div>
+                </div>
+                <div className="card-bed">
+                  <div className="card-preference-title">Remaining</div>
+                  <div className="card-preference-content">2</div>
+                </div>
+              </div>
+              <div className="card-downers2">
+                <div className="card-year">
+                  <div className="card-preference-title">Year</div>
+                  <div className="card-preference-Year">2023</div>
+                </div>
+                <div className="card-gender">
+                  <div className="card-preference-title">Gender</div>
+                  <div className="card-preference-Gender">Boy</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <diV className="card-hr">
+            <hr />
+          </diV>
+          <div className="card-habits-section">
+            <div className="card-habit"></div>
+          </div>
+        </div>
+      </span>
+    </>
+  );
+}
+export default RoomCards;

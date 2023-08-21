@@ -1,11 +1,8 @@
 import React from "react";
 
+import Roompage from "../../Components/Roommate/Roompage";
 function Home() {
-  return (
-    <div className="w-screen h-screen flex items-center justify-center text-3xl font-bold">
-      Home
-    </div>
-  );
+  return <Roompage />;
 }
 
 export default Home;
