@@ -56,14 +56,14 @@ function SignIn() {
     navigate("/home");
   }
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col w-[100vw] h-[100vh]">
       <Header />
       <div className="flex flex-grow h-auto">
-        <div className="w-[45%] bg-[#D9D9D9]"></div>
-        <div className="w-[55%] flex justify-center">
+        <div className="hidden md:inline-block md:w-[45%] bg-[#D9D9D9]"></div>
+        <div className="w-[100%] md:w-[55%] flex justify-center">
           <div className="flex flex-col pt-[2rem] items-center w-[80%]">
             <h1 className="text-[#333] text-[1.75rem] font-[600] w-full  ">
-              Sign In 
+              Sign In
             </h1>
             <p className="mb-5 text-[#3C4242] text-[14px] w-full">
               Sign in using your credentials
@@ -79,9 +79,7 @@ function SignIn() {
             </div>
 
             <div className="w-full mb-6">
-              <span className="text-[#3C4242] text-[16px]">
-                Email address
-              </span>
+              <span className="text-[#3C4242] text-[16px]">Email address</span>
               <input
                 name="email"
                 value={form.email}
