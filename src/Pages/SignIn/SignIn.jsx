@@ -52,7 +52,7 @@ function SignIn() {
   function signInClickHandler() {
     console.log("form", form);
     setForm(initialFormState);
-    toast.success("You have succesfully signed up!");
+    toast.success("You have succesfully signed in!");
     navigate("/home");
   }
   return (
@@ -79,7 +79,7 @@ function SignIn() {
             </div>
 
             <div className="w-full mb-6">
-              <span className="text-[#3C4242] text-[16px]">Email address</span>
+              <span className="text-[#3C4242] text-[16px]">Email Address</span>
               <input
                 name="email"
                 value={form.email}

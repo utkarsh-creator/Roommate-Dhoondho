@@ -95,7 +95,7 @@ function SignUP() {
     console.log("verifyform", verifyForm);
     setIsVerification(false);
     setVerifyForm(initialFormState);
-    toast.success("You have succesfully signed up!");
+    toast.success("You have successfully signed in!");
     navigate("/");
   }
   return (
