@@ -81,7 +81,8 @@ img {
   justify-content: end;
 }
 
-select {
+.custom-select select,
+.custom-select-2 select {
   color: #7e8490;
   width: 120px;
   height: 40px;
@@ -102,10 +103,12 @@ select {
   background-repeat: no-repeat;
   font-family: "Causten-Medium", Helvetica;
 }
-option {
+.custom-select-2 option,
+.custom-select option {
   font-family: "Causten-Medium", Helvetica;
 }
-select::-ms-expand {
+.custom-select-2 select::-ms-expand,
+.custom-select select::-ms-expand {
   display: none;
 }
 .navtab-main {

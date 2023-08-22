@@ -11,7 +11,7 @@
   background-color: #d9d9d9;
 }
 .card-details {
-  height: 90%;
+  height: 92%;
   display: inline-flex;
   display: grid;
   overflow: hidden;
@@ -92,7 +92,7 @@
     background-color: #d9d9d9;
   }
   .card-details {
-    height: 90%;
+    height: 92%;
     display: inline-flex;
     display: grid;
     overflow: hidden;
@@ -110,9 +110,9 @@
     display: inline-flex;
   }
   .card-name {
-    width: 14rem;
+    width: 8.89rem;
     color: #000071;
-    font-size: medium;
+    font-size: small;
     font-weight: 600;
     font-family: Causten-Semi-Bold, Helvetica;
   }
