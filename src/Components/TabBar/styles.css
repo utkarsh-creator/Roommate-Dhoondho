@@ -7,10 +7,6 @@
   display: block;
 }
 
-img {
-  width: 300px;
-}
-
 .tab-buttons {
   display: flex;
   padding-top: 10px;

@@ -11,7 +11,7 @@
   background-color: #d9d9d9;
 }
 .card-details {
-  height: 92%;
+  height: 91%;
   display: inline-flex;
   display: grid;
   overflow: hidden;
@@ -92,7 +92,7 @@
     background-color: #d9d9d9;
   }
   .card-details {
-    height: 92%;
+    height: 91%;
     display: inline-flex;
     display: grid;
     overflow: hidden;
