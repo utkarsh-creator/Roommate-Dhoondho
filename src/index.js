@@ -10,6 +10,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import ChangePassword from "./Pages/ChangePassword/Change";
 import ResetPassword from "./Pages/ResetPassword/Reset";
 import Home from "./Pages/Home/Home";
+import NeedRoom from "./Pages/NeedRoom/NeedRoom";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+  },
+  {
+    path: "/need",
+    element: <NeedRoom />,
   },
 ]);
 
