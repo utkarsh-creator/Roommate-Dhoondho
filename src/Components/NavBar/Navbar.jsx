@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
@@ -58,11 +58,7 @@ function Navbar() {
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
-            <NavLink
-              to="/add_listing"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
+            <NavLink to="/need" className="nav-links" onClick={closeMobileMenu}>
               <button className="listing">
                 {" "}
                 <span className="button_icon" onClick={handleClick}>
@@ -101,7 +97,7 @@ function Navbar() {
           </li>
           <li className="nav-item-mobile">
             <Link
-              to="/Add_Listing"
+              to="/need"
               className="nav-links-mobile user"
               onClick={closeMobileMenu}
             >

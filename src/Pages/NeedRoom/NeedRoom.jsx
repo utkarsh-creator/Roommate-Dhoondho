@@ -1,12 +1,12 @@
-import React, { useState, Fragment } from "react";
-import "./NeedRoom.css";
+import React, { Fragment, useState } from "react";
+import { toast } from "react-toastify";
 import Bed from "../../Assets/bed.svg";
 import BoldBed from "../../Assets/bold-bed.svg";
-import People from "../../Assets/people.svg";
 import BoldPeople from "../../Assets/bold-people.svg";
-import Navbar from "../../Components/NavBar/Navbar";
+import People from "../../Assets/people.svg";
 import Footer from "../../Components/Footer/Footer";
-import { toast } from "react-toastify";
+import Navbar from "../../Components/NavBar/Navbar";
+import "./NeedRoom.css";
 
 const initialNeedRoomFormState = {
   rank: "",
@@ -274,12 +274,12 @@ function NeedRoom() {
         {needRoom ? (
           <div className="w-[100%]">
             <h1 className="mb-4 mt-5">Looking for Room</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2  md:gap:4 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap:4  md:gap:4 lg:gap-8">
               <div
                 style={{ gridAutoRows: "120px" }}
                 className="grid grid-cols-1 items-center"
               >
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 md:mr-4">
                   <span>Your Rank *</span>
                   <input
                     name="rank"
@@ -288,7 +288,7 @@ function NeedRoom() {
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
                 </div>
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 md:mr-4">
                   <span>Prefered Bed Type*</span>
                   <input
                     name="bedType"
@@ -297,7 +297,7 @@ function NeedRoom() {
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
                 </div>
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 md:mr-4">
                   <span>Contact Number*</span>
                   <input
                     name="contactNumber"
