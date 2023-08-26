@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import "./Cards.css";
 function Cards() {
@@ -10,7 +10,7 @@ function Cards() {
             <div className="card-img"></div>
             <div className="card-info">
               <div className="card-informatios">
-                <div className="card-name">Harshit P G </div>
+                <div className="card-name">Anubhav Batra</div>
                 <div className="card-add">
                   <img
                     src="./image/add-icon.png"

@@ -40,7 +40,10 @@ function Navbar() {
             <NavLink to="/home" className="nav-links" onClick={closeMobileMenu}>
               <button className="myroomies">
                 {" "}
-                <span className="button_icon" onClick={handleClick}>
+                <span
+                  className="button_icon whitespace-nowrap"
+                  onClick={handleClick}
+                >
                   <i
                     className={
                       click
