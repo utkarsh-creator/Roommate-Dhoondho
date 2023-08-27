@@ -1,11 +1,12 @@
 // eslint-disable-next-line
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
 import "./Navbar.css";
 
 function Navbar() {
   const [navbar, setHeader] = useState("navbar");
-
+  const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
@@ -28,14 +29,14 @@ function Navbar() {
     }
   };
 
+  function ProfileClickHandler() {
+    navigate("/profile");
+  }
+
   return (
     <>
       <nav className="navbar">
-        <img
-          src="./image/logo.png"
-          alt=""
-          style={{ height: "60px", width: "220px" }}
-        />
+        <img src="./image/logo.png" alt="" style={{ height: "60px" }} />
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
         </div>
@@ -82,16 +83,16 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link
-              to="/bookmarks"
+              to="/selections"
               className="nav-links bookmarks"
               onClick={closeMobileMenu}
             ></Link>
           </li>
           <li className="nav-item">
             <Link
-              to="/user"
+              to="/profile"
               className="nav-links user"
-              onClick={closeMobileMenu}
+              onClick={ProfileClickHandler}
             ></Link>
           </li>
           <li className="nav-item-mobile">
@@ -114,16 +115,16 @@ function Navbar() {
           </li>
           <li className="nav-item-mobile">
             <Link
-              to="/bookmarks"
+              to="/selections"
               className="nav-links-mobile bookmarks"
               onClick={closeMobileMenu}
             >
               Bookmarks
             </Link>
           </li>
-          <li className="nav-item-mobile">
+          <li className="nav-item-mobile" onClick={ProfileClickHandler}>
             <Link
-              to="/user"
+              to="/profile"
               className="nav-links-mobile user"
               onClick={closeMobileMenu}
             >
@@ -132,7 +133,7 @@ function Navbar() {
           </li>
         </ul>
       </nav>
-      <hr class="hr1" />
+      <hr className="hr1" />
     </>
   );
 }

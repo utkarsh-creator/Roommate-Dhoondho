@@ -10,6 +10,9 @@ import SignUp from "./Pages/SignUp/SignUp";
 import ChangePassword from "./Pages/ChangePassword/Change";
 import ResetPassword from "./Pages/ResetPassword/Reset";
 import Home from "./Pages/Home/Home";
+import Profile from "./Pages/Profile/Profile";
+import Selections from "./Pages/Selections/Selections";
+import { ListingContextProvider } from "./Context/listing-context";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,16 +34,23 @@ const router = createBrowserRouter([
     path: "/home",
     element: <Home />,
   },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/selections",
+    element: <Selections />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <>
+  <>
+    <ListingContextProvider>
       <RouterProvider router={router} />
-      <ToastContainer />
-    </>
-  </React.StrictMode>
+    </ListingContextProvider>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function

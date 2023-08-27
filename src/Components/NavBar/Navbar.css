@@ -1,8 +1,9 @@
 .active > .myroomies {
   background-color: #06105a;
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   height: 40px;
-  width: 130px;
+  width: 132px;
   padding: 0;
   border: none;
   outline: none;
@@ -53,9 +54,10 @@
 
 .nav-links button {
   background-color: #ffffff;
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   height: 40px;
-  width: 130px;
+  width: 132px;
   padding: 0;
   border: 1.5px solid #06105a;
   outline: none;

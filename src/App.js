@@ -5,7 +5,7 @@ import Footer from "./components/Footer/Footer";
 import NavTabs from "./components/TabBar/NavTabs";
 import { BrowserRouter as Router } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Navbar />
@@ -13,6 +13,6 @@ function App() {
       <Footer />
     </Router>
   );
-}
+};
 
 export default App;

@@ -5,7 +5,7 @@ import NavTabs from "../TabBar/NavTabs";
 import Footer from "../Footer/Footer";
 import { BrowserRouter as Router } from "react-router-dom";
 
-function Roompage() {
+const Roompage = () => {
   return (
     <>
       <Navbar />
@@ -13,6 +13,6 @@ function Roompage() {
       <Footer />
     </>
   );
-}
+};
 
 export default Roompage;

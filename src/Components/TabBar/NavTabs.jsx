@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Cards from "../Cards/Cards";
 import RoomCards from "../Cards/RoomCards";
+import list from "../../data.js";
+import list2 from "../../data2.js";
 import "./styles.css";
+import {} from "../../Context/listing-context";
 
 class NavTabs extends Component {
   render() {
@@ -9,105 +12,21 @@ class NavTabs extends Component {
       <div className="tabs">
         <Tabs>
           <Tab label="Tab 1">
-            <div className="tab-content">
-              <div className="cards">
+            <div className="cards">
+              {list.map((item) => (
                 <div className="each-card">
-                  <Cards />
+                  <Cards item={item} />
                 </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-                <div className="each-card">
-                  <Cards />
-                </div>
-              </div>
+              ))}
             </div>
           </Tab>
           <Tab label="Tab 2">
-            <div className="tab-content">
-              <div className="cards">
+            <div className="cards">
+              {list2.map((item) => (
                 <div className="each-card">
-                  <RoomCards />
+                  <RoomCards item={item} />
                 </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-                <div className="each-card">
-                  <RoomCards />
-                </div>
-              </div>
+              ))}
             </div>
           </Tab>
         </Tabs>
@@ -196,7 +115,7 @@ const TabButtons = ({ buttons, changeTab, activeTab }) => {
           );
         })}
         <div className="tab-dropdownbuttons">
-          <div class="custom-select">
+          <div className="custom-select">
             <select>
               <option hidden value="0">
                 Year
@@ -208,7 +127,7 @@ const TabButtons = ({ buttons, changeTab, activeTab }) => {
               <option value="5">2027</option>
             </select>
           </div>
-          <div class="custom-select">
+          <div className="custom-select">
             <select>
               <option hidden value="0">
                 Block
@@ -232,7 +151,7 @@ const TabButtons = ({ buttons, changeTab, activeTab }) => {
               <option value="17">R-Block</option>
             </select>
           </div>
-          <div class="custom-select-2">
+          <div className="custom-select-2">
             <select>
               <option hidden value="0">
                 Gender

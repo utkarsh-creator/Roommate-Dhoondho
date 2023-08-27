@@ -8,7 +8,7 @@ const Cards = ({ item }) => {
   const { addToCart } = useContext(ListingContext);
   return (
     <>
-      <span className="cards">
+      <span className="cardsnew">
         <div className="main-card">
           <div className="card-details">
             <div className="card-img"></div>
