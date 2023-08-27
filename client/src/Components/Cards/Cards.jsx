@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/Components/Cards/Cards.jsx
 import React, { useContext } from "react";
-=======
-import React from "react";
->>>>>>> d0f91fd941945f95f1b10aefc896a35096f8aa0d:client/src/Components/Cards/Cards.jsx
 
 import "./Cards.css";
 import { ListingContext } from "../../Context/listing-context";
@@ -18,13 +14,8 @@ const Cards = ({ item }) => {
             <div className="card-img"></div>
             <div className="card-info">
               <div className="card-informatios">
-<<<<<<< HEAD:src/Components/Cards/Cards.jsx
                 <div className="card-name">{name}</div>
                 <div className="card-add" onClick={() => addToCart(id)}>
-=======
-                <div className="card-name">Anubhav Batra</div>
-                <div className="card-add">
->>>>>>> d0f91fd941945f95f1b10aefc896a35096f8aa0d:client/src/Components/Cards/Cards.jsx
                   <img
                     src="./image/add-icon.png"
                     alt=""
