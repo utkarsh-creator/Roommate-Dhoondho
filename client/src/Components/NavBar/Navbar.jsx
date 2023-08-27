@@ -1,12 +1,7 @@
 // eslint-disable-next-line
-<<<<<<< HEAD:src/Components/NavBar/Navbar.jsx
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-=======
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
->>>>>>> d0f91fd941945f95f1b10aefc896a35096f8aa0d:client/src/Components/NavBar/Navbar.jsx
 import "./Navbar.css";
 
 function Navbar() {
@@ -123,7 +118,7 @@ function Navbar() {
               className="nav-links-mobile bookmarks"
               onClick={closeMobileMenu}
             >
-              Bookmarks
+              Selections
             </Link>
           </li>
           <li className="nav-item-mobile" onClick={ProfileClickHandler}>

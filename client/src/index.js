@@ -10,13 +10,10 @@ import SignUp from "./Pages/SignUp/SignUp";
 import ChangePassword from "./Pages/ChangePassword/Change";
 import ResetPassword from "./Pages/ResetPassword/Reset";
 import Home from "./Pages/Home/Home";
-<<<<<<< HEAD:src/index.js
 import Profile from "./Pages/Profile/Profile";
 import Selections from "./Pages/Selections/Selections";
 import { ListingContextProvider } from "./Context/listing-context";
-=======
 import NeedRoom from "./Pages/NeedRoom/NeedRoom";
->>>>>>> d0f91fd941945f95f1b10aefc896a35096f8aa0d:client/src/index.js
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,17 +36,16 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-<<<<<<< HEAD:src/index.js
     path: "/profile",
     element: <Profile />,
   },
   {
     path: "/selections",
     element: <Selections />,
-=======
+  },
+  {
     path: "/need",
     element: <NeedRoom />,
->>>>>>> d0f91fd941945f95f1b10aefc896a35096f8aa0d:client/src/index.js
   },
 ]);
 
