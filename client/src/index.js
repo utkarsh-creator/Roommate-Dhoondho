@@ -1,5 +1,5 @@
 import "./index.css";
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
@@ -14,6 +14,8 @@ import Profile from "./Pages/Profile/Profile";
 import Selections from "./Pages/Selections/Selections";
 import { ListingContextProvider } from "./Context/listing-context";
 import NeedRoom from "./Pages/NeedRoom/NeedRoom";
+import store from "./store/ReduxStore";
+import { Provider } from "react-redux";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,9 +54,13 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-    <ListingContextProvider>
-      <RouterProvider router={router} />
-    </ListingContextProvider>
+    <Provider store={store}>
+      <Fragment>
+        <ListingContextProvider>
+          <RouterProvider router={router} />
+        </ListingContextProvider>
+      </Fragment>
+    </Provider>
   </>
 );
 

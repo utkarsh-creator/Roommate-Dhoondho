@@ -7,12 +7,15 @@ import { BsEyeSlashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { logIn } from "../../actions/AuthActions.js";
+import { useDispatch } from "react-redux";
 
 let initialFormState = { email: "", password: "" };
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState(initialFormState);
   const [error, setError] = useState({ email: null, password: null });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function hideOnClickHandler() {
@@ -52,8 +55,15 @@ function SignIn() {
   function signInClickHandler() {
     console.log("form", form);
     setForm(initialFormState);
-    toast.success("You have succesfully signed in!");
-    navigate("/home");
+
+    let data = {
+      username: form.email,
+      password: form.password,
+    };
+
+    dispatch(logIn(data, navigate));
+    // toast.success("You have succesfully signed in!");
+    // navigate("/home");
   }
   return (
     <div className="flex flex-col w-[100vw] h-[100vh]">

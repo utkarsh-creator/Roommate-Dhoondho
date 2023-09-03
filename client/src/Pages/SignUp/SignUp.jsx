@@ -7,6 +7,8 @@ import { BsEyeSlashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { signUp } from "../../actions/AuthActions.js";
+import { useDispatch } from "react-redux";
 
 let initialFormState = { email: "", password: "", agree: false };
 let verifyInitialFormState = { code: "" };
@@ -16,6 +18,7 @@ function SignUP() {
   const [verifyForm, setVerifyForm] = useState(verifyInitialFormState);
   const [formError, setFormError] = useState({ email: null, password: null });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isVerification, setIsVerification] = useState(false);
 
   function hideOnClickHandler() {
@@ -86,8 +89,12 @@ function SignUP() {
   }
 
   async function signUpClickHandler() {
-    console.log("form", form);
-    setIsVerification(true);
+    // setIsVerification(true);
+    let data = {
+      username: form.email,
+      password: form.password,
+    };
+    dispatch(signUp(data, navigate));
     setForm(initialFormState);
   }
 
