@@ -1,32 +1,237 @@
 import React, { Component } from "react";
-import Cards from "../Cards/Cards";
-import RoomCards from "../Cards/RoomCards";
-import list from "../../data.js";
-import list2 from "../../data2.js";
+import axios from "axios";
 import "./styles.css";
-import {} from "../../Context/listing-context";
+import "../Cards/Cards.css";
 
-class NavTabs extends Component {
+class DisplayRoommateCard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      roommatePosts: [],
+      roomPosts: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("https://roommate-finder-theta.vercel.app/roommate/all")
+      .then((response) => {
+        const roommatePostsWithUserDetailsPromises = response.data.map(
+          (post) => {
+            return axios
+              .get(
+                `https://roommate-finder-theta.vercel.app/user/${post.userId}`
+              )
+              .then((userResponse) => {
+                const userDetails = userResponse.data;
+                return {
+                  ...post,
+                  userDetails,
+                };
+              });
+          }
+        );
+
+        return Promise.all(roommatePostsWithUserDetailsPromises);
+      })
+      .then((roommatePostsWithUserDetails) => {
+        this.setState({ roommatePosts: roommatePostsWithUserDetails });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .get("https://roommate-finder-theta.vercel.app/room/all")
+      .then((response) => {
+        const roomPostsWithUserDetailsPromises = response.data.map((post) => {
+          return axios
+            .get(`https://roommate-finder-theta.vercel.app/user/${post.userId}`)
+            .then((userResponse) => {
+              const userDetails = userResponse.data;
+              return {
+                ...post,
+                userDetails,
+              };
+            });
+        });
+
+        return Promise.all(roomPostsWithUserDetailsPromises);
+      })
+      .then((roomPostsWithUserDetails) => {
+        this.setState({ roomPosts: roomPostsWithUserDetails });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
+    const { roommatePosts, roomPosts } = this.state;
     return (
       <div className="tabs">
         <Tabs>
           <Tab label="Tab 1">
             <div className="cards">
-              {list.map((item) => (
+              {roommatePosts.map((post) => (
                 <div className="each-card">
-                  <Cards item={item} />
+                  <span className="cards">
+                    <div className="main-card">
+                      <div className="card-details">
+                        <div className="card-img"></div>
+                        <div className="card-info">
+                          <div className="card-informatios">
+                            <div className="card-name">
+                              {" "}
+                              {post.userDetails.firstname ?? "Null_Fname"}{" "}
+                              {post.userDetails.lastname ?? "Null_Lname"}
+                            </div>
+                            <div className="card-add">
+                              <img
+                                src="./image/add-icon.png"
+                                alt=""
+                                style={{ height: "24px", width: "24px" }}
+                              />
+                            </div>
+                          </div>
+                          <div className="card-preference">
+                            <div className="card-rank">
+                              <div className="card-preference-title">Rank</div>
+                              <div className="card-preference-content">
+                                {" "}
+                                {post.rank}
+                              </div>
+                            </div>
+                            <div className="card-block">
+                              <div className="card-preference-title">
+                                Prefered Block
+                              </div>
+                              <div className="card-preference-content">
+                                {post.preferredBlock}
+                              </div>
+                            </div>
+                            <div className="card-bed">
+                              <div className="card-preference-title">
+                                Prefered Bed Type
+                              </div>
+                              <div className="card-preference-content">
+                                {" "}
+                                {post.preferredBed}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="card-downers">
+                            <div className="card-year">
+                              <div className="card-preference-title">Year</div>
+                              <div className="card-preference-Year">year</div>
+                            </div>
+                            <div className="card-gender">
+                              <div className="card-preference-title">
+                                Gender
+                              </div>
+                              <div className="card-preference-Gender">
+                                {post.gender}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="card-hr">
+                        <hr />
+                      </div>
+                      <div className="card-habits-section">
+                        <div className="card-habit"></div>
+                      </div>
+                    </div>
+                  </span>
                 </div>
               ))}
             </div>
           </Tab>
           <Tab label="Tab 2">
             <div className="cards">
-              {list2.map((item) => (
-                <div className="each-card">
-                  <RoomCards item={item} />
+              <div>
+                <div className="roommate-cards">
+                  <div className="cards">
+                    {roomPosts.map((post) => (
+                      <div div className="each-card">
+                        <span className="cards">
+                          <div className="main-card">
+                            <div className="card-details">
+                              <div className="card-img"></div>
+                              <div className="card-info">
+                                <div className="card-informatios">
+                                  <div className="card-name">
+                                    {post.preferredBlock}
+                                  </div>
+                                  <div className="card-add">
+                                    <img
+                                      src="./image/add-icon.png"
+                                      alt=""
+                                      style={{ height: "24px", width: "24px" }}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="card-preference">
+                                  <div className="card-rank">
+                                    <div className="card-preference-title">
+                                      Rank
+                                    </div>
+                                    <div className="card-preference-content">
+                                      {post.rank}
+                                    </div>
+                                  </div>
+                                  <div className="card-block">
+                                    <div className="card-preference-title">
+                                      Prefered Bed
+                                    </div>
+                                    <div className="card-preference-content">
+                                      {post.preferredBed}
+                                    </div>
+                                  </div>
+                                  <div className="card-bed">
+                                    <div className="card-preference-title">
+                                      Remaining
+                                    </div>
+                                    <div className="card-preference-content">
+                                      remaining
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="card-downers2">
+                                  <div className="card-year">
+                                    <div className="card-preference-title">
+                                      Year
+                                    </div>
+                                    <div className="card-preference-Year">
+                                      year
+                                    </div>
+                                  </div>
+                                  <div className="card-gender">
+                                    <div className="card-preference-title">
+                                      Gender
+                                    </div>
+                                    <div className="card-preference-Gender">
+                                      {post.gender}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="card-hr">
+                              <hr />
+                            </div>
+                            <div className="card-habits-section">
+                              <div className="card-habit"></div>
+                            </div>
+                          </div>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </Tab>
         </Tabs>
@@ -34,7 +239,6 @@ class NavTabs extends Component {
     );
   }
 }
-
 class Tabs extends Component {
   state = {
     activeTab: this.props.children[0].props.label,
@@ -86,7 +290,7 @@ const TabButtons = ({ buttons, changeTab, activeTab }) => {
                   ) : (
                     <span className="tab-elements">
                       <div className="roomate-icon">
-                        <img src="./image/bed 2.png" alt="" />
+                        <img src="./image/bed2.png" alt="" />
                         <div className="tab-text">Rooms</div>
                       </div>
                     </span>
@@ -173,4 +377,4 @@ const Tab = (props) => {
   return <React.Fragment>{props.children}</React.Fragment>;
 };
 
-export default NavTabs;
+export default DisplayRoommateCard;
