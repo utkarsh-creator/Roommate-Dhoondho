@@ -306,10 +306,7 @@ const Profilepage = () => {
                   <div className="form-section-4">
                     {changesMade && (
                       <button className="mx-auto bg-[#06105A] px-[2.5rem] py-[0.75rem] text-white rounded-[8px] self-start disabled:hover:cursor-not-allowed">
-                        <input
-                          type="submit"
-                          onChange={submituserRegistrationForm}
-                        />
+                        Submit
                       </button>
                     )}
                   </div>
@@ -339,8 +336,12 @@ const Profilepage = () => {
             <p className="listing-text">Your Listing</p>
           </button>
         </div>
-        <DisplayRoomListingCard />
-        <DisplayRoommateListingCard />
+        <div className="tab-content">
+          <div className="cards">
+            <DisplayRoomListingCard />
+            <DisplayRoommateListingCard />
+          </div>
+        </div>
       </div>
       <div>
         <Footer />

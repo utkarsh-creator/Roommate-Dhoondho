@@ -211,11 +211,19 @@ form {
   font-size: 32px;
 }
 .cards {
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3%;
+  place-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(410px, 1fr));
   margin-bottom: 8%;
+}
+@media screen and (max-width: 950px) {
+  .cards {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3%;
+    margin-bottom: 8%;
+  }
 }
 
 @media screen and (max-width: 468px) {
@@ -306,11 +314,19 @@ form {
   font-size: 24px;
 }
 .cards {
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3%;
+  place-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(410px, 1fr));
   margin-bottom: 8%;
+}
+@media screen and (max-width: 950px) {
+  .cards {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3%;
+    margin-bottom: 8%;
+  }
 }
 
 @media screen and (max-width: 468px) {

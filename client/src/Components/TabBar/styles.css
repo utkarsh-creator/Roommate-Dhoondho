@@ -61,7 +61,7 @@
 }
 .tab-content {
   width: 100%;
-  display: flex;
+
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 20px;
@@ -115,11 +115,19 @@
   margin-top: 10px;
 }
 .cards {
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3%;
+  place-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(410px, 1fr));
   margin-bottom: 8%;
+}
+@media screen and (max-width: 950px) {
+  .cards {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3%;
+    margin-bottom: 8%;
+  }
 }
 
 @media only screen and (max-width: 700px) {

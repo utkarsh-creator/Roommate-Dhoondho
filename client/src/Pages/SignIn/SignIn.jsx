@@ -69,7 +69,12 @@ function SignIn() {
     <div className="flex flex-col w-[100vw] h-[100vh]">
       <Header />
       <div className="flex flex-grow h-auto">
-        <div className="hidden md:inline-block md:w-[45%] bg-[#D9D9D9]"></div>
+        <div
+          className="md:inline-block md:w-[45%] bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${require("../../Assets/signin.png")})`,
+          }}
+        ></div>
         <div className="w-[100%] md:w-[55%] flex justify-center">
           <div className="flex flex-col pt-[2rem] items-center w-[80%]">
             <h1 className="text-[#333] text-[1.75rem] font-[600] w-full  ">
