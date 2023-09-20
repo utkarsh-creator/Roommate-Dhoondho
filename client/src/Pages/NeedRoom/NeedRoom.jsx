@@ -1,4 +1,7 @@
+import axios from "axios";
 import React, { Fragment, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Bed from "../../Assets/bed.svg";
 import BoldBed from "../../Assets/bold-bed.svg";
@@ -52,6 +55,8 @@ function NeedRoom() {
   const [needRoomMateForm, setNeedRoomMateForm] = useState(
     initialNeedRoomMateFormState
   );
+  const user = useSelector((state) => state.authReducer.authData);
+  const navigate = useNavigate();
 
   function needRoomClickHandler(trigger) {
     if (trigger === "room") {
@@ -115,14 +120,57 @@ function NeedRoom() {
     });
   }
 
-  function needRoomSubmitHandler() {
+  async function needRoomSubmitHandler() {
     validateNeedRoomForm();
+    let userId = user?.user?._id;
     console.log("need Room", needRoomForm);
+    let requestBody = {
+      userId: userId,
+      rank: needRoomForm?.rank,
+      gender: needRoomForm?.gender,
+      preferredBed: needRoomForm?.bedType,
+      preferredBlock: needRoomForm?.preferedBlocks[0],
+      phone: needRoomForm?.contactNumber,
+      habits: needRoomForm?.habits,
+      desc: needRoomForm?.description,
+    };
+    try {
+      let result = await axios.post(
+        `https://roommate-finder-theta.vercel.app/room/${userId}`,
+        requestBody
+      );
+      console.log("result", result);
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  function needRoomMateSubmitHandler() {
+  async function needRoomMateSubmitHandler() {
     validateNeedRoomMateForm();
-    console.log("need Room Mate", needRoomMateForm);
+    let userId = user?.user?._id;
+
+    let requestBody = {
+      userId: userId,
+      rank: needRoomMateForm?.rank,
+      gender: needRoomMateForm?.gender,
+      preferredBed: needRoomMateForm?.noOfBeds,
+      preferredBlock: needRoomMateForm?.preferedBlocks[0],
+      phone: needRoomMateForm?.contactNumber,
+      year: 19999,
+      desc: needRoomMateForm?.description,
+    };
+
+    try {
+      let result = await axios.post(
+        `https://roommate-finder-theta.vercel.app/roommate/${userId}`,
+        requestBody
+      );
+      console.log("result", result);
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   function validateNeedRoomForm() {
