@@ -1,4 +1,4 @@
-Branch: Master Branch <br>
+Branch: Master Branch<br>
 Demo backend: https://roommate-finder-client.vercel.app/
 <br><br>
 <h1>Update 23-09-2023</h1>
