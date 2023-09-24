@@ -17,7 +17,7 @@ const Profilepage = () => {
   const [rank, setRank] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [changesMade, setChangesMade] = useState(false); // to make submit button visis
+  const [changesMade, setChangesMade] = useState(true); // to make submit button visis
   const [notification, setNotification] = useState(null);
 
   console.log("user specific data: ", profileData);
@@ -357,8 +357,8 @@ const Profilepage = () => {
         </div>
         <div className="tab-content">
           <div className="cards">
-            <DisplayRoomListingCard />
             <DisplayRoommateListingCard />
+            <DisplayRoomListingCard />
           </div>
         </div>
       </div>
