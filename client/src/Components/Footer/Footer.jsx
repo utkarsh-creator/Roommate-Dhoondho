@@ -4,6 +4,37 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
+
+ <button id="chatToggle">Open Chat</button>
+    <div id="chatPopup">
+        <button id="minimizeChat">Minimize Chat</button>
+<div id="tlkio" data-channel="mfc" data-theme="theme--day" style="width:400px;height:400px;"></div><script async src="http://tlk.io/embed.js" type="text/javascript"></script>
+    </div>
+    <script>      document.addEventListener("DOMContentLoaded", function () {
+            const chatPopup = document.getElementById("chatPopup");
+            const chatToggle = document.getElementById("chatToggle");
+            const minimizeChat = document.getElementById("minimizeChat");
+
+            chatToggle.addEventListener("click", function () {
+                if (chatPopup.style.display === "none" || chatPopup.style.display === "") {
+                    chatPopup.style.display = "block";
+                    minimizeChat.style.display = "block";
+                    chatToggle.style.display = "none";
+                } else {
+                    chatPopup.style.display = "none";
+                    minimizeChat.style.display = "none";
+                    chatToggle.style.display = "block";
+                }
+            });
+
+            minimizeChat.addEventListener("click", function () {
+                chatPopup.style.display = "none";
+                minimizeChat.style.display = "none";
+                chatToggle.style.display = "block";
+            });
+        });
+    </script>
+      
       <div className="footer__container">
         <div className="footer__top">
           <div>
