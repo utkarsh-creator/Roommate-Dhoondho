@@ -5,34 +5,57 @@ import Modal from "../../Components/Modal/Modal";
 import { ListingContext } from "../../Context/listing-context";
 
 function DisplayRoommateListingCard() {
-  const [roommates, setRoommates] = useState([]);
-  const profileData = JSON.parse(localStorage.getItem("profile"));
   const { showModal, selectRoommateDetail } = useContext(ListingContext);
+  const profileData = JSON.parse(localStorage.getItem("profile"));
+  const [roommates, setRoommates] = useState([]);
 
   useEffect(() => {
-    const user_Id = profileData?.user?._id;
-    console.log("user_Id recorded:", user_Id);
+    const fetchData = async () => {
+      try {
+        const user_Id = profileData.user._id;
+        console.log("user_Id recorded:", user_Id);
 
-    if (user_Id) {
-      const requestData = {
+        const requestData = {
+          userId: user_Id,
+        };
+
+        console.log("requestData:", requestData);
+
+        const response = await axios.post(
+          `https://roommate-finder-theta.vercel.app/roommate/my/${user_Id}`,
+          requestData
+        );
+        setRoommates(response.data);
+      } catch (error) {
+        console.error("Error fetching roommates:", error);
+      }
+    };
+
+    fetchData();
+  }, [profileData.user._id]);
+
+  const deleteRoommate = async (roommate_id) => {
+    try {
+      const user_Id = profileData.user._id;
+      const requestBody = {
         userId: user_Id,
       };
 
-      console.log("requestData:", requestData);
+      const response = await axios.delete(
+        `https://roommate-finder-theta.vercel.app/roommate/${roommate_id}`,
+        {
+          data: requestBody,
+        }
+      );
 
-      axios
-        .post(
-          `https://roommate-finder-theta.vercel.app/roommate/my/${user_Id}`,
-          requestData
-        )
-        .then((response) => {
-          setRoommates(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching roommates:", error);
-        });
+      console.log("Roommate deleted:", response);
+      setRoommates((prevRoommates) =>
+        prevRoommates.filter((roommate) => roommate._id !== roommate_id)
+      );
+    } catch (error) {
+      console.error("Error deleting roommate:", error);
     }
-  }, [profileData]);
+  };
 
   return (
     <>
@@ -46,7 +69,10 @@ function DisplayRoommateListingCard() {
                 <div className="card-info">
                   <div className="card-informatios">
                     <div className="card-name">Name</div>
-                    <div className="card-add">
+                    <div
+                      className="card-add"
+                      onClick={() => deleteRoommate(roommate._id)}
+                    >
                       <img
                         src="./image/minus-icon.png"
                         alt=""

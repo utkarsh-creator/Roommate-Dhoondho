@@ -5,35 +5,56 @@ import { ListingContext } from "../../Context/listing-context";
 import Modal2 from "../Modal/Modal2";
 
 function DisplayRoomListingCard() {
-  const [rooms, setRooms] = useState([]);
-  const profileData = JSON.parse(localStorage.getItem("profile"));
   const { showModal2, selectRoomDetail } = useContext(ListingContext);
+  const profileData = JSON.parse(localStorage.getItem("profile"));
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    const user_Id = profileData?.user?._id;
-    console.log("user_Id recorded:", user_Id);
+    const fetchData = async () => {
+      try {
+        const user_Id = profileData.user._id;
+        console.log("user_Id recorded:", user_Id);
 
-    if (user_Id) {
-      const requestData = {
+        const requestData = {
+          userId: user_Id,
+        };
+
+        console.log("requestData:", requestData);
+
+        const response = await axios.post(
+          `https://roommate-finder-theta.vercel.app/room/my/${user_Id}`,
+          requestData
+        );
+        setRooms(response.data);
+        console.log("Room Data:", response.data);
+      } catch (error) {
+        console.error("Error fetching rooms:", error);
+      }
+    };
+
+    fetchData();
+  }, [profileData.user._id]);
+
+  const deleteRoom = async (room_id) => {
+    try {
+      const user_Id = profileData.user._id;
+      const requestBody = {
         userId: user_Id,
       };
 
-      console.log("requestData:", requestData);
+      const response = await axios.delete(
+        `https://roommate-finder-theta.vercel.app/room/${room_id}`,
+        {
+          data: requestBody,
+        }
+      );
 
-      axios
-        .post(
-          `https://roommate-finder-theta.vercel.app/room/my/${user_Id}`,
-          requestData
-        )
-        .then((response) => {
-          setRooms(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching rooms:", error);
-        });
+      console.log("Room deleted:", response);
+      setRooms((prevRooms) => prevRooms.filter((room) => room.id !== room_id));
+    } catch (error) {
+      console.error("Error deleting room:", error);
     }
-  }, [profileData]);
-
+  };
   return (
     <>
       {showModal2 && <Modal2 />}
@@ -46,7 +67,10 @@ function DisplayRoomListingCard() {
                 <div className="card-info">
                   <div className="card-informatios">
                     <div className="card-name">{room.preferredBlock}</div>
-                    <div className="card-add">
+                    <div
+                      className="card-add"
+                      onClick={() => deleteRoom(room._id)}
+                    >
                       <img
                         src="./image/minus-icon.png"
                         alt=""

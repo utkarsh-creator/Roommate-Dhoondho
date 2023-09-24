@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import "./styles.css";
 import "../Cards/Cards.css";
 import { ListingContext } from "../../Context/listing-context";
@@ -7,12 +8,17 @@ import Modal from "../../Components/Modal/Modal";
 import Modal2 from "../Modal/Modal2";
 
 function DisplayRoommateCard() {
+  const profileData = JSON.parse(localStorage.getItem("profile"));
+  const user = useSelector((state) => state.authReducer.authData);
   const [roommatePosts, setRoommatePosts] = useState([]);
   const [roomPosts, setRoomPosts] = useState([]);
   const [filteredRoommatePosts, setFilteredRoommatePosts] = useState([]);
   const [filteredRoomPosts, setFilteredRoomPosts] = useState([]);
+  const [following, setFollowing] = useState([]);
+  const [likeRoom, setLikeRoom] = useState([]);
   const [selectedGender, setSelectedGender] = useState("All");
   const [selectedBlock, setSelectedBlock] = useState("All");
+  const [selectedYear, setSelectedYear] = useState("All");
   const {
     addToCart2,
     addToCart,
@@ -25,6 +31,7 @@ function DisplayRoommateCard() {
   } = useContext(ListingContext);
 
   useEffect(() => {
+    fetchFollowing();
     axios
       .get("https://roommate-finder-theta.vercel.app/roommate/all")
       .then((response) => {
@@ -78,29 +85,73 @@ function DisplayRoommateCard() {
       });
   }, []);
 
-  const filterByGenderAndBlock = (gender, block) => {
+  // Depricated function
+  const isFollowing = () => {
+    axios
+      .get(`https://roommate-finder-theta.vercel.app/user/${user?.user?._id}`)
+      .then((response) => {
+        const followingUserIds = response.data.map((user) => user.following);
+        // setFollowing(followingUserIds);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const fetchFollowing = () => {
+    axios
+      .get(
+        `https://roommate-finder-theta.vercel.app/user/${profileData.user._id}`
+      )
+      .then((response) => {
+        console.log("Profile fetched:", response.data);
+        const followingUserIds = response.data.following;
+        const likeRoomIds = response.data.likesRoom;
+        setFollowing(followingUserIds);
+        setLikeRoom(likeRoomIds);
+        console.log("Following fetched:", followingUserIds, likeRoomIds);
+      })
+      .catch((error) => {
+        console.error("Error fetching profile:", error);
+      });
+  };
+
+  const filterByGenderAndBlock = (gender, block, year) => {
     setSelectedGender(gender);
     setSelectedBlock(block);
+    setSelectedYear(year);
   };
 
   useEffect(() => {
     const filterData = () => {
       console.log("Selected Gender:", selectedGender);
       console.log("Selected Block:", selectedBlock);
+      console.log("Selected Year:", selectedYear);
 
-      const filteredRoommateData = roommatePosts.filter((post) => {
-        return (
-          (selectedGender === "All" || post.gender === selectedGender) &&
-          (selectedBlock === "All" || post.preferredBlock === selectedBlock)
-        );
-      });
+      const parseDate = (dateString) => new Date(dateString);
 
-      const filteredRoomData = roomPosts.filter((post) => {
-        return (
-          (selectedGender === "All" || post.gender === selectedGender) &&
-          (selectedBlock === "All" || post.preferredBlock === selectedBlock)
-        );
-      });
+      const filteredRoommateData = roommatePosts
+        .filter((post) => {
+          console.log("Post Year:", post.year);
+          return (
+            (selectedGender === "All" || post.gender === selectedGender) &&
+            (selectedBlock === "All" ||
+              post.preferredBlock === selectedBlock) &&
+            (selectedYear === "All" || post.year === selectedYear)
+          );
+        })
+        .sort((a, b) => parseDate(b.updatedAt) - parseDate(a.updatedAt));
+
+      const filteredRoomData = roomPosts
+        .filter((post) => {
+          return (
+            (selectedGender === "All" || post.gender === selectedGender) &&
+            (selectedBlock === "All" ||
+              post.preferredBlock === selectedBlock) &&
+            (selectedYear === "All" || post.year === selectedYear)
+          );
+        })
+        .sort((a, b) => parseDate(b.updatedAt) - parseDate(a.updatedAt));
 
       console.log("Filtered Roommate Data:", filteredRoommateData);
       console.log("Filtered Room Data:", filteredRoomData);
@@ -110,7 +161,41 @@ function DisplayRoommateCard() {
     };
 
     filterData();
-  }, [selectedGender, selectedBlock, roommatePosts, roomPosts]);
+  }, [selectedGender, selectedBlock, selectedYear, roommatePosts, roomPosts]);
+
+  console.log("user data: ", user);
+  console.log("user specific data: ", profileData);
+  async function followUser(otherUserId) {
+    let myUserId = user?.user?._id;
+    let requestBody = {
+      currentUserId: myUserId,
+    };
+    try {
+      let result = await axios.put(
+        `https://roommate-finder-theta.vercel.app/user/${otherUserId}/follow`,
+        requestBody
+      );
+      console.log("result: ", result);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function RoomLiking(otherRoomId) {
+    let myUserId = user?.user?._id;
+    let requestBody = {
+      roomId: otherRoomId,
+    };
+    try {
+      let result = await axios.put(
+        `https://roommate-finder-theta.vercel.app/user/${myUserId}/likesroom`,
+        requestBody
+      );
+      console.log("result: ", result);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <>
@@ -119,6 +204,7 @@ function DisplayRoommateCard() {
           filterByGenderAndBlock={filterByGenderAndBlock}
           selectedGender={selectedGender}
           selectedBlock={selectedBlock}
+          selectedYear={selectedYear}
         >
           <Tab label="Tab 1">
             {showModal && <Modal />}
@@ -140,13 +226,21 @@ function DisplayRoommateCard() {
                             </div>
                             <div
                               className="card-add"
-                              onClick={() => addToCart(post._id)}
+                              onClick={() => followUser(post.userId)}
                             >
-                              <img
-                                src="./image/add-icon.png"
-                                alt=""
-                                style={{ height: "24px", width: "24px" }}
-                              />
+                              {following.includes(post.userId) ? (
+                                <img
+                                  src="./image/checkbox.png"
+                                  alt=""
+                                  style={{ height: "24px", width: "24px" }}
+                                />
+                              ) : (
+                                <img
+                                  src="./image/add-icon.png"
+                                  alt=""
+                                  style={{ height: "24px", width: "24px" }}
+                                />
+                              )}
                             </div>
                           </div>
                           <div className="card-preference">
@@ -232,13 +326,21 @@ function DisplayRoommateCard() {
                             </div>
                             <div
                               className="card-add"
-                              onClick={() => addToCart2(post._id)}
+                              onClick={() => RoomLiking(post._id)}
                             >
-                              <img
-                                src="./image/add-icon.png"
-                                alt=""
-                                style={{ height: "24px", width: "24px" }}
-                              />
+                              {likeRoom.includes(post._id) ? (
+                                <img
+                                  src="./image/checkbox.png"
+                                  alt=""
+                                  style={{ height: "24px", width: "24px" }}
+                                />
+                              ) : (
+                                <img
+                                  src="./image/add-icon.png"
+                                  alt=""
+                                  style={{ height: "24px", width: "24px" }}
+                                />
+                              )}
                             </div>
                           </div>
                           <div className="card-preference">
@@ -327,6 +429,7 @@ class Tabs extends Component {
     const { filterByGenderAndBlock } = this.props;
     const { selectedGender } = this.props;
     const { selectedBlock } = this.props;
+    const { selectedYear } = this.props;
 
     return (
       <div>
@@ -344,6 +447,7 @@ class Tabs extends Component {
           filterByGenderAndBlock={filterByGenderAndBlock}
           selectedGender={selectedGender}
           selectedBlock={selectedBlock}
+          selectedYear={selectedYear}
         />
         <div className="tab-content">{content}</div>
       </div>
@@ -357,6 +461,7 @@ const TabButtons = ({
   activeTab,
   selectedGender,
   selectedBlock,
+  selectedYear,
   filterByGenderAndBlock,
 }) => {
   return (
@@ -410,22 +515,33 @@ const TabButtons = ({
         })}
         <div className="tab-dropdownbuttons">
           <div className="custom-select">
-            <select>
+            <select
+              onChange={(e) =>
+                filterByGenderAndBlock(
+                  selectedGender,
+                  selectedBlock,
+                  e.target.value
+                )
+              }
+            >
               <option hidden value="Year">
                 Year
               </option>
-              <option value="2023">2023</option>
               <option value="2024">2024</option>
               <option value="2025">2025</option>
               <option value="2026">2026</option>
               <option value="2027">2027</option>
-              <option value="AllYear">All</option>
+              <option value="All">All</option>
             </select>
           </div>
           <div className="custom-select">
             <select
               onChange={(e) =>
-                filterByGenderAndBlock(selectedGender, e.target.value)
+                filterByGenderAndBlock(
+                  selectedGender,
+                  e.target.value,
+                  selectedYear
+                )
               }
             >
               <option hidden value="Block">
@@ -454,14 +570,18 @@ const TabButtons = ({
           <div className="custom-select-2">
             <select
               onChange={(e) =>
-                filterByGenderAndBlock(e.target.value, selectedBlock)
+                filterByGenderAndBlock(
+                  e.target.value,
+                  selectedBlock,
+                  selectedYear
+                )
               }
             >
               <option hidden value="Gender">
                 Gender
               </option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
               <option value="All">All</option>
             </select>
           </div>
