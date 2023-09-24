@@ -8,20 +8,28 @@ const Footer = () => {
   };
   return (
    <footer className="footer">
-      <button id="chatToggle">Open Chat</button>
-      <div id="chatPopup">
-        <button id="minimizeChat">Minimize Chat</button>
-        <div
-          id="tlkio"
-          data-channel="mfc"
-          data-theme="theme--day"
-          style={{ width: "400px", height: "400px" }}
-        ></div>
-        <script
-          async
-          src="http://tlk.io/embed.js"
-          type="text/javascript"
-        ></script>
+      <button id="chatToggle" onClick={toggleChat}>
+        {chatVisible ? "Minimize Chat" : "Open Chat"}
+      </button>
+      <div id="chatPopup" style={{ display: chatVisible ? "block" : "none" }}>
+        {chatVisible && (
+          <div>
+            <button id="minimizeChat" onClick={toggleChat}>
+              Minimize Chat
+            </button>
+            <div
+              id="tlkio"
+              data-channel="mfc"
+              data-theme="theme--day"
+              style={{ width: "400px", height: "400px" }}
+            ></div>
+            <script
+              async
+              src="http://tlk.io/embed.js"
+              type="text/javascript"
+            ></script>
+          </div>
+        )}
       </div>
     
       <div className="footer__container">
