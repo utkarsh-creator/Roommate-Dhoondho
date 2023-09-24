@@ -19,7 +19,31 @@ const Footer = () => {
           type="text/javascript"
         ></script>
       </div>
-      
+         <script>      document.addEventListener("DOMContentLoaded", function () {
+            const chatPopup = document.getElementById("chatPopup");
+            const chatToggle = document.getElementById("chatToggle");
+            const minimizeChat = document.getElementById("minimizeChat");
+
+            chatToggle.addEventListener("click", function () {
+                if (chatPopup.style.display === "none" || chatPopup.style.display === "") {
+                    chatPopup.style.display = "block";
+                    minimizeChat.style.display = "block";
+                    chatToggle.style.display = "none";
+                } else {
+                    chatPopup.style.display = "none";
+                    minimizeChat.style.display = "none";
+                    chatToggle.style.display = "block";
+                }
+            });
+
+            minimizeChat.addEventListener("click", function () {
+                chatPopup.style.display = "none";
+                minimizeChat.style.display = "none";
+                chatToggle.style.display = "block";
+            });
+        });
+    </script>
+     
       <div className="footer__container">
         <div className="footer__top">
           <div>
