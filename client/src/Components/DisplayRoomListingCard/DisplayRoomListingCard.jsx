@@ -48,7 +48,7 @@ function DisplayRoomListingCard() {
                     <div className="card-name">{room.preferredBlock}</div>
                     <div className="card-add">
                       <img
-                        src="./image/add-icon.png"
+                        src="./image/minus-icon.png"
                         alt=""
                         style={{ height: "24px", width: "24px" }}
                       />
@@ -97,11 +97,11 @@ function DisplayRoomListingCard() {
                   className="card-habit-details"
                   onClick={() => selectRoomDetail(room.desc)}
                 >
-                  <div className="detail-box">
+                  <div>
                     <img
-                      src="./image/add-icon.png"
+                      src="./image/desc.png"
                       alt=""
-                      style={{ height: "16px", width: "16px" }}
+                      style={{ height: "18px", width: "18px" }}
                     />
                   </div>
                 </div>

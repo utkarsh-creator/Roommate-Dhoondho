@@ -93,18 +93,21 @@
   border-bottom: none;
 }
 .card-habit {
-  font-weight: 400;
+  color: #000000;
+  font-weight: 500;
+  font-size: small;
+  font-family: Causten-Medium, Helvetica;
 }
-
  {
   /*.card-habit-details {
-  padding: 2px;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
   background: rgba(6, 16, 90, 0.1);
 }*/
 }
+
 @media screen and (max-width: 468px) {
   .main-card {
     width: 280px;

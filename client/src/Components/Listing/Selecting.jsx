@@ -185,11 +185,11 @@ export const Listing = () => {
                           className="card-habit-details"
                           onClick={() => selectRoommateDetail(item.desc)}
                         >
-                          <div className="detail-box">
+                          <div>
                             <img
-                              src="./image/add-icon.png"
+                              src="./image/desc.png"
                               alt=""
-                              style={{ height: "16px", width: "16px" }}
+                              style={{ height: "18px", width: "18px" }}
                             />
                           </div>
                         </div>
@@ -270,11 +270,11 @@ export const Listing = () => {
                           className="card-habit-details"
                           onClick={() => selectRoomDetail(item.desc)}
                         >
-                          <div className="detail-box">
+                          <div>
                             <img
-                              src="./image/add-icon.png"
+                              src="./image/desc.png"
                               alt=""
-                              style={{ height: "16px", width: "16px" }}
+                              style={{ height: "18px", width: "18px" }}
                             />
                           </div>
                         </div>

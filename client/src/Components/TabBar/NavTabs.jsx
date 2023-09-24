@@ -200,9 +200,9 @@ function DisplayRoommateCard() {
                         >
                           <div className="detail-box">
                             <img
-                              src="./image/add-icon.png"
+                              src="./image/desc.png"
                               alt=""
-                              style={{ height: "16px", width: "16px" }}
+                              style={{ height: "18px", width: "18px" }}
                             />
                           </div>
                         </div>
@@ -290,11 +290,11 @@ function DisplayRoommateCard() {
                           className="card-habit-details"
                           onClick={() => selectRoomDetail(post.desc)}
                         >
-                          <div className="detail-box">
+                          <div>
                             <img
-                              src="./image/add-icon.png"
+                              src="./image/desc.png"
                               alt=""
-                              style={{ height: "16px", width: "16px" }}
+                              style={{ height: "18px", width: "18px" }}
                             />
                           </div>
                         </div>
@@ -460,8 +460,8 @@ const TabButtons = ({
               <option hidden value="Gender">
                 Gender
               </option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
               <option value="All">All</option>
             </select>
           </div>

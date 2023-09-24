@@ -12,14 +12,15 @@ const Profilepage = () => {
   const [additionalData, setAdditionalData] = useState({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [regnum, setRegNumber] = useState("");
   const [gender, setGender] = useState("");
   const [rank, setRank] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [changesMade, setChangesMade] = useState(false);
+  const [changesMade, setChangesMade] = useState(false); // to make submit button visis
   const [notification, setNotification] = useState(null);
 
-  const [selectedGender, setSelectedGender] = useState("");
+  console.log("user specific data: ", profileData);
 
   useEffect(() => {
     axios
@@ -31,6 +32,7 @@ const Profilepage = () => {
         setAdditionalData(data);
         setFirstName(data.firstname);
         setLastName(data.lastname);
+        setRegNumber(data.regnum);
         setGender(data.gender);
         setRank(data.rank);
         setContactNumber(data.mobile);
@@ -39,7 +41,8 @@ const Profilepage = () => {
         setFields({
           firstname: data.firstname,
           lastname: data.lastname,
-          regno: data.registrationNumber,
+          regnum: data.regnum,
+          gender: data.gender,
           emailid: data.username,
           mobileno: data.mobile,
         });
@@ -66,10 +69,6 @@ const Profilepage = () => {
   const validateForm = () => {
     let newErrors = {};
     let formIsValid = true;
-    if (!selectedGender) {
-      formIsValid = false;
-      newErrors["gender"] = "*Please select your gender.";
-    }
 
     if (!fields["firstname"]) {
       formIsValid = false;
@@ -94,17 +93,17 @@ const Profilepage = () => {
       }
     }
 
-    if (!fields["regno"]) {
+    if (!fields["regnum"]) {
       formIsValid = false;
-      newErrors["regno"] = "*Please enter your registration number.";
+      newErrors["regnum"] = "*Please enter your registration number.";
     }
 
-    if (typeof fields["regno"] !== "undefined") {
+    if (typeof fields["regnum"] !== "undefined") {
       const pattern2 = /^[0-9]{2}[A-Za-z]{3}[0-9]{4}$/;
 
-      if (!pattern2.test(fields["regno"])) {
+      if (!pattern2.test(fields["regnum"])) {
         formIsValid = false;
-        newErrors["regno"] = "*Please enter a valid registration number.";
+        newErrors["regnum"] = "*Please enter a valid registration number.";
       }
     }
 
@@ -136,6 +135,10 @@ const Profilepage = () => {
         newErrors["mobileno"] = "*Please enter valid contact no.";
       }
     }
+    if (!fields["gender"]) {
+      formIsValid = false;
+      newErrors["gender"] = "*Please select your gender.";
+    }
     setErrors(newErrors);
     return formIsValid;
   };
@@ -148,7 +151,8 @@ const Profilepage = () => {
         username: email,
         firstname: firstName,
         lastname: lastName,
-        gender: selectedGender,
+        regnum: regnum,
+        gender: fields.gender,
         rank: rank,
         mobile: contactNumber,
         currentUserAdminStatus: false,
@@ -161,7 +165,7 @@ const Profilepage = () => {
         )
         .then((response) => {
           console.log("Profile updated successfully:", response.data);
-          setChangesMade(false);
+          setChangesMade(true);
           setNotification("Changes saved successfully!");
         })
         .catch((error) => {
@@ -240,11 +244,13 @@ const Profilepage = () => {
                                 ? "border-2 border-black"
                                 : ""
                             }`}
-                            onClick={() =>
+                            onClick={(e) => {
                               handleChange({
                                 target: { name: "gender", value: "M" },
-                              })
-                            }
+                              });
+                              setGender("M");
+                              setChangesMade(true);
+                            }}
                           >
                             M
                           </div>
@@ -256,27 +262,34 @@ const Profilepage = () => {
                                 ? "border-2 border-black"
                                 : ""
                             }`}
-                            onClick={() =>
+                            onClick={(e) => {
                               handleChange({
                                 target: { name: "gender", value: "F" },
-                              })
-                            }
+                              });
+                              setGender("F");
+                              setChangesMade(true);
+                            }}
                           >
                             F
                           </div>
                         </span>
                       </div>
+                      <div className="errorMsg">{errors.gender}</div>
                     </div>
 
                     <div className="form-section-3b">
                       <label>Registration Number*</label>
                       <input
                         type="text"
-                        name="regno"
-                        value={fields.regno}
-                        onChange={handleChange}
+                        name="regnum"
+                        value={regnum}
+                        onChange={(e) => {
+                          handleChange(e);
+                          setRegNumber(e.target.value);
+                          setChangesMade(true);
+                        }}
                       />
-                      <div className="errorMsg">{errors.regno}</div>
+                      <div className="errorMsg">{errors.regnum}</div>
                     </div>
                   </div>
                   <div className="form-section-2">
@@ -344,8 +357,8 @@ const Profilepage = () => {
         </div>
         <div className="tab-content">
           <div className="cards">
-            <DisplayRoommateListingCard />
             <DisplayRoomListingCard />
+            <DisplayRoommateListingCard />
           </div>
         </div>
       </div>
