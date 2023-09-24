@@ -27,7 +27,6 @@ const Footer = () => {
             <script
               async
               src="http://tlk.io/embed.js"
-              type="text/javascript"
             ></script>
           </div>
         )}
