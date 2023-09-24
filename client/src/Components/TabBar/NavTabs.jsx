@@ -78,7 +78,7 @@ function DisplayRoommateCard() {
   // Depricated function
   const isFollowing = () => {
     axios
-      .get(`http://roommate-finder-theta.vercel.app/user/${user?.user?._id}`)
+      .get(`https://roommate-finder-theta.vercel.app/user/${user?.user?._id}`)
       .then((response) => {
         const followingUserIds = response.data.map((user) => user.following);
         // setFollowing(followingUserIds);
@@ -91,7 +91,7 @@ function DisplayRoommateCard() {
   const fetchFollowing = () => {
     axios
       .get(
-        `http://roommate-finder-theta.vercel.app/user/${profileData.user._id}`
+        `https://roommate-finder-theta.vercel.app/user/${profileData.user._id}`
       )
       .then((response) => {
         console.log("Profile fetched:", response.data);
