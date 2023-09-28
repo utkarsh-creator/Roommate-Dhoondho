@@ -66,7 +66,7 @@ function DisplayRoomListingCard() {
                 <div className="card-img"></div>
                 <div className="card-info">
                   <div className="card-informatios">
-                    <div className="card-name">{room.preferredBlock}</div>
+                    <div className="card-name">{room.preferredBlock} Block</div>
                     <div
                       className="card-add"
                       onClick={() => deleteRoom(room._id)}

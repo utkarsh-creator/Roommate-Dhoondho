@@ -3,7 +3,7 @@ import { ListingContext } from "../../Context/listing-context";
 import "./Modal.css";
 
 function Modal2() {
-  const { seletedroomdetail, closeModal2 } = useContext(ListingContext);
+  const { seletedroomdetail, seletedroomname, seletedroomphone, closeModal2 } = useContext(ListingContext);
   console.log(seletedroomdetail);
   return (
     <aside className="modal-overlay">
@@ -20,7 +20,7 @@ function Modal2() {
             </div>
           </div>
           <div className="habitssection">
-            <p>{seletedroomdetail}</p>
+            <p><b>Description:</b> <br/>{seletedroomdetail}</p>
           </div>
           <button
             onClick={closeModal2}
