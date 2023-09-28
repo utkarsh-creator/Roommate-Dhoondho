@@ -129,7 +129,7 @@ function SignIn() {
                 name="password"
                 value={form.password}
                 onChange={formOnChangeHandler}
-                type={showPassword ? "password" : ""}
+                type={showPassword ? "text" : "password"}
                 className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
               />
               <Link className="ml-auto" to="/resetPassword">

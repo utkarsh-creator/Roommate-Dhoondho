@@ -212,7 +212,7 @@ function DisplayRoommateCard() {
           <Tab label="Tab 1">
             {showModal && <Modal />}
             <div className="cards">
-            {isLoading ? ( // Conditionally render loading text or cards
+            {isLoading ? (
               <div className="loading-text">Loading...</div>
             ) : (
                 (filteredRoommatePosts.length >= 0
@@ -320,7 +320,10 @@ function DisplayRoommateCard() {
           <Tab label="Tab 2">
             {showModal2 && <Modal2 />}
             <div className="cards">
-              {(filteredRoomPosts.length >= 0
+              {isLoading ? (
+                <div className="loading-text">Loading...</div>
+              ) : (
+              (filteredRoomPosts.length >= 0
                 ? filteredRoomPosts
                 : roomPosts
               ).map((post) => (
@@ -419,9 +422,10 @@ function DisplayRoommateCard() {
                         </div>
                       </div>
                     </div>
-                  </span>
-                </div>
-              ))}
+                    </span>
+                  </div>
+                ))
+              )}
             </div>
           </Tab>
         </Tabs>
