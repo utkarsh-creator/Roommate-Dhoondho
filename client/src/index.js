@@ -62,6 +62,7 @@ root.render(
         <ListingContextProvider>
           <RouterProvider router={router} />
         </ListingContextProvider>
+        <ToastContainer />
       </Fragment>
     </Provider>
   </>

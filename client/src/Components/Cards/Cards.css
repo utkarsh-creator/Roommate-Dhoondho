@@ -92,13 +92,11 @@
   border-right: none;
   border-bottom: none;
 }
-
 .card-habit {
-  color: #2b2b2b;
-  opacity: 0.75;
-  font-weight: 600;
-  font-size: 13px;
-  font-family: Causten-Semi-Bold, Helvetica;
+  color: #000000;
+  font-weight: 500;
+  font-size: small;
+  font-family: Causten-Medium, Helvetica;
 }
  {
   /*.card-habit-details {
@@ -190,11 +188,5 @@
     border-left: none;
     border-right: none;
     border-bottom: none;
-  }
-  .card-habit {
-    color: #000000;
-    font-weight: 500;
-    font-size: small;
-    font-family: Causten-Medium, Helvetica;
   }
 }

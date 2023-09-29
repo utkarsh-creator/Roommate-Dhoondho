@@ -15,7 +15,8 @@ const initialNeedRoomFormState = {
   rank: "",
   gender: "M",
   bedType: "",
-  preferedBlocks: ["A", "A", "A"],
+  preferedBlocks: ["A"],
+  // preferedBlocks: ["A", "A", "A"],
   contactNumber: "",
   habits: "",
   description: "",
@@ -24,7 +25,8 @@ const initialNeedRoomMateFormState = {
   rank: "",
   gender: "M",
   noOfBeds: "",
-  preferedBlocks: ["A", "A", "A"],
+  preferedBlocks: ["A"],
+  // preferedBlocks: ["A", "A", "A"],
   contactNumber: "",
   habits: "",
   description: "",
@@ -121,7 +123,10 @@ function NeedRoom() {
   }
 
   async function needRoomSubmitHandler() {
-    validateNeedRoomForm();
+    if (!validateNeedRoomForm()) {
+      return;
+    }
+    debugger;
     let userId = user?.user?._id;
     console.log("need Room", needRoomForm);
     let requestBody = {
@@ -147,7 +152,9 @@ function NeedRoom() {
   }
 
   async function needRoomMateSubmitHandler() {
-    validateNeedRoomMateForm();
+    if (!validateNeedRoomMateForm()) {
+      return;
+    }
     let userId = user?.user?._id;
 
     let requestBody = {
@@ -178,29 +185,34 @@ function NeedRoom() {
     const indianNumberRegex = /^[6789]\d{9}$/;
     if (!needRoomForm["rank"]) {
       toast.error("Plase enter your rank");
-      return;
+      return false;
     } else if (!needRoomForm["bedType"]) {
       toast.error("Please enter your preferred bed type");
-      return;
+      return false;
     } else if (!needRoomForm["contactNumber"]) {
       toast.error("Please enter your Contact number");
-      return;
+      return false;
     } else if (!needRoomForm["habits"]) {
       toast.error("Please enter your habits");
-      return;
+      return false;
     }
 
     if (needRoomForm["rank"]) {
       let isRankValid = numericRegex.test(needRoomForm["rank"]);
       if (!isRankValid) {
         toast.error("Please enter a valid rank");
-        return;
+        return false;
+      }
+      let isRankAbove5 = needRoomForm["rank"].length > 5 ? true : false;
+      if (isRankAbove5) {
+        toast.error("Please enter a valid rank");
+        return false;
       }
     } else if (needRoomForm["bedType"]) {
       let isBedTypeValid = numericRegex.test(needRoomForm["bedType"]);
       if (!isBedTypeValid) {
         toast.error("Please enter a valid rank");
-        return;
+        return false;
       }
     } else if (needRoomForm["contactNumber"]) {
       let isContactNumberValid = indianNumberRegex.test(
@@ -208,15 +220,16 @@ function NeedRoom() {
       );
       if (!isContactNumberValid) {
         toast.error("Please enter a valid Contact number");
-        return;
+        return false;
       }
     } else if (needRoomForm["preferedBlocks"]) {
       let isValid = areValuesUnique(needRoomForm["preferedBlocks"]);
       if (!isValid) {
         toast.error("Please choose 3 different blocks");
-        return;
+        return false;
       }
     }
+    return true;
   }
   function validateNeedRoomMateForm() {
     const numericRegex = /^[0-9]+$/;
@@ -224,29 +237,35 @@ function NeedRoom() {
 
     if (!needRoomMateForm["rank"]) {
       toast.error("Please enter your rank");
-      return;
+      return false;
     } else if (!needRoomMateForm["noOfBeds"]) {
       toast.error("Please enter the number of beds");
-      return;
+      return false;
     } else if (!needRoomMateForm["contactNumber"]) {
       toast.error("Please enter your Contact number");
-      return;
+      return false;
     } else if (!needRoomMateForm["habits"]) {
       toast.error("Please enter your habits");
-      return;
+      return false;
     }
 
     if (needRoomMateForm["rank"]) {
       let isRankValid = numericRegex.test(needRoomMateForm["rank"]);
       if (!isRankValid) {
         toast.error("Please enter a valid rank");
-        return;
+        return false;
+      }
+
+      let isRankAbove5 = needRoomForm["rank"].length > 5 ? true : false;
+      if (isRankAbove5) {
+        toast.error("Please enter a valid rank");
+        return false;
       }
     } else if (needRoomMateForm["noOfBeds"]) {
       let isNoOfBedsValid = numericRegex.test(needRoomMateForm["noOfBeds"]);
       if (!isNoOfBedsValid) {
         toast.error("Please enter a valid number of beds");
-        return;
+        return false;
       }
     } else if (needRoomMateForm["contactNumber"]) {
       let isContactNumberValid = indianNumberRegex.test(
@@ -254,13 +273,13 @@ function NeedRoom() {
       );
       if (!isContactNumberValid) {
         toast.error("Please enter a valid Contact number");
-        return;
+        return false;
       }
     } else if (needRoomMateForm["preferedBlocks"]) {
       let isValid = areValuesUnique(needRoomMateForm["preferedBlocks"]);
       if (!isValid) {
         toast.error("Please choose 3 different blocks");
-        return;
+        return false;
       }
     }
   }
@@ -294,7 +313,7 @@ function NeedRoom() {
             />
             <span
               className={`${
-                needRoom ? "border-b-2 border-b-[#000] font-[700]" : ""
+                needRoom ? "border-b-2 border-b-[#000] font-[600]" : ""
               } pb-1`}
             >
               Need Room
@@ -311,7 +330,7 @@ function NeedRoom() {
             />
             <span
               className={`${
-                !needRoom ? "border-b-2 border-b-[#000] font-[700]" : ""
+                !needRoom ? "border-b-2 border-b-[#000] font-[600]" : ""
               } pb-1`}
             >
               Need Roommates
@@ -398,7 +417,7 @@ function NeedRoom() {
                   </div>
                 </div>
                 <div className="containerr max-h-[80px]">
-                  <div className="label">Prefered Blocks*</div>
+                  <div className="label">Prefered Block*</div>
                   <div className="flex gap-6">
                     <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
                       <select
@@ -416,7 +435,7 @@ function NeedRoom() {
                       </select>
                     </div>
 
-                    <div className="bg-[#D9D9D9] rounded-[10px] flex items-center ">
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
                       <select
                         name="prefferedBlocks"
                         value={needRoomForm["preferedBlocks"][1]}
@@ -432,7 +451,7 @@ function NeedRoom() {
                       </select>
                     </div>
 
-                    <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
                       <select
                         name="prefferedBlocks"
                         value={needRoomForm["preferedBlocks"][2]}
@@ -559,7 +578,7 @@ function NeedRoom() {
                   </div>
                 </div>
                 <div className="containerr max-h-[80px]">
-                  <div className="label">Prefered Blocks*</div>
+                  <div className="label">Prefered Block*</div>
                   <div className="flex gap-6">
                     <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
                       <select
@@ -577,7 +596,7 @@ function NeedRoom() {
                       </select>
                     </div>
 
-                    <div className="bg-[#D9D9D9] rounded-[10px] flex items-center ">
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
                       <select
                         name="prefferedBlocks"
                         value={needRoomMateForm["preferedBlocks"][1]}
@@ -593,7 +612,7 @@ function NeedRoom() {
                       </select>
                     </div>
 
-                    <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
                       <select
                         name="prefferedBlocks"
                         value={needRoomMateForm["preferedBlocks"][2]}

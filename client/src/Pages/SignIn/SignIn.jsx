@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 
 let initialFormState = { email: "", password: "" };
 function SignIn() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const [form, setForm] = useState(initialFormState);
   const [error, setError] = useState({ email: null, password: null });
   const dispatch = useDispatch();
@@ -129,7 +129,7 @@ function SignIn() {
                 name="password"
                 value={form.password}
                 onChange={formOnChangeHandler}
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? "password" : ""}
                 className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
               />
               <Link className="ml-auto" to="/resetPassword">

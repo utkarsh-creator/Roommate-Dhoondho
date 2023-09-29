@@ -107,9 +107,7 @@ function DisplayRoommateListingCard() {
                   <div className="card-downers">
                     <div className="card-year">
                       <div className="card-preference-title">Year</div>
-                      <div className="card-preference-Year">
-                        {roommate.year}
-                      </div>
+                      <div className="card-preference-Year">year</div>
                     </div>
                     <div className="card-gender">
                       <div className="card-preference-title">Gender</div>

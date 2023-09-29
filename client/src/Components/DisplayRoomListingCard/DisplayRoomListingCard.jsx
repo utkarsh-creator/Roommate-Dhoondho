@@ -66,7 +66,7 @@ function DisplayRoomListingCard() {
                 <div className="card-img"></div>
                 <div className="card-info">
                   <div className="card-informatios">
-                    <div className="card-name">{room.preferredBlock} Block</div>
+                    <div className="card-name">{room.preferredBlock}</div>
                     <div
                       className="card-add"
                       onClick={() => deleteRoom(room._id)}
@@ -101,7 +101,7 @@ function DisplayRoomListingCard() {
                   <div className="card-downers2">
                     <div className="card-year">
                       <div className="card-preference-title">Year</div>
-                      <div className="card-preference-Year">{room.year}</div>
+                      <div className="card-preference-Year">year</div>
                     </div>
                     <div className="card-gender">
                       <div className="card-preference-title">Gender</div>

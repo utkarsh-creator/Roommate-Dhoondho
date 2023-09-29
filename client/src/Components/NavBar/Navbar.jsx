@@ -100,13 +100,6 @@ function Navbar() {
               onClick={ProfileClickHandler}
             ></Link>
           </li>
-          <li className="nav-item">
-            <Link
-              to="/"
-              className="nav-links logout"
-              onClick={handleLogOut}
-            ></Link>
-          </li>
           <li className="nav-item-mobile">
             <Link
               to="/home"
