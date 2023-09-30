@@ -18,7 +18,6 @@ export const Listing = () => {
   const [roomPosts, setRoomPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch following and likeRoom data when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -94,7 +93,6 @@ export const Listing = () => {
       });
   }, []);
 
-  // Fetch roommate and room data when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -125,7 +123,6 @@ export const Listing = () => {
     fetchData();
   }, []);
 
-  // Filter and match posts using Sets
   const matchingRoommateData = roommatePosts.filter((post) =>
     following.has(post._id)
   );
@@ -148,7 +145,7 @@ export const Listing = () => {
         <hr />
       </div>
       <div className="tab-content">
-        {isLoading ? ( // Check if isLoading is true, show a loading message
+        {isLoading ? (
           <p>Loading...</p>
         ) : (
           <div>

@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SignIn from "./Pages/SignIn/SignIn";
 import SignUp from "./Pages/SignUp/SignUp";
@@ -59,6 +59,7 @@ root.render(
         <ListingContextProvider>
           <RouterProvider router={router} />
         </ListingContextProvider>
+        <ToastContainer />
       </Fragment>
     </Provider>
   </>

@@ -32,7 +32,10 @@ const UserSchema = mongoose.Schema(
         about: String,
         followers: [],
         following: [],
+<<<<<<< HEAD
         likesRoommate: [],
+=======
+>>>>>>> baa52b0ed08c620a4b184851c461f4d8ae22e51d
         likesRoom: []
     },
     {timestamps: true}

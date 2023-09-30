@@ -76,26 +76,26 @@ export const followUser = async (req, res) => {
     try {
       const followUser = await UserModel.findById(id);
       const followingUser = await UserModel.findById(currentUserId);
-      
+
       try {
         const user = await UserModel.findById(currentUserId);
-    
-        if (user) {
-            if (!followUser.followers.includes(currentUserId)) {
-                await followUser.updateOne({ $push: { followers: currentUserId } });
-                await followingUser.updateOne({ $push: { following: id } });
-                res.status(200).json("User followed!");
-            } else {
-                res.status(403).json("User is Already followed by you");
-            }
-        }
-        else {
-            res.status(404).json("No such user exists that you are trying to follow.");
-            }
-        } catch (error) {
-            res.status(500).json(error);
-        }
 
+        if (user) {
+          if (!followUser.followers.includes(currentUserId)) {
+            await followUser.updateOne({ $push: { followers: currentUserId } });
+            await followingUser.updateOne({ $push: { following: id } });
+            res.status(200).json("User followed!");
+          } else {
+            res.status(403).json("User is Already followed by you");
+          }
+        } else {
+          res
+            .status(404)
+            .json("No such user exists that you are trying to follow.");
+        }
+      } catch (error) {
+        res.status(500).json(error);
+      }
     } catch (error) {
       res.status(500).json(error);
     }
@@ -115,25 +115,25 @@ export const UnFollowUser = async (req, res) => {
       const followUser = await UserModel.findById(id);
       const followingUser = await UserModel.findById(currentUserId);
 
-
       try {
         const user = await UserModel.findById(currentUserId);
-    
+
         if (user) {
-            if (followUser.followers.includes(currentUserId)) {
-                await followUser.updateOne({ $pull: { followers: currentUserId } });
-                await followingUser.updateOne({ $pull: { following: id } });
-                res.status(200).json("User Unfollowed!");
-            } else {
+          if (followUser.followers.includes(currentUserId)) {
+            await followUser.updateOne({ $pull: { followers: currentUserId } });
+            await followingUser.updateOne({ $pull: { following: id } });
+            res.status(200).json("User Unfollowed!");
+          } else {
             res.status(403).json("User is not followed by you");
-            }
+          }
+        } else {
+          res
+            .status(404)
+            .json("No such user exists that you are trying to unfollow.");
         }
-        else {
-            res.status(404).json("No such user exists that you are trying to unfollow.");
-            }
-        } catch (error) {
-            res.status(500).json(error);
-        }     
+      } catch (error) {
+        res.status(500).json(error);
+      }
     } catch (error) {
       res.status(500).json(error);
     }
