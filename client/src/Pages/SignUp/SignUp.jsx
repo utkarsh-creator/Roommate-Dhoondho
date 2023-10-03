@@ -1,16 +1,22 @@
 import React, { useState } from "react";
-import "./SignUp.css";
-import Header from "../../Components/Header/Header";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { BsEyeFill } from "react-icons/bs";
-import { BsEyeSlashFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { signUp } from "../../actions/AuthActions.js";
-import { useDispatch } from "react-redux";
+import Header from "../../Components/Header/Header";
+import "./SignUp.css";
 
-let initialFormState = { email: "", password: "", agree: false };
+let initialFormState = {
+  email: "",
+  password: "",
+  agree: false,
+  firstName: "",
+  lastName: "",
+  phone: "",
+  gender: "male",
+};
 let verifyInitialFormState = { code: "" };
 function SignUP() {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,6 +37,8 @@ function SignUP() {
       validateEmail(e.target.value);
     } else if (name === "password") {
       validatePassword(e.target.value);
+    } else if (name === "phone") {
+      validateContactNumber(e.target.value);
     }
     let change = {};
     if (e.target.name === "agree") {
@@ -70,7 +78,7 @@ function SignUP() {
 
   function validatePassword(password) {
     const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+      /^(?=.[A-Za-z])(?=.\d)(?=.[@$!%#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     const isPasswordValid = passwordRegex.test(password);
     if (!isPasswordValid) {
       setFormError((prev) => {
@@ -86,6 +94,23 @@ function SignUP() {
       });
     }
     return isPasswordValid;
+  }
+
+  function validateContactNumber(number) {
+    let numberRegex = /^(?:(?:\+|0{0,2})91(\s*[-]\s*)?|[0]?)?[789]\d{9}$/;
+    const isNumberValid = numberRegex.test(number);
+    if (!isNumberValid) {
+      setFormError((prev) => {
+        return {
+          ...prev,
+          phone: "Enter a vaild contact number",
+        };
+      });
+    } else {
+      setFormError((prev) => {
+        return { ...prev, phone: null };
+      });
+    }
   }
 
   async function signUpClickHandler() {
@@ -129,9 +154,134 @@ function SignUP() {
                 <div className="flex-grow h-[1px] bg-[#666666]"></div>
               </div>
 
+              <div className="w-full flex justify-between mb-6">
+                <div className="w-[45%]">
+                  <span className="text-[#3C4242] text-[16px]">
+                    First Name *
+                  </span>
+                  <input
+                    value={form.firstName}
+                    name="firstName"
+                    onChange={formOnChangeHandler}
+                    placeholder="First Name"
+                    className=" mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
+                  />
+                  {formError?.firstName ? (
+                    <p className="text-[14px] mt-1 text-[#EE1D52]">
+                      {formError.firstName}
+                    </p>
+                  ) : null}
+                </div>
+                <div className="w-[45%]">
+                  <span className="text-[#3C4242] text-[16px]">
+                    Last Name *
+                  </span>
+                  <input
+                    value={form.lastName}
+                    name="lastName"
+                    onChange={formOnChangeHandler}
+                    placeholder="Last Name"
+                    className=" mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
+                  />
+                  {formError?.lastName ? (
+                    <p className="text-[14px] mt-1 text-[#EE1D52]">
+                      {formError.lastName}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+              <div className="w-full mb-6 hidden">
+                <span className="text-[#3C4242] text-[16px] block"> *</span>
+                <div className="flex gap-8 text-[18px] mt-2">
+                  <div>
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="male"
+                      className="mr-1"
+                      // checked={gender === "male"}
+                      // onChange={handleGenderChange}
+                    />
+                    <label>Male</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="female"
+                      className="mr-1"
+                      // checked={gender === "female"}
+                      // onChange={handleGenderChange}
+                    />
+                    <label>Female</label>
+                  </div>
+                </div>
+                {formError?.phone ? (
+                  <p className="text-[14px] mt-1 text-[#EE1D52]">
+                    {formError.phone}
+                  </p>
+                ) : null}
+              </div>
+              <div className="w-full">
+                <span className="text-[#3C4242] text-[16px] block">Gender</span>
+                <div className="flex gap-8 w-full mb-6 mt-2 rounded-[8px] border-[#3C4242] border-[1px] p-[0.75rem]">
+                  <div
+                    onClick={() => {
+                      setForm((prev) => {
+                        return { ...prev, gender: "male" };
+                      });
+                    }}
+                    className={`cursor-pointer rounded-[16px] text-[#807D7E] border-[0.3px] py-[0.75rem] px-[3.5rem] ${
+                      form.gender === "male"
+                        ? "border-[#3C4242] border-[1.5px] text-[black]"
+                        : ""
+                    }`}
+                  >
+                    <span>Male</span>
+                  </div>
+                  <div
+                    onClick={() => {
+                      setForm((prev) => {
+                        return { ...prev, gender: "female" };
+                      });
+                    }}
+                    className={`cursor-pointer rounded-[16px] border-[#807D7E] text-[#807D7E] border-[0.3px] py-[0.75rem] px-[3.5rem] ${
+                      form.gender === "female"
+                        ? "border-[#3C4242] border-[1.5px] text-[black]"
+                        : ""
+                    }`}
+                  >
+                    <span>Female</span>
+                  </div>
+                </div>
+                {formError?.gender ? (
+                  <p className="text-[14px] mt-1 text-[#EE1D52]">
+                    {formError.gender}
+                  </p>
+                ) : null}
+              </div>
+
               <div className="w-full mb-6">
                 <span className="text-[#3C4242] text-[16px]">
-                  Email Address
+                  Contact Number *
+                </span>
+                <input
+                  value={form.phone}
+                  name="phone"
+                  onChange={formOnChangeHandler}
+                  placeholder="Contact Number"
+                  className=" mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
+                />
+                {formError?.phone ? (
+                  <p className="text-[14px] mt-1 text-[#EE1D52]">
+                    {formError.phone}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="w-full mb-6">
+                <span className="text-[#3C4242] text-[16px]">
+                  Email Address *
                 </span>
                 <input
                   value={form.email}
@@ -198,7 +348,12 @@ function SignUP() {
               <button
                 onClick={signUpClickHandler}
                 disabled={
-                  formError.email || formError.password || !form.agree
+                  formError.email ||
+                  formError.password ||
+                  !form.agree ||
+                  formError.phone ||
+                  !form.firstName ||
+                  !form.lastName
                     ? true
                     : false
                 }
