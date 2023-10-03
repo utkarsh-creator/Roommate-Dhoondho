@@ -19,7 +19,7 @@ let initialFormState = {
 };
 let verifyInitialFormState = { code: "" };
 function SignUP() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const [form, setForm] = useState(initialFormState);
   const [verifyForm, setVerifyForm] = useState(verifyInitialFormState);
   const [formError, setFormError] = useState({ email: null, password: null });
