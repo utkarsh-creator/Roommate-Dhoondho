@@ -1,6 +1,20 @@
 import UserModel from "../Models/userModel.js";
-import needRoomModel from "../Models/needRoom.js";
 import bcrypt from "bcrypt";
+
+// get all Users
+export const getAllUser = async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    const userDetails = users.map(user => {
+      const { password, ...otherDetails } = user._doc;
+      return otherDetails;
+    });
+    res.status(200).json(userDetails);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 
 // get a User
 export const getUser = async (req, res) => {
@@ -76,26 +90,26 @@ export const followUser = async (req, res) => {
     try {
       const followUser = await UserModel.findById(id);
       const followingUser = await UserModel.findById(currentUserId);
-
+      
       try {
         const user = await UserModel.findById(currentUserId);
-
+    
         if (user) {
-          if (!followUser.followers.includes(currentUserId)) {
-            await followUser.updateOne({ $push: { followers: currentUserId } });
-            await followingUser.updateOne({ $push: { following: id } });
-            res.status(200).json("User followed!");
-          } else {
-            res.status(403).json("User is Already followed by you");
-          }
-        } else {
-          res
-            .status(404)
-            .json("No such user exists that you are trying to follow.");
+            if (!followUser.followers.includes(currentUserId)) {
+                await followUser.updateOne({ $push: { followers: currentUserId } });
+                await followingUser.updateOne({ $push: { following: id } });
+                res.status(200).json("User followed!");
+            } else {
+                res.status(403).json("User is Already followed by you");
+            }
         }
-      } catch (error) {
-        res.status(500).json(error);
-      }
+        else {
+            res.status(404).json("No such user exists that you are trying to follow.");
+            }
+        } catch (error) {
+            res.status(500).json(error);
+        }
+
     } catch (error) {
       res.status(500).json(error);
     }
@@ -115,32 +129,32 @@ export const UnFollowUser = async (req, res) => {
       const followUser = await UserModel.findById(id);
       const followingUser = await UserModel.findById(currentUserId);
 
+
       try {
         const user = await UserModel.findById(currentUserId);
-
+    
         if (user) {
-          if (followUser.followers.includes(currentUserId)) {
-            await followUser.updateOne({ $pull: { followers: currentUserId } });
-            await followingUser.updateOne({ $pull: { following: id } });
-            res.status(200).json("User Unfollowed!");
-          } else {
+            if (followUser.followers.includes(currentUserId)) {
+                await followUser.updateOne({ $pull: { followers: currentUserId } });
+                await followingUser.updateOne({ $pull: { following: id } });
+                res.status(200).json("User Unfollowed!");
+            } else {
             res.status(403).json("User is not followed by you");
-          }
-        } else {
-          res
-            .status(404)
-            .json("No such user exists that you are trying to unfollow.");
+            }
         }
-      } catch (error) {
-        res.status(500).json(error);
-      }
+        else {
+            res.status(404).json("No such user exists that you are trying to unfollow.");
+            }
+        } catch (error) {
+            res.status(500).json(error);
+        }     
     } catch (error) {
       res.status(500).json(error);
     }
   }
 };
 
-// follow/unfollow - like/unlike a room (trying 2nd method - smaller version)
+// follow/unfollow - like/unlike a room (trying 2nd method - smaller version).
 export const likeRoom = async (req, res) => {
   const id = req.params.id;
   const { roomId } = req.body;

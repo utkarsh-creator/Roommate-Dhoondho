@@ -4,7 +4,7 @@ const router = express.Router()
 
 router.get('/all', getAllRoommate);
 router.post('/:userid', createRoommate);
-router.get('/:userid', getRoommate);
+router.post('/my/:userid', getRoommate);
 router.put('/:id', updateRoommate);
 router.delete("/:id", deleteRoommate);
 
