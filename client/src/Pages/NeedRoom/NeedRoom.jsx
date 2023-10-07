@@ -20,7 +20,6 @@ const initialNeedRoomFormState = {
   contactNumber: "",
   habits: "",
   description: "",
-  year: 2022,
 };
 const initialNeedRoomMateFormState = {
   rank: "",
@@ -31,7 +30,6 @@ const initialNeedRoomMateFormState = {
   contactNumber: "",
   habits: "",
   description: "",
-  year: "2022",
 };
 
 let blocks = [
@@ -53,7 +51,6 @@ let blocks = [
   "Q",
   "R",
 ];
-let years = [2022, 2023, 2024, 2025, 2026];
 function NeedRoom() {
   const [needRoom, setNeedRoom] = useState(true);
   const [needRoomForm, setNeedRoomForm] = useState(initialNeedRoomFormState);
@@ -419,47 +416,55 @@ function NeedRoom() {
                     </div>
                   </div>
                 </div>
-                <div className="flex gap-12 w-full">
-                  <div className="containerr w-[180px] max-h-[80px]">
-                    <div className="label whitespace-nowrap">
-                      Prefered Block*
+                <div className="containerr max-h-[80px]">
+                  <div className="label">Prefered Block*</div>
+                  <div className="flex gap-6">
+                    <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomForm["preferedBlocks"][0]}
+                        onChange={(e) => needRoomFormOnChangeHandler(e, 0)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
                     </div>
-                    <div className="flex gap-6">
-                      <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
-                        <select
-                          name="prefferedBlocks"
-                          value={needRoomForm["preferedBlocks"]}
-                          onChange={(e) => needRoomFormOnChangeHandler(e, 0)}
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
-                        >
-                          {blocks.map((block) => (
-                            <option key={block} value={block}>
-                              {block}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomForm["preferedBlocks"][1]}
+                        onChange={(e) => needRoomFormOnChangeHandler(e, 1)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
                     </div>
-                  </div>
-                  <div className="containerr w-[180px] max-h-[80px]">
-                    <div className="label">Year*</div>
-                    <div className="flex gap-6">
-                      <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
-                        <select
-                          name="year"
-                          value={needRoomForm["year"]}
-                          onChange={(e) => needRoomFormOnChangeHandler(e)}
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
-                        >
-                          {years.map((year) => (
-                            <option key={year} value={year}>
-                              {year}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomForm["preferedBlocks"][2]}
+                        onChange={(e) => needRoomFormOnChangeHandler(e, 2)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -572,49 +577,55 @@ function NeedRoom() {
                     </div>
                   </div>
                 </div>
-                <div className="flex gap-12 w-full">
-                  <div className="containerr max-h-[80px] w-[180px]">
-                    <div className="label whitespace-nowrap">
-                      Prefered Block*
+                <div className="containerr max-h-[80px]">
+                  <div className="label">Prefered Block*</div>
+                  <div className="flex gap-6">
+                    <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomMateForm["preferedBlocks"][0]}
+                        onChange={(e) => needRoomMateFormOnChangeHandler(e, 0)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
                     </div>
-                    <div className="flex gap-6">
-                      <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
-                        <select
-                          name="prefferedBlocks"
-                          value={needRoomMateForm["preferedBlocks"][0]}
-                          onChange={(e) =>
-                            needRoomMateFormOnChangeHandler(e, 0)
-                          }
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
-                        >
-                          {blocks.map((block) => (
-                            <option key={block} value={block}>
-                              {block}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomMateForm["preferedBlocks"][1]}
+                        onChange={(e) => needRoomMateFormOnChangeHandler(e, 1)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
                     </div>
-                  </div>
-                  <div className="containerr w-[180px] max-h-[80px] ">
-                    <div className="label">Year*</div>
-                    <div className="flex gap-6">
-                      <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
-                        <select
-                          name="year"
-                          value={needRoomMateForm["year"]}
-                          onChange={(e) => needRoomMateFormOnChangeHandler(e)}
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
-                        >
-                          {years.map((year) => (
-                            <option key={year} value={year}>
-                              {year}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomMateForm["preferedBlocks"][2]}
+                        onChange={(e) => needRoomMateFormOnChangeHandler(e, 2)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
                 </div>
