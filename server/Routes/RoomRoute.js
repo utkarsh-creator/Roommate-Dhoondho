@@ -4,7 +4,7 @@ const router = express.Router()
 
 router.get('/all', getAllRoom);
 router.post('/:userid', createRoom);
-router.get('/:userid', getRoom);
+router.post('/my/:userid', getRoom);
 router.put('/:id', updateRoom);
 router.delete("/:id", deleteRoom);
 

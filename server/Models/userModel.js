@@ -18,7 +18,19 @@ const UserSchema = mongoose.Schema(
             type: String,
             required: false
         },
+        regnum: {
+            type: String,
+            required: false
+        },
         gender: String,
+        rank : {
+            type: Number,
+            required: false
+        },
+        year : {
+            type: Number,
+            required: false
+        },                   // year of study
         mobile : {
             type: Number,
             required: false
@@ -30,12 +42,14 @@ const UserSchema = mongoose.Schema(
         profilePicture: String,
         coverPicture: String,
         about: String,
+        isVerified: {
+            type: Boolean,
+            default: false,
+        },
+        emailToken: String,
         followers: [],
         following: [],
-<<<<<<< HEAD
         likesRoommate: [],
-=======
->>>>>>> baa52b0ed08c620a4b184851c461f4d8ae22e51d
         likesRoom: []
     },
     {timestamps: true}

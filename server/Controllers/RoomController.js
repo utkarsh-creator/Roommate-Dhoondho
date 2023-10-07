@@ -40,7 +40,6 @@ export const getRoom = async (req, res) => {
 // Get all Rooms
 
 export const getAllRoom = async (req, res) => {
-
   try {
     const rooms = await needRoomModel.find();
     res.status(200).json(rooms);
