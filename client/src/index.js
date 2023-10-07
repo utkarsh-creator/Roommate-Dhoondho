@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SignIn from "./Pages/SignIn/SignIn";
 import SignUp from "./Pages/SignUp/SignUp";
 import ChangePassword from "./Pages/ChangePassword/Change";
+import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail";
 import ResetPassword from "./Pages/ResetPassword/Reset";
 import Home from "./Pages/Home/Home";
 import Profile from "./Pages/Profile/Profile";
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/resetPassword",
     element: <ResetPassword />,
+  },
+  {
+    path: "/verifyEmail",
+    element: <VerifyEmail />,
   },
   {
     path: "/home",
