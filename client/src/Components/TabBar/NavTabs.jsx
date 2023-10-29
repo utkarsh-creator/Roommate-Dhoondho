@@ -37,9 +37,9 @@ function DisplayRoommateCard() {
   } = useContext(ListingContext);
   const getBlockOptions = (userGender) => {
     const menHostels = [
-      "A", "B", "B ANNEX", "C", "D", "D ANNEX", "E", "F", "G", "H", "J", "K", "L", "M", "M ANNEX", "N", "P", "Q", "R"
+      "A", "B", "B ANNEX", "C", "D", "D ANNEX", "E", "F", "G", "H", "J", "K", "L", "M", "M ANNEX", "N", "P", "Q", "R", "All"
     ];
-    const womenHostels = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    const womenHostels = ["A", "B", "C", "D", "E", "F", "G", "H", "All"];
     if (userGender === "F") {
       return womenHostels;
     } else {
