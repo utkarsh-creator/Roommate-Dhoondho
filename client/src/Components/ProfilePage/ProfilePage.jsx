@@ -1,3 +1,10 @@
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Button";
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./MyProfile.css";
@@ -16,9 +23,28 @@ const Profilepage = () => {
   const [gender, setGender] = useState("");
   const [rank, setRank] = useState("");
   const [contactNumber, setContactNumber] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(null);
   const [changesMade, setChangesMade] = useState(true);
   const [notification, setNotification] = useState(null);
+  const [openConfirmation, setOpenConfirmation] = useState(false);
+  const [formEvent, setFormEvent] = useState(null);
+  const [isGenderEditable, setIsGenderEditable] = useState(
+    profileData.user.gender === null
+  );
+
+  const handleConfirmationOpen = (e) => {
+    e.preventDefault();
+    console.log("Opening confirmation dialog");
+    setFormEvent(e);
+    setOpenConfirmation(true);
+  };
+
+  const handleConfirmationClose = (confirmed) => {
+    setOpenConfirmation(false);
+    if (confirmed && formEvent && gender) {
+      submituserRegistrationForm(formEvent, gender);
+    }
+  };  
 
   console.log("user specific data: ", profileData);
 
@@ -50,7 +76,8 @@ const Profilepage = () => {
       .catch((error) => {
         console.error("Error fetching additional data:", error);
       });
-  }, []);
+  },[]);
+  
   const [fields, setFields] = useState({});
 
   const [errors, setErrors] = useState({});
@@ -107,20 +134,20 @@ const Profilepage = () => {
       }
     }
 
-    if (!fields["emailid"]) {
-      formIsValid = false;
-      newErrors["emailid"] = "*Please enter your email-ID.";
-    }
+    // if (!fields["emailid"]) {
+    //   formIsValid = false;
+    //   newErrors["emailid"] = "*Please enter your email-ID.";
+    // }
 
-    if (typeof fields["emailid"] !== "undefined") {
-      const emailPattern =
-        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+    // if (typeof fields["emailid"] !== "undefined") {
+    //   const emailPattern =
+    //     /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
 
-      if (!emailPattern.test(fields["emailid"])) {
-        formIsValid = false;
-        newErrors["emailid"] = "*Please enter valid email-ID.";
-      }
-    }
+    //   if (!emailPattern.test(fields["emailid"])) {
+    //     formIsValid = false;
+    //     newErrors["emailid"] = "*Please enter valid email-ID.";
+    //   }
+    // }
 
     if (!fields["mobileno"]) {
       formIsValid = false;
@@ -143,8 +170,9 @@ const Profilepage = () => {
     return formIsValid;
   };
 
-  const submituserRegistrationForm = (e) => {
+  const submituserRegistrationForm = (e, gender) => {
     e.preventDefault();
+    console.log("submitting form", gender);
     if (validateForm()) {
       const updatedData = {
         currentUserId: profileData.user._id,
@@ -152,7 +180,7 @@ const Profilepage = () => {
         firstname: firstName,
         lastname: lastName,
         regnum: regnum,
-        gender: fields.gender,
+        gender: gender,
         rank: rank,
         mobile: contactNumber,
         currentUserAdminStatus: false,
@@ -169,6 +197,7 @@ const Profilepage = () => {
           setNotification("Changes saved successfully!");
           const updatedProfileData = { ...profileData, user: response.data };
           localStorage.setItem("profile", JSON.stringify(updatedProfileData));
+          window.location.reload();
         })
         .catch((error) => {
           console.error("Error updating profile:", error);
@@ -196,13 +225,20 @@ const Profilepage = () => {
           <div>
             <div id="main-registration-container">
               <div id="register">
-                <form
-                  method="post"
-                  name="userRegistrationForm"
-                  onSubmit={(e) => {
-                    submituserRegistrationForm(e);
-                  }}
-                >
+              <form
+                method="post"
+                name="userRegistrationForm"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (validateForm()) {
+                    if (profileData.user.gender === null) {
+                      handleConfirmationOpen(e);
+                    } else {
+                      submituserRegistrationForm(e);
+                    }
+                  }
+                }}
+              >
                   <div className="form-section-1">
                     <div className="form-section-1a">
                       <label>First Name*</label>
@@ -237,7 +273,7 @@ const Profilepage = () => {
                     <div className="input-group">
                       <div className="flex">
                         <label>Gender*</label>
-                        <span className="form-section-3-border">
+                        {/* <span className="form-section-3-border">
                           <div
                             data-gender="M"
                             name="gender"
@@ -274,6 +310,44 @@ const Profilepage = () => {
                           >
                             F
                           </div>
+                        </span> */}
+                        <span className="form-section-3-border">
+                          <div
+                            data-gender="M"
+                            name="gender"
+                            className={`mr-6  bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
+                              fields.gender === "M" ? "border-2 border-black" : ""
+                            }`}
+                            onClick={(e) => {
+                              if (isGenderEditable) {
+                                handleChange({
+                                  target: { name: "gender", value: "M" },
+                                });
+                                setGender("M");
+                                setChangesMade(true);
+                              }
+                            }}
+                          >
+                            M
+                          </div>
+                          <div
+                            data-gender="F"
+                            name="gender"
+                            className={`bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
+                              fields.gender === "F" ? "border-2 border-black" : ""
+                            }`}
+                            onClick={(e) => {
+                              if (isGenderEditable) {
+                                handleChange({
+                                  target: { name: "gender", value: "F" },
+                                });
+                                setGender("F");
+                                setChangesMade(true);
+                              }
+                            }}
+                          >
+                            F
+                          </div>
                         </span>
                       </div>
                       <div className="errorMsg">{errors.gender}</div>
@@ -298,16 +372,16 @@ const Profilepage = () => {
                     <div className="form-section-2a">
                       <label>Email*</label>
                       <input
-                        type="text"
+                        type="label"
                         name="emailid"
                         value={email}
                         onChange={(e) => {
-                          handleChange(e);
-                          setEmail(e.target.value);
+                          // handleChange(e);
+                          // setEmail(e.target.value);
                           setChangesMade(true);
                         }}
                       />
-                      <div className="errorMsg">{errors.emailid}</div>
+                      {/* <div className="errorMsg">{errors.emailid}</div> */}
                     </div>
                     <div className="form-section-2b">
                       <label>Contact Number*</label>
@@ -367,6 +441,25 @@ const Profilepage = () => {
       <div>
         <Footer />
       </div>
+      <Dialog
+        open={openConfirmation}
+        onClose={() => handleConfirmationClose(false)}
+      >
+        <DialogTitle>WARNING</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            You can set your gender only ONCE. Once set, it can't be changed. Are you sure you want to proceed?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleConfirmationClose(false)} color="primary">
+            No
+          </Button>
+          <Button onClick={() => handleConfirmationClose(true)} color="primary">
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
