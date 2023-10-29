@@ -3,9 +3,12 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../../actions/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
+import { Alert } from "@mui/material";
 import "./Navbar.css";
 
 function Navbar() {
+  const profileData = JSON.parse(localStorage.getItem("profile")) || {};
+  const isProfileSet = !!profileData.user.firstname;
   const [navbar, setHeader] = useState("navbar");
   const navigate = useNavigate();
   const [click, setClick] = useState(false);
@@ -41,6 +44,11 @@ function Navbar() {
 
   return (
     <>
+      {!isProfileSet && (
+        <Alert severity="warning" className="profile-message">
+          <Link to="/profile">Profile not set. Please set your profile first from here. </Link>
+        </Alert>
+      )}
       <nav className="navbar">
         <img src="./image/logo.png" alt="" style={{ height: "60px" }} />
         <div className="menu-icon" onClick={handleClick}>
@@ -140,7 +148,7 @@ function Navbar() {
               className="nav-links-mobile user"
               onClick={closeMobileMenu}
             >
-              Users
+              Profile
             </Link>
           </li>
           <li className="nav-item-mobile">

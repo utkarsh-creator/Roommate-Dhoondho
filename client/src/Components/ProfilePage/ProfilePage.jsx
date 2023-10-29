@@ -17,7 +17,7 @@ const Profilepage = () => {
   const [rank, setRank] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [changesMade, setChangesMade] = useState(true); // to make submit button visis
+  const [changesMade, setChangesMade] = useState(true);
   const [notification, setNotification] = useState(null);
 
   console.log("user specific data: ", profileData);
@@ -167,6 +167,8 @@ const Profilepage = () => {
           console.log("Profile updated successfully:", response.data);
           setChangesMade(true);
           setNotification("Changes saved successfully!");
+          const updatedProfileData = { ...profileData, user: response.data };
+          localStorage.setItem("profile", JSON.stringify(updatedProfileData));
         })
         .catch((error) => {
           console.error("Error updating profile:", error);
