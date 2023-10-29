@@ -18,7 +18,7 @@ export const signUp = (formData, navigate) => async (dispatch) => {
   try {
     const { data } = await AuthApi.signUp(formData);
     dispatch({ type: "AUTH_FAIL", data: data });
-    toast.success("Please verify your email. Verification mail send.");
+    toast.success("Please verify your email. Verification mail sent.");
     navigate("../", { replace: true });
   } catch (error) {
     console.log(error);
