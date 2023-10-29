@@ -35,7 +35,9 @@ function Navbar() {
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
+    localStorage.removeItem("profile");
     dispatch(logout());
+    navigate("/");
   };
 
   function ProfileClickHandler() {

@@ -43,16 +43,12 @@ function NeedRoom() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (profileData && profileData.user && profileData.user.gender) {
+    if (profileData.user.gender) {
       const userGender = profileData.user.gender;
-      const menHostels = [
-        "A", "B", "B ANNEX", "C", "D", "D ANNEX", "E", "F", "G", "H", "J", "K", "L", "M", "M ANNEX", "N", "P", "Q", "R"
-      ];
-      const womenHostels = ["A", "B", "C", "D", "E", "F", "G", "H"];
       if (userGender === "F") {
-        return womenHostels;
+        setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
       } else {
-        return menHostels;
+        setBlocks(["A", "B", "B ANNEX", "C", "D", "D ANNEX", "E", "F", "G", "H", "J", "K", "L", "M", "M ANNEX", "N", "P", "Q", "R"]);
       }
     }
   }, [user]);
