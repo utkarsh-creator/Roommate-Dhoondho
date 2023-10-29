@@ -86,7 +86,7 @@ function SignIn() {
         toast.error("Please verify your email.");
         navigate("/resendVerificationMail");
       } else { 
-        toast.error("An error occurred. Please try again later.");
+        toast.error("An error occurred. Verify your email or check your credentials.");
       }
     }
   }  

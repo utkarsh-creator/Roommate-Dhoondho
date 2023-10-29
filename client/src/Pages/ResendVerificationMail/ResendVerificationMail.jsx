@@ -33,7 +33,7 @@ function ResendVerificationMail() {
   return (
     <div className="flex flex-col h-screen">
       <div className="w-full mb-6">
-        <span className="text-[#3C4242] text-[16px]">Email</span>
+        <span className="text-[#3C4242] text-[16px]">Resend Verification Email</span>
         <input
           name="email"
           value={email}
@@ -47,7 +47,7 @@ function ResendVerificationMail() {
         onClick={sendEmailToken}
         className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
       >
-        Send Email Token
+        Resend
       </button>
     </div>
   );

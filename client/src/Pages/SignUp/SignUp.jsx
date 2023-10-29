@@ -29,9 +29,10 @@ function SignUP() {
     let name = e.target.name;
     if (name === "email") {
       validateEmail(e.target.value);
-    } else if (name === "password") {
-      validatePassword(e.target.value);
-    }
+    } 
+    // else if (name === "password") {
+    //   validatePassword(e.target.value);
+    // }
     let change = {};
     if (e.target.name === "agree") {
       setForm((prev) => {
@@ -68,25 +69,25 @@ function SignUP() {
     return isEmailValid;
   }
 
-  function validatePassword(password) {
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-    const isPasswordValid = passwordRegex.test(password);
-    if (!isPasswordValid) {
-      setFormError((prev) => {
-        return {
-          ...prev,
-          password:
-            "Password must be at least 8 characters long and include a mix of letters, numbers, and symbols.",
-        };
-      });
-    } else {
-      setFormError((prev) => {
-        return { ...prev, password: null };
-      });
-    }
-    return isPasswordValid;
-  }
+  // function validatePassword(password) {
+  //   const passwordRegex =
+  //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  //   const isPasswordValid = passwordRegex.test(password);
+  //   if (!isPasswordValid) {
+  //     setFormError((prev) => {
+  //       return {
+  //         ...prev,
+  //         password:
+  //           "Password must be at least 8 characters long and include a mix of letters, numbers, and symbols.",
+  //       };
+  //     });
+  //   } else {
+  //     setFormError((prev) => {
+  //       return { ...prev, password: null };
+  //     });
+  //   }
+  //   return isPasswordValid;
+  // }
 
   // async function signUpClickHandler() {
   //   // setIsVerification(true);
@@ -101,7 +102,7 @@ function SignUP() {
   async function signUpClickHandler() {
     const isEmailValid = validateEmail(form.email);
     if (!isEmailValid) {
-      window.alert("Please enter a valid email in the format 'example@vitstudent.ac.in'");
+      toast.error("Please enter a valid email in the format 'example@vitstudent.ac.in'");
       return;
     }
 
@@ -118,8 +119,6 @@ function SignUP() {
     console.log("verifyform", verifyForm);
     setIsVerification(false);
     setVerifyForm(initialFormState);
-    toast.success("You have successfully signed in!");
-    navigate("/");
   }
   return (
     <div className="flex flex-col h-screen">
