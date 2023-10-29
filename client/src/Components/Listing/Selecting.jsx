@@ -5,6 +5,7 @@ import "../Cards/Cards.css";
 import "./Selecting.css";
 import Modal from "../../Components/Modal/Modal";
 import Modal2 from "../Modal/Modal2";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export const Listing = () => {
   const { showModal, showModal2, selectRoommateDetail, selectRoomDetail } =
@@ -146,7 +147,9 @@ export const Listing = () => {
       </div>
       <div className="tab-content">
         {isLoading ? (
-          <p>Loading...</p>
+          <div className="loading-indicator-container">
+            <CircularProgress disableShrink color="primary" size={40} />
+          </div>
         ) : (
           <div>
             {showModal && <Modal />}

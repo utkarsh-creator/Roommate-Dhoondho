@@ -5,6 +5,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -33,6 +34,7 @@ const Profilepage = () => {
   const [isGenderEditable, setIsGenderEditable] = useState(
     profileData.user.gender === null
   );
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleConfirmationOpen = (e) => {
     e.preventDefault();
@@ -74,9 +76,11 @@ const Profilepage = () => {
           emailid: data.username,
           mobileno: data.mobile,
         });
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching additional data:", error);
+        setIsLoading(false);
       });
   },[]);
   
@@ -212,240 +216,248 @@ const Profilepage = () => {
       <div>
         <Navbar />
       </div>
-      <div className="profile">
-        <div className="profiletab-main">
-          <div className="profile-buttons">
-            <button className="activeprofile">
-              <p className="profile-text">Profile</p>
-            </button>
-          </div>
-          <div className="profiletab-hr">
-            <hr />
-          </div>
+      {isLoading ? (
+        <div className="loading-indicator-container">
+          <CircularProgress disableShrink color="primary" size={40} />
         </div>
+        ) : (
         <div>
-          <div>
-            <div id="main-registration-container">
-              <div id="register">
-              <form
-                method="post"
-                name="userRegistrationForm"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (validateForm()) {
-                    if (profileData.user.gender === null) {
-                      handleConfirmationOpen(e);
-                    } else {
-                      submituserRegistrationForm(e);
-                    }
-                  }
-                }}
-              >
-                {showInfoLabel && (
-                  <Alert severity="info" onClose={() => setShowInfoLabel(false)}>
-                    You can set your gender only ONCE. Once set, it can't be changed. 
-                    Email id cannot be changed.
-                  </Alert>
-                )}
-                  <div className="form-section-1">
-                    <div className="form-section-1a">
-                      <label>First Name*</label>
-                      <input
-                        type="text"
-                        name="firstname"
-                        value={firstName}
-                        onChange={(e) => {
-                          handleChange(e);
-                          setFirstName(e.target.value);
-                          setChangesMade(true);
-                        }}
-                      />
-                      <div className="errorMsg">{errors.firstname}</div>
-                    </div>
-                    <div className="form-section-1b">
-                      <label>Last Name*</label>
-                      <input
-                        type="text"
-                        name="lastname"
-                        value={lastName}
-                        onChange={(e) => {
-                          handleChange(e);
-                          setLastName(e.target.value);
-                          setChangesMade(true);
-                        }}
-                      />
-                      <div className="errorMsg">{errors.lastname}</div>
-                    </div>
-                  </div>
-                  <div className="form-section-3">
-                    <div className="input-group">
-                      <div className="flex">
-                        <label>Gender*</label>
-                        {/* <span className="form-section-3-border">
-                          <div
-                            data-gender="M"
-                            name="gender"
-                            className={`mr-6  bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
-                              fields.gender === "M"
-                                ? "border-2 border-black"
-                                : ""
-                            }`}
-                            onClick={(e) => {
-                              handleChange({
-                                target: { name: "gender", value: "M" },
-                              });
-                              setGender("M");
-                              setChangesMade(true);
-                            }}
-                          >
-                            M
-                          </div>
-                          <div
-                            data-gender="F"
-                            name="gender"
-                            className={`bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
-                              fields.gender === "F"
-                                ? "border-2 border-black"
-                                : ""
-                            }`}
-                            onClick={(e) => {
-                              handleChange({
-                                target: { name: "gender", value: "F" },
-                              });
-                              setGender("F");
-                              setChangesMade(true);
-                            }}
-                          >
-                            F
-                          </div>
-                        </span> */}
-                        <span className="form-section-3-border">
-                          <div
-                            data-gender="M"
-                            name="gender"
-                            className={`mr-6  bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
-                              fields.gender === "M" ? "border-2 border-black" : ""
-                            }`}
-                            onClick={(e) => {
-                              if (isGenderEditable) {
-                                handleChange({
-                                  target: { name: "gender", value: "M" },
-                                });
-                                setGender("M");
-                                setChangesMade(true);
-                              }
-                            }}
-                          >
-                            M
-                          </div>
-                          <div
-                            data-gender="F"
-                            name="gender"
-                            className={`bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
-                              fields.gender === "F" ? "border-2 border-black" : ""
-                            }`}
-                            onClick={(e) => {
-                              if (isGenderEditable) {
-                                handleChange({
-                                  target: { name: "gender", value: "F" },
-                                });
-                                setGender("F");
-                                setChangesMade(true);
-                              }
-                            }}
-                          >
-                            F
-                          </div>
-                        </span>
-                      </div>
-                      <div className="errorMsg">{errors.gender}</div>
-                    </div>
-
-                    <div className="form-section-3b">
-                      <label>Registration Number*</label>
-                      <input
-                        type="text"
-                        name="regnum"
-                        value={regnum}
-                        onChange={(e) => {
-                          handleChange(e);
-                          setRegNumber(e.target.value);
-                          setChangesMade(true);
-                        }}
-                      />
-                      <div className="errorMsg">{errors.regnum}</div>
-                    </div>
-                  </div>
-                  <div className="form-section-2">
-                    <div className="form-section-2a">
-                      <label>Email*</label>
-                      <input
-                        type="label"
-                        name="emailid"
-                        value={email}
-                        onChange={(e) => {
-                          // handleChange(e);
-                          // setEmail(e.target.value);
-                          setChangesMade(true);
-                        }}
-                      />
-                      {/* <div className="errorMsg">{errors.emailid}</div> */}
-                    </div>
-                    <div className="form-section-2b">
-                      <label>Contact Number*</label>
-                      <input
-                        type="text"
-                        name="mobileno"
-                        value={contactNumber}
-                        onChange={(e) => {
-                          handleChange(e);
-                          setContactNumber(e.target.value);
-                          setChangesMade(true);
-                        }}
-                      />
-                      <div className="errorMsg">{errors.mobileno}</div>
-                    </div>
-                  </div>
-                  <div className="form-section-4">
-                    {changesMade && (
-                      <button className="mx-auto bg-[#06105A] px-[2.5rem] py-[0.75rem] text-white rounded-[8px] self-start disabled:hover:cursor-not-allowed">
-                        Submit
-                      </button>
-                    )}
-                  </div>
-                  {notification && (
-                    <div
-                      className={
-                        notification.startsWith("Error")
-                          ? "error-notification"
-                          : "success-notification"
+          <div className="profile">
+            <div className="profiletab-main">
+              <div className="profile-buttons">
+                <button className="activeprofile">
+                  <p className="profile-text">Profile</p>
+                </button>
+              </div>
+              <div className="profiletab-hr">
+                <hr />
+              </div>
+            </div>
+            <div>
+              <div>
+                <div id="main-registration-container">
+                  <div id="register">
+                  <form
+                    method="post"
+                    name="userRegistrationForm"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (validateForm()) {
+                        if (profileData.user.gender === null) {
+                          handleConfirmationOpen(e);
+                        } else {
+                          submituserRegistrationForm(e);
+                        }
                       }
-                    >
-                      {notification}
+                    }}
+                  >
+                    {showInfoLabel && (
+                      <Alert severity="info" onClose={() => setShowInfoLabel(false)}>
+                        You can set your gender only ONCE. Once set, it can't be changed. 
+                        Email id cannot be changed.
+                      </Alert>
+                    )}
+                      <div className="form-section-1">
+                        <div className="form-section-1a">
+                          <label>First Name*</label>
+                          <input
+                            type="text"
+                            name="firstname"
+                            value={firstName}
+                            onChange={(e) => {
+                              handleChange(e);
+                              setFirstName(e.target.value);
+                              setChangesMade(true);
+                            }}
+                          />
+                          <div className="errorMsg">{errors.firstname}</div>
+                        </div>
+                        <div className="form-section-1b">
+                          <label>Last Name*</label>
+                          <input
+                            type="text"
+                            name="lastname"
+                            value={lastName}
+                            onChange={(e) => {
+                              handleChange(e);
+                              setLastName(e.target.value);
+                              setChangesMade(true);
+                            }}
+                          />
+                          <div className="errorMsg">{errors.lastname}</div>
+                        </div>
+                      </div>
+                      <div className="form-section-3">
+                        <div className="input-group">
+                          <div className="flex">
+                            <label>Gender*</label>
+                            {/* <span className="form-section-3-border">
+                              <div
+                                data-gender="M"
+                                name="gender"
+                                className={`mr-6  bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
+                                  fields.gender === "M"
+                                    ? "border-2 border-black"
+                                    : ""
+                                }`}
+                                onClick={(e) => {
+                                  handleChange({
+                                    target: { name: "gender", value: "M" },
+                                  });
+                                  setGender("M");
+                                  setChangesMade(true);
+                                }}
+                              >
+                                M
+                              </div>
+                              <div
+                                data-gender="F"
+                                name="gender"
+                                className={`bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
+                                  fields.gender === "F"
+                                    ? "border-2 border-black"
+                                    : ""
+                                }`}
+                                onClick={(e) => {
+                                  handleChange({
+                                    target: { name: "gender", value: "F" },
+                                  });
+                                  setGender("F");
+                                  setChangesMade(true);
+                                }}
+                              >
+                                F
+                              </div>
+                            </span> */}
+                            <span className="form-section-3-border">
+                              <div
+                                data-gender="M"
+                                name="gender"
+                                className={`mr-6  bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
+                                  fields.gender === "M" ? "border-2 border-black" : ""
+                                }`}
+                                onClick={(e) => {
+                                  if (isGenderEditable) {
+                                    handleChange({
+                                      target: { name: "gender", value: "M" },
+                                    });
+                                    setGender("M");
+                                    setChangesMade(true);
+                                  }
+                                }}
+                              >
+                                M
+                              </div>
+                              <div
+                                data-gender="F"
+                                name="gender"
+                                className={`bg-[#D9D9D9] rounded-[10px] py-2 px-8 text-center cursor-pointer female ${
+                                  fields.gender === "F" ? "border-2 border-black" : ""
+                                }`}
+                                onClick={(e) => {
+                                  if (isGenderEditable) {
+                                    handleChange({
+                                      target: { name: "gender", value: "F" },
+                                    });
+                                    setGender("F");
+                                    setChangesMade(true);
+                                  }
+                                }}
+                              >
+                                F
+                              </div>
+                            </span>
+                          </div>
+                          <div className="errorMsg">{errors.gender}</div>
+                        </div>
+
+                        <div className="form-section-3b">
+                          <label>Registration Number*</label>
+                          <input
+                            type="text"
+                            name="regnum"
+                            value={regnum}
+                            onChange={(e) => {
+                              handleChange(e);
+                              setRegNumber(e.target.value);
+                              setChangesMade(true);
+                            }}
+                          />
+                          <div className="errorMsg">{errors.regnum}</div>
+                        </div>
+                      </div>
+                      <div className="form-section-2">
+                        <div className="form-section-2a">
+                          <label>Email*</label>
+                          <input
+                            type="label"
+                            name="emailid"
+                            value={email}
+                            onChange={(e) => {
+                              // handleChange(e);
+                              // setEmail(e.target.value);
+                              setChangesMade(true);
+                            }}
+                          />
+                          {/* <div className="errorMsg">{errors.emailid}</div> */}
+                        </div>
+                        <div className="form-section-2b">
+                          <label>Contact Number*</label>
+                          <input
+                            type="text"
+                            name="mobileno"
+                            value={contactNumber}
+                            onChange={(e) => {
+                              handleChange(e);
+                              setContactNumber(e.target.value);
+                              setChangesMade(true);
+                            }}
+                          />
+                          <div className="errorMsg">{errors.mobileno}</div>
+                        </div>
+                      </div>
+                      <div className="form-section-4">
+                        {changesMade && (
+                          <button className="mx-auto bg-[#06105A] px-[2.5rem] py-[0.75rem] text-white rounded-[8px] self-start disabled:hover:cursor-not-allowed">
+                            Submit
+                          </button>
+                        )}
+                      </div>
+                      {notification && (
+                        <div
+                          className={
+                            notification.startsWith("Error")
+                              ? "error-notification"
+                              : "success-notification"
+                          }
+                        >
+                          {notification}
+                        </div>
+                      )}
+                    </form>
+                    <div className="form-section-5">
+                      <hr />
                     </div>
-                  )}
-                </form>
-                <div className="form-section-5">
-                  <hr />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="listing">
-        <div className="listing-buttons">
-          <button className="activelisting">
-            <p className="listing-text">Your Listing</p>
-          </button>
-        </div>
-        <div className="tab-content">
-          <div className="cards">
-            <DisplayRoommateListingCard />
-            <DisplayRoomListingCard />
+          <div className="listing">
+            <div className="listing-buttons">
+              <button className="activelisting">
+                <p className="listing-text">Your Listing</p>
+              </button>
+            </div>
+            <div className="tab-content">
+              <div className="cards">
+                <DisplayRoommateListingCard />
+                <DisplayRoomListingCard />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <div>
         <Footer />
       </div>
