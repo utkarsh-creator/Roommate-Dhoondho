@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SignIn from "./Pages/SignIn/SignIn";
 import SignUp from "./Pages/SignUp/SignUp";
+import ResendVerificationMail from "./Pages/ResendVerificationMail/ResendVerificationMail";
 import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail";
 import ResetPassword from "./Pages/ResetPassword/Reset";
 import UpdatePassword from "./Pages/UpdatePassword/UpdatePassword";
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/resetPassword",
     element: <ResetPassword />,
+  },
+  {
+    path: "/resendVerificationMail",
+    element: <ResendVerificationMail />,
   },
   {
     path: "/verifyEmail",
@@ -70,7 +75,4 @@ root.render(
   </>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

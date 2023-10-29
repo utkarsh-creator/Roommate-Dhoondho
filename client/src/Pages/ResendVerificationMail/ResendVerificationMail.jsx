@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import "./Reset.css";
+import "./ResendVerificationMail.css";
 
-function Reset() {
+function ResendVerificationMail() {
   const [email, setEmail] = useState("");
   const emailRegex = /^[A-Za-z0-9._%+-]+@vitstudent.ac.in$/;
 
@@ -15,7 +15,7 @@ function Reset() {
 
     try {
       const response = await axios.post(
-        "https://roommate-finder-theta.vercel.app/auth/password-reset",
+        "https://roommate-finder-theta.vercel.app/auth/resend-verify-email",
         {
           username: email,
         }
@@ -39,7 +39,7 @@ function Reset() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="mfc.vit2023@vitstudent.ac.in"
-          className=" mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem]"
+          className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem]"
         />
       </div>
 
@@ -53,4 +53,4 @@ function Reset() {
   );
 }
 
-export default Reset;
+export default ResendVerificationMail;

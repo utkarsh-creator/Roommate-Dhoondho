@@ -7,9 +7,8 @@ export const logIn = (formData, navigate) => async (dispatch) => {
     dispatch({ type: "AUTH_SUCCESS", data: data });
     navigate("../home", { replace: true });
   } catch (error) {
-    console.log(error);
-    dispatch({ type: "AUTH_FAIL" });
-    throw new Error(error);
+    //console.log(error.response.data);
+    throw new Error(error.response.data);
   }
 };
 

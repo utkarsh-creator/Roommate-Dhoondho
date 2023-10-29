@@ -55,7 +55,7 @@ function SignIn() {
     const emailRegex = /^[A-Za-z0-9._%+-]+@vitstudent.ac.in$/;
     const isEmailValid = emailRegex.test(email);
   
-    if (isEmailValid) {
+    if (!isEmailValid) {
       setError((prev) => {
         return { ...prev, email: "Please enter a valid email in the format 'mfc@vitstudent.ac.in'" };
       });
@@ -81,7 +81,13 @@ function SignIn() {
     try {
       await dispatch(logIn(data, navigate));
     } catch (error) {
-      toast.error("An error occurred. Check recheck credentials.");
+      //console.log(error.message);
+      if (error.message === "Email not verified") {
+        toast.error("Please verify your email.");
+        navigate("/resendVerificationMail");
+      } else { 
+        toast.error("An error occurred. Please try again later.");
+      }
     }
   }  
   
