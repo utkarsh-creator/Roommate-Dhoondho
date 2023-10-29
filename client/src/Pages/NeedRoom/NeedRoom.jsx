@@ -32,8 +32,6 @@ const initialNeedRoomMateFormState = {
   description: "",
 };
 
-let blocks = ["AX", "BX", "CX"];
-
 function NeedRoom() {
   const [needRoom, setNeedRoom] = useState(true);
   const [needRoomForm, setNeedRoomForm] = useState(initialNeedRoomFormState);
@@ -47,10 +45,14 @@ function NeedRoom() {
   useEffect(() => {
     if (profileData && profileData.user && profileData.user.gender) {
       const userGender = profileData.user.gender;
+      const menHostels = [
+        "A", "B", "B ANNEX", "C", "D", "D ANNEX", "E", "F", "G", "H", "J", "K", "L", "M", "M ANNEX", "N", "P", "Q", "R"
+      ];
+      const womenHostels = ["A", "B", "C", "D", "E", "F", "G", "H"];
       if (userGender === "F") {
-        setBlocks(["G", "J"]);
+        return womenHostels;
       } else {
-        setBlocks(["A", "B", "C"]);
+        return menHostels;
       }
     }
   }, [user]);

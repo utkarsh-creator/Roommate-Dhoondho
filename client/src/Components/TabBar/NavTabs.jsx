@@ -35,6 +35,17 @@ function DisplayRoommateCard() {
     selectRoomDetail,
     seletedroomdetail,
   } = useContext(ListingContext);
+  const getBlockOptions = (userGender) => {
+    const menHostels = [
+      "A", "B", "B ANNEX", "C", "D", "D ANNEX", "E", "F", "G", "H", "J", "K", "L", "M", "M ANNEX", "N", "P", "Q", "R"
+    ];
+    const womenHostels = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    if (userGender === "F") {
+      return womenHostels;
+    } else {
+      return menHostels;
+    }
+  };  
 
   useEffect(() => {
     if (profileData?.user?.gender) {
@@ -126,6 +137,7 @@ function DisplayRoommateCard() {
         console.error("Error fetching profile:", error);
       });
   };
+  const blockOptions = getBlockOptions(userGender);
 
   const filterByGenderAndBlock = (gender, block, year) => {
     setSelectedGender(gender);
@@ -289,6 +301,7 @@ function DisplayRoommateCard() {
           selectedGender={selectedGender}
           selectedBlock={selectedBlock}
           selectedYear={selectedYear}
+          blockOptions={blockOptions}
         >
           <Tab label="Tab 1">
             {showModal && <Modal />}
@@ -558,6 +571,7 @@ class Tabs extends Component {
     const { selectedGender } = this.props;
     const { selectedBlock } = this.props;
     const { selectedYear } = this.props;
+    const { blockOptions } = this.props;
 
     return (
       <div>
@@ -576,6 +590,7 @@ class Tabs extends Component {
           selectedGender={selectedGender}
           selectedBlock={selectedBlock}
           selectedYear={selectedYear}
+          blockOptions={blockOptions}
         />
         <div className="tab-content">{content}</div>
       </div>
@@ -591,6 +606,7 @@ const TabButtons = ({
   selectedBlock,
   selectedYear,
   filterByGenderAndBlock,
+  blockOptions,
 }) => {
   return (
     <div className="navtab-main">
@@ -675,24 +691,11 @@ const TabButtons = ({
               <option hidden value="Block">
                 Block
               </option>
-              <option value="A">A-Block</option>
-              <option value="B">B-Block</option>
-              <option value="C">C-Block</option>
-              <option value="D">D-Block</option>
-              <option value="E">E-Block</option>
-              <option value="F">F-Block</option>
-              <option value="G">G-Block</option>
-              <option value="H">H-Block</option>
-              <option value="I">I-Block</option>
-              <option value="J">J-Block</option>
-              <option value="K">K-Block</option>
-              <option value="L">L-Block</option>
-              <option value="M">M-Block</option>
-              <option value="N">N-Block</option>
-              <option value="P">P-Block</option>
-              <option value="Q">Q-Block</option>
-              <option value="R">R-Block</option>
-              <option value="All">All</option>
+                {blockOptions.map((block) => (
+                  <option key={block} value={block}>
+                    {block}
+                  </option>
+                ))}
             </select>
           </div>
           {/* <div className="custom-select-2">
