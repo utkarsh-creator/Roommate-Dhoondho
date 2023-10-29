@@ -19,7 +19,7 @@ const initialNeedRoomFormState = {
   bedType: "",
   preferedBlocks: ["A"],
   contactNumber: "",
-  year: "",
+  year: "1",
   description: "",
 };
 const initialNeedRoomMateFormState = {
@@ -28,7 +28,7 @@ const initialNeedRoomMateFormState = {
   noOfBeds: "",
   preferedBlocks: ["A"],
   contactNumber: "",
-  year: "",
+  year: "1",
   description: "",
 };
 
@@ -168,10 +168,10 @@ function NeedRoom() {
         `https://roommate-finder-theta.vercel.app/roommate/${userId}`,
         requestBody
       );
-      console.log("result", result);
+      console.log("API Response:", result.data);
       navigate("/home");
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error("API Error:", error); 
     }
   }
 
@@ -189,6 +189,9 @@ function NeedRoom() {
       return false;
     } else if (!needRoomForm["year"]) {
       toast.error("Please enter your year");
+      return false;
+    }else if (!needRoomForm["year"] || !["1", "2", "3", "4"].includes(needRoomForm["year"])) {
+      toast.error("Please enter a valid year (1, 2, 3, or 4)");
       return false;
     }
 
@@ -220,12 +223,13 @@ function NeedRoom() {
     } else if (needRoomForm["preferedBlocks"]) {
       let isValid = areValuesUnique(needRoomForm["preferedBlocks"]);
       if (!isValid) {
-        toast.error("Please choose 3 different blocks");
+        toast.error("Please choose block");
         return false;
       }
     }
     return true;
   }
+
   function validateNeedRoomMateForm() {
     const numericRegex = /^[0-9]+$/;
     const indianNumberRegex = /^[6789]\d{9}$/;
@@ -239,8 +243,8 @@ function NeedRoom() {
     } else if (!needRoomMateForm["contactNumber"]) {
       toast.error("Please enter your Contact number");
       return false;
-    } else if (!needRoomMateForm["year"]) {
-      toast.error("Please enter your year");
+    } else if (!needRoomMateForm["year"] || !["1", "2", "3", "4"].includes(needRoomMateForm["year"])) {
+      toast.error("Please enter a valid year (1, 2, 3, or 4)");
       return false;
     }
 
@@ -273,10 +277,11 @@ function NeedRoom() {
     } else if (needRoomMateForm["preferedBlocks"]) {
       let isValid = areValuesUnique(needRoomMateForm["preferedBlocks"]);
       if (!isValid) {
-        toast.error("Please choose 3 different blocks");
+        toast.error("Please choose block");
         return false;
       }
     }
+    return true;
   }
 
   function areValuesUnique(arr) {
@@ -574,7 +579,7 @@ function NeedRoom() {
                     </div>
                   </div>
                 </div> */}
-                
+
                 <div className="containerr max-h-[80px]">
                   <div className="label">Prefered Block*</div>
                   <div className="flex gap-6">
