@@ -121,13 +121,12 @@ function NeedRoom() {
     if (!validateNeedRoomForm()) {
       return;
     }
-    debugger;
     let userId = user?.user?._id;
     console.log("need Room", needRoomForm);
     let requestBody = {
       userId: userId,
       rank: needRoomForm?.rank,
-      // gender: needRoomForm?.gender,
+      gender: profileData.user.gender,
       preferredBed: needRoomForm?.bedType,
       preferredBlock: needRoomForm?.preferedBlocks[0],
       phone: needRoomForm?.contactNumber,
@@ -155,7 +154,7 @@ function NeedRoom() {
     let requestBody = {
       userId: userId,
       rank: needRoomMateForm?.rank,
-      // gender: needRoomMateForm?.gender,
+      gender: profileData.user.gender,
       preferredBed: needRoomMateForm?.noOfBeds,
       preferredBlock: needRoomMateForm?.preferedBlocks[0],
       phone: needRoomMateForm?.contactNumber,
