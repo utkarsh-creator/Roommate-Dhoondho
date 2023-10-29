@@ -1,4 +1,5 @@
 import * as AuthApi from "../api/AuthRequests";
+
 export const logIn = (formData, navigate) => async (dispatch) => {
   dispatch({ type: "AUTH_START" });
   try {
@@ -8,6 +9,7 @@ export const logIn = (formData, navigate) => async (dispatch) => {
   } catch (error) {
     console.log(error);
     dispatch({ type: "AUTH_FAIL" });
+    throw new Error(error);
   }
 };
 
@@ -20,6 +22,7 @@ export const signUp = (formData, navigate) => async (dispatch) => {
   } catch (error) {
     console.log(error);
     dispatch({ type: "AUTH_FAIL" });
+    throw new Error(error);
   }
 };
 

@@ -54,11 +54,11 @@ function SignUP() {
   }
 
   function validateEmail(email) {
-    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    const emailRegex = /^[A-Za-z0-9._%+-]+@vitstudent.ac.in$/;
     let isEmailValid = emailRegex.test(email);
     if (!isEmailValid) {
       setFormError((prev) => {
-        return { ...prev, email: "Please enter a valid email" };
+        return { ...prev, email: "Please enter a valid email in the format 'mfc@vitstudent.ac.in'" };
       });
     } else {
       setFormError((prev) => {
@@ -88,8 +88,23 @@ function SignUP() {
     return isPasswordValid;
   }
 
+  // async function signUpClickHandler() {
+  //   // setIsVerification(true);
+  //   let data = {
+  //     username: form.email,
+  //     password: form.password,
+  //   };
+  //   dispatch(signUp(data, navigate));
+  //   setForm(initialFormState);
+  // }
+
   async function signUpClickHandler() {
-    // setIsVerification(true);
+    const isEmailValid = validateEmail(form.email);
+    if (!isEmailValid) {
+      window.alert("Please enter a valid email in the format 'example@vitstudent.ac.in'");
+      return;
+    }
+
     let data = {
       username: form.email,
       password: form.password,
@@ -97,6 +112,7 @@ function SignUP() {
     dispatch(signUp(data, navigate));
     setForm(initialFormState);
   }
+  
 
   function verifyCodeClickHandler() {
     console.log("verifyform", verifyForm);
@@ -109,7 +125,12 @@ function SignUP() {
     <div className="flex flex-col h-screen">
       <Header />
       <div className="flex flex-grow h-auto">
-        <div className="hidden md:inline-block md:w-[45%] bg-[#D9D9D9]"></div>
+        <div
+          className="md:inline-block md:w-[45%] bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${require("../../Assets/signup.jpg")})`,
+          }}
+        ></div>
         <div className="w-[100%] md:w-[55%] flex justify-center">
           {!isVerification ? (
             <div className="flex flex-col pt-[2rem] items-center w-[80%]">
@@ -117,17 +138,17 @@ function SignUP() {
                 Sign Up
               </h1>
               <p className="mb-5 text-[#3C4242] text-[14px] w-full">
-                Sign up for free to access any of our products
+                Sign up for free to access Roommate Dhoondho
               </p>
-              <button className="flex justify-center items-center font-[600] text-[#06105A] w-[100%]  mr-2 rounded-[8px] border-[#06105A] border-[1.75px] px-[2rem] py-[0.75rem]">
+              {/* <button className="flex justify-center items-center font-[600] text-[#06105A] w-[100%]  mr-2 rounded-[8px] border-[#06105A] border-[1.75px] px-[2rem] py-[0.75rem]">
                 <FcGoogle size={25} className="mr-2" /> Continue with Google
-              </button>
+              </button> */}
 
-              <div className="flex items-center w-full box-border mt-6 mb-8">
+              {/* <div className="flex items-center w-full box-border mt-6 mb-8">
                 <div className="flex-grow h-[1px] bg-[#666666]"></div>
                 <span className="text-[#666666] pl-2 pr-2">OR</span>
                 <div className="flex-grow h-[1px] bg-[#666666]"></div>
-              </div>
+              </div> */}
 
               <div className="w-full mb-6">
                 <span className="text-[#3C4242] text-[16px]">
