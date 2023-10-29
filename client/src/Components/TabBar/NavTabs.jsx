@@ -6,6 +6,7 @@ import "../Cards/Cards.css";
 import { ListingContext } from "../../Context/listing-context";
 import Modal from "../../Components/Modal/Modal";
 import Modal2 from "../Modal/Modal2";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function DisplayRoommateCard() {
   const profileData = JSON.parse(localStorage.getItem("profile"));
@@ -284,8 +285,10 @@ function DisplayRoommateCard() {
           <Tab label="Tab 1">
             {showModal && <Modal />}
             <div className="cards">
-              {isLoading ? (
-                <div className="loading-text">Loading...</div>
+            {isLoading ? (
+              <div className="loading-indicator-container">
+                <CircularProgress disableShrink color="primary" size={40} />
+              </div>
               ) : (
                 (filteredRoommatePosts.length >= 0
                   ? filteredRoommatePosts
@@ -400,7 +403,9 @@ function DisplayRoommateCard() {
             {showModal2 && <Modal2 />}
             <div className="cards">
               {isLoading ? (
-                <div className="loading-text">Loading...</div>
+                <div className="loading-indicator-container">
+                  <CircularProgress disableShrink color="primary" size={40} />
+                </div>
               ) : (
                 (filteredRoomPosts.length >= 0
                   ? filteredRoomPosts
