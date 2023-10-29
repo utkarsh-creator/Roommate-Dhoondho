@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,54 +11,49 @@ import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/NavBar/Navbar";
 import "./NeedRoom.css";
 
+const profileData = JSON.parse(localStorage.getItem("profile"));
+
 const initialNeedRoomFormState = {
   rank: "",
-  gender: "M",
+  // gender: "M",
   bedType: "",
   preferedBlocks: ["A"],
-  // preferedBlocks: ["A", "A", "A"],
   contactNumber: "",
-  habits: "",
+  year: "",
   description: "",
 };
 const initialNeedRoomMateFormState = {
   rank: "",
-  gender: "M",
+  // gender: "M",
   noOfBeds: "",
   preferedBlocks: ["A"],
-  // preferedBlocks: ["A", "A", "A"],
   contactNumber: "",
-  habits: "",
+  year: "",
   description: "",
 };
 
-let blocks = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "P",
-  "Q",
-  "R",
-];
+let blocks = ["AX", "BX", "CX"];
+
 function NeedRoom() {
   const [needRoom, setNeedRoom] = useState(true);
   const [needRoomForm, setNeedRoomForm] = useState(initialNeedRoomFormState);
   const [needRoomMateForm, setNeedRoomMateForm] = useState(
     initialNeedRoomMateFormState
   );
+  const [blocks, setBlocks] = useState([]);
   const user = useSelector((state) => state.authReducer.authData);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (profileData && profileData.user && profileData.user.gender) {
+      const userGender = profileData.user.gender;
+      if (userGender === "F") {
+        setBlocks(["G", "J"]);
+      } else {
+        setBlocks(["A", "B", "C"]);
+      }
+    }
+  }, [user]);
 
   function needRoomClickHandler(trigger) {
     if (trigger === "room") {
@@ -70,7 +65,6 @@ function NeedRoom() {
 
   function needRoomFormOnChangeHandler(e, index) {
     let { name, value } = e.target;
-    //manage preferred blocks state
     if (name === "prefferedBlocks") {
       setNeedRoomForm((prev) => {
         const updatedBlocks = [...prev.preferedBlocks];
@@ -107,14 +101,15 @@ function NeedRoom() {
       });
     }
 
-    let gender = e.target.getAttribute("data-gender");
-    if (gender) {
-      let change = {};
-      change["gender"] = gender;
-      setNeedRoomMateForm((prev) => {
-        return { ...prev, ...change };
-      });
-    }
+    // let gender = e.target.getAttribute("data-gender");
+    // if (gender) {
+    //   let change = {};
+    //   change["gender"] = gender;
+    //   setNeedRoomMateForm((prev) => {
+    //     return { ...prev, ...change };
+    //   });
+    // }
+
     let change = {};
     change[name] = value;
     setNeedRoomMateForm((prev) => {
@@ -132,11 +127,11 @@ function NeedRoom() {
     let requestBody = {
       userId: userId,
       rank: needRoomForm?.rank,
-      gender: needRoomForm?.gender,
+      // gender: needRoomForm?.gender,
       preferredBed: needRoomForm?.bedType,
       preferredBlock: needRoomForm?.preferedBlocks[0],
       phone: needRoomForm?.contactNumber,
-      habits: needRoomForm?.habits,
+      year: needRoomForm?.year,
       desc: needRoomForm?.description,
     };
     try {
@@ -160,11 +155,11 @@ function NeedRoom() {
     let requestBody = {
       userId: userId,
       rank: needRoomMateForm?.rank,
-      gender: needRoomMateForm?.gender,
+      // gender: needRoomMateForm?.gender,
       preferredBed: needRoomMateForm?.noOfBeds,
       preferredBlock: needRoomMateForm?.preferedBlocks[0],
       phone: needRoomMateForm?.contactNumber,
-      year: 19999,
+      year: needRoomMateForm?.year,
       desc: needRoomMateForm?.description,
     };
 
@@ -192,8 +187,8 @@ function NeedRoom() {
     } else if (!needRoomForm["contactNumber"]) {
       toast.error("Please enter your Contact number");
       return false;
-    } else if (!needRoomForm["habits"]) {
-      toast.error("Please enter your habits");
+    } else if (!needRoomForm["year"]) {
+      toast.error("Please enter your year");
       return false;
     }
 
@@ -244,8 +239,8 @@ function NeedRoom() {
     } else if (!needRoomMateForm["contactNumber"]) {
       toast.error("Please enter your Contact number");
       return false;
-    } else if (!needRoomMateForm["habits"]) {
-      toast.error("Please enter your habits");
+    } else if (!needRoomMateForm["year"]) {
+      toast.error("Please enter your year");
       return false;
     }
 
@@ -374,10 +369,10 @@ function NeedRoom() {
                   />
                 </div>
                 <div className="flex md:hidden flex-col mb-6 ">
-                  <span>Habits*</span>
+                  <span>year*</span>
                   <input
-                    name="habits"
-                    value={needRoomForm["habits"]}
+                    name="year"
+                    value={needRoomForm["year"]}
                     onChange={needRoomFormOnChangeHandler}
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
@@ -387,7 +382,8 @@ function NeedRoom() {
                 style={{ gridAutoRows: "120px" }}
                 className="grid grid-cols-1 items-center"
               >
-                <div className="containerr  max-h-[80px]">
+
+                {/* <div className="containerr  max-h-[80px]">
                   <div className="label">Gender*</div>
                   <div className="flex">
                     <div
@@ -415,7 +411,8 @@ function NeedRoom() {
                       F
                     </div>
                   </div>
-                </div>
+                </div> */}
+
                 <div className="containerr max-h-[80px]">
                   <div className="label">Prefered Block*</div>
                   <div className="flex gap-6">
@@ -469,10 +466,10 @@ function NeedRoom() {
                   </div>
                 </div>
                 <div className="hidden md:flex flex-col mb-6 ">
-                  <span>Habits*</span>
+                  <span>year*</span>
                   <input
-                    name="habits"
-                    value={needRoomForm["habits"]}
+                    name="year"
+                    value={needRoomForm["year"]}
                     onChange={needRoomFormOnChangeHandler}
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
@@ -535,10 +532,10 @@ function NeedRoom() {
                   />
                 </div>
                 <div className="flex md:hidden flex-col mb-6 ">
-                  <span>Habits*</span>
+                  <span>year*</span>
                   <input
-                    name="habits"
-                    value={needRoomMateForm["habits"]}
+                    name="year"
+                    value={needRoomMateForm["year"]}
                     onChange={needRoomMateFormOnChangeHandler}
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
@@ -548,7 +545,7 @@ function NeedRoom() {
                 style={{ gridAutoRows: "120px" }}
                 className="grid grid-cols-1 items-center"
               >
-                <div className="containerr  max-h-[80px]">
+                {/* <div className="containerr  max-h-[80px]">
                   <div className="label">Gender*</div>
                   <div className="flex">
                     <div
@@ -576,7 +573,8 @@ function NeedRoom() {
                       F
                     </div>
                   </div>
-                </div>
+                </div> */}
+                
                 <div className="containerr max-h-[80px]">
                   <div className="label">Prefered Block*</div>
                   <div className="flex gap-6">
@@ -630,10 +628,10 @@ function NeedRoom() {
                   </div>
                 </div>
                 <div className="hidden md:flex flex-col mb-6 ">
-                  <span>Habits*</span>
+                  <span>year*</span>
                   <input
-                    name="habits"
-                    value={needRoomMateForm["habits"]}
+                    name="year"
+                    value={needRoomMateForm["year"]}
                     onChange={needRoomMateFormOnChangeHandler}
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
