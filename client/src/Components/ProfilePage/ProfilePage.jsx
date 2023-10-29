@@ -4,6 +4,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -28,6 +29,7 @@ const Profilepage = () => {
   const [notification, setNotification] = useState(null);
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [formEvent, setFormEvent] = useState(null);
+  const [showInfoLabel, setShowInfoLabel] = useState(true);
   const [isGenderEditable, setIsGenderEditable] = useState(
     profileData.user.gender === null
   );
@@ -239,6 +241,12 @@ const Profilepage = () => {
                   }
                 }}
               >
+                {showInfoLabel && (
+                  <Alert severity="info" onClose={() => setShowInfoLabel(false)}>
+                    You can set your gender only ONCE. Once set, it can't be changed. 
+                    Email id cannot be changed.
+                  </Alert>
+                )}
                   <div className="form-section-1">
                     <div className="form-section-1a">
                       <label>First Name*</label>
