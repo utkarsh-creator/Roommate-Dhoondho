@@ -52,7 +52,9 @@ function Navbar() {
         </Alert>
       )}
       <nav className="navbar">
-        <img src="./image/logo.png" alt="" style={{ height: "60px" }} />
+        <a href="./Roompage.css">
+          <img src="./image/logo.png" alt="" style={{ height: "60px" }} />
+        </a>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
         </div>

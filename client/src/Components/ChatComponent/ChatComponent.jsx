@@ -18,6 +18,7 @@ const ChatComponent = () => {
   const loadChatScript = () => {
     const script = document.createElement("script");
     script.src = "https://tlk.io/embed.js";
+
     script.type = "text/javascript";
     script.async = true;
     document.body.appendChild(script);
