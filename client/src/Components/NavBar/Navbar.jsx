@@ -52,7 +52,7 @@ function Navbar() {
         </Alert>
       )}
       <nav className="navbar">
-        <a href="./Roompage.css">
+        <a href="/Pages/Home/Home.jsx">
           <img src="./image/logo.png" alt="" style={{ height: "60px" }} />
         </a>
         <div className="menu-icon" onClick={handleClick}>
