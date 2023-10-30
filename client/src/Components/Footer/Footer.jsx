@@ -70,6 +70,18 @@ const Footer = () => {
           <div>
             <h6 className="footer__title">About Us</h6>
             <ul className="footer__list">
+              <li className="footer__list-item">
+                <a href="" className="footer__list-link">
+                  Roommate Dhoondho
+                </a>
+              </li>
+              <li className="footer__list-item">
+                <a href="" className="footer__list-link">
+                  Mozilla Firefox Club VIT
+                </a>
+              </li>
+            </ul>
+            <ul className="footer__list">
               <li className="footer__list-item"></li>
               <li className="footer__list-item"></li>
             </ul>

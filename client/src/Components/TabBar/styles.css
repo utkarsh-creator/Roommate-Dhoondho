@@ -41,7 +41,7 @@
 }
 .tabs .nonactive {
   height: 80px;
-  width: 120px;
+  width: 250px;
   color: #7e8490;
   display: inline-flex;
   justify-content: center;
@@ -49,7 +49,7 @@
 }
 .tabs .active {
   height: 80px;
-  width: 120px;
+  width: 250px;
   border-bottom: 2px solid #000000;
   color: #000000;
   display: inline-flex;
@@ -157,7 +157,7 @@
 
   .tabs button {
     margin-right: 10px;
-    font-size: 16px;
+    font-size: 10px;
     background: transparent;
     border: none;
     outline: none;
@@ -170,7 +170,7 @@
   }
   .tabs .nonactive {
     height: 50px;
-    width: 120px;
+    width: 180px;
     color: #7e8490;
     display: inline-flex;
     justify-content: center;
