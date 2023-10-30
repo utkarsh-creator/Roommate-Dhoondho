@@ -414,7 +414,7 @@ function DisplayRoommateCard() {
                             <hr />
                           </div>
                           <div className="card-habits-section">
-                            <div className="card-habit">Habits</div>
+                            <div className="card-habit">For Description - Click on the button:</div>
                             <div
                               className="card-habit-details"
                               onClick={() => selectRoommateDetail(post.desc)}
@@ -633,14 +633,14 @@ const TabButtons = ({
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/roommatesicon.png" alt="" />
-                        <div className="tab-text">Roommates</div>
+                        <div className="tab-text"> Need Roommates</div>
                       </div>
                     </span>
                   ) : (
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/bed2.png" alt="" />
-                        <div className="tab-text">Rooms</div>
+                        <div className="tab-text">Need Room</div>
                       </div>
                     </span>
                   )}
