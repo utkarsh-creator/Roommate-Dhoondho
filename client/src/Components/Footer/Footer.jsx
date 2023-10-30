@@ -21,6 +21,7 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
+            <div className="contactimages">
               <div className="contactimg">
                 <a href="https://www.instagram.com/mfc_vit/">
                   <img
@@ -39,11 +40,11 @@ const Footer = () => {
               </div> */}
               <div className="contactimg">
                 <a href="https://www.linkedin.com/company/mfcvit/mycompany/">
-                  <img
-                    src="./image/linkedinlogo.png"
-                    alt=""
-                    style={{ width: "100%", height: "100%" }}
-                  ></img>
+                <img
+                  src="./image/linkedinlogo.png"
+                  alt=""
+                  style={{ width: "100%", height: "100%" }}
+                ></img>
                 </a>
               </div>
             </div>
