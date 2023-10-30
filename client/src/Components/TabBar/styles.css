@@ -41,7 +41,7 @@
 }
 .tabs .nonactive {
   height: 80px;
-  width: 120px;
+  width: 250px;
   color: #7e8490;
   display: inline-flex;
   justify-content: center;
