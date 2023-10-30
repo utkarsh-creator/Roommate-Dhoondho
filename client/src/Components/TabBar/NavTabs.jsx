@@ -314,7 +314,7 @@ function DisplayRoommateCard() {
                 showPlaceholder ? (
                   <div align="center"><Alert severity="warning">
                     Please complete your profile before using this application.
-                  </Alert><br/><p>If you face any problem, please report to us at<br/>mfc.sdeysocial@dewdata.com</p></div>
+                  </Alert><br/><p>If you face any problem, please report to us at<br/>mozillavit@gmail.com</p></div>
                 ) : (
                   (filteredRoommatePosts.length >= 0
                     ? filteredRoommatePosts
