@@ -135,6 +135,21 @@ function Navbar() {
               Add Listing
             </Link>
           </li>
+          <li className="nav-item">
+            <NavLink to="/chat" className="nav-links" onClick={closeMobileMenu}>
+              <button className="chat"> {/* You can style this button as needed */}
+                {" "}
+                <span className="button_icon" onClick={handleClick}>
+                  <i
+                    className={
+                      click ? "fa-solid fa-comments blue" : "fa-solid fa-comments white"
+                    }
+                  />
+                  Chat
+                </span>
+              </button>
+            </NavLink>
+          </li>
           <li className="nav-item-mobile">
             <Link
               to="/selections"

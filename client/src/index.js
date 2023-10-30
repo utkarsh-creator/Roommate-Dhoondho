@@ -16,6 +16,7 @@ import Profile from "./Pages/Profile/Profile";
 import Selections from "./Pages/Selections/Selections";
 import { ListingContextProvider } from "./Context/listing-context";
 import NeedRoom from "./Pages/NeedRoom/NeedRoom";
+import Chat from "./Pages/Chat/Chat";
 import store from "./store/ReduxStore";
 import { Provider } from "react-redux";
 const router = createBrowserRouter([
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
   {
     path: "/need",
     element: <NeedRoom />,
+  },
+  {
+    path: "/chat",
+    element: <Chat />,
   },
 ]);
 
