@@ -143,29 +143,49 @@ function NeedRoom() {
     if (!validateNeedRoomForm()) {
       return;
     }
-    let userId = user?.user?._id;
-    console.log("need Room", needRoomForm);
-    let requestBody = {
-      userId: userId,
-      rank: needRoomForm?.rank,
-      gender: profileData.user.gender,
-      preferredBed: needRoomForm?.bedType,
-      preferredBlock: needRoomForm?.preferedBlocks[0],
-      phone: needRoomForm?.contactNumber,
-      year: needRoomForm?.year,
-      desc: needRoomForm?.description,
-    };
+  
     try {
+      let userId = user?.user?._id;
+      const requestData = {
+        userId: userId,
+      };
+      // Make an API request to get the user's room postings
+      const response = await axios.post(
+        `https://roommate-finder-theta.vercel.app/room/my/${userId}`,
+        requestData
+      );
+  
+      // Check the number of existing room postings
+      const numberOfRoomPosts = response.data.length;
+  
+      // If the user has 3 or more room postings, prevent form submission
+      if (numberOfRoomPosts >= 3) {
+        toast.error("You cannot create more than 3 room postings. Try deleting one of your existing room postings.");
+        return;
+      }
+  
+      let requestBody = {
+        userId: userId,
+        rank: needRoomForm?.rank,
+        gender: profileData.user.gender,
+        preferredBed: needRoomForm?.bedType,
+        preferredBlock: needRoomForm?.preferedBlocks[0],
+        phone: needRoomForm?.contactNumber,
+        year: needRoomForm?.year,
+        desc: needRoomForm?.description,
+      };
+  
       let result = await axios.post(
         `https://roommate-finder-theta.vercel.app/room/${userId}`,
         requestBody
       );
-      console.log("result", result);
+  
+      console.log("API Response:", result.data);
       navigate("/home");
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error("API Error:", error);
     }
-  }
+  }  
 
   async function needRoomMateSubmitHandler() {
     if (!validateNeedRoomMateForm()) {
@@ -185,10 +205,30 @@ function NeedRoom() {
     };
 
     try {
+      const requestData = {
+        userId: userId,
+      };
+      // Make an API request to get the user's roommate postings
+      const response = await axios.post(
+        `https://roommate-finder-theta.vercel.app/roommate/my/${userId}`,
+        requestData
+      );
+  
+      // Check the number of existing roommate postings
+      const numberOfRoommatePosts = response.data.length;
+  
+      // If the user has 3 or more roommate postings, prevent form submission
+      if (numberOfRoommatePosts >= 3) {
+        toast.error("You cannot create more than 3 roommate postings. Try deleting one of your existing roommate postings.");
+        return;
+      }
+  
+      // Proceed with form submission if the user has less than 3 roommate postings
       let result = await axios.post(
         `https://roommate-finder-theta.vercel.app/roommate/${userId}`,
         requestBody
       );
+
       console.log("API Response:", result.data);
       navigate("/home");
     } catch (error) {
