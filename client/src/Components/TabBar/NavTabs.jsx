@@ -25,6 +25,7 @@ function DisplayRoommateCard() {
   const [selectedGender, setSelectedGender] = useState("All");
   const [selectedBlock, setSelectedBlock] = useState("All");
   const [selectedYear, setSelectedYear] = useState("All");
+  const [rankOrder, setSelectedRankOrder] = useState("Increasing");
   const {
     addToCart2,
     addToCart,
@@ -144,10 +145,11 @@ function DisplayRoommateCard() {
   };
   const blockOptions = getBlockOptions(userGender);
 
-  const filterByGenderAndBlock = (gender, block, year) => {
+  const filterByGenderAndBlock = (gender, block, year, rankOrder) => {
     setSelectedGender(gender);
     setSelectedBlock(block);
     setSelectedYear(year);
+    setSelectedRankOrder(rankOrder);
   };
 
   useEffect(() => {
@@ -181,16 +183,34 @@ function DisplayRoommateCard() {
           );
         })
         .sort((a, b) => parseDate(b.updatedAt) - parseDate(a.updatedAt));
+      
+      const sortPostsByRank = (posts) => {
+        console.log("Rank Order:", rankOrder);
+        return posts.sort((a, b) => {
+          if (rankOrder === "Increasing") {
+            return a.rank - b.rank;
+          } else if (rankOrder === "Decreasing") {
+            return b.rank - a.rank;
+          }
+          return 0;
+        });
+      };
+
+      const sortedRoommateData = sortPostsByRank(filteredRoommateData);
+      const sortedRoomData = sortPostsByRank(filteredRoomData);
 
       console.log("Filtered Roommate Data:", filteredRoommateData);
       console.log("Filtered Room Data:", filteredRoomData);
-      const combinedData = [...filteredRoommateData, ...filteredRoomData];
-      setFilteredRoommatePosts(filteredRoommateData);
-      setFilteredRoomPosts(filteredRoomData);
+      // const combinedData = [...filteredRoommateData, ...filteredRoomData];
+      // setFilteredRoommatePosts(filteredRoommateData);
+      // setFilteredRoomPosts(filteredRoomData);
+      const combinedData = [...sortedRoommateData, ...sortedRoomData];
+      setFilteredRoommatePosts(sortedRoommateData);
+      setFilteredRoomPosts(sortedRoomData);
     };
 
     filterData();
-  }, [selectedGender, selectedBlock, selectedYear, roommatePosts, roomPosts]);
+  }, [selectedGender, selectedBlock, selectedYear, rankOrder, roommatePosts, roomPosts]);
 
   console.log("user data: ", user);
   console.log("user specific data: ", profileData);
