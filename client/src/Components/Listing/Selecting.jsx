@@ -56,6 +56,11 @@ export const Listing = () => {
                   ...post,
                   userDetails,
                 };
+              })
+              .catch((error) => {
+                // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
+                console.log(`Error fetching user details for user ID ${post.userId}:`, error);
+                return null;
               });
           }
         );
@@ -81,6 +86,11 @@ export const Listing = () => {
                 ...post,
                 userDetails,
               };
+            })
+            .catch((error) => {
+              // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
+              console.log(`Error fetching user details for user ID ${post.userId}:`, error);
+              return null;
             });
         });
 
