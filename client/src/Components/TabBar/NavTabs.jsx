@@ -652,14 +652,14 @@ const TabButtons = ({
                       <div className="roomate-icon">
                         <img src="./image/roommatesicon2.png" alt="" />
                       </div>
-                      <div className="tab-text">Roommates</div>
+                      <div className="tab-text"> Need Roommates</div>
                     </span>
                   ) : (
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/bed.png" alt="" />
                       </div>
-                      <div className="tab-text">Rooms</div>
+                      <div className="tab-text">Need Rooms</div>
                     </span>
                   )}
                 </React.Fragment>
