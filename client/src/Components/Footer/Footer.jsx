@@ -23,29 +23,32 @@ const Footer = () => {
             </ul>
             <div className="contactimages">
               <div className="contactimg">
-                <a href="https://www.instagram.com/mfc_vit/">
-                  <img
-                    src="./image/instalogo.png"
-                    alt=""
-                    style={{ width: "100%", height: "100%" }}
-                  ></img>
-                </a>
+                <img
+                  src="./image/fblogo.png"
+                  alt=""
+                  style={{ width: "100%", height: "100%" }}
+                ></img>
               </div>
-              {/* <div className="contactimg">
+              <div className="contactimg">
+                <img
+                  src="./image/instalogo.png"
+                  alt=""
+                  style={{ width: "100%", height: "100%" }}
+                ></img>
+              </div>
+              <div className="contactimg">
                 <img
                   src="./image/twitterlogo.png"
                   alt=""
                   style={{ width: "100%", height: "100%" }}
                 ></img>
-              </div> */}
+              </div>
               <div className="contactimg">
-                <a href="https://www.linkedin.com/company/mfcvit/mycompany/">
                 <img
                   src="./image/linkedinlogo.png"
                   alt=""
                   style={{ width: "100%", height: "100%" }}
                 ></img>
-                </a>
               </div>
             </div>
           </div>
