@@ -5,6 +5,7 @@ import Alert from "@mui/material/Alert";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
 import Button from "@mui/material/Button";
+import { toast } from "react-toastify";
 import "./ChatComponent.css";
 
 const ChatComponent = () => {
@@ -14,6 +15,7 @@ const ChatComponent = () => {
   const navigate = useNavigate();
   const [isChatLoaded, setIsChatLoaded] = useState(false);
   const [scriptAppended, setScriptAppended] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const loadChatScript = () => {
     const script = document.createElement("script");
@@ -44,11 +46,14 @@ const ChatComponent = () => {
 
   const handleRefresh = () => {
     setIsChatLoaded(false);
+    setIsButtonDisabled(true);
+    toast.success("Chat is loading. Please wait...");
+    window.location.reload();
     setTimeout(() => {
-      setIsChatLoaded(true);
-      setScriptAppended(false);
-      window.location.reload();
-    }, 0);
+        setIsButtonDisabled(false);
+        setIsChatLoaded(true);
+        setScriptAppended(false);
+    }, 20000); // 20 seconds
   };
 
   return (
@@ -62,7 +67,7 @@ const ChatComponent = () => {
             <div className="chat-container-embed">
                 <Alert severity="info">Please be polite and respectful in chatroom. Thank you!</Alert>
                 <br/>
-                <Button variant="contained" className="refresh-button" onClick={handleRefresh}>
+                <Button variant="contained" className="refresh-button" onClick={handleRefresh} disabled={isButtonDisabled}>
                 Enter Chat
                 </Button>
             </div>
