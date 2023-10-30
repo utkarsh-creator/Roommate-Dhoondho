@@ -48,78 +48,73 @@ function DisplayRoommateCard() {
   };  
 
   useEffect(() => {
+    const fetchRoommateAndRoomCards = async () => {
+      try {
+        // Fetch roommate posts in batches
+        const roommateResponse = await axios.get("https://roommate-finder-theta.vercel.app/roommate/all");
+        const roommatePosts = roommateResponse.data.slice(0, 10);
+  
+        // Fetch room posts in batches
+        const roomResponse = await axios.get("https://roommate-finder-theta.vercel.app/room/all");
+        const roomPosts = roomResponse.data.slice(0, 10);
+  
+        const roommatePostsWithUserDetailsPromises = roommatePosts.map((post) => {
+          return axios
+            .get(`https://roommate-finder-theta.vercel.app/user/${post.userId}`)
+            .then((userResponse) => {
+              const userDetails = userResponse.data;
+              return {
+                ...post,
+                userDetails,
+              };
+            })
+            .catch((error) => {
+              // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
+              console.log(`Error fetching user details for user ID ${post.userId}:`, error);
+              return null;
+            });
+        });
+  
+        const roomPostsWithUserDetailsPromises = roomPosts.map((post) => {
+          return axios
+            .get(`https://roommate-finder-theta.vercel.app/user/${post.userId}`)
+            .then((userResponse) => {
+              const userDetails = userResponse.data;
+              return {
+                ...post,
+                userDetails,
+              };
+            })
+            .catch((error) => {
+              // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
+              console.log(`Error fetching user details for user ID ${post.userId}:`, error);
+              return null;
+            });
+        });
+  
+        const [roommatePostsWithUserDetails, roomPostsWithUserDetails] = await Promise.all([
+          Promise.all(roommatePostsWithUserDetailsPromises),
+          Promise.all(roomPostsWithUserDetailsPromises),
+        ]);
+  
+        setRoommatePosts(roommatePostsWithUserDetails);
+        setRoomPosts(roomPostsWithUserDetails);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+      }
+    };
+  
     if (profileData?.user?.gender) {
       fetchFollowing();
-      axios
-        .get("https://roommate-finder-theta.vercel.app/roommate/all")
-        .then((response) => {
-          const roommatePostsWithUserDetailsPromises = response.data.map(
-            (post) => {
-              return axios
-                .get(
-                  `https://roommate-finder-theta.vercel.app/user/${post.userId}`
-                )
-                .then((userResponse) => {
-                  const userDetails = userResponse.data;
-                  return {
-                    ...post,
-                    userDetails,
-                  };
-                })
-                .catch((error) => {
-                  // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
-                  console.log(`Error fetching user details for user ID ${post.userId}:`, error);
-                  return null;
-                });
-            }
-          );
-
-          return Promise.all(roommatePostsWithUserDetailsPromises);
-        })
-        .then((roommatePostsWithUserDetails) => {
-          setRoommatePosts(roommatePostsWithUserDetails);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-      axios
-        .get("https://roommate-finder-theta.vercel.app/room/all")
-        .then((response) => {
-          const roomPostsWithUserDetailsPromises = response.data.map((post) => {
-            return axios
-              .get(`https://roommate-finder-theta.vercel.app/user/${post.userId}`)
-              .then((userResponse) => {
-                const userDetails = userResponse.data;
-                return {
-                  ...post,
-                  userDetails,
-                };
-              })
-              .catch((error) => {
-                // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
-                console.log(`Error fetching user details for user ID ${post.userId}:`, error);
-                return null;
-              });
-          });
-
-          return Promise.all(roomPostsWithUserDetailsPromises);
-        })
-        .then((roomPostsWithUserDetails) => {
-          setRoomPosts(roomPostsWithUserDetails);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-          setIsLoading(false);
-        });
+      fetchRoommateAndRoomCards();
     } else {
       setIsLoading(false);
       setShowPlaceholder(true);
     }
   }, []);
-
-  // Depricated function
+  
 
   const fetchFollowing = () => {
     axios
