@@ -139,6 +139,10 @@ function NeedRoom() {
     });
   }
 
+  function countCharacters(str) {
+    return str.replace(/\s/g, "").length;
+  }    
+
   async function needRoomSubmitHandler() {
     if (!validateNeedRoomForm()) {
       return;
@@ -161,6 +165,11 @@ function NeedRoom() {
       // If the user has 7 or more room postings, prevent form submission
       if (numberOfRoomPosts >= 7) {
         toast.error("You cannot create more than 7 room postings. Try deleting one of your existing room postings.");
+        return;
+      }
+
+      if (countCharacters(needRoomForm.description) > 1000) {
+        toast.error("Description should not exceed 1000 characters.");
         return;
       }
   
@@ -226,8 +235,13 @@ function NeedRoom() {
         toast.error("You cannot create more than 7 roommate postings. Try deleting one of your existing roommate postings.");
         return;
       }
+
+      if (countCharacters(needRoomMateForm.description) > 1000) {
+        toast.error("Description should not exceed 1000 characters.");
+        return;
+      }
   
-      // Proceed with form submission if the user has less than 3 roommate postings
+      // Proceed with form submission if the user has less than 7 roommate postings
       let result = await axios.post(
         `https://roommate-finder-theta.vercel.app/roommate/${userId}`,
         requestBody
@@ -254,8 +268,8 @@ function NeedRoom() {
       ) {
       toast.error("Please enter valid bed type (1, 2, 3, 4, 6, 8)");
       return false;
-    } else if (!needRoomForm["contactNumber"]) {
-      toast.error("Please enter your Contact number");
+    } else if (!needRoomForm["contactNumber"] || !indianNumberRegex.test(needRoomForm["contactNumber"]) || needRoomForm["contactNumber"].length !== 10) {
+      toast.error("Please enter a valid 10-digit Contact number");
       return false;
     } else if (!needRoomForm["year"]) {
       toast.error("Please enter your year");
@@ -315,8 +329,8 @@ function NeedRoom() {
     ) {
       toast.error("Please enter a valid number of beds (1, 2, 3, 4, 6, 8)");
       return false;
-    } else if (!needRoomMateForm["contactNumber"]) {
-      toast.error("Please enter your Contact number");
+    } else if (!needRoomMateForm["contactNumber"] || !indianNumberRegex.test(needRoomMateForm["contactNumber"]) || needRoomMateForm["contactNumber"].length !== 10) {
+      toast.error("Please enter a valid 10-digit Contact number");
       return false;
     } else if (
       !needRoomMateForm["year"] ||
