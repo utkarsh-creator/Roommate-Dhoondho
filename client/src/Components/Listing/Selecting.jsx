@@ -103,6 +103,7 @@ export const Listing = () => {
       })
       .catch((error) => {
         console.log(error);
+        return null;
       });
   }, []);
 
@@ -128,6 +129,7 @@ export const Listing = () => {
         setRoomPosts(roomData);
       } catch (error) {
         console.error(error);
+        return null;
       } finally {
         setIsLoading(false);
       }
