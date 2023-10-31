@@ -20,6 +20,7 @@ import Chat from "./Pages/Chat/Chat";
 import ChatMobile from "./Components/ChatMobile/ChatMobile";
 import store from "./store/ReduxStore";
 import { Provider } from "react-redux";
+import Terms from "./Pages/Terms/Terms";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
   {
     path: "/chatMobile",
     element: <ChatMobile />,
+  },
+  {
+    path: "/TermsAndConditions",
+    element: <Terms />,
   },
 ]);
 

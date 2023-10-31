@@ -27,7 +27,7 @@ function Reset() {
       if (response.data.success) {
         toast.success("Email token sent successfully");
       } else {
-        toast.success(response.data.message);
+        toast.error(response.data.message);
       }
     } catch (error) {
       console.error(error);
