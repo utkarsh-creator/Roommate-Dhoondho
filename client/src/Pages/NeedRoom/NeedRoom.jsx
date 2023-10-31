@@ -166,6 +166,7 @@ function NeedRoom() {
   
       let requestBody = {
         userId: userId,
+        username: profileData.user.username,
         rank: needRoomForm?.rank,
         gender: profileData.user.gender,
         preferredBed: needRoomForm?.bedType,
@@ -197,6 +198,7 @@ function NeedRoom() {
 
     let requestBody = {
       userId: userId,
+      username: profileData.user.username,
       rank: needRoomMateForm?.rank,
       gender: profileData.user.gender,
       preferredBed: needRoomMateForm?.noOfBeds,
