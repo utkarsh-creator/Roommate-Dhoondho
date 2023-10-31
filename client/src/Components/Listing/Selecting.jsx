@@ -177,8 +177,8 @@ export const Listing = () => {
                             backgroundImage: `url('https://static01.nyt.com/images/2020/04/19/magazine/19Ethicist/19Ethicist-jumbo.jpg')`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            width: '132px',
-                            height: '158px',
+                            // width: '132px',
+                            // height: '158px',
                           }}
                         ></div>
                         <div className="card-info">
@@ -275,8 +275,8 @@ export const Listing = () => {
                             backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/40/849/87/anime-girls-wallpaper-preview.jpg')`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            width: '132px',
-                            height: '158px',
+                            // width: '132px',
+                            // height: '158px',
                           }}
                         ></div>
                         <div className="card-info">

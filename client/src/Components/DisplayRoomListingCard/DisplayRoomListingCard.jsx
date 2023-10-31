@@ -70,8 +70,8 @@ function DisplayRoomListingCard() {
                   backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/40/849/87/anime-girls-wallpaper-preview.jpg')`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  width: '132px',
-                  height: '158px',
+                  // width: '132px',
+                  // height: '158px',
                 }}
               ></div>
                 <div className="card-info">
