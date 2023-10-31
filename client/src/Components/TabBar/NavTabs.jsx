@@ -27,6 +27,7 @@ function DisplayRoommateCard() {
   const [selectedBlock, setSelectedBlock] = useState("All");
   const [selectedYear, setSelectedYear] = useState("All");
   const [rankOrder, setSelectedRankOrder] = useState("Increasing");
+  
   const {
     addToCart2,
     addToCart,
@@ -79,13 +80,13 @@ function DisplayRoommateCard() {
         const roommateResponse = await axios.get(
           "https://roommate-finder-theta.vercel.app/roommate/all"
         );
-        const roommatePosts = roommateResponse.data.slice(0, 10);
+        const roommatePosts = roommateResponse.data;
 
         // Fetch room posts in batches
         const roomResponse = await axios.get(
           "https://roommate-finder-theta.vercel.app/room/all"
         );
-        const roomPosts = roomResponse.data.slice(0, 10);
+        const roomPosts = roomResponse.data;
 
         const roommatePostsWithUserDetailsPromises = roommatePosts.map(
           (post) => {
