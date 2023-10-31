@@ -153,7 +153,7 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item-mobile">
-            <Link to="/chat" className="nav-links-mobile user" onClick={closeMobileMenu}>
+            <Link to="/chatMobile" className="nav-links-mobile user" onClick={closeMobileMenu}>
                   Chat
             </Link>
           </li>
