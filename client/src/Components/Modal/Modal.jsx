@@ -36,6 +36,8 @@ function Modal() {
                {seletedroommatephone}
               </a>
             </p>
+            <br />
+            <b>Details:</b>
             <p>{seletedroommatedetail}</p>
           </div>
           <button
