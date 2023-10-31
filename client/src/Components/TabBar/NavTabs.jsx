@@ -301,11 +301,11 @@ function DisplayRoommateCard() {
             }
           } else {
             toast.error("Error Code: NT03GM. Please contact MFC support.");
-            alert("Broo.. In VIT we don't have coed hostels.");
+            // alert("Broo.. In VIT we don't have coed hostels.");
           }
         } else {
           toast.error("You can't select your own post.")
-          alert("You can't select your own post.");
+          // alert("You can't select your own post.");
         }
       }
     } catch (error) {
@@ -355,11 +355,11 @@ function DisplayRoommateCard() {
             }
           } else {
             toast.error("Error Code: NT05GM. Please contact MFC support.");
-            alert("Broo.. In VIT we don't have coed hostels.");
+            // alert("Broo.. In VIT we don't have coed hostels.");
           }
         } else {
           toast.error("You can't select your own post.")
-          alert("You can't select your own post.");
+          // alert("You can't select your own post.");
         }
       }
     } catch (error) {
