@@ -11,7 +11,7 @@ import "./ChatMobile.css";
 const ChatMobile = () => {
   const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);
   const profileData = JSON.parse(localStorage.getItem("profile"));
-  const location = useLocation();
+  const navigate = useNavigate();
   const [scriptAppended, setScriptAppended] = useState(false);
 
   const loadChatScript = () => {
@@ -38,6 +38,11 @@ const ChatMobile = () => {
     }
   }, [profileData, scriptAppended]);
 
+  const handleHome = () => {
+    navigate("/home");
+  };
+
+
   return (
     <>
       <div>
@@ -46,19 +51,19 @@ const ChatMobile = () => {
       {isUsernameAvailable ? (
         <div className="chat-container">
           <div id="tlkio" className="chat-container-embed" data-channel="mfc" data-theme="theme--day" data-nickname={profileData?.user?.username} style={{ width: "100%", height: "100%" }}>
-            {/* <div className="chat-container-embed">
+            <div className="chat-container-embed">
                 <div>
-                    <Alert severity="info">Please be polite and respectful in chatroom. Thank you!</Alert>
+                    <Alert severity="info">Sorry, chat feature is currently not available in mobile. Access from your desktop.</Alert>
                     <br />
-                    <Button variant="contained" className="refresh-button" onClick={handleRefresh} disabled={isButtonDisabled}>
+                    {/* <Button variant="contained" className="refresh-button" onClick={handleRefresh} disabled={isButtonDisabled}>
                         Enter Chat
-                    </Button>
+                    </Button> */}
                     <span className="button-space"></span>
-                    <Button variant="contained" className="home-button" onClick={handleHome} disabled={isButtonDisabled}>
+                    <Button variant="contained" className="home-button" onClick={handleHome}>
                         Home
                     </Button>
                 </div>
-            </div> */}
+            </div>
           </div>
         </div>
       ) : (
