@@ -67,10 +67,19 @@ function DisplayRoommateListingCard() {
           <span className="cards">
             <div className="main-card">
               <div className="card-details">
-                <div className="card-img"></div>
+              <div
+                className="card-img"
+                style={{
+                  backgroundImage: `url('https://static01.nyt.com/images/2020/04/19/magazine/19Ethicist/19Ethicist-jumbo.jpg')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  width: '132px',
+                  height: '158px',
+                }}
+              ></div>
                 <div className="card-info">
                   <div className="card-informatios">
-                    <div className="card-name">Name</div>
+                    <div className="card-name">Roommate Posting</div>
                     <div
                       className="card-add"
                       onClick={() => deleteRoommate(roommate._id)}

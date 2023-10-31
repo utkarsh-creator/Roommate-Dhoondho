@@ -64,10 +64,19 @@ function DisplayRoomListingCard() {
           <div className="cards">
             <div className="main-card">
               <div className="card-details">
-                <div className="card-img"></div>
+              <div
+                className="card-img"
+                style={{
+                  backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/40/849/87/anime-girls-wallpaper-preview.jpg')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  width: '132px',
+                  height: '158px',
+                }}
+              ></div>
                 <div className="card-info">
                   <div className="card-informatios">
-                    <div className="card-name">{room.preferredBlock} Block</div>
+                    <div className="card-name">{room.preferredBlock} Block Posting</div>
                     <div
                       className="card-add"
                       onClick={() => deleteRoom(room._id)}
