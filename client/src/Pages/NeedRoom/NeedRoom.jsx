@@ -158,9 +158,9 @@ function NeedRoom() {
       // Check the number of existing room postings
       const numberOfRoomPosts = response.data.length;
   
-      // If the user has 3 or more room postings, prevent form submission
-      if (numberOfRoomPosts >= 3) {
-        toast.error("You cannot create more than 3 room postings. Try deleting one of your existing room postings.");
+      // If the user has 7 or more room postings, prevent form submission
+      if (numberOfRoomPosts >= 7) {
+        toast.error("You cannot create more than 7 room postings. Try deleting one of your existing room postings.");
         return;
       }
   
@@ -217,9 +217,9 @@ function NeedRoom() {
       // Check the number of existing roommate postings
       const numberOfRoommatePosts = response.data.length;
   
-      // If the user has 3 or more roommate postings, prevent form submission
-      if (numberOfRoommatePosts >= 3) {
-        toast.error("You cannot create more than 3 roommate postings. Try deleting one of your existing roommate postings.");
+      // If the user has 7 or more roommate postings, prevent form submission
+      if (numberOfRoommatePosts >= 7) {
+        toast.error("You cannot create more than 7 roommate postings. Try deleting one of your existing roommate postings.");
         return;
       }
   
@@ -242,8 +242,11 @@ function NeedRoom() {
     if (!needRoomForm["rank"]) {
       toast.error("Plase enter your rank");
       return false;
-    } else if (!needRoomForm["bedType"]) {
-      toast.error("Please enter your preferred bed type");
+    } else if (
+      !needRoomForm["bedType"] || 
+      !["1", "2", "3", "4", "6", "8"].includes(needRoomForm["bedType"])
+      ) {
+      toast.error("Please enter valid bed type (1, 2, 3, 4, 6, 8)");
       return false;
     } else if (!needRoomForm["contactNumber"]) {
       toast.error("Please enter your Contact number");
@@ -273,7 +276,7 @@ function NeedRoom() {
     } else if (needRoomForm["bedType"]) {
       let isBedTypeValid = numericRegex.test(needRoomForm["bedType"]);
       if (!isBedTypeValid) {
-        toast.error("Please enter a valid rank");
+        toast.error("Please enter a valid bed type");
         return false;
       }
     } else if (needRoomForm["contactNumber"]) {
@@ -301,8 +304,10 @@ function NeedRoom() {
     if (!needRoomMateForm["rank"]) {
       toast.error("Please enter your rank");
       return false;
-    } else if (!needRoomMateForm["noOfBeds"]) {
-      toast.error("Please enter the number of beds");
+    } else if (!needRoomMateForm["noOfBeds"]
+    || !["1", "2", "3", "4", "6", "8"].includes(needRoomMateForm["noOfBeds"])
+    ) {
+      toast.error("Please enter a valid number of beds (1, 2, 3, 4, 6, 8)");
       return false;
     } else if (!needRoomMateForm["contactNumber"]) {
       toast.error("Please enter your Contact number");
@@ -330,7 +335,7 @@ function NeedRoom() {
     } else if (needRoomMateForm["noOfBeds"]) {
       let isNoOfBedsValid = numericRegex.test(needRoomMateForm["noOfBeds"]);
       if (!isNoOfBedsValid) {
-        toast.error("Please enter a valid number of beds");
+        toast.error("Please enter a valid number of beds (1, 2, 3, 4, 6, 8)");
         return false;
       }
     } else if (needRoomMateForm["contactNumber"]) {
