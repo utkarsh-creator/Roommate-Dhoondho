@@ -13,7 +13,7 @@ function Modal2() {
           <div className="habitstab-main">
             <div className="habits-buttons">
               <div className="activehabits">
-                <p className="habits-text">For Description - Click on the button:</p>
+                <p className="habits-text">Description</p>
               </div>
             </div>
             <div className="habitstab-hr">

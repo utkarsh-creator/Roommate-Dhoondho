@@ -23,16 +23,14 @@
   display: flex;
   padding-top: 10px;
   height: 80px;
-  margin-bottom: 10px;
 }
 
 .tabs button {
-  margin-right: 15px;
-  font-size: 20px;
+  font-size: 12px;
   background: transparent;
   border: none;
   outline: none;
-  padding: 0px 20px;
+  margin: 0px 8px;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.4);
   transition: all ease-in-out 0.2s;
@@ -41,7 +39,7 @@
 }
 .tabs .nonactive {
   height: 80px;
-  width: 250px;
+  width: 140px;
   color: #7e8490;
   display: inline-flex;
   justify-content: center;
@@ -49,12 +47,31 @@
 }
 .tabs .active {
   height: 80px;
-  width: 250px;
-  border-bottom: 2px solid #000000;
+  width: 140px;
   color: #000000;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+}
+.tabs .nonactive .tab-text {
+  padding-bottom: 10px;
+  width: 140px;
+}
+.tabs .active .roomate-icon {
+  padding-bottom: 10px;
+  width: 140px;
+  border-bottom: 2px solid #000000;
+}
+ {
+  /*.tabs .active .tab-elements {
+  width: 140px;
+}
+.tabs .nonactive .tab-elements {
+  width: 140px;
+}*/
+}
+.tab-text {
+  font-size: 16px;
 }
 .roomate-icon img {
   margin-bottom: 0px;
@@ -73,7 +90,6 @@
 }
 .tab-content {
   width: 100%;
-
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 20px;
@@ -147,6 +163,8 @@
     display: none;
   }
 }
+ {
+  /*
 @media screen and (max-width: 468px) {
   .tab-buttons {
     display: flex;
@@ -184,6 +202,66 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
+  }
+  .roomate-icon img {
+    margin-bottom: 0px;
+    height: 28px;
+    width: 28px;
+  }
+  .roomate-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+*/
+}
+@media screen and (max-width: 468px) {
+  .tab-buttons {
+    display: flex;
+    padding-top: 10px;
+    height: 50px;
+  }
+
+  .tabs button {
+    background: transparent;
+    border: none;
+    outline: none;
+    margin: 0px 2px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+    transition: all ease-in-out 0.2s;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+  }
+  .tab-text {
+    font-size: 12px;
+  }
+  .tabs .nonactive {
+    height: 50px;
+    width: 120px;
+    color: #7e8490;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .tabs .active {
+    height: 50px;
+    width: 120px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .tabs .nonactive .tab-text {
+    padding-bottom: 10px;
+    width: 120px;
+  }
+  .tabs .active .roomate-icon {
+    padding-bottom: 10px;
+    width: 120px;
+    border-bottom: 2px solid #000000;
   }
   .roomate-icon img {
     margin-bottom: 0px;

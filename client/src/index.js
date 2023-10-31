@@ -21,6 +21,7 @@ import ChatMobile from "./Components/ChatMobile/ChatMobile";
 import store from "./store/ReduxStore";
 import { Provider } from "react-redux";
 import Terms from "./Pages/Terms/Terms";
+import Privacy from "./Pages/PrivacyPolicy/Privacy";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
   {
     path: "/TermsAndConditions",
     element: <Terms />,
+  },
+  {
+    path: "/PrivacyPolicy",
+    element: <Privacy />,
   },
 ]);
 
