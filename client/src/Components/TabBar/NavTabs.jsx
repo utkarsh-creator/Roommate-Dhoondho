@@ -37,6 +37,7 @@ function DisplayRoommateCard() {
     selectRoomDetail,
     selectRoommatePhone,
     seletedroomdetail,
+    selectRoommateEmail,
   } = useContext(ListingContext);
   const getBlockOptions = (userGender) => {
     const menHostels = [
@@ -304,7 +305,7 @@ function DisplayRoommateCard() {
             // alert("Broo.. In VIT we don't have coed hostels.");
           }
         } else {
-          toast.error("You can't select your own post.")
+          toast.error("You can't select your own post.");
           // alert("You can't select your own post.");
         }
       }
@@ -358,7 +359,7 @@ function DisplayRoommateCard() {
             // alert("Broo.. In VIT we don't have coed hostels.");
           }
         } else {
-          toast.error("You can't select your own post.")
+          toast.error("You can't select your own post.");
           // alert("You can't select your own post.");
         }
       }
@@ -407,16 +408,16 @@ function DisplayRoommateCard() {
                     <span className="cards">
                       <div className="main-card">
                         <div className="card-details">
-                        <div
-                          className="card-img"
-                          style={{
-                            backgroundImage: `url('https://static01.nyt.com/images/2020/04/19/magazine/19Ethicist/19Ethicist-jumbo.jpg')`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            // width: '132px',
-                            // height: '158px',
-                          }}
-                        ></div>
+                          <div
+                            className="card-img"
+                            style={{
+                              backgroundImage: `url('https://static01.nyt.com/images/2020/04/19/magazine/19Ethicist/19Ethicist-jumbo.jpg')`,
+                              backgroundSize: "cover",
+                              backgroundPosition: "center",
+                              // width: '132px',
+                              // height: '158px',
+                            }}
+                          ></div>
                           <div className="card-info">
                             <div className="card-informatios">
                               <div className="card-name">
@@ -504,6 +505,7 @@ function DisplayRoommateCard() {
                             onClick={() => {
                               selectRoommateDetail(post.desc);
                               selectRoommatePhone(post.phone);
+                              selectRoommateEmail(post.username);
                             }}
                           >
                             <div className="detail-box">
@@ -550,16 +552,16 @@ function DisplayRoommateCard() {
                     <span className="cards">
                       <div className="main-card">
                         <div className="card-details">
-                        <div
-                          className="card-img"
-                          style={{
-                            backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/40/849/87/anime-girls-wallpaper-preview.jpg')`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            // width: '132px',
-                            // height: '158px',
-                          }}
-                        ></div>
+                          <div
+                            className="card-img"
+                            style={{
+                              backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/40/849/87/anime-girls-wallpaper-preview.jpg')`,
+                              backgroundSize: "cover",
+                              backgroundPosition: "center",
+                              // width: '132px',
+                              // height: '158px',
+                            }}
+                          ></div>
                           <div className="card-info">
                             <div className="card-informatios">
                               <div className="card-name">
