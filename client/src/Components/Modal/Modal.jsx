@@ -1,11 +1,17 @@
 import { useContext } from "react";
+import React from "react";
 import { ListingContext } from "../../Context/listing-context";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./Modal.css";
 
 function Modal() {
+  const profileData = JSON.parse(localStorage.getItem("profile"));
   const { seletedroommatephone, seletedroommatedetail, closeModal } =
     useContext(ListingContext);
-  console.log(seletedroommatedetail);
+  // console.log(seletedroommatedetail);
+  const countryCode = '91';
+  const whatsappMessage = `Hello! I am ${profileData.user.firstname} ${profileData.user.lastname}, I found your listing from Roommate Dhoondho app and I am interested in your listing.`;
+  const whatsappLink = `https://wa.me/${countryCode}${seletedroommatephone}?text=${encodeURIComponent(whatsappMessage)}`;
   return (
     <aside className="modal-overlay">
       <div className="modal-container">
@@ -22,7 +28,13 @@ function Modal() {
           </div>
           <div className="habitssection">
             <p>
-              <b>Phone Number:</b> {seletedroommatephone}
+              <b>Phone Number: </b> 
+               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+               <FontAwesomeIcon icon="fab fa-whatsapp" />
+               <i class="fab fa-whatsapp"></i>
+               {' '}
+               {seletedroommatephone}
+              </a>
             </p>
             <p>{seletedroommatedetail}</p>
           </div>
