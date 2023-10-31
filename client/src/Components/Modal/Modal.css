@@ -51,9 +51,11 @@
   font-weight: bold;
 }
 .habitssection {
-  height: 85%;
+  height: 80%;
   padding: 20px 0 20px 0;
-  overscroll-y: scroll;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  overflow: auto;
 }
 .habits button {
   padding-left: 0.75rem;
