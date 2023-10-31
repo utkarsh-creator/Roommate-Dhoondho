@@ -57,6 +57,7 @@ export const ListingContextProvider = (props) => {
         return Promise.all(roommatePostsWithUserDetailsPromises);
       })
       .then((roommatePostsWithUserDetails) => {
+        console.log("Roommate post details:", roommatePostsWithUserDetails);
         setRoommateList(roommatePostsWithUserDetails);
       })
       .catch((error) => {
