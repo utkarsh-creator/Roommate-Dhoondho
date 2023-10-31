@@ -44,16 +44,16 @@ function UpdatePassword() {
       return;
     }
 
-    if (!isPasswordValid(password)) {
-      setPasswordFormatError(
-        "Password must be at least 8 characters long and include a mix of letters, numbers, and symbols."
-      );
+    // if (!isPasswordValid(password)) {
+    //   setPasswordFormatError(
+    //     "Password must be at least 8 characters long and include a mix of letters, numbers, and symbols."
+    //   );
 
-      toast.error(
-        "Password format is invalid. Please follow the requirements."
-      );
-      return;
-    }
+    //   toast.error(
+    //     "Password format is invalid. Please follow the requirements."
+    //   );
+    //   return;
+    // }
     // If passwords match, proceed with the update
     try {
       const response = await axios.post(
@@ -71,7 +71,7 @@ function UpdatePassword() {
         });
       } else {
         // Handle error, e.g., display an error message to the user
-        toast.error(response.data.message);
+        toast.success(response.data.message);
       }
     } catch (error) {
       // Handle network error or any other errors
@@ -79,19 +79,19 @@ function UpdatePassword() {
     }
   };
 
-  const isPasswordValid = (value) => {
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-    return passwordRegex.test(value);
-  };
+  // const isPasswordValid = (value) => {
+  //   const passwordRegex =
+  //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  //   return passwordRegex.test(value);
+  // };
 
   const handlePasswordChange = (value) => {
     setPassword(value);
-    setPasswordFormatError(
-      isPasswordValid(value)
-        ? ""
-        : "Password must be at least 8 characters long and include a mix of letters, numbers, and symbols."
-    );
+    // setPasswordFormatError(
+    //   isPasswordValid(value)
+    //     ? ""
+    //     : "Password must be at least 8 characters long and include a mix of letters, numbers, and symbols."
+    // );
   };
 
   const handleConfirmPasswordChange = (value) => {

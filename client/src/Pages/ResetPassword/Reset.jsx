@@ -27,10 +27,10 @@ function Reset() {
       );
       if (response.data.success) {
         toast.success("Email token sent successfully",{
-          className: "toast-success", // Apply custom CSS class
+          className: "toast-success",
         });
       } else {
-        toast.error(response.data.message);
+        toast.success(response.data.message);
       }
     } catch (error) {
       console.error(error);
