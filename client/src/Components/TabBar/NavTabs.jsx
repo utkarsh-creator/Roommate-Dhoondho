@@ -8,6 +8,7 @@ import Modal from "../../Components/Modal/Modal";
 import Modal2 from "../Modal/Modal2";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
+import { toast } from "react-toastify";
 
 function DisplayRoommateCard() {
   const profileData = JSON.parse(localStorage.getItem("profile"));
@@ -188,9 +189,9 @@ function DisplayRoommateCard() {
 
   useEffect(() => {
     const filterData = () => {
-      console.log("Selected Gender:", selectedGender);
-      console.log("Selected Block:", selectedBlock);
-      console.log("Selected Year:", selectedYear);
+      // console.log("Selected Gender:", selectedGender);
+      // console.log("Selected Block:", selectedBlock);
+      // console.log("Selected Year:", selectedYear);
 
       const parseDate = (dateString) => new Date(dateString);
 
@@ -219,7 +220,7 @@ function DisplayRoommateCard() {
         .sort((a, b) => parseDate(b.updatedAt) - parseDate(a.updatedAt));
 
       const sortPostsByRank = (posts) => {
-        console.log("Rank Order:", rankOrder);
+        // console.log("Rank Order:", rankOrder);
         return posts.sort((a, b) => {
           if (rankOrder === "Increasing") {
             return a.rank - b.rank;
@@ -233,8 +234,8 @@ function DisplayRoommateCard() {
       const sortedRoommateData = sortPostsByRank(filteredRoommateData);
       const sortedRoomData = sortPostsByRank(filteredRoomData);
 
-      console.log("Filtered Roommate Data:", filteredRoommateData);
-      console.log("Filtered Room Data:", filteredRoomData);
+      // console.log("Filtered Roommate Data:", filteredRoommateData);
+      // console.log("Filtered Room Data:", filteredRoomData);
       // const combinedData = [...filteredRoommateData, ...filteredRoomData];
       // setFilteredRoommatePosts(filteredRoommateData);
       // setFilteredRoomPosts(filteredRoomData);
@@ -253,10 +254,10 @@ function DisplayRoommateCard() {
     roomPosts,
   ]);
 
-  console.log("user data: ", user);
-  console.log("user specific data: ", profileData);
-  console.log("User Id:", userId);
-  console.log("User Gender:", userGender);
+  // console.log("user data: ", user);
+  // console.log("user specific data: ", profileData);
+  // console.log("User Id:", userId);
+  // console.log("User Gender:", userGender);
 
   async function likeRoommate(otherUserId) {
     try {
@@ -271,7 +272,7 @@ function DisplayRoommateCard() {
       if (otherUserData) {
         const otherUserGender = otherUserData.gender;
         const roommateuserId = otherUserData.userId;
-        console.log(otherUserGender);
+        // console.log(otherUserGender);
         if (roommateuserId !== userId) {
           if (
             (userGender === "M" && otherUserGender === "M") ||
@@ -287,10 +288,11 @@ function DisplayRoommateCard() {
               requestBody
             );
 
-            console.log("result: ", result);
+            // console.log("result: ", result);
 
             if (result.status === 200) {
               // Update the check-icon immediately
+              toast.success(result.data);
               const updatedFollowing = [...following];
               if (!updatedFollowing.includes(otherUserId)) {
                 updatedFollowing.push(otherUserId);
@@ -298,13 +300,16 @@ function DisplayRoommateCard() {
               }
             }
           } else {
+            toast.error("Error Code: NT03GM. Please contact MFC support.");
             alert("Broo.. In VIT we don't have coed hostels.");
           }
         } else {
+          toast.error("You can't select your own post.")
           alert("You can't select your own post.");
         }
       }
     } catch (error) {
+      toast.error("Error Code: NT04GM. Please contact MFC support.");
       console.error(error);
     }
   }
@@ -337,10 +342,11 @@ function DisplayRoommateCard() {
               requestBody
             );
 
-            console.log("result: ", result);
+            // console.log("result data: ", result.data);
 
             if (result.status === 200) {
               // Update the check-icon immediately
+              toast.success(result.data);
               const updatedLikeRoom = [...likeRoom];
               if (!updatedLikeRoom.includes(otherRoomId)) {
                 updatedLikeRoom.push(otherRoomId);
@@ -348,13 +354,16 @@ function DisplayRoommateCard() {
               }
             }
           } else {
+            toast.error("Error Code: NT05GM. Please contact MFC support.");
             alert("Broo.. In VIT we don't have coed hostels.");
           }
         } else {
+          toast.error("You can't select your own post.")
           alert("You can't select your own post.");
         }
       }
     } catch (error) {
+      toast.error("Error Code: NT06GM. Please contact MFC support.");
       console.error(error);
     }
   }

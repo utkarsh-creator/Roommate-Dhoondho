@@ -142,10 +142,10 @@ export const Listing = () => {
 
   const matchingRoomData = roomPosts.filter((post) => likeRoom.has(post._id));
 
-  console.log("Following:", following);
-  console.log("Like Room:", likeRoom);
-  console.log("Roommate Posts:", matchingRoommateData);
-  console.log("MatchingRoom Posts:", matchingRoomData);
+  // console.log("Following:", following);
+  // console.log("Like Room:", likeRoom);
+  // console.log("Roommate Posts:", matchingRoommateData);
+  // console.log("MatchingRoom Posts:", matchingRoomData);
 
   return (
     <div className="listing">

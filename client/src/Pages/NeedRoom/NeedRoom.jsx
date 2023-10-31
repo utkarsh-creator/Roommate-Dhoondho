@@ -180,10 +180,12 @@ function NeedRoom() {
         requestBody
       );
   
-      console.log("API Response:", result.data);
+      // console.log("API Response:", result.data);
+      toast.success("Room created successfully!");
       navigate("/home");
     } catch (error) {
-      console.error("API Error:", error);
+      toast.error("Error creating room.");
+      // console.error("API Error:", error);
     }
   }  
 
@@ -229,10 +231,12 @@ function NeedRoom() {
         requestBody
       );
 
-      console.log("API Response:", result.data);
+      // console.log("API Response:", result.data);
+      toast.success("Roommate created successfully!");
       navigate("/home");
     } catch (error) {
-      console.error("API Error:", error);
+      toast.error("Error creating roommate.");
+      // console.error("API Error:", error);
     }
   }
 
