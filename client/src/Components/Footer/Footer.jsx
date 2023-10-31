@@ -1,8 +1,8 @@
 import React from "react";
 import "./Footer.css";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Footer = () => {
-
   return (
     <footer className="footer">
       <div className="footer__container">
@@ -56,9 +56,11 @@ const Footer = () => {
             <h6 className="footer__title">More Info</h6>
             <ul className="footer__list">
               <li className="footer__list-item">
-                <a href="" className="footer__list-link">
-                  Term and Conditions
-                </a>
+                <Link to="/TermsAndConditions">
+                  <a href="" className="footer__list-link">
+                    Term and Conditions
+                  </a>
+                </Link>
               </li>
               <li className="footer__list-item">
                 <a href="" className="footer__list-link">

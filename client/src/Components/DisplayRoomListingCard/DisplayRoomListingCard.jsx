@@ -50,7 +50,7 @@ function DisplayRoomListingCard() {
       );
 
       console.log("Room deleted:", response);
-      setRooms((prevRooms) => prevRooms.filter((room) => room.id !== room_id));
+      setRooms((prevRooms) => prevRooms.filter((room) => room._id !== room_id));
     } catch (error) {
       console.error("Error deleting room:", error);
     }
