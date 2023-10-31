@@ -2,7 +2,6 @@ import UserModel from "../Models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
-import { toast } from "react-toastify";
 
 // Registering a new User
 export const registerUser = async (req, res) => {
@@ -99,15 +98,15 @@ export const requestPasswordReset = async (req, res) => {
       const emailToken = crypto.randomBytes(64).toString("hex");
       user.emailToken = emailToken;
       await user.save();
-      toast.success("Email token sent successfully");
-      // res.status(200).json({ message: "Email token for password reset sent to the user's email address." });
+      res.status(200).json({ success: true, message: "Email token for password reset sent to the user's email address." });
     } else {
-      res.status(404).json("User not found");
+      res.status(404).json({ success: false, message: "User not found" });
     }
   } catch (err) {
-    res.status(500).json(err.message);
+    res.status(500).json({ success: false, message: err.message });
   }
 };
+
 
 // Update password based on emailToken
 export const updatePassword = async (req, res) => {
