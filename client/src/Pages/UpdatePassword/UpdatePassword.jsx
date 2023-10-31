@@ -1,4 +1,5 @@
 import axios from "axios";
+import "./UpdatePassword.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -63,11 +64,9 @@ function UpdatePassword() {
         }
       );
       if (response.data.success) {
-        // Handle success, e.g., show a success message or redirect the user
+        // Handle success, e.g., show a success message with green color
         toast.success("Password updated successfully", {
-          style: {
-            color: 'green',
-          },
+          className: 'toast-success', // This is a custom CSS class
         });
       } else {
         // Handle error, e.g., display an error message to the user
