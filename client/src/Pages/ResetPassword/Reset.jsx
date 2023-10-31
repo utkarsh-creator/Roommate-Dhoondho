@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Reset.css";
 import Header from "../../Components/Header/Header";
 import { Link } from "react-router-dom";
@@ -25,7 +26,9 @@ function Reset() {
         }
       );
       if (response.data.success) {
-        toast.success("Email token sent successfully");
+        toast.success("Email token sent successfully",{
+          className: "toast-success", // Apply custom CSS class
+        });
       } else {
         toast.error(response.data.message);
       }
