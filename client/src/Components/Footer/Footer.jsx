@@ -75,9 +75,11 @@ const Footer = () => {
             <h6 className="footer__title">About Us</h6>
             <ul className="footer__list">
               <li className="footer__list-item">
-                <a href="" className="footer__list-link">
-                  Roommate Dhoondho
-                </a>
+                <Link to="/Team">
+                  <a href="" className="footer__list-link">
+                    Roommate Dhoondho
+                  </a>
+                </Link>
               </li>
               <li className="footer__list-item">
                 <a href="" className="footer__list-link">

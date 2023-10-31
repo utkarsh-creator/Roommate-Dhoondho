@@ -22,6 +22,7 @@ import store from "./store/ReduxStore";
 import { Provider } from "react-redux";
 import Terms from "./Pages/Terms/Terms";
 import Privacy from "./Pages/PrivacyPolicy/Privacy";
+import Team from "./Pages/Team/Team";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
   {
     path: "/PrivacyPolicy",
     element: <Privacy />,
+  },
+  {
+    path: "/Team",
+    element: <Team />,
   },
 ]);
 
