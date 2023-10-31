@@ -126,7 +126,7 @@ function DisplayRoomListingCard() {
                 <hr />
               </div>
               <div className="card-habits-section">
-                <div className="card-habit">Leader</div>
+                <div className="card-habit">For Description - Click on the button</div>
                 <div
                   className="card-habit-details"
                   onClick={() => selectRoomDetail(room.desc)}

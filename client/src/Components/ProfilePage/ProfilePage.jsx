@@ -15,6 +15,7 @@ import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
 import DisplayRoommateListingCard from "../DisplayRoommateListingCard/DisplayRoommateListingCard";
 import DisplayRoomListingCard from "../DisplayRoomListingCard/DisplayRoomListingCard";
+import { toast } from "react-toastify";
 
 const Profilepage = () => {
   const profileData = JSON.parse(localStorage.getItem("profile"));
@@ -198,9 +199,10 @@ const Profilepage = () => {
           updatedData
         )
         .then((response) => {
-          console.log("Profile updated successfully:", response.data);
+          // console.log("Profile updated successfully:", response.data);
           setChangesMade(true);
-          setNotification("Changes saved successfully!");
+          toast.success("Changes saved successfully!");
+          // setNotification("Changes saved successfully!");
           const updatedProfileData = { ...profileData, user: response.data };
           localStorage.setItem("profile", JSON.stringify(updatedProfileData));
           window.location.reload();

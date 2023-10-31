@@ -135,7 +135,7 @@ function DisplayRoommateListingCard() {
                 <hr />
               </div>
               <div className="card-habits-section">
-                <div className="card-habit">Habits</div>
+                <div className="card-habit">For Description - Click on the button</div>
                 <div
                   className="card-habit-details"
                   onClick={() => selectRoommateDetail(roommate.desc)}

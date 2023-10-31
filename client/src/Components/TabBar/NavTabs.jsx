@@ -497,7 +497,7 @@ function DisplayRoommateCard() {
                         </div>
                         <div className="card-habits-section">
                           <div className="card-habit">
-                            For Description - Click on the button:
+                            For Description - Click on the button
                           </div>
                           <div
                             className="card-habit-details"
@@ -637,7 +637,7 @@ function DisplayRoommateCard() {
                         </div>
                         <div className="card-habits-section">
                           <div className="card-habit">
-                            For Description - Click on the button:
+                            For Description - Click on the button
                           </div>
                           <div
                             className="card-habit-details"
