@@ -1,5 +1,6 @@
 import axios from "axios";
 import "./UpdatePassword.css";
+import "react-toastify/dist/ReactToastify.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
