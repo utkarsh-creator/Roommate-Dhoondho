@@ -38,6 +38,8 @@ function DisplayRoommateCard() {
     selectRoommatePhone,
     seletedroomdetail,
     selectRoommateEmail,
+    selectRoomPhone,
+    selectRoomEmail,
   } = useContext(ListingContext);
   const getBlockOptions = (userGender) => {
     const menHostels = [
@@ -643,7 +645,11 @@ function DisplayRoommateCard() {
                           </div>
                           <div
                             className="card-habit-details"
-                            onClick={() => selectRoomDetail(post.desc)}
+                            onClick={() => {
+                              selectRoomDetail(post.desc);
+                              selectRoomPhone(post.phone);
+                              selectRoomEmail(post.username);
+                            }}
                           >
                             <div>
                               <img

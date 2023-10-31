@@ -137,7 +137,26 @@ export const ListingContextProvider = (props) => {
     // console.log(setSelectedRoomDetail);
     setShowModel2(true);
   };
+  const selectRoomPhone = (RoomPhone) => {
+    // console.log(RoomDetail);
+    const roomPhone = roommateList.find((post) => {
+      return post === RoomPhone;
+    });
 
+    setSelectedRoomPhone(RoomPhone);
+    // console.log(setSelectedRoomDetail);
+    setShowModel2(true);
+  };
+  const selectRoomEmail = (RoomEmail) => {
+    // console.log(RoomDetail);
+    const roomEmail = roommateList.find((post) => {
+      return post === RoomEmail;
+    });
+
+    setSelectedRoomEmail(RoomEmail);
+    // console.log(setSelectedRoomDetail);
+    setShowModel2(true);
+  };
   const closeModal = () => {
     setShowModel(false);
     setShowModel2(false);
@@ -197,6 +216,8 @@ export const ListingContextProvider = (props) => {
     seletedroomemail,
     setSelectedRoomEmail,
     selectRoommateEmail,
+    selectRoomPhone,
+    selectRoomEmail,
   };
   // console.log(cartItems);
   // console.log(cartItems2);

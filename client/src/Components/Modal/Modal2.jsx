@@ -3,7 +3,7 @@ import { ListingContext } from "../../Context/listing-context";
 import "./Modal.css";
 
 function Modal2() {
-  const { seletedroomdetail, seletedroomname, seletedroomphone, closeModal2 } =
+  const { seletedroomdetail, seletedroomemail, seletedroomphone, closeModal2 } =
     useContext(ListingContext);
   console.log(seletedroomdetail);
   return (
@@ -21,6 +21,18 @@ function Modal2() {
             </div>
           </div>
           <div className="habitssection">
+            <p>
+              <b>Phone Number: </b>
+              {seletedroomphone}
+            </p>
+            <br />
+            <p>
+              <b>Email Id: </b>
+
+              {seletedroomemail}
+            </p>
+            <br />
+            <b>Details:</b>
             <p>{seletedroomdetail}</p>
           </div>
           <button
