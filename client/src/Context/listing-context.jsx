@@ -19,7 +19,7 @@ export const ListingContextProvider = (props) => {
     let cart = {};
     for (const roommateId in roommateList) {
       cart[roommateId] = 0;
-      console.log(roommateId);
+      // console.log(roommateId);
     }
     return cart;
   };
@@ -27,7 +27,7 @@ export const ListingContextProvider = (props) => {
     let cart = {};
     for (const roomId in roomList) {
       cart[roomId] = 0;
-      console.log(roomId);
+      // console.log(roomId);
     }
     return cart;
   };
@@ -92,24 +92,24 @@ export const ListingContextProvider = (props) => {
   }, [roomList, roommateList]);
 
   const selectRoommateDetail = (RoommateDetail) => {
-    console.log(RoommateDetail);
+    // console.log(RoommateDetail);
     const roommateHabits = roommateList.find((post) => {
       return post === RoommateDetail;
     });
 
     setSelectedRoommateDetail(RoommateDetail);
-    console.log(setSelectedRoommateDetail);
+    // console.log(setSelectedRoommateDetail);
     setShowModel(true);
   };
 
   const selectRoomDetail = (RoomDetail) => {
-    console.log(RoomDetail);
+    // console.log(RoomDetail);
     const roomHabits = roommateList.find((post) => {
       return post === RoomDetail;
     });
 
     setSelectedRoomDetail(RoomDetail);
-    console.log(setSelectedRoomDetail);
+    // console.log(setSelectedRoomDetail);
     setShowModel2(true);
   };
 
@@ -163,8 +163,8 @@ export const ListingContextProvider = (props) => {
     setShowModel2,
     closeModal2,
   };
-  console.log(cartItems);
-  console.log(cartItems2);
+  // console.log(cartItems);
+  // console.log(cartItems2);
 
   return (
     <ListingContext.Provider value={contextValue}>

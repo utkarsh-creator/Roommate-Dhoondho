@@ -86,7 +86,7 @@ const ChatComponent = () => {
         </div>
       ) : (
         <Snackbar open={!isUsernameAvailable} autoHideDuration={6000}>
-          <Alert severity="error">There is a problem. Please check your username.</Alert>
+          <Alert severity="error">There is a problem. Please login to access chat.</Alert>
         </Snackbar>
       )}
       <div>

@@ -45,7 +45,7 @@ function NeedRoom() {
   const [showPlaceholder, setShowPlaceholder] = useState(false);
 
   useEffect(() => {
-    if (profileData.user.gender) {
+    if (profileData && profileData.user.gender) {
       const userGender = profileData.user.gender;
       if (userGender === "F") {
         setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);

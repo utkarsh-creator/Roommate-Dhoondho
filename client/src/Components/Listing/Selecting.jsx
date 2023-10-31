@@ -6,6 +6,7 @@ import "./Selecting.css";
 import Modal from "../../Components/Modal/Modal";
 import Modal2 from "../Modal/Modal2";
 import CircularProgress from "@mui/material/CircularProgress";
+import { toast } from "react-toastify";
 
 export const Listing = () => {
   const { showModal, showModal2, selectRoommateDetail, selectRoomDetail } =
@@ -20,6 +21,7 @@ export const Listing = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -173,8 +175,8 @@ export const Listing = () => {
                         <div className="card-info">
                           <div className="card-informatios">
                             <div className="card-name">
-                              {item.userDetails.firstname ?? "Null_Fname"}{" "}
-                              {item.userDetails.lastname ?? "Null_Lname"}
+                              {item.userDetails.firstname ?? "Name"}{" "}
+                              {item.userDetails.lastname ?? "Loading..."}
                             </div>
                             <div className="card-add">
                               <img

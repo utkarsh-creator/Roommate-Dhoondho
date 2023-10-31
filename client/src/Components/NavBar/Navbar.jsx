@@ -8,7 +8,7 @@ import "./Navbar.css";
 
 function Navbar() {
   const profileData = JSON.parse(localStorage.getItem("profile")) || {};
-  const isProfileSet = !!profileData.user.firstname;
+  const isProfileSet = profileData && !!profileData.user?.firstname;
   const [navbar, setHeader] = useState("navbar");
   const navigate = useNavigate();
   const [click, setClick] = useState(false);

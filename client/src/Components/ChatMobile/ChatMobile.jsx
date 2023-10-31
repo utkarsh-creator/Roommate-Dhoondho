@@ -68,7 +68,7 @@ const ChatMobile = () => {
         </div>
       ) : (
         <Snackbar open={!isUsernameAvailable} autoHideDuration={6000}>
-          <Alert severity="error">There is a problem. Please check your username.</Alert>
+          <Alert severity="error">There is a problem. Please login.</Alert>
         </Snackbar>
       )}
       <div>
