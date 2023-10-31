@@ -326,6 +326,7 @@ function DisplayRoommateCard() {
           selectedGender={selectedGender}
           selectedBlock={selectedBlock}
           selectedYear={selectedYear}
+          rankOrder={rankOrder}
           blockOptions={blockOptions}
         >
           <Tab label="Tab 1">
@@ -594,6 +595,7 @@ class Tabs extends Component {
     const { gender_sorting } = this.props;
     const { filterByGenderAndBlock } = this.props;
     const { selectedGender } = this.props;
+    const { rankOrder } = this.props;
     const { selectedBlock } = this.props;
     const { selectedYear } = this.props;
     const { blockOptions } = this.props;
@@ -613,6 +615,7 @@ class Tabs extends Component {
           genderSorting={gender_sorting}
           filterByGenderAndBlock={filterByGenderAndBlock}
           selectedGender={selectedGender}
+          rankOrder={rankOrder}
           selectedBlock={selectedBlock}
           selectedYear={selectedYear}
           blockOptions={blockOptions}
@@ -630,6 +633,7 @@ const TabButtons = ({
   selectedGender,
   selectedBlock,
   selectedYear,
+  rankOrder,
   filterByGenderAndBlock,
   blockOptions,
 }) => {
@@ -683,13 +687,32 @@ const TabButtons = ({
           );
         })}
         <div className="tab-dropdownbuttons">
+        <div className="custom-select">
+            <select
+              onChange={(e) =>
+                filterByGenderAndBlock(
+                  selectedGender,
+                  selectedBlock,
+                  selectedYear,
+                  e.target.value,
+                )
+              }
+            >
+              <option hidden value="Rank">
+                Rank
+              </option>
+              <option value="Increasing">Increasing</option>
+              <option value="Decreasing">Decreasing</option>
+            </select>
+          </div>
           <div className="custom-select">
             <select
               onChange={(e) =>
                 filterByGenderAndBlock(
                   selectedGender,
                   selectedBlock,
-                  e.target.value
+                  e.target.value,
+                  rankOrder
                 )
               }
             >
@@ -709,7 +732,8 @@ const TabButtons = ({
                 filterByGenderAndBlock(
                   selectedGender,
                   e.target.value,
-                  selectedYear
+                  selectedYear,
+                  rankOrder
                 )
               }
             >
