@@ -14,6 +14,8 @@ export const ListingContextProvider = (props) => {
   const [showModal2, setShowModel2] = useState(false);
   const [seletedroommatedetail, setSelectedRoommateDetail] = useState(null);
   const [seletedroomdetail, setSelectedRoomDetail] = useState(null);
+  const [seletedroommatephone, setSelectedRoommatePhone] = useState(null);
+  const [seletedroomdetephone, setSelectedRoomPhone] = useState(null);
 
   const getDefaultCart2 = (roommateList) => {
     let cart = {};
@@ -101,6 +103,16 @@ export const ListingContextProvider = (props) => {
     // console.log(setSelectedRoommateDetail);
     setShowModel(true);
   };
+  const selectRoommatePhone = (RoommatePhone) => {
+    // console.log(RoommateDetail);
+    const roommatephoneNo = roommateList.find((post) => {
+      return post === RoommatePhone;
+    });
+
+    setSelectedRoommatePhone(RoommatePhone);
+    // console.log(setSelectedRoommateDetail);
+    setShowModel(true);
+  };
 
   const selectRoomDetail = (RoomDetail) => {
     // console.log(RoomDetail);
@@ -155,6 +167,7 @@ export const ListingContextProvider = (props) => {
     showModal,
     setShowModel,
     selectRoommateDetail,
+    selectRoommatePhone,
     seletedroommatedetail,
     selectRoomDetail,
     seletedroomdetail,
@@ -162,6 +175,10 @@ export const ListingContextProvider = (props) => {
     showModal2,
     setShowModel2,
     closeModal2,
+    seletedroommatephone,
+    setSelectedRoommatePhone,
+    seletedroomdetephone,
+    setSelectedRoomPhone,
   };
   // console.log(cartItems);
   // console.log(cartItems2);

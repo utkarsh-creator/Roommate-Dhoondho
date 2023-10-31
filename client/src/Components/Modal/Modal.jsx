@@ -3,7 +3,8 @@ import { ListingContext } from "../../Context/listing-context";
 import "./Modal.css";
 
 function Modal() {
-  const { seletedroommatedetail, closeModal } = useContext(ListingContext);
+  const { seletedroommatephone, seletedroommatedetail, closeModal } =
+    useContext(ListingContext);
   console.log(seletedroommatedetail);
   return (
     <aside className="modal-overlay">
@@ -20,6 +21,9 @@ function Modal() {
             </div>
           </div>
           <div className="habitssection">
+            <p>
+              <b>Phone Number:</b> {seletedroommatephone}
+            </p>
             <p>{seletedroommatedetail}</p>
           </div>
           <button
