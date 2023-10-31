@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../../Components/Header/Header";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Header from "../../Components/Header/Header";
 
-import { BsEyeFill } from "react-icons/bs";
-import { BsEyeSlashFill } from "react-icons/bs";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 function UpdatePassword() {
   const [passwordMatchError, setPasswordMatchError] = useState("");
@@ -65,7 +64,11 @@ function UpdatePassword() {
       );
       if (response.data.success) {
         // Handle success, e.g., show a success message or redirect the user
-        toast.success("Password updated successfully");
+        toast.success("Password updated successfully", {
+          style: {
+            color: 'green',
+          },
+        });
       } else {
         // Handle error, e.g., display an error message to the user
         toast.error(response.data.message);
