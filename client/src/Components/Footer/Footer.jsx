@@ -77,7 +77,7 @@ const Footer = () => {
               <li className="footer__list-item">
                 <Link to="/Team">
                   <a href="" className="footer__list-link">
-                    Roommate Dhoondho
+                    Developers
                   </a>
                 </Link>
               </li>
