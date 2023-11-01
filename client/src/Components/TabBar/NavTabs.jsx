@@ -110,7 +110,8 @@ function DisplayRoommateCard() {
                 return null;
               });
           }
-        );
+        )
+        .filter((post) => post !== null); // Filter out null values
 
         const roomPostsWithUserDetailsPromises = roomPosts.map((post) => {
           return axios
@@ -130,7 +131,8 @@ function DisplayRoommateCard() {
               );
               return null;
             });
-        });
+        })
+        .filter((post) => post !== null); // Filter out null values
 
         const [roommatePostsWithUserDetails, roomPostsWithUserDetails] =
           await Promise.all([
@@ -157,6 +159,7 @@ function DisplayRoommateCard() {
   }, []);
 
   const fetchFollowing = () => {
+    
     axios
       .get(
         `https://roommate-finder-theta.vercel.app/user/${profileData.user._id}`
@@ -180,6 +183,7 @@ function DisplayRoommateCard() {
       })
       .catch((error) => {
         console.error("Error fetching profile:", error);
+        return null;
       });
   };
   const blockOptions = getBlockOptions(userGender);
@@ -200,6 +204,7 @@ function DisplayRoommateCard() {
       const parseDate = (dateString) => new Date(dateString);
 
       const filteredRoommateData = roommatePosts
+        .filter((post) => post && post.gender)
         .filter((post) => {
           console.log("Post Year:", post.year);
           return (
@@ -213,6 +218,7 @@ function DisplayRoommateCard() {
         .sort((a, b) => parseDate(b.updatedAt) - parseDate(a.updatedAt));
 
       const filteredRoomData = roomPosts
+        .filter((post) => post && post.gender)
         .filter((post) => {
           return (
             (selectedGender === userGender || post.gender === userGender) &&
@@ -290,7 +296,15 @@ function DisplayRoommateCard() {
             let result = await axios.put(
               `https://roommate-finder-theta.vercel.app/user/${myUserId}/likesRoommate`,
               requestBody
-            );
+            )
+            .catch((error) => {
+              // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
+              console.log(
+                `Error fetching user details for user ID ${myUserId}:`,
+                error
+              );
+              return null;
+            });
 
             // console.log("result: ", result);
 
@@ -344,7 +358,15 @@ function DisplayRoommateCard() {
             let result = await axios.put(
               `https://roommate-finder-theta.vercel.app/user/${myUserId}/likesroom`,
               requestBody
-            );
+            )
+            .catch((error) => {
+              // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
+              console.log(
+                `Error fetching user details for user ID ${myUserId}:`,
+                error
+              );
+              return null;
+            });
 
             // console.log("result data: ", result.data);
 
