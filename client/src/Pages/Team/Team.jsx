@@ -39,7 +39,7 @@ const Team = () => {
             <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
               <img src="/img/team-3.jpg" alt="" />
             </div>
-            <div class="p-2 text-start w-[15rem] h-[7rem]">
+            <div class="p-2 text-center w-[15rem] h-[7rem]">
               <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
                 Jayakumar S
               </h4>
@@ -47,7 +47,7 @@ const Team = () => {
                 Faculty
               </p>
 
-              <div class="flex justify-start  gap-4">
+              <div class="flex justify-center  gap-4">
                 <a
                   href="#facebook"
                   class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
@@ -108,7 +108,7 @@ const Team = () => {
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
                   <img src="/img/team-3.jpg" alt="" />
                 </div>
-                <div class="p-2 text-start w-[15rem] h-[7rem]">
+                <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
                     Utkarsh Tyagi
                   </h4>
@@ -116,7 +116,7 @@ const Team = () => {
                     Project Lead
                   </p>
 
-                  <div class="flex justify-start  gap-4">
+                  <div class="flex justify-center  gap-4">
                     <a
                       href="#facebook"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
@@ -166,7 +166,7 @@ const Team = () => {
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
                   <img src="/img/team-3.jpg" alt="" />
                 </div>
-                <div class="p-2 text-start w-[15rem] h-[7rem]">
+                <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
                     Ayush Patil
                   </h4>
@@ -174,7 +174,7 @@ const Team = () => {
                     Design Lead
                   </p>
 
-                  <div class="flex justify-start  gap-4">
+                  <div class="flex justify-center  gap-4">
                     <a
                       href="#facebook"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
@@ -237,7 +237,7 @@ const Team = () => {
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
                   <img class="w-full h-full object-cover" src="https://subhodeepdey.com/images/dp.png" alt="Subhodeep Dey" />
                 </div>
-                <div class="p-2 text-start w-[15rem] h-[7rem]">
+                <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
                     Subhodeep Dey <a
                       href="https://subhodeepdey.com/" target="_blank"
@@ -249,7 +249,7 @@ const Team = () => {
                     Backend Developer
                   </p>
 
-                  <div class="flex justify-start  gap-4">
+                  <div class="flex justify-center  gap-4">
                     <a
                       href="https://www.facebook.com/profile.php?id=100068947241423" target="_blank"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
@@ -299,7 +299,7 @@ const Team = () => {
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
                   <img src="/img/team-3.jpg" alt="" />
                 </div>
-                <div class="p-2 text-start w-[15rem] h-[7rem]">
+                <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
                     Harshit P G
                   </h4>
@@ -307,7 +307,7 @@ const Team = () => {
                     Frontend Developer
                   </p>
 
-                  <div class="flex justify-start  gap-4">
+                  <div class="flex justify-center  gap-4">
                     <a
                       href="#facebook"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
@@ -357,7 +357,7 @@ const Team = () => {
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
                   <img src="/img/team-3.jpg" alt="" />
                 </div>
-                <div class="p-2 text-start w-[15rem] h-[7rem]">
+                <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
                     Nitish Kumar
                   </h4>
@@ -365,7 +365,7 @@ const Team = () => {
                     Frontend Devloper
                   </p>
 
-                  <div class="flex justify-start  gap-4">
+                  <div class="flex justify-center   gap-4">
                     <a
                       href="#facebook"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"

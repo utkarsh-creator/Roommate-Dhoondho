@@ -9,8 +9,16 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { toast } from "react-toastify";
 
 export const Listing = () => {
-  const { showModal, showModal2, selectRoommateDetail, selectRoomDetail } =
-    useContext(ListingContext);
+  const {
+    selectRoommateEmail,
+    selectRoommatePhone,
+    showModal,
+    showModal2,
+    selectRoommateDetail,
+    selectRoomDetail,
+    selectRoomEmail,
+    selectRoomPhone,
+  } = useContext(ListingContext);
 
   const profileData = JSON.parse(localStorage.getItem("profile"));
 
@@ -21,7 +29,6 @@ export const Listing = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -61,7 +68,10 @@ export const Listing = () => {
               })
               .catch((error) => {
                 // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
-                console.log(`Error fetching user details for user ID ${post.userId}:`, error);
+                console.log(
+                  `Error fetching user details for user ID ${post.userId}:`,
+                  error
+                );
                 return null;
               });
           }
@@ -91,7 +101,10 @@ export const Listing = () => {
             })
             .catch((error) => {
               // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
-              console.log(`Error fetching user details for user ID ${post.userId}:`, error);
+              console.log(
+                `Error fetching user details for user ID ${post.userId}:`,
+                error
+              );
               return null;
             });
         });
@@ -173,12 +186,12 @@ export const Listing = () => {
                   <span className="cards">
                     <div className="main-card">
                       <div className="card-details">
-                      <div
+                        <div
                           className="card-img"
                           style={{
                             backgroundImage: `url('https://static01.nyt.com/images/2020/04/19/magazine/19Ethicist/19Ethicist-jumbo.jpg')`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
                             // width: '132px',
                             // height: '158px',
                           }}
@@ -245,10 +258,16 @@ export const Listing = () => {
                         <hr />
                       </div>
                       <div className="card-habits-section">
-                        <div className="card-habit">For Description - Click on the button</div>
+                        <div className="card-habit">
+                          For Description - Click on the button
+                        </div>
                         <div
                           className="card-habit-details"
-                          onClick={() => selectRoommateDetail(item.desc)}
+                          onClick={() => {
+                            selectRoommateDetail(item.desc);
+                            selectRoommatePhone(item.phone);
+                            selectRoommateEmail(item.username);
+                          }}
                         >
                           <div>
                             <img
@@ -271,12 +290,12 @@ export const Listing = () => {
                   <span className="cards">
                     <div className="main-card">
                       <div className="card-details">
-                      <div
+                        <div
                           className="card-img"
                           style={{
                             backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/40/849/87/anime-girls-wallpaper-preview.jpg')`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
                             // width: '132px',
                             // height: '158px',
                           }}
@@ -284,7 +303,7 @@ export const Listing = () => {
                         <div className="card-info">
                           <div className="card-informatios">
                             <div className="card-name">
-                              {item.preferredBlock  ?? "Loading "} Block
+                              {item.preferredBlock ?? "Loading "} Block
                             </div>
                             <div className="card-add">
                               <img
@@ -338,10 +357,16 @@ export const Listing = () => {
                         <hr />
                       </div>
                       <div className="card-habits-section">
-                        <div className="card-habit">For Description - Click on the button</div>
+                        <div className="card-habit">
+                          For Description - Click on the button
+                        </div>
                         <div
                           className="card-habit-details"
-                          onClick={() => selectRoomDetail(item.desc)}
+                          onClick={() => {
+                            selectRoomDetail(item.desc);
+                            selectRoomPhone(item.phone);
+                            selectRoomEmail(item.username);
+                          }}
                         >
                           <div>
                             <img
