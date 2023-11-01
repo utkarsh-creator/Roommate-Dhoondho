@@ -116,9 +116,12 @@
   .habitssection {
     padding: 8px 0 8px 0;
     font-size: 12px;
-    height: 85%;
 
-    overflow: scroll;
+    height: 77.5%;
+    padding: 20px 0 20px 0;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow: auto;
   }
   .habits button {
     padding-left: 0.5rem !important;
