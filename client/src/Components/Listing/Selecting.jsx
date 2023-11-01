@@ -155,7 +155,10 @@ export const Listing = () => {
     following.has(post._id)
   );
 
-  const matchingRoomData = roomPosts.filter((post) => likeRoom.has(post._id));
+  // const matchingRoomData = roomPosts.filter((post) => likeRoom.has(post._id));
+  const matchingRoomData = roomPosts
+  .filter((post) => post?.hasOwnProperty('_id') && likeRoom.has(post._id));
+
 
   // console.log("Following:", following);
   // console.log("Like Room:", likeRoom);
