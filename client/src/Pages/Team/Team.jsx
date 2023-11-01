@@ -242,7 +242,7 @@ const Team = () => {
                     Subhodeep Dey <a
                       href="https://subhodeepdey.com/" target="_blank"
                     >
-                      <i class="fas fa-external-link-alt"></i>
+                      <small><i class="fas fa-external-link-alt"></i></small>
                     </a>
                   </h4>
                   <p class="pb-1 mb-1 block Inter-Regular text-s leading-relaxed  text-[#3E3E59] ">
