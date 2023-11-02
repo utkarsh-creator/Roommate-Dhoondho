@@ -108,7 +108,7 @@ const Team = () => {
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
                   <img
                     class="w-[15rem] h-[11.1rem]  rounded-t-xl "
-                    src="./image/utkarsh.png"
+                    src="./image/Utkarsh.png"
                     alt=""
                   />
                 </div>
