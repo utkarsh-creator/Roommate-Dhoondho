@@ -106,7 +106,11 @@ const Team = () => {
             <div className="eachleads">
               <div class="flex flex-col items-center text-gray-700 bg-white shadow-md w-[15rem] h-[18rem] rounded-xl bg-clip-border">
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
-                  <img src="/img/team-3.jpg" alt="" />
+                  <img
+                    class="w-[15rem] h-[11.1rem]  rounded-t-xl "
+                    src="./image/utkarsh.png"
+                    alt=""
+                  />
                 </div>
                 <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
@@ -164,7 +168,11 @@ const Team = () => {
             <div className="eachleads">
               <div class="flex flex-col items-center text-gray-700 bg-white shadow-md w-[15rem] h-[18rem] rounded-xl bg-clip-border">
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
-                  <img src="/img/team-3.jpg" alt="" />
+                  <img
+                    class=" h-[11.1rem] w-[15rem]  rounded-t-xl "
+                    src="./image/Ayush.png"
+                    alt=""
+                  />
                 </div>
                 <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
@@ -235,14 +243,19 @@ const Team = () => {
             <div className="eachdevs">
               <div class="flex flex-col items-center text-gray-700 bg-white shadow-md w-[15rem] h-[18rem] rounded-xl bg-clip-border">
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
-                  <img class="w-full h-full object-cover" src="https://subhodeepdey.com/images/dp.png" alt="Subhodeep Dey" />
+                  <img
+                    class="w-full h-full object-cover"
+                    src="https://subhodeepdey.com/images/dp.png"
+                    alt="Subhodeep Dey"
+                  />
                 </div>
                 <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
-                    Subhodeep Dey <a
-                      href="https://subhodeepdey.com/" target="_blank"
-                    >
-                      <small><i class="fas fa-external-link-alt"></i></small>
+                    Subhodeep Dey{" "}
+                    <a href="https://subhodeepdey.com/" target="_blank">
+                      <small>
+                        <i class="fas fa-external-link-alt"></i>
+                      </small>
                     </a>
                   </h4>
                   <p class="pb-1 mb-1 block Inter-Regular text-s leading-relaxed  text-[#3E3E59] ">
@@ -251,7 +264,8 @@ const Team = () => {
 
                   <div class="flex justify-center  gap-4">
                     <a
-                      href="https://www.facebook.com/profile.php?id=100068947241423" target="_blank"
+                      href="https://www.facebook.com/profile.php?id=100068947241423"
+                      target="_blank"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
                     >
                       <img
@@ -261,7 +275,8 @@ const Team = () => {
                       />
                     </a>
                     <a
-                      href="https://www.instagram.com/sdeysocial/" target="_blank"
+                      href="https://www.instagram.com/sdeysocial/"
+                      target="_blank"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-light-blue-600 to-light-blue-400 bg-clip-text"
                     >
                       <img
@@ -271,7 +286,8 @@ const Team = () => {
                       />
                     </a>
                     <a
-                      href="https://www.linkedin.com/in/subhodeep-dey/" target="_blank"
+                      href="https://www.linkedin.com/in/subhodeep-dey/"
+                      target="_blank"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
                     >
                       <img
@@ -281,7 +297,8 @@ const Team = () => {
                       />
                     </a>
                     <a
-                      href="https://www.twitter.com/sdeysocial/"target="_blank"
+                      href="https://www.twitter.com/sdeysocial/"
+                      target="_blank"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
                     >
                       <img
@@ -297,11 +314,23 @@ const Team = () => {
             <div className="eachdevs">
               <div class="flex flex-col items-center text-gray-700 bg-white shadow-md w-[15rem] h-[18rem] rounded-xl bg-clip-border">
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
-                  <img src="/img/team-3.jpg" alt="" />
+                  <img
+                    class=" h-[11rem] w-[15rem]  rounded-t-xl "
+                    src="/image/Harshit P G.jpg"
+                    alt=""
+                  />
                 </div>
                 <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
-                    Harshit P G
+                    Harshit P G{" "}
+                    <a
+                      target="_blank"
+                      href="http://harshit-p-g-portfolio.vercel.app/"
+                    >
+                      <small>
+                        <i class="fas fa-external-link-alt"></i>
+                      </small>
+                    </a>
                   </h4>
                   <p class="pb-2 mb-1 block Inter-Regular text-s leading-relaxed  text-[#3E3E59] ">
                     Frontend Developer
@@ -319,7 +348,8 @@ const Team = () => {
                       />
                     </a>
                     <a
-                      href="#twitter"
+                      href="https://www.instagram.com/harshitpg/"
+                      target="_blank"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-light-blue-600 to-light-blue-400 bg-clip-text"
                     >
                       <img
@@ -329,7 +359,8 @@ const Team = () => {
                       />
                     </a>
                     <a
-                      href="#instagram"
+                      href="https://www.linkedin.com/in/harshit-p-g-a87623272/"
+                      target="_blank"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
                     >
                       <img
@@ -355,7 +386,11 @@ const Team = () => {
             <div className="eachdevs">
               <div class="flex flex-col items-center text-gray-700 bg-white shadow-md w-[15rem] h-[18rem] rounded-xl bg-clip-border">
                 <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
-                  <img src="/img/team-3.jpg" alt="" />
+                  <img
+                    class="w-[15rem] h-[11.1rem]  rounded-t-xl "
+                    src="./image/nitish.png"
+                    alt=""
+                  />
                 </div>
                 <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">

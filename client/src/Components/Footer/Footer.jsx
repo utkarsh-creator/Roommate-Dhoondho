@@ -82,9 +82,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="footer__list-item">
-                <a href="" className="footer__list-link">
-                  Mozilla Firefox Club VIT
-                </a>
+                <Link to="/AboutMFC">
+                  <a href="" className="footer__list-link">
+                    Mozilla Firefox Club VIT
+                  </a>
+                </Link>
               </li>
             </ul>
             <ul className="footer__list">

@@ -36,60 +36,60 @@ export const ListingContextProvider = (props) => {
     return cart;
   };
 
-  useEffect(() => {
-    axios
-      .get("https://roommate-finder-theta.vercel.app/roommate/all")
-      .then((response) => {
-        const roommatePostsWithUserDetailsPromises = response.data.map(
-          (post) => {
-            return axios
-              .get(
-                `https://roommate-finder-theta.vercel.app/user/${post.userId}`
-              )
-              .then((userResponse) => {
-                const userDetails = userResponse.data;
-                return {
-                  ...post,
-                  userDetails,
-                };
-              });
-          }
-        );
+  // useEffect(() => {
+  //   axios
+  //     .get("https://roommate-finder-theta.vercel.app/roommate/all")
+  //     .then((response) => {
+  //       const roommatePostsWithUserDetailsPromises = response.data.map(
+  //         (post) => {
+  //           return axios
+  //             .get(
+  //               `https://roommate-finder-theta.vercel.app/user/${post.userId}`
+  //             )
+  //             .then((userResponse) => {
+  //               const userDetails = userResponse.data;
+  //               return {
+  //                 ...post,
+  //                 userDetails,
+  //               };
+  //             });
+  //         }
+  //       );
 
-        return Promise.all(roommatePostsWithUserDetailsPromises);
-      })
-      .then((roommatePostsWithUserDetails) => {
-        console.log("Roommate post details:", roommatePostsWithUserDetails);
-        setRoommateList(roommatePostsWithUserDetails);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  //       return Promise.all(roommatePostsWithUserDetailsPromises);
+  //     })
+  //     .then((roommatePostsWithUserDetails) => {
+  //       console.log("Roommate post details:", roommatePostsWithUserDetails);
+  //       setRoommateList(roommatePostsWithUserDetails);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
 
-    axios
-      .get("https://roommate-finder-theta.vercel.app/room/all")
-      .then((response) => {
-        const roomPostsWithUserDetailsPromises = response.data.map((post) => {
-          return axios
-            .get(`https://roommate-finder-theta.vercel.app/user/${post.userId}`)
-            .then((userResponse) => {
-              const userDetails = userResponse.data;
-              return {
-                ...post,
-                userDetails,
-              };
-            });
-        });
+  //   axios
+  //     .get("https://roommate-finder-theta.vercel.app/room/all")
+  //     .then((response) => {
+  //       const roomPostsWithUserDetailsPromises = response.data.map((post) => {
+  //         return axios
+  //           .get(`https://roommate-finder-theta.vercel.app/user/${post.userId}`)
+  //           .then((userResponse) => {
+  //             const userDetails = userResponse.data;
+  //             return {
+  //               ...post,
+  //               userDetails,
+  //             };
+  //           });
+  //       });
 
-        return Promise.all(roomPostsWithUserDetailsPromises);
-      })
-      .then((roomPostsWithUserDetails) => {
-        setRoomList(roomPostsWithUserDetails);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  //       return Promise.all(roomPostsWithUserDetailsPromises);
+  //     })
+  //     .then((roomPostsWithUserDetails) => {
+  //       setRoomList(roomPostsWithUserDetails);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     setCartItems(getDefaultCart(roomList));

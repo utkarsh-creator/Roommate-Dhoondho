@@ -23,6 +23,7 @@ import { Provider } from "react-redux";
 import Terms from "./Pages/Terms/Terms";
 import Privacy from "./Pages/PrivacyPolicy/Privacy";
 import Team from "./Pages/Team/Team";
+import AboutMFC from "./Pages/AboutMFC/AboutMFC";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
   {
     path: "/Team",
     element: <Team />,
+  },
+  {
+    path: "/AboutMFC",
+    element: <AboutMFC />,
   },
 ]);
 
