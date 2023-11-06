@@ -141,7 +141,7 @@ const Team = () => {
                       />
                     </a> */}
                     <a
-                      href="#twitter"
+                      href="https://www.instagram.com/utkarshtyagi07/"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-light-blue-600 to-light-blue-400 bg-clip-text"
                     >
                       <img
@@ -151,12 +151,12 @@ const Team = () => {
                       />
                     </a>
                     <a
-                      href="#instagram"
+                      href="https://www.linkedin.com/in/utkarsh-tyagi-/"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
                     >
                       <img
                         src="./image/inicon.png"
-                        alt="https://www.instagram.com/utkarshtyagi07/"
+                        alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
                     </a>
@@ -211,7 +211,7 @@ const Team = () => {
                       />
                     </a> */}
                     <a
-                      href="#twitter"
+                      href="https://www.instagram.com/ayush.patil_17/"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-light-blue-600 to-light-blue-400 bg-clip-text"
                     >
                       <img
@@ -226,7 +226,7 @@ const Team = () => {
                     >
                       <img
                         src="./image/inicon.png"
-                        alt="https://www.instagram.com/ayush.patil_17/"
+                        alt="https://www.linkedin.com/in/ayushp2948/"
                         style={{ height: "32px", width: "32px" }}
                       />
                     </a>
