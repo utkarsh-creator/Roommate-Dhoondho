@@ -39,7 +39,7 @@ const Team = () => {
             <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
               <img src="/img/team-3.jpg" alt="" />
             </div>
-            <div class="p-2 text-center w-[15rem] h-[7rem]">
+            {/* <div class="p-2 text-center w-[15rem] h-[7rem]">
               <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
                 Jayakumar S
               </h4>
@@ -91,7 +91,7 @@ const Team = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="teams">
           <div className="teamtab-main">
             <div className="leads-buttons">
@@ -114,7 +114,12 @@ const Team = () => {
                 </div>
                 <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
-                    Utkarsh Tyagi
+                    Utkarsh Tyagi{" "}
+                    <a href="https://utkarsh-portfolio1.vercel.app/" target="_blank">
+                      <small>
+                        <i class="fas fa-external-link-alt"></i>
+                      </small>
+                    </a>
                   </h4>
                   <p class="pb-2 mb-1 block Inter-Regular text-s leading-relaxed  text-[#3E3E59] ">
                     Project Lead
