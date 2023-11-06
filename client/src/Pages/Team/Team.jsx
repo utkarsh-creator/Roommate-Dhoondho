@@ -26,7 +26,7 @@ const Team = () => {
             <hr />
           </div>
         </div>
-        <div className="teams">
+        {/* <div className="teams">
           <div className="teamtab-main">
             <div className="teams-buttons">
               <button disabled className="activeteamroles">
@@ -34,7 +34,7 @@ const Team = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <div className="teamlist">
           <div class="flex flex-col items-center text-gray-700 bg-white shadow-md w-[15rem] h-[18rem] rounded-xl bg-clip-border">
             <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
@@ -46,7 +46,7 @@ const Team = () => {
               </h4>
               <p class="pb-2 mb-1 block Inter-Regular text-s leading-relaxed  text-[#3E3E59] ">
                 Faculty
-              </p>
+              </p> 
 
               <div class="flex justify-center  gap-4">
                 <a
