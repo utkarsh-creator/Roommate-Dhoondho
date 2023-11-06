@@ -115,7 +115,10 @@ const Team = () => {
                 <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
                     Utkarsh Tyagi{" "}
-                    <a href="https://utkarsh-portfolio1.vercel.app/" target="_blank">
+                    <a
+                      target="_blank"
+                      href="https://utkarsh-portfolio1.vercel.app/"
+                    >
                       <small>
                         <i class="fas fa-external-link-alt"></i>
                       </small>
