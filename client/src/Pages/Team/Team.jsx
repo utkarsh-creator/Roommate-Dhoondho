@@ -130,7 +130,7 @@ const Team = () => {
                   </p>
 
                   <div class="flex justify-center  gap-4">
-                    <a
+                    {/* <a
                       href="#facebook"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
                     >
@@ -149,14 +149,14 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                     <a
                       href="#instagram"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
                     >
                       <img
                         src="./image/inicon.png"
-                        alt=""
+                        alt="https://www.instagram.com/utkarshtyagi07/"
                         style={{ height: "32px", width: "32px" }}
                       />
                     </a>
@@ -166,7 +166,7 @@ const Team = () => {
                     >
                       <img
                         src="./image/xicon.png"
-                        alt=""
+                        alt="https://www.linkedin.com/in/utkarsh-tyagi-/"
                         style={{ height: "32px", width: "32px" }}
                       />
                     </a>
@@ -185,14 +185,22 @@ const Team = () => {
                 </div>
                 <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
-                    Ayush Patil
+                    Ayush Patil{" "}
+                      <a
+                        target="_blank"
+                        href="/"
+                      >
+                        <small>
+                          <i class="fas fa-external-link-alt"></i>
+                        </small>
+                      </a>
                   </h4>
                   <p class="pb-2 mb-1 block Inter-Regular text-s leading-relaxed  text-[#3E3E59] ">
                     Design Lead
                   </p>
 
                   <div class="flex justify-center  gap-4">
-                    <a
+                    {/* <a
                       href="#facebook"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
                     >
@@ -201,8 +209,8 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
-                    <a
+                    </a> */}
+                    {/* <a
                       href="#twitter"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-light-blue-600 to-light-blue-400 bg-clip-text"
                     >
@@ -211,7 +219,7 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                     <a
                       href="#instagram"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
@@ -272,7 +280,7 @@ const Team = () => {
                   </p>
 
                   <div class="flex justify-center  gap-4">
-                    <a
+                    {/* <a
                       href="https://www.facebook.com/profile.php?id=100068947241423"
                       target="_blank"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
@@ -282,7 +290,7 @@ const Team = () => {
                         alt="Facebook"
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                     <a
                       href="https://www.instagram.com/sdeysocial/"
                       target="_blank"
@@ -305,7 +313,7 @@ const Team = () => {
                         style={{ height: "32px", width: "32px" }}
                       />
                     </a>
-                    <a
+                    {/* <a
                       href="https://www.twitter.com/sdeysocial/"
                       target="_blank"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
@@ -315,7 +323,7 @@ const Team = () => {
                         alt="Twitter"
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               </div>
@@ -346,7 +354,7 @@ const Team = () => {
                   </p>
 
                   <div class="flex justify-center  gap-4">
-                    <a
+                    {/* <a
                       href="#facebook"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
                     >
@@ -355,7 +363,7 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                     <a
                       href="https://www.instagram.com/harshitpg/"
                       target="_blank"
@@ -410,7 +418,7 @@ const Team = () => {
                   </p>
 
                   <div class="flex justify-center   gap-4">
-                    <a
+                    {/* <a
                       href="#facebook"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed justify-center items-center"
                     >
@@ -429,7 +437,7 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                     <a
                       href="#instagram"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
