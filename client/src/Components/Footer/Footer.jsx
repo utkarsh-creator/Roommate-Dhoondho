@@ -21,7 +21,7 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <div className="contactimages">
+            {/* <div className="contactimages">
               <div className="contactimg">
                 <img
                   src="./image/fblogo.png"
@@ -50,7 +50,7 @@ const Footer = () => {
                   style={{ width: "100%", height: "100%" }}
                 ></img>
               </div>
-            </div>
+            </div> */}
           </div>
           <div>
             <h6 className="footer__title">More Info</h6>
