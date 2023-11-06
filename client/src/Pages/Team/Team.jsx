@@ -139,7 +139,7 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                     <a
                       href="#twitter"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-light-blue-600 to-light-blue-400 bg-clip-text"
@@ -149,7 +149,7 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a> */}
+                    </a>
                     <a
                       href="#instagram"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
@@ -160,7 +160,7 @@ const Team = () => {
                         style={{ height: "32px", width: "32px" }}
                       />
                     </a>
-                    <a
+                    {/* <a
                       href="#instagram"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
                     >
@@ -169,7 +169,7 @@ const Team = () => {
                         alt="https://www.linkedin.com/in/utkarsh-tyagi-/"
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               </div>
@@ -427,7 +427,7 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                     <a
                       href="#twitter"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-light-blue-600 to-light-blue-400 bg-clip-text"
@@ -437,7 +437,7 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a> */}
+                    </a>
                     <a
                       href="#instagram"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
@@ -448,7 +448,7 @@ const Team = () => {
                         style={{ height: "32px", width: "32px" }}
                       />
                     </a>
-                    <a
+                    {/* <a
                       href="#instagram"
                       class="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text"
                     >
@@ -457,7 +457,7 @@ const Team = () => {
                         alt=""
                         style={{ height: "32px", width: "32px" }}
                       />
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               </div>
