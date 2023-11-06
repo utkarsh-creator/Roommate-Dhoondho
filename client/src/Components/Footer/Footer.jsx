@@ -8,11 +8,11 @@ const Footer = () => {
       <div className="footer__container">
         <div className="footer__top">
           <div>
-            <h6 className="footer__title">Need Help</h6>
+            <h6 className="footer__title">Contact Us</h6>
             <ul className="footer__list">
               <li className="footer__list-item">
                 <a href="" className="footer__list-link">
-                  Contact Us
+                  roommate.dhoondho@gmail.com
                 </a>
               </li>
               <li className="footer__list-item">
