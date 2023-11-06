@@ -11,7 +11,7 @@ const Footer = () => {
             <h6 className="footer__title">Contact Us</h6>
             <ul className="footer__list">
               <li className="footer__list-item">
-                <a href="mailto:roommate.dhoondho@gmail.com subject=test&body=this+is+a+test" className="footer__list-link">
+                <a href="mailto:roommate.dhoondho@gmail.com?subject=Query&body=Help" className="footer__list-link">
                   Gmail
                 </a>
               </li>
