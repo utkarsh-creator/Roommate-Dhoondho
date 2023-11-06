@@ -1,14 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "../../Components/NavBar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "./Team.css";
-import { useSelector } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
+
 
 const Team = () => {
   const user = useSelector((state) => state.authReducer.authData);
   console.log("user", user);
-  return (
+  return(
     <>
       <Navbar />
 
@@ -34,12 +35,12 @@ const Team = () => {
             </div>
           </div>
         </div>
-        <div className="teamlist">
+        {/* <div className="teamlist">
           <div class="flex flex-col items-center text-gray-700 bg-white shadow-md w-[15rem] h-[18rem] rounded-xl bg-clip-border">
             <div class=" bg-sky-500  text-blue-700 bg-white w-[15rem] h-[11rem] rounded-t-xl bg-clip-border">
               <img src="/img/team-3.jpg" alt="" />
             </div>
-            {/* <div class="p-2 text-center w-[15rem] h-[7rem]">
+            <div class="p-2 text-center w-[15rem] h-[7rem]">
               <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
                 Jayakumar S
               </h4>
