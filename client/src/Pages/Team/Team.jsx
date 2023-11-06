@@ -411,7 +411,15 @@ const Team = () => {
                 </div>
                 <div class="p-2 text-center w-[15rem] h-[7rem]">
                   <h4 class="block  mb-1 Inter-Semi-Bold text-m font-[600] leading-snug tracking-normal text-[#282828]">
-                    Nitish Kumar
+                    Nitish Kumar{" "}
+                      <a
+                        target="_blank"
+                        href="/"
+                      >
+                        <small>
+                          <i class="fas fa-external-link-alt"></i>
+                        </small>
+                      </a>
                   </h4>
                   <p class="pb-2 mb-1 block Inter-Regular text-s leading-relaxed  text-[#3E3E59] ">
                     Frontend Devloper
