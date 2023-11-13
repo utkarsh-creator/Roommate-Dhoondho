@@ -6,7 +6,8 @@ import Modal2 from "../Modal/Modal2";
 import { toast } from "react-toastify";
 
 function DisplayRoomListingCard() {
-  const { showModal2, selectRoomDetail } = useContext(ListingContext);
+  const { showModal2, selectRoomDetail, selectRoomEmail, selectRoomPhone } =
+    useContext(ListingContext);
   const profileData = JSON.parse(localStorage.getItem("profile"));
   const [rooms, setRooms] = useState([]);
 
@@ -49,7 +50,7 @@ function DisplayRoomListingCard() {
           data: requestBody,
         }
       );
-        toast.success("Room deleted successfully!");
+      toast.success("Room deleted successfully!");
       // console.log("Room deleted:", response);
       setRooms((prevRooms) => prevRooms.filter((room) => room._id !== room_id));
     } catch (error) {
@@ -64,19 +65,21 @@ function DisplayRoomListingCard() {
           <div className="cards">
             <div className="main-card">
               <div className="card-details">
-              <div
-                className="card-img"
-                style={{
-                  backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/40/849/87/anime-girls-wallpaper-preview.jpg')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  // width: '132px',
-                  // height: '158px',
-                }}
-              ></div>
+                <div
+                  className="card-img"
+                  style={{
+                    backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/40/849/87/anime-girls-wallpaper-preview.jpg')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    // width: '132px',
+                    // height: '158px',
+                  }}
+                ></div>
                 <div className="card-info">
                   <div className="card-informatios">
-                    <div className="card-name">{room.preferredBlock} Block Posting</div>
+                    <div className="card-name">
+                      {room.preferredBlock} Block Posting
+                    </div>
                     <div
                       className="card-add"
                       onClick={() => deleteRoom(room._id)}
@@ -126,10 +129,16 @@ function DisplayRoomListingCard() {
                 <hr />
               </div>
               <div className="card-habits-section">
-                <div className="card-habit">For Description - Click on the button</div>
+                <div className="card-habit">
+                  For Description - Click on the button
+                </div>
                 <div
                   className="card-habit-details"
-                  onClick={() => selectRoomDetail(room.desc)}
+                  onClick={() => {
+                    selectRoomDetail(room.desc);
+                    selectRoomPhone(room.phone);
+                    selectRoomEmail(room.username);
+                  }}
                 >
                   <div>
                     <img

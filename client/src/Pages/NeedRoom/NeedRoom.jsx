@@ -141,13 +141,13 @@ function NeedRoom() {
 
   function countCharacters(str) {
     return str.replace(/\s/g, "").length;
-  }    
+  }
 
   async function needRoomSubmitHandler() {
     if (!validateNeedRoomForm()) {
       return;
     }
-  
+
     try {
       let userId = user?.user?._id;
       const requestData = {
@@ -158,13 +158,15 @@ function NeedRoom() {
         `https://roommate-finder-theta.vercel.app/room/my/${userId}`,
         requestData
       );
-  
+
       // Check the number of existing room postings
       const numberOfRoomPosts = response.data.length;
-  
+
       // If the user has 7 or more room postings, prevent form submission
       if (numberOfRoomPosts >= 7) {
-        toast.error("You cannot create more than 7 room postings. Try deleting one of your existing room postings.");
+        toast.error(
+          "You cannot create more than 7 room postings. Try deleting one of your existing room postings."
+        );
         return;
       }
 
@@ -172,7 +174,7 @@ function NeedRoom() {
         toast.error("Description should not exceed 1000 characters.");
         return;
       }
-  
+
       let requestBody = {
         userId: userId,
         username: profileData.user.username,
@@ -184,12 +186,12 @@ function NeedRoom() {
         year: needRoomForm?.year,
         desc: needRoomForm?.description,
       };
-  
+
       let result = await axios.post(
         `https://roommate-finder-theta.vercel.app/room/${userId}`,
         requestBody
       );
-  
+
       // console.log("API Response:", result.data);
       toast.success("Room created successfully!");
       navigate("/home");
@@ -197,7 +199,7 @@ function NeedRoom() {
       toast.error("Error creating room.");
       // console.error("API Error:", error);
     }
-  }  
+  }
 
   async function needRoomMateSubmitHandler() {
     if (!validateNeedRoomMateForm()) {
@@ -226,13 +228,15 @@ function NeedRoom() {
         `https://roommate-finder-theta.vercel.app/roommate/my/${userId}`,
         requestData
       );
-  
+
       // Check the number of existing roommate postings
       const numberOfRoommatePosts = response.data.length;
-  
+
       // If the user has 7 or more roommate postings, prevent form submission
       if (numberOfRoommatePosts >= 7) {
-        toast.error("You cannot create more than 7 roommate postings. Try deleting one of your existing roommate postings.");
+        toast.error(
+          "You cannot create more than 7 roommate postings. Try deleting one of your existing roommate postings."
+        );
         return;
       }
 
@@ -240,7 +244,7 @@ function NeedRoom() {
         toast.error("Description should not exceed 1000 characters.");
         return;
       }
-  
+
       // Proceed with form submission if the user has less than 7 roommate postings
       let result = await axios.post(
         `https://roommate-finder-theta.vercel.app/roommate/${userId}`,
@@ -263,12 +267,16 @@ function NeedRoom() {
       toast.error("Plase enter your rank");
       return false;
     } else if (
-      !needRoomForm["bedType"] || 
+      !needRoomForm["bedType"] ||
       !["1", "2", "3", "4", "6", "8"].includes(needRoomForm["bedType"])
-      ) {
+    ) {
       toast.error("Please enter valid bed type (1, 2, 3, 4, 6, 8)");
       return false;
-    } else if (!needRoomForm["contactNumber"] || !indianNumberRegex.test(needRoomForm["contactNumber"]) || needRoomForm["contactNumber"].length !== 10) {
+    } else if (
+      !needRoomForm["contactNumber"] ||
+      !indianNumberRegex.test(needRoomForm["contactNumber"]) ||
+      needRoomForm["contactNumber"].length !== 10
+    ) {
       toast.error("Please enter a valid 10-digit Contact number");
       return false;
     } else if (!needRoomForm["year"]) {
@@ -324,12 +332,17 @@ function NeedRoom() {
     if (!needRoomMateForm["rank"]) {
       toast.error("Please enter your rank");
       return false;
-    } else if (!needRoomMateForm["noOfBeds"]
-    || !["1", "2", "3", "4", "6", "8"].includes(needRoomMateForm["noOfBeds"])
+    } else if (
+      !needRoomMateForm["noOfBeds"] ||
+      !["1", "2", "3", "4", "6", "8"].includes(needRoomMateForm["noOfBeds"])
     ) {
       toast.error("Please enter a valid number of beds (1, 2, 3, 4, 6, 8)");
       return false;
-    } else if (!needRoomMateForm["contactNumber"] || !indianNumberRegex.test(needRoomMateForm["contactNumber"]) || needRoomMateForm["contactNumber"].length !== 10) {
+    } else if (
+      !needRoomMateForm["contactNumber"] ||
+      !indianNumberRegex.test(needRoomMateForm["contactNumber"]) ||
+      needRoomMateForm["contactNumber"].length !== 10
+    ) {
       toast.error("Please enter a valid 10-digit Contact number");
       return false;
     } else if (
@@ -431,276 +444,282 @@ function NeedRoom() {
         </div>
         {/* form */}
         {showPlaceholder ? (
-            <div align="center"><Alert severity="warning">
+          <div align="center">
+            <Alert severity="warning">
               Please complete your profile before using this application.
-            </Alert><br/><p>If you face any problem, please report to us at<br/>mozillavit@gmail.com</p></div>
-          ) : (
-          needRoom ? (
-            <div className="w-[100%]">
-              <h1 className="mb-4 mt-5">Looking for Room</h1>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap:4  md:gap:4 lg:gap-8">
-                <div
-                  style={{ gridAutoRows: "120px" }}
-                  className="grid grid-cols-1 items-center"
-                >
-                  <div className="flex flex-col mb-6 md:mr-4">
-                    <span>Your Rank *</span>
-                    <input
-                      name="rank"
-                      value={needRoomForm["rank"]}
-                      onChange={needRoomFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
-                  <div className="flex flex-col mb-6 md:mr-4">
-                    <span>Prefered Bed Type*</span>
-                    <input
-                      name="bedType"
-                      value={needRoomForm["bedType"]}
-                      onChange={needRoomFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
-                  <div className="flex flex-col mb-6 md:mr-4">
-                    <span>Contact Number*</span>
-                    <input
-                      name="contactNumber"
-                      value={needRoomForm["contactNumber"]}
-                      onChange={needRoomFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
-                  <div className="flex md:hidden flex-col mb-6 ">
-                    <span>Year*</span>
-                    <input
-                      name="year"
-                      value={needRoomForm["year"]}
-                      onChange={needRoomFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
+            </Alert>
+            <br />
+            <p>
+              If you face any problem, please report to us at
+              <br />
+              mozillavit@gmail.com
+            </p>
+          </div>
+        ) : needRoom ? (
+          <div className="w-[100%]">
+            <h1 className="mb-4 mt-5">Looking for Room</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap:4  md:gap:4 lg:gap-8">
+              <div
+                style={{ gridAutoRows: "120px" }}
+                className="grid grid-cols-1 items-center"
+              >
+                <div className="flex flex-col mb-6 md:mr-4">
+                  <span>Your Rank *</span>
+                  <input
+                    name="rank"
+                    value={needRoomForm["rank"]}
+                    onChange={needRoomFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
                 </div>
-                <div
-                  style={{ gridAutoRows: "120px" }}
-                  className="grid grid-cols-1 items-center"
-                >
-                  <div className="containerr max-h-[80px]">
-                    <div className="label">Prefered Block*</div>
-                    <div className="flex gap-6">
-                      <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
-                        <select
-                          name="prefferedBlocks"
-                          value={needRoomForm["preferedBlocks"][0]}
-                          onChange={(e) => needRoomFormOnChangeHandler(e, 0)}
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
-                        >
-                          {blocks.map((block) => (
-                            <option key={block} value={block}>
-                              {block}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+                <div className="flex flex-col mb-6 md:mr-4">
+                  <span>Prefered Bed Type*</span>
+                  <input
+                    name="bedType"
+                    value={needRoomForm["bedType"]}
+                    onChange={needRoomFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
+                <div className="flex flex-col mb-6 md:mr-4">
+                  <span>Contact Number*</span>
+                  <input
+                    name="contactNumber"
+                    value={needRoomForm["contactNumber"]}
+                    onChange={needRoomFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
+                <div className="flex md:hidden flex-col mb-6 ">
+                  <span>Year*</span>
+                  <input
+                    name="year"
+                    value={needRoomForm["year"]}
+                    onChange={needRoomFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
+              </div>
+              <div
+                style={{ gridAutoRows: "120px" }}
+                className="grid grid-cols-1 items-center"
+              >
+                <div className="containerr max-h-[80px]">
+                  <div className="label">Prefered Block*</div>
+                  <div className="flex gap-6">
+                    <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomForm["preferedBlocks"][0]}
+                        onChange={(e) => needRoomFormOnChangeHandler(e, 0)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
+                    </div>
 
-                      <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
-                        <select
-                          name="prefferedBlocks"
-                          value={needRoomForm["preferedBlocks"][1]}
-                          onChange={(e) => needRoomFormOnChangeHandler(e, 1)}
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
-                        >
-                          {blocks.map((block) => (
-                            <option key={block} value={block}>
-                              {block}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomForm["preferedBlocks"][1]}
+                        onChange={(e) => needRoomFormOnChangeHandler(e, 1)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
+                    </div>
 
-                      <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
-                        <select
-                          name="prefferedBlocks"
-                          value={needRoomForm["preferedBlocks"][2]}
-                          onChange={(e) => needRoomFormOnChangeHandler(e, 2)}
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
-                        >
-                          {blocks.map((block) => (
-                            <option key={block} value={block}>
-                              {block}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomForm["preferedBlocks"][2]}
+                        onChange={(e) => needRoomFormOnChangeHandler(e, 2)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
-                  <div className="hidden md:flex flex-col mb-6 ">
-                    <span>Year*</span>
-                    <input
-                      name="year"
-                      value={needRoomForm["year"]}
-                      onChange={needRoomFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
                 </div>
-              </div>
-              <div className="containerr w-[100%] mb-6 mt-6 md:mt-2">
-                <div className="label">Description</div>
-                <textarea
-                  rows="3"
-                  className="w-[100%] focus:border-none outline-none"
-                  name="description"
-                  value={needRoomForm["description"]}
-                  onChange={needRoomFormOnChangeHandler}
-                ></textarea>
-              </div>
-              <div className="w-[100%] flex justify-center mb-6 mt-6">
-                <button
-                  onClick={needRoomSubmitHandler}
-                  className="mx-auto bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start disabled:hover:cursor-not-allowed"
-                >
-                  {" "}
-                  Submit
-                </button>
+                <div className="hidden md:flex flex-col mb-6 ">
+                  <span>Year*</span>
+                  <input
+                    name="year"
+                    value={needRoomForm["year"]}
+                    onChange={needRoomFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
               </div>
             </div>
-          ) : (
-            <div className="w-[100%]">
-              <h1 className="mb-4 mt-5">Have Room & looking for Roommate</h1>
-              <div className="grid grid-cols-1 md:grid-cols-2  md:gap:4 lg:gap-8">
-                <div
-                  style={{ gridAutoRows: "120px" }}
-                  className="grid grid-cols-1 items-center"
-                >
-                  <div className="flex flex-col mb-6">
-                    <span>Your Rank *</span>
-                    <input
-                      name="rank"
-                      value={needRoomMateForm["rank"]}
-                      onChange={needRoomMateFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
-                  <div className="flex flex-col mb-6">
-                    <span>No of Beds*</span>
-                    <input
-                      name="noOfBeds"
-                      value={needRoomMateForm["noOfBeds"]}
-                      onChange={needRoomMateFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
-                  <div className="flex flex-col mb-6">
-                    <span>Contact Number*</span>
-                    <input
-                      name="contactNumber"
-                      value={needRoomMateForm["contactNumber"]}
-                      onChange={needRoomMateFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
-                  <div className="flex md:hidden flex-col mb-6 ">
-                    <span>Year*</span>
-                    <input
-                      name="year"
-                      value={needRoomMateForm["year"]}
-                      onChange={needRoomMateFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
+            <div className="containerr w-[100%] mb-6 mt-6 md:mt-2">
+              <div className="label">Description</div>
+              <textarea
+                rows="3"
+                className="w-[100%] focus:border-none outline-none"
+                name="description"
+                value={needRoomForm["description"]}
+                onChange={needRoomFormOnChangeHandler}
+              ></textarea>
+            </div>
+            <div className="w-[100%] flex justify-center mb-6 mt-6">
+              <button
+                onClick={needRoomSubmitHandler}
+                className="mx-auto bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start disabled:hover:cursor-not-allowed"
+              >
+                {" "}
+                Submit
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="w-[100%]">
+            <h1 className="mb-4 mt-5">Have Room & looking for Roommate</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2  md:gap:4 lg:gap-8">
+              <div
+                style={{ gridAutoRows: "120px" }}
+                className="grid grid-cols-1 items-center"
+              >
+                <div className="flex flex-col mb-6">
+                  <span>Your Rank *</span>
+                  <input
+                    name="rank"
+                    value={needRoomMateForm["rank"]}
+                    onChange={needRoomMateFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
                 </div>
-                <div
-                  style={{ gridAutoRows: "120px" }}
-                  className="grid grid-cols-1 items-center"
-                >
-                  <div className="containerr max-h-[80px]">
-                    <div className="label">Prefered Block*</div>
-                    <div className="flex gap-6">
-                      <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
-                        <select
-                          name="prefferedBlocks"
-                          value={needRoomMateForm["preferedBlocks"][0]}
-                          onChange={(e) => needRoomMateFormOnChangeHandler(e, 0)}
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
-                        >
-                          {blocks.map((block) => (
-                            <option key={block} value={block}>
-                              {block}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+                <div className="flex flex-col mb-6">
+                  <span>No of Beds*</span>
+                  <input
+                    name="noOfBeds"
+                    value={needRoomMateForm["noOfBeds"]}
+                    onChange={needRoomMateFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
+                <div className="flex flex-col mb-6">
+                  <span>Contact Number*</span>
+                  <input
+                    name="contactNumber"
+                    value={needRoomMateForm["contactNumber"]}
+                    onChange={needRoomMateFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
+                <div className="flex md:hidden flex-col mb-6 ">
+                  <span>Year*</span>
+                  <input
+                    name="year"
+                    value={needRoomMateForm["year"]}
+                    onChange={needRoomMateFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
+              </div>
+              <div
+                style={{ gridAutoRows: "120px" }}
+                className="grid grid-cols-1 items-center"
+              >
+                <div className="containerr max-h-[80px]">
+                  <div className="label">Prefered Block*</div>
+                  <div className="flex gap-6">
+                    <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomMateForm["preferedBlocks"][0]}
+                        onChange={(e) => needRoomMateFormOnChangeHandler(e, 0)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
+                    </div>
 
-                      <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
-                        <select
-                          name="prefferedBlocks"
-                          value={needRoomMateForm["preferedBlocks"][1]}
-                          onChange={(e) => needRoomMateFormOnChangeHandler(e, 1)}
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
-                        >
-                          {blocks.map((block) => (
-                            <option key={block} value={block}>
-                              {block}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomMateForm["preferedBlocks"][1]}
+                        onChange={(e) => needRoomMateFormOnChangeHandler(e, 1)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
+                    </div>
 
-                      <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
-                        <select
-                          name="prefferedBlocks"
-                          value={needRoomMateForm["preferedBlocks"][2]}
-                          onChange={(e) => needRoomMateFormOnChangeHandler(e, 2)}
-                          className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
-                        >
-                          {blocks.map((block) => (
-                            <option key={block} value={block}>
-                              {block}
-                            </option>
-                            //   <option>{`${block}-Block`}</option>
-                          ))}
-                        </select>
-                      </div>
+                    <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
+                      <select
+                        name="prefferedBlocks"
+                        value={needRoomMateForm["preferedBlocks"][2]}
+                        onChange={(e) => needRoomMateFormOnChangeHandler(e, 2)}
+                        className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
+                      >
+                        {blocks.map((block) => (
+                          <option key={block} value={block}>
+                            {block}
+                          </option>
+                          //   <option>{`${block}-Block`}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
-                  <div className="hidden md:flex flex-col mb-6 ">
-                    <span>Year*</span>
-                    <input
-                      name="year"
-                      value={needRoomMateForm["year"]}
-                      onChange={needRoomMateFormOnChangeHandler}
-                      className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                    />
-                  </div>
+                </div>
+                <div className="hidden md:flex flex-col mb-6 ">
+                  <span>Year*</span>
+                  <input
+                    name="year"
+                    value={needRoomMateForm["year"]}
+                    onChange={needRoomMateFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
                 </div>
               </div>
-              <div className="containerr w-[100%] mb-6 mt-6 md:mt-2">
-                <div className="label">Description</div>
-                <textarea
-                  rows="3"
-                  className="w-[100%] focus:border-none outline-none"
-                  name="description"
-                  value={needRoomMateForm["description"]}
-                  onChange={needRoomMateFormOnChangeHandler}
-                ></textarea>
-              </div>
-              <div className="w-[100%] flex justify-center mb-6 mt-6">
-                <button
-                  onClick={needRoomMateSubmitHandler}
-                  className="mx-auto bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start disabled:hover:cursor-not-allowed"
-                >
-                  {" "}
-                  Submit
-                </button>
-              </div>
             </div>
-          )
-          )}
+            <div className="containerr w-[100%] mb-6 mt-6 md:mt-2">
+              <div className="label">Description</div>
+              <textarea
+                rows="3"
+                className="w-[100%] focus:border-none outline-none"
+                name="description"
+                value={needRoomMateForm["description"]}
+                onChange={needRoomMateFormOnChangeHandler}
+              ></textarea>
+            </div>
+            <div className="w-[100%] flex justify-center mb-6 mt-6">
+              <button
+                onClick={needRoomMateSubmitHandler}
+                className="mx-auto bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start disabled:hover:cursor-not-allowed"
+              >
+                {" "}
+                Submit
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
     </Fragment>

@@ -6,7 +6,12 @@ import { ListingContext } from "../../Context/listing-context";
 import { toast } from "react-toastify";
 
 function DisplayRoommateListingCard() {
-  const { showModal, selectRoommateDetail } = useContext(ListingContext);
+  const {
+    showModal,
+    selectRoommateDetail,
+    selectRoommateEmail,
+    selectRoommatePhone,
+  } = useContext(ListingContext);
   const profileData = JSON.parse(localStorage.getItem("profile"));
   const [roommates, setRoommates] = useState([]);
 
@@ -67,16 +72,16 @@ function DisplayRoommateListingCard() {
           <span className="cards">
             <div className="main-card">
               <div className="card-details">
-              <div
-                className="card-img"
-                style={{
-                  backgroundImage: `url('https://static01.nyt.com/images/2020/04/19/magazine/19Ethicist/19Ethicist-jumbo.jpg')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  // width: '132px',
-                  // height: '158px',
-                }}
-              ></div>
+                <div
+                  className="card-img"
+                  style={{
+                    backgroundImage: `url('https://static01.nyt.com/images/2020/04/19/magazine/19Ethicist/19Ethicist-jumbo.jpg')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    // width: '132px',
+                    // height: '158px',
+                  }}
+                ></div>
                 <div className="card-info">
                   <div className="card-informatios">
                     <div className="card-name">Roommate Posting</div>
@@ -135,10 +140,16 @@ function DisplayRoommateListingCard() {
                 <hr />
               </div>
               <div className="card-habits-section">
-                <div className="card-habit">For Description - Click on the button</div>
+                <div className="card-habit">
+                  For Description - Click on the button
+                </div>
                 <div
                   className="card-habit-details"
-                  onClick={() => selectRoommateDetail(roommate.desc)}
+                  onClick={() => {
+                    selectRoommateDetail(roommate.desc);
+                    selectRoommatePhone(roommate.phone);
+                    selectRoommateEmail(roommate.username);
+                  }}
                 >
                   <div>
                     <img
