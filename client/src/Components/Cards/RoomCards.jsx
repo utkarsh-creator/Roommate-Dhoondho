@@ -33,8 +33,8 @@ const RoomCards = ({ item }) => {
                   <div className="card-preference-content">{prefbed}</div>
                 </div>
                 <div className="card-bed">
-                  <div className="card-preference-title">Remaining</div>
-                  <div className="card-preference-content">{remaining}</div>
+                  {/* <div className="card-preference-title">Remaining</div>
+                  <div className="card-preference-content">{remaining}</div> */}
                 </div>
               </div>
               <div className="card-downers2">

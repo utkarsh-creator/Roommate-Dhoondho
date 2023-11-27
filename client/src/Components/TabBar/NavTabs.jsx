@@ -493,7 +493,7 @@ function DisplayRoommateCard() {
                               </div>
                               <div className="card-bed">
                                 <div className="card-preference-title">
-                                  Prefered Bed Type
+                                  Remaining
                                 </div>
                                 <div className="card-preference-content">
                                   {post.preferredBed}
@@ -633,12 +633,12 @@ function DisplayRoommateCard() {
                                 </div>
                               </div>
                               <div className="card-bed">
-                                <div className="card-preference-title">
+                                {/* <div className="card-preference-title">
                                   Remaining
                                 </div>
                                 <div className="card-preference-content">
                                   {post.preferredBed}
-                                </div>
+                                </div> */}
                               </div>
                             </div>
                             <div className="card-downers2">
