@@ -449,7 +449,8 @@ function NeedRoom() {
         {showPlaceholder ? (
           <div align="center">
             <Alert severity="warning">
-              Please complete your profile before using this application.
+              Please complete your profile before using this application. If you have already completed the profile
+              and still see this message, please goto your profile and click on "Submit" button again.
             </Alert>
             <br />
             <p>
