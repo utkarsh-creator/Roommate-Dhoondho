@@ -22,6 +22,7 @@ const initialNeedRoomFormState = {
   contactNumber: "",
   year: "1",
   description: "",
+  remaining: "",
 };
 const initialNeedRoomMateFormState = {
   rank: "",
@@ -31,7 +32,6 @@ const initialNeedRoomMateFormState = {
   contactNumber: "",
   year: "1",
   description: "",
-  remaining: "",
 };
 
 function NeedRoom() {
@@ -186,6 +186,7 @@ function NeedRoom() {
         phone: needRoomForm?.contactNumber,
         year: needRoomForm?.year,
         desc: needRoomForm?.description,
+        // remaining:needRoomForm?.remaining
       };
 
       let result = await axios.post(
@@ -218,7 +219,6 @@ function NeedRoom() {
       phone: needRoomMateForm?.contactNumber,
       year: needRoomMateForm?.year,
       desc: needRoomMateForm?.description,
-      remaining: needRoomMateForm?.remaining,
     };
 
     try {
@@ -567,6 +567,15 @@ function NeedRoom() {
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
                 </div>
+                <div className="flex flex-col mb-6 md:mr-4">
+                  <span>Remaining</span>
+                  <input
+                    name="remaining"
+                    value={needRoomForm["remaining"]}
+                    onChange={needRoomFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
               </div>
             </div>
             <div className="containerr w-[100%] mb-6 mt-6 md:mt-2">
@@ -695,15 +704,6 @@ function NeedRoom() {
                   <input
                     name="year"
                     value={needRoomMateForm["year"]}
-                    onChange={needRoomMateFormOnChangeHandler}
-                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                  />
-                </div>
-                <div className="flex flex-col mb-6 md:mr-4">
-                  <span>Remaining</span>
-                  <input
-                    name="remaining"
-                    value={needRoomMateForm["remaining"]}
                     onChange={needRoomMateFormOnChangeHandler}
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
