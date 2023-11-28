@@ -74,9 +74,49 @@ function NeedRoom() {
         ]);
       }
     } else {
-      setShowPlaceholder(true);
+      // If user's gender is not present in local storage, fetch it from the API
+      const fetchUserGender = async () => {
+        try {
+          const userId = profileData.user._id;
+          const response = await axios.get(
+            `https://roommate-finder-theta.vercel.app/user/${userId}`
+          );
+          const userGender = response.data.gender;
+
+          if (userGender === "F") {
+            setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
+          } else {
+            setBlocks([
+              "A",
+              "B",
+              "B ANNEX",
+              "C",
+              "D",
+              "D ANNEX",
+              "E",
+              "F",
+              "G",
+              "H",
+              "J",
+              "K",
+              "L",
+              "M",
+              "M ANNEX",
+              "N",
+              "P",
+              "Q",
+              "R",
+            ]);
+          }
+        } catch (error) {
+          console.error("Error fetching user gender:", error);
+          setShowPlaceholder(true);
+        }
+      };
+
+      fetchUserGender();
     }
-  }, [user]);
+  }, [profileData]);
 
   function needRoomClickHandler(trigger) {
     if (trigger === "room") {
@@ -219,6 +259,7 @@ function NeedRoom() {
       phone: needRoomMateForm?.contactNumber,
       year: needRoomMateForm?.year,
       desc: needRoomMateForm?.description,
+      // remaining:needRoomMateForm?.remaining
     };
 
     try {
