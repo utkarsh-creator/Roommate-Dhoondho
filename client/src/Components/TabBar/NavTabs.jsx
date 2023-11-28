@@ -2,13 +2,16 @@ import React, { Component, useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./styles.css";
+import "./paginationStyles.css";
 import "../Cards/Cards.css";
 import { ListingContext } from "../../Context/listing-context";
 import Modal from "../../Components/Modal/Modal";
 import Modal2 from "../Modal/Modal2";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { toast } from "react-toastify";
+import ReactPaginate from "react-paginate";
 
 function DisplayRoommateCard() {
   const profileData = JSON.parse(localStorage.getItem("profile"));
@@ -17,6 +20,8 @@ function DisplayRoommateCard() {
   const user = useSelector((state) => state.authReducer.authData);
   const [roommatePosts, setRoommatePosts] = useState([]);
   const [roomPosts, setRoomPosts] = useState([]);
+  const [roomLengthPosts, setroomLengthPosts] = useState([]);
+  const [roommateLengthPosts, setroommateLengthPosts] = useState([]);
   const [filteredRoommatePosts, setFilteredRoommatePosts] = useState([]);
   const [filteredRoomPosts, setFilteredRoomPosts] = useState([]);
   const [userGender, setUserGender] = useState([]);
@@ -26,7 +31,16 @@ function DisplayRoommateCard() {
   const [selectedGender, setSelectedGender] = useState("All");
   const [selectedBlock, setSelectedBlock] = useState("All");
   const [selectedYear, setSelectedYear] = useState("All");
-  const [rankOrder, setSelectedRankOrder] = useState("Increasing");
+  const [rankOrder, setSelectedRankOrder] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalPagesroommate, setTotalPagesroommate] = useState(1);
+  const [resetPaginationKey, setResetPaginationKey] = useState(1);
+  const resetPagination = () => {
+    setResetPaginationKey((prevKey) => prevKey + 1);
+  };
+  const perPage = 3; // No of items to be displayed in a page
+  const userGenderAll = profileData.user.gender;
 
   const {
     addToCart2,
@@ -76,15 +90,26 @@ function DisplayRoommateCard() {
   useEffect(() => {
     const fetchRoommateAndRoomCards = async () => {
       try {
+        const roomLengthResponse = await axios.get(
+          `https://roommate-dhoondho-backend-test.vercel.app/room/all?gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+        );
+        const roomLengthPosts = roomLengthResponse.data;
+
+        const roommateLengthResponse = await axios.get(
+          `https://roommate-dhoondho-backend-test.vercel.app/roommate/all?gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+        );
+        const roommateLengthPosts = roommateLengthResponse.data;
+
+        console.log(roommateLengthPosts);
         // Fetch roommate posts in batches
         const roommateResponse = await axios.get(
-          "https://roommate-finder-theta.vercel.app/roommate/all"
+          `https://roommate-dhoondho-backend-test.vercel.app/roommate/all?page=${page}&limit=${perPage}&gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
         );
         const roommatePosts = roommateResponse.data;
 
         // Fetch room posts in batches
         const roomResponse = await axios.get(
-          "https://roommate-finder-theta.vercel.app/room/all"
+          `https://roommate-dhoondho-backend-test.vercel.app/room/all?page=${page}&limit=${perPage}&gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
         );
         const roomPosts = roomResponse.data;
 
@@ -144,7 +169,13 @@ function DisplayRoommateCard() {
 
         setRoommatePosts(roommatePostsWithUserDetails);
         setRoomPosts(roomPostsWithUserDetails);
+        setroomLengthPosts(roomLengthPosts);
+        setroommateLengthPosts(roommateLengthPosts);
         setIsLoading(false);
+        setTotalPages(Math.ceil(roomLengthPosts.length / perPage));
+        setTotalPagesroommate(Math.ceil(roommateLengthPosts.length / perPage));
+        console.log(totalPages);
+        console.log("current:", page);
       } catch (error) {
         console.error(error);
         setIsLoading(false);
@@ -158,7 +189,7 @@ function DisplayRoommateCard() {
       setIsLoading(false);
       setShowPlaceholder(true);
     }
-  }, []);
+  }, [page, selectedBlock, selectedYear, rankOrder]);
 
   const fetchFollowing = () => {
     axios
@@ -194,80 +225,10 @@ function DisplayRoommateCard() {
     setSelectedBlock(block);
     setSelectedYear(year);
     setSelectedRankOrder(rankOrder);
+    resetPagination();
+    setPage(1);
+    console.log("current:", page);
   };
-
-  useEffect(() => {
-    const filterData = () => {
-      // console.log("Selected Gender:", selectedGender);
-      // console.log("Selected Block:", selectedBlock);
-      // console.log("Selected Year:", selectedYear);
-
-      const parseDate = (dateString) => new Date(dateString);
-
-      const filteredRoommateData = roommatePosts
-        .filter((post) => post && post.gender)
-        .filter((post) => {
-          return (
-            //(selectedGender === "All" || post.gender === selectedGender)
-            (selectedGender === userGender || post?.gender === userGender) &&
-            (selectedBlock === "All" ||
-              post?.preferredBlock === selectedBlock) &&
-            (selectedYear === "All" || post?.year === selectedYear)
-          );
-        })
-        .sort((a, b) => parseDate(b.updatedAt) - parseDate(a.updatedAt));
-
-      const filteredRoomData = roomPosts
-        .filter((post) => post && post.gender)
-        .filter((post) => {
-          return (
-            (selectedGender === userGender || post?.gender === userGender) &&
-            (selectedBlock === "All" ||
-              post?.preferredBlock === selectedBlock) &&
-            (selectedYear === "All" || post?.year === selectedYear)
-          );
-        })
-        .sort((a, b) => parseDate(b.updatedAt) - parseDate(a.updatedAt));
-
-      const sortPostsByRank = (posts) => {
-        // console.log("Rank Order:", rankOrder);
-        return posts.sort((a, b) => {
-          if (rankOrder === "Increasing") {
-            return a.rank - b.rank;
-          } else if (rankOrder === "Decreasing") {
-            return b.rank - a.rank;
-          }
-          return 0;
-        });
-      };
-
-      const sortedRoommateData = sortPostsByRank(filteredRoommateData);
-      const sortedRoomData = sortPostsByRank(filteredRoomData);
-
-      // console.log("Filtered Roommate Data:", filteredRoommateData);
-      // console.log("Filtered Room Data:", filteredRoomData);
-      // const combinedData = [...filteredRoommateData, ...filteredRoomData];
-      // setFilteredRoommatePosts(filteredRoommateData);
-      // setFilteredRoomPosts(filteredRoomData);
-      const combinedData = [...sortedRoommateData, ...sortedRoomData];
-      setFilteredRoommatePosts(sortedRoommateData);
-      setFilteredRoomPosts(sortedRoomData);
-    };
-
-    filterData();
-  }, [
-    selectedGender,
-    selectedBlock,
-    selectedYear,
-    rankOrder,
-    roommatePosts,
-    roomPosts,
-  ]);
-
-  // console.log("user data: ", user);
-  // console.log("user specific data: ", profileData);
-  // console.log("User Id:", userId);
-  // console.log("User Gender:", userGender);
 
   async function likeRoommate(otherUserId) {
     try {
@@ -417,7 +378,8 @@ function DisplayRoommateCard() {
               ) : showPlaceholder ? (
                 <div align="center">
                   <Alert severity="warning">
-                    Please complete your profile before using this application.
+                  Please complete your profile before using this application. If you have already completed the profile
+              and still see this message, please goto your profile and click on "Submit" button again.
                   </Alert>
                   <br />
                   <p>
@@ -427,10 +389,7 @@ function DisplayRoommateCard() {
                   </p>
                 </div>
               ) : (
-                (filteredRoommatePosts.length >= 0
-                  ? filteredRoommatePosts
-                  : roommatePosts
-                ).map((post) => (
+                roommatePosts.map((post) => (
                   <div className="each-card" key={post.id}>
                     <span className="cards">
                       <div className="main-card">
@@ -550,6 +509,58 @@ function DisplayRoommateCard() {
                 ))
               )}
             </div>
+            <div
+              style={{
+                justifyContent: "center",
+                padding: 20,
+                boxSizing: "border-box",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              {isLoading && (
+                <div className="loading-indicator-container">
+                  <CircularProgress disableShrink color="primary" size={40} />
+                </div>
+              )}
+              <ReactPaginate
+                activeClassName="active-pagination-button bg-purple text-blue"
+                key={resetPaginationKey}
+                pageCount={totalPagesroommate}
+                pageRangeDisplayed={5}
+                marginPagesDisplayed={2}
+                onPageChange={async (selected) => {
+                  try {
+                    // Set loading to true when pagination changes
+                    setIsLoading(true);
+
+                    // Update the current page
+                    console.log("Page changed to:", selected.selected + 1);
+                    setPage(selected.selected + 1);
+                  } catch (error) {
+                    console.error('Error fetching data:', error);
+                  } finally {
+                    // Set loading back to false when data has been fetched (whether successful or not)
+                    setIsLoading(false);
+                  }
+                }}
+                containerClassName="flex items-center justify-center mt-8 mb-4"
+                nextLabel={
+                  <span className="w-10 h-10 flex items-center justify-center bg-lightGray rounded-md">
+                    <BsChevronRight />
+                  </span>
+                }
+                breakLabel={<span className="mr-4">...</span>}
+                pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-10 h-10 flex items-center justify-center rounded-md mr-4"
+                previousLabel={
+                  <span className="w-10 h-10 flex items-center justify-center bg-lightGray rounded-md mr-4">
+                    <BsChevronLeft />
+                  </span>
+                }
+              />
+            </div>
+
+
           </Tab>
           <Tab label="Tab 2">
             {showModal2 && <Modal2 />}
@@ -561,7 +572,8 @@ function DisplayRoommateCard() {
               ) : showPlaceholder ? (
                 <div align="center">
                   <Alert severity="warning">
-                    Please complete your profile before using this application.
+                  Please complete your profile before using this application. If you have already completed the profile
+              and still see this message, please goto your profile and click on "Submit" button again.
                   </Alert>
                   <br />
                   <p>
@@ -571,10 +583,7 @@ function DisplayRoommateCard() {
                   </p>
                 </div>
               ) : (
-                (filteredRoomPosts.length >= 0
-                  ? filteredRoomPosts
-                  : roomPosts
-                ).map((post) => (
+                roomPosts.map((post) => (
                   <div div className="each-card" key={post.id}>
                     <span className="cards">
                       <div className="main-card">
@@ -691,6 +700,56 @@ function DisplayRoommateCard() {
                 ))
               )}
             </div>
+            <div
+              style={{
+                justifyContent: "center",
+                padding: 20,
+                boxSizing: "border-box",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              {isLoading && (
+                <div className="loading-indicator-container">
+                  <CircularProgress disableShrink color="primary" size={40} />
+                </div>
+              )}
+              <ReactPaginate
+                activeClassName="active-pagination-button bg-purple text-blue"
+                key={resetPaginationKey}
+                pageCount={totalPagesroommate}
+                pageRangeDisplayed={5}
+                marginPagesDisplayed={2}
+                onPageChange={async (selected) => {
+                  try {
+                    // Set loading to true when pagination changes
+                    setIsLoading(true);
+
+                    // Update the current page
+                    console.log("Page changed to:", selected.selected + 1);
+                    setPage(selected.selected + 1);
+                  } catch (error) {
+                    console.error('Error fetching data:', error);
+                  } finally {
+                    // Set loading back to false when data has been fetched (whether successful or not)
+                    setIsLoading(false);
+                  }
+                }}
+                containerClassName="flex items-center justify-center mt-8 mb-4"
+                nextLabel={
+                  <span className="w-10 h-10 flex items-center justify-center bg-lightGray rounded-md">
+                    <BsChevronRight />
+                  </span>
+                }
+                breakLabel={<span className="mr-4">...</span>}
+                pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-10 h-10 flex items-center justify-center rounded-md mr-4"
+                previousLabel={
+                  <span className="w-10 h-10 flex items-center justify-center bg-lightGray rounded-md mr-4">
+                    <BsChevronLeft />
+                  </span>
+                }
+              />
+            </div>
           </Tab>
         </Tabs>
       </div>
@@ -770,7 +829,7 @@ const TabButtons = ({
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/roommatesicon.png" alt="" />
-                        <div className="tab-text"> Roommates Listing</div>
+                        <div className="tab-text">Roommates Listing</div>
                       </div>
                     </span>
                   ) : (
@@ -789,14 +848,14 @@ const TabButtons = ({
                       <div className="roomate-icon">
                         <img src="./image/roommatesicon2.png" alt="" />
                       </div>
-                      <div className="tab-text"> Roommates Listing</div>
+                      <div className="tab-text"> Need Roommates</div>
                     </span>
                   ) : (
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/bed.png" alt="" />
                       </div>
-                      <div className="tab-text">Rooms Listing</div>
+                      <div className="tab-text">Need Rooms</div>
                     </span>
                   )}
                 </React.Fragment>
@@ -816,11 +875,11 @@ const TabButtons = ({
                 )
               }
             >
-              <option hidden value="Rank">
+              <option hidden value="createdAt">
                 Rank
               </option>
-              <option value="Increasing">Increasing</option>
-              <option value="Decreasing">Decreasing</option>
+              <option value="rank,asc">Increasing</option>
+              <option value="rank,desc">Decreasing</option>
             </select>
           </div>
           <div className="custom-select">
