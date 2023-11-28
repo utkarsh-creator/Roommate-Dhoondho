@@ -24,6 +24,16 @@ import Terms from "./Pages/Terms/Terms";
 import Privacy from "./Pages/PrivacyPolicy/Privacy";
 import Team from "./Pages/Team/Team";
 import AboutMFC from "./Pages/AboutMFC/AboutMFC";
+
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+
+if(process.env.NODE_ENV === "production") {
+  disableReactDevTools();
+  console.log = () => {}
+  console.error = () => {}
+  console.debug = () => {}
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
