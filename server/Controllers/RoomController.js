@@ -55,6 +55,7 @@ export const getAllRoom = async (req, res) => {
   }
 };
 
+
 // Update a Room
 export const updateRoom = async (req, res) => {
   const id = req.params.id;
