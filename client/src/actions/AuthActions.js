@@ -6,6 +6,7 @@ export const logIn = (formData, navigate) => async (dispatch) => {
   try {
     const { data } = await AuthApi.logIn(formData);
     dispatch({ type: "AUTH_SUCCESS", data: data });
+    toast.success("Logged in successfully.");
     navigate("../home", { replace: true });
   } catch (error) {
     //console.log(error.response.data);
@@ -21,9 +22,9 @@ export const signUp = (formData, navigate) => async (dispatch) => {
     toast.success("Please verify your email. Verification mail sent.");
     navigate("../", { replace: true });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+    toast.error("Error. Account may already exist.");
     dispatch({ type: "AUTH_FAIL" });
-    throw new Error(error);
   }
 };
 

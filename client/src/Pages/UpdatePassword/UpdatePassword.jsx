@@ -76,6 +76,7 @@ function UpdatePassword() {
     } catch (error) {
       // Handle network error or any other errors
       console.error(error);
+      toast.error("Error updating password.");
     }
   };
 
