@@ -109,7 +109,7 @@ function SignIn() {
           `}
         </script>
       </Helmet>
-      <Header />
+      <Header /> 
       <div className="flex flex-grow h-auto">
         <div
           className="md:inline-block md:w-[45%] bg-cover bg-center"
