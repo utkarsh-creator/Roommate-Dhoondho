@@ -26,6 +26,28 @@ import Team from "./Pages/Team/Team";
 import AboutMFC from "./Pages/AboutMFC/AboutMFC";
 
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+console.log(
+  "Dear Developer,\n\n" +
+  "Thanks for stopping by the console log. If you've stumbled upon any bugs, please report them at https://sdeysocial.canny.io/issue. Together, let's keep this code shipshape for our fellow VITians.\n\n" +
+  "    .---.\n" +
+  "   |o_o |\n" +
+  "   |:_/ |\n" +
+  "  //   \\ \\\n" +
+  " (|     | )\n" +
+  "/'\_   _/`\\\n" +
+  " \___)=(___/"
+);
+
+console.log(
+  "  __  __ ______ _____  __      _______ _______ \n" +
+  " |  \\/  |  ____/ ____| \\ \\    / /_   _|__   __|\n" +
+  " | \\  / | |__ | |       \\ \\  / /  | |    | |   \n" +
+  " | |\\/| |  __|| |        \\ \\/ /   | |    | |   \n" +
+  " | |  | | |   | |____     \\  /   _| |_   | |   \n" +
+  " |_|  |_|_|    \\_____|     \\/   |_____|  |_|   \n" +
+  "                                               \n" +
+  "                                               "
+);
 
 if(process.env.NODE_ENV === "production") {
   disableReactDevTools();
