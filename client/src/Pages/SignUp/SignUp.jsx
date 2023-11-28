@@ -189,7 +189,7 @@ function SignUP() {
                   value={form.password}
                   onChange={formOnChangeHandler}
                   name="password"
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? "password" : ""}
                   className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
                 />
 

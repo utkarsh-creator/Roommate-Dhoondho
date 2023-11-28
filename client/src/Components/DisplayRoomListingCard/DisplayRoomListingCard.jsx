@@ -102,10 +102,10 @@ function DisplayRoomListingCard() {
                       </div>
                     </div>
                     <div className="card-bed">
-                      {/* <div className="card-preference-title">Remaining</div>
+                      <div className="card-preference-title">Remaining</div>
                       <div className="card-preference-content">
                         {room.preferredBed}
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                   <div className="card-downers2">
