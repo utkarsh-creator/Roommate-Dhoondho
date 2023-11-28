@@ -464,7 +464,7 @@ function NeedRoom() {
                 needRoom ? "border-b-2 border-b-[#000] font-[600]" : ""
               } pb-1`}
             >
-              Need Room
+              Need Roommates
             </span>
           </div>
           <div
@@ -481,7 +481,7 @@ function NeedRoom() {
                 !needRoom ? "border-b-2 border-b-[#000] font-[600]" : ""
               } pb-1`}
             >
-              Need Roommates
+              Need Room
             </span>
           </div>
         </div>
@@ -501,7 +501,7 @@ function NeedRoom() {
           </div>
         ) : needRoom ? (
           <div className="w-[100%]">
-            <h1 className="mb-4 mt-5">Looking for Room</h1>
+            <h1 className="mb-4 mt-5">Have Room & looking for Roommate</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap:4  md:gap:4 lg:gap-8">
               <div
                 style={{ gridAutoRows: "120px" }}
@@ -642,7 +642,7 @@ function NeedRoom() {
           </div>
         ) : (
           <div className="w-[100%]">
-            <h1 className="mb-4 mt-5">Have Room & looking for Roommate</h1>
+            <h1 className="mb-4 mt-5">Looking for Room</h1>
             <div className="grid grid-cols-1 md:grid-cols-2  md:gap:4 lg:gap-8">
               <div
                 style={{ gridAutoRows: "120px" }}
