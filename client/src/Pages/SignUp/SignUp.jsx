@@ -69,40 +69,45 @@ function SignUP() {
     return isEmailValid;
   }
 
-  // function validatePassword(password) {
-  //   const passwordRegex =
-  //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-  //   const isPasswordValid = passwordRegex.test(password);
-  //   if (!isPasswordValid) {
-  //     setFormError((prev) => {
-  //       return {
-  //         ...prev,
-  //         password:
-  //           "Password must be at least 8 characters long and include a mix of letters, numbers, and symbols.",
-  //       };
-  //     });
-  //   } else {
-  //     setFormError((prev) => {
-  //       return { ...prev, password: null };
-  //     });
-  //   }
-  //   return isPasswordValid;
-  // }
+  function validatePassword(password) {
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    const isPasswordValid = passwordRegex.test(password);
+    if (!isPasswordValid) {
+      setFormError((prev) => {
+        return {
+          ...prev,
+          password:
+            "Password must be at least 8 characters long and include a mix of letters, numbers, and symbols.",
+        };
+      });
+    } else {
+      setFormError((prev) => {
+        return { ...prev, password: null };
+      });
+    }
+    return isPasswordValid;
+  }
 
-  // async function signUpClickHandler() {
-  //   // setIsVerification(true);
-  //   let data = {
-  //     username: form.email,
-  //     password: form.password,
-  //   };
-  //   dispatch(signUp(data, navigate));
-  //   setForm(initialFormState);
-  // }
+  async function signUpClickHandler() {
+    setIsVerification(true);
+    let data = {
+      username: form.email,
+      password: form.password,
+    };
+    dispatch(signUp(data, navigate));
+    setForm(initialFormState);
+  }
 
   async function signUpClickHandler() {
     const isEmailValid = validateEmail(form.email);
+    const isPasswordValid = validatePassword(form.password);
     if (!isEmailValid) {
       toast.error("Please enter a valid email in the format 'example@vitstudent.ac.in'");
+      return;
+    }
+    if (!isPasswordValid) {
+      toast.error("Password must be at least 8 characters long and include a mix of letters, numbers, and symbols.");
       return;
     }
 
