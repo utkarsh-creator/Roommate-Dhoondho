@@ -770,14 +770,14 @@ const TabButtons = ({
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/roommatesicon.png" alt="" />
-                        <div className="tab-text"> Need Roommates</div>
+                        <div className="tab-text"> Roommates Listing</div>
                       </div>
                     </span>
                   ) : (
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/bed2.png" alt="" />
-                        <div className="tab-text">Need Rooms</div>
+                        <div className="tab-text">Rooms Listing</div>
                       </div>
                     </span>
                   )}
