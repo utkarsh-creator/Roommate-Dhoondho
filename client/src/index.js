@@ -27,8 +27,10 @@ import AboutMFC from "./Pages/AboutMFC/AboutMFC";
 
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 console.log(
-  "%cDear Developer,\n\n" +
-  "Thanks for stopping by the console log. If you've stumbled upon any bugs, please report them at %chttps://sdeysocial.canny.io/issue%c. Together, let's keep this code shipshape for our fellow VITians.\n\n" +
+  "%cDear Developer,\n" +
+  "Thanks for stopping by the console log. If you've stumbled upon any bugs, please report them at %chttps://sdeysocial.canny.io/issue%c. Together, let's keep this code shipshape for our fellow VITians.\n" +
+  "Cheers,\n" +
+  "MFC VIT\n\n"+
   "    .---.\n" +
   "   |o_o |\n" +
   "   |:_/ |\n" +
@@ -37,8 +39,8 @@ console.log(
   "/'\_   _/`\\\n" +
   " \___)=(___/",
   "color: yellow; font-weight: bold;",
-  "color: green; text-decoration: underline;",
-  "color: green; font-style: italic;"
+  "color: yellow; text-decoration: underline;",
+  "color: yellow; font-weight: bold;",
 );
 
 
