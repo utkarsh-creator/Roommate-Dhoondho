@@ -634,10 +634,10 @@ function DisplayRoommateCard() {
                               </div>
                               <div className="card-bed">
                                 <div className="card-preference-title">
-                                  Remaining
+                                  Vacancy
                                 </div>
                                 <div className="card-preference-content">
-                                  {post.preferredBed}
+                                  {post.remaining}
                                 </div>
                               </div>
                             </div>

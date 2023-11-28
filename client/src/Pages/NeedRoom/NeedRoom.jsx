@@ -32,6 +32,7 @@ const initialNeedRoomMateFormState = {
   contactNumber: "",
   year: "1",
   description: "",
+  remaining: "",
 };
 
 function NeedRoom() {
@@ -226,7 +227,7 @@ function NeedRoom() {
         phone: needRoomForm?.contactNumber,
         year: needRoomForm?.year,
         desc: needRoomForm?.description,
-        // remaining:needRoomForm?.remaining
+        remaining:needRoomForm?.remaining
       };
 
       let result = await axios.post(
@@ -259,7 +260,7 @@ function NeedRoom() {
       phone: needRoomMateForm?.contactNumber,
       year: needRoomMateForm?.year,
       desc: needRoomMateForm?.description,
-      // remaining:needRoomMateForm?.remaining
+      remaining:needRoomMateForm?.remaining
     };
 
     try {
@@ -610,7 +611,7 @@ function NeedRoom() {
                   />
                 </div>
                 <div className="flex flex-col mb-6 md:mr-4">
-                  <span>Remaining</span>
+                  <span>Vacancy</span>
                   <input
                     name="remaining"
                     value={needRoomForm["remaining"]}
