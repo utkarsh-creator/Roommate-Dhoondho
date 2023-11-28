@@ -16,8 +16,8 @@ const Footer = () => {
                 </a>
               </li>
               <li className="footer__list-item">
-                <a href="" className="footer__list-link">
-                  FAQ's
+                <a href="https://sdeysocial.canny.io/issue" target="_blank" className="footer__list-link">
+                  Report Bugs
                 </a>
               </li>
             </ul>
