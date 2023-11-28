@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Footer.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+
+
 
 const Footer = () => {
   return (
@@ -96,36 +98,19 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <div id="hyperping-badge"></div>
-              <script src="https://hyperping.io/badge.js" async></script>
-              {/* Hyperping Badge Script */}
-                <Helmet>
-                  <script type="text/javascript">
-                    {`
-                      window.onload = function () {
-                        Hyperping.init({
-                          "statuspage": "meta.hyperping.io",
-                          "border": "none",
-                          "borderColor": "#E4E6F0",
-                          "uptime": true,
-                          "dot": true,
-                          "dotSize": 10,
-                          "isNeutral": false,
-                          "dotOk": "#2BAC76",
-                          "dotIncident": "#FFAF36",
-                          "dotOutage": "#E95858",
-                          "dotMaintenance": "#0070F3",
-                          "dotNeutral": "#0070F3",
-                          "operational": "All systems normal",
-                          "incident": "Under investigation",
-                          "outage": "System outage",
-                          "maintenance": "Under maintenance"
-                        });
-                      }
-                    `}
-                  </script>
-                </Helmet>
-            </div>
+          <h6 className="footer__title">Status</h6>
+            <ul className="footer__list">
+              <li className="footer__list-item">
+                {/* Status Indicator */}
+                <div className="footer__status">
+                  <div className="status-dot" id="system-status-dot"></div>
+                  <a href="http://sdeysocial.hyperping.app/" target="_blank">
+                    <span id="system-status-message">All Systems Operational</span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <hr className="footer__divider" />
