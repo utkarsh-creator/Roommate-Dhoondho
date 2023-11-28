@@ -39,7 +39,7 @@ function DisplayRoommateCard() {
   const resetPagination = () => {
     setResetPaginationKey((prevKey) => prevKey + 1);
   };
-  const perPage = 3; // No of items to be displayed in a page
+  const perPage = 9; // No of items to be displayed in a page
   const userGenderAll = profileData.user.gender;
 
   const {
@@ -512,7 +512,6 @@ function DisplayRoommateCard() {
             <div
               style={{
                 justifyContent: "center",
-                padding: 20,
                 boxSizing: "border-box",
                 width: "100%",
                 height: "100%",
@@ -703,7 +702,6 @@ function DisplayRoommateCard() {
             <div
               style={{
                 justifyContent: "center",
-                padding: 20,
                 boxSizing: "border-box",
                 width: "100%",
                 height: "100%",
