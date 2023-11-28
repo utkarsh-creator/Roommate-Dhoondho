@@ -30,9 +30,9 @@ function SignUP() {
     if (name === "email") {
       validateEmail(e.target.value);
     } 
-    // else if (name === "password") {
-    //   validatePassword(e.target.value);
-    // }
+    else if (name === "password") {
+      validatePassword(e.target.value);
+    }
     let change = {};
     if (e.target.name === "agree") {
       setForm((prev) => {
