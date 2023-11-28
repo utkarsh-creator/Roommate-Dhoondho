@@ -51,7 +51,7 @@ function NeedRoom() {
       const userGender = profileData.user.gender;
       if (userGender === "F") {
         setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
-      } else {
+      } else if (userGender === "M") {
         setBlocks([
           "A",
           "B",
@@ -74,6 +74,9 @@ function NeedRoom() {
           "R",
         ]);
       }
+      else {
+        setShowPlaceholder(true);
+      }
     } else {
       // If user's gender is not present in local storage, fetch it from the API
       const fetchUserGender = async () => {
@@ -86,7 +89,7 @@ function NeedRoom() {
 
           if (userGender === "F") {
             setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
-          } else {
+          } else if (userGender === "M")  {
             setBlocks([
               "A",
               "B",
@@ -108,6 +111,9 @@ function NeedRoom() {
               "Q",
               "R",
             ]);
+          }
+          else {
+            setShowPlaceholder(true);
           }
         } catch (error) {
           console.error("Error fetching user gender:", error);
