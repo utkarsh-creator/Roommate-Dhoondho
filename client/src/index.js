@@ -29,8 +29,8 @@ import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 console.log(
   "%cDear Developer,\n" +
   "Thanks for stopping by the console log. If you've stumbled upon any bugs, please report them at %chttps://sdeysocial.canny.io/issue%c. Together, let's keep this code shipshape for our fellow VITians.\n" +
-  "Cheers,\n" +
-  "MFC VIT\n\n"+
+  "Best Regards,\n" +
+  "MFC VIT Team\n\n"+
   "    .---.\n" +
   "   |o_o |\n" +
   "   |:_/ |\n" +
