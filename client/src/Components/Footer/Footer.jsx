@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Footer = () => {
   return (
@@ -102,6 +103,22 @@ const Footer = () => {
         </div>
         <hr className="footer__divider" />
       </div>
+      {/* Tawk.to Live Chat Script */}
+      <Helmet>
+        <script type="text/javascript">
+          {`
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+              s1.async=true;
+              s1.src='https://embed.tawk.to/65660e221db16644c5558560/1hgbaeehq';
+              s1.charset='UTF-8';
+              s1.setAttribute('crossorigin','*');
+              s0.parentNode.insertBefore(s1,s0);
+            })();
+          `}
+        </script>
+      </Helmet>
     </footer>
   );
 };

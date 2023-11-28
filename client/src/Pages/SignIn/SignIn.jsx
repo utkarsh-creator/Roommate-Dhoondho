@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { logIn } from "../../actions/AuthActions.js";
 import { useDispatch } from "react-redux";
+import { Helmet } from "react-helmet";
 
 let initialFormState = { email: "", password: "" };
 function SignIn() {
@@ -93,6 +94,21 @@ function SignIn() {
   
   return (
     <div className="flex flex-col w-[100vw] h-[100vh]">
+      <Helmet>
+        <script type="text/javascript">
+          {`
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+              s1.async=true;
+              s1.src='https://embed.tawk.to/65660e221db16644c5558560/1hgbaeehq';
+              s1.charset='UTF-8';
+              s1.setAttribute('crossorigin','*');
+              s0.parentNode.insertBefore(s1,s0);
+            })();
+          `}
+        </script>
+      </Helmet>
       <Header />
       <div className="flex flex-grow h-auto">
         <div
