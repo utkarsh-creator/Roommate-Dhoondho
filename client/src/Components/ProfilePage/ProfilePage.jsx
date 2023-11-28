@@ -391,16 +391,17 @@ const Profilepage = () => {
                       <div className="form-section-2">
                         <div className="form-section-2a">
                           <label>Email*</label>
-                          <input
-                            type="label"
+                          <div
                             name="emailid"
-                            value={email}
-                            onChange={(e) => {
-                              // handleChange(e);
-                              // setEmail(e.target.value);
-                              setChangesMade(true);
+                            style={{
+                              backgroundColor: 'white',
+                              padding: '8px',
+                              border: '1px solid #000000',
+                              borderRadius: '8px',
                             }}
-                          />
+                          >
+                            {email}
+                          </div>
                           {/* <div className="errorMsg">{errors.emailid}</div> */}
                         </div>
                         <div className="form-section-2b">
