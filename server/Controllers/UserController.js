@@ -1,8 +1,6 @@
 import UserModel from "../Models/userModel.js";
 import bcrypt from "bcryptjs";
 
-require('dotenv').config();
-
 // get all Users
 export const getAllUser = async (req, res) => {
   try {

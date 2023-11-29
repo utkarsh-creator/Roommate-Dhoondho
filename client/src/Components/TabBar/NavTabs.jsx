@@ -117,7 +117,7 @@ function DisplayRoommateCard() {
           .map((post) => {
             const config = {
               headers: {
-                'domain': 'room.mozillavit.in',
+                'domain': 'https://roommate-dhoondho.vercel.app/',
               },
             };
 
@@ -144,7 +144,7 @@ function DisplayRoommateCard() {
           .map((post) => {
             const config = {
               headers: {
-                'domain': 'room.mozillavit.in',
+                'domain': 'https://roommate-dhoondho.vercel.app/',
               },
             };
 
@@ -201,7 +201,7 @@ function DisplayRoommateCard() {
   const fetchFollowing = () => {
     const config = {
       headers: {
-        'domain': 'room.mozillavit.in',
+        'domain': 'https://roommate-dhoondho.vercel.app/',
       },
     };
 
@@ -269,7 +269,7 @@ function DisplayRoommateCard() {
 
             const config = {
               headers: {
-                'domain': 'room.mozillavit.in',
+                'domain': 'https://roommate-dhoondho.vercel.app/',
               },
             };
 
@@ -339,7 +339,7 @@ function DisplayRoommateCard() {
 
             const config = {
               headers: {
-                'domain': 'room.mozillavit.in',
+                'domain': 'https://roommate-dhoondho.vercel.app/',
               },
             };
 
