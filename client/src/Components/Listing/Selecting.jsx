@@ -336,17 +336,21 @@ export const Listing = () => {
                             </div>
                             <div className="card-bed">
                               <div className="card-preference-title">
-                                Remaining
+                                Vacancy
                               </div>
                               <div className="card-preference-content">
-                                remaining
+                                {" "}
+                                {item.remaining}
                               </div>
                             </div>
                           </div>
                           <div className="card-downers2">
                             <div className="card-year">
                               <div className="card-preference-title">Year</div>
-                              <div className="card-preference-Year">year</div>
+                              <div className="card-preference-content">
+                                {" "}
+                                {item.year}
+                              </div>
                             </div>
                             <div className="card-gender">
                               <div className="card-preference-title">
