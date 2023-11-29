@@ -15,7 +15,7 @@ import ReactPaginate from "react-paginate";
 import  secureLocalStorage  from  "react-secure-storage";
 
 function DisplayRoommateCard() {
-  const profileData = JSON.parse(localStorage.getItem("profile"));
+  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
   const [isLoading, setIsLoading] = useState(true);
   const [showPlaceholder, setShowPlaceholder] = useState(false);
   const user = useSelector((state) => state.authReducer.authData);
@@ -247,7 +247,7 @@ function DisplayRoommateCard() {
             (userGender === "M" && otherUserGender === "M") ||
             (userGender === "F" && otherUserGender === "F")
           ) {
-            let myUserId = user?.user?._id;
+            let myUserId = profileData.user._id;
             let requestBody = {
               roommateId: otherUserId,
             };
@@ -310,7 +310,7 @@ function DisplayRoommateCard() {
             (userGender === "M" && roomGender === "M") ||
             (userGender === "F" && roomGender === "F")
           ) {
-            let myUserId = user?.user?._id;
+            let myUserId = profileData.user._id;
             let requestBody = {
               roomId: otherRoomId,
             };

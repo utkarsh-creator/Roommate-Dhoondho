@@ -13,7 +13,7 @@ import "./NeedRoom.css";
 import Alert from "@mui/material/Alert";
 import  secureLocalStorage  from  "react-secure-storage";
 
-const profileData = JSON.parse(localStorage.getItem("profile"));
+const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
 
 const initialNeedRoomFormState = {
   rank: "",

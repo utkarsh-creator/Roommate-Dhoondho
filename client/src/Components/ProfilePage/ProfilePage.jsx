@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 import  secureLocalStorage  from  "react-secure-storage";
 
 const Profilepage = () => {
-  const profileData = JSON.parse(localStorage.getItem("profile"));
+  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
   const [additionalData, setAdditionalData] = useState({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -219,7 +219,7 @@ const Profilepage = () => {
           toast.success("Changes saved successfully!");
           // setNotification("Changes saved successfully!");
           const updatedProfileData = { ...profileData, user: response.data };
-          localStorage.setItem("profile", JSON.stringify(updatedProfileData));
+          secureLocalStorage.setItem("profile", JSON.stringify(updatedProfileData));
           window.location.reload();
         })
         .catch((error) => {

@@ -6,7 +6,7 @@ import "./Modal.css";
 import  secureLocalStorage  from  "react-secure-storage";
 
 function Modal2() {
-  const profileData = JSON.parse(localStorage.getItem("profile"));
+  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
   const { seletedroomdetail, seletedroomemail, seletedroomphone, closeModal2 } =
     useContext(ListingContext);
   // console.log(seletedroomdetail);
