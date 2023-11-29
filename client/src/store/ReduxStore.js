@@ -10,7 +10,7 @@ import { reducers } from "../reducers";
 function saveToLocalStorage(store) {
   try {
       const serializedStore = JSON.stringify(store);
-      window.secureLocalStorage.setItem('store', serializedStore);
+      window.localStorage.setItem('store', serializedStore);
   } catch(e) {
       console.log(e);
   }
@@ -18,7 +18,7 @@ function saveToLocalStorage(store) {
 
 function loadFromLocalStorage() {
   try {
-      const serializedStore = window.secureLocalStorage.getItem('store');
+      const serializedStore = window.localStorage.getItem('store');
       if(serializedStore === null) return undefined;
       return JSON.parse(serializedStore);
   } catch(e) {

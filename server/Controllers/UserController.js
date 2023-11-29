@@ -44,10 +44,12 @@ export const getUser = async (req, res) => {
 
   try {
     const user = await UserModel.findById(id);
+
     if (user) {
-      const userDetails = user._doc;
-      delete userDetails.password;
-      res.status(200).json(userDetails);
+      const { password, ...userDetails } = user._doc;
+      // Extract specific fields
+      const { _id, firstname, lastname, gender, username, followers, following, likesRoommate, likesRoom } = userDetails;
+      res.status(200).json({ _id, firstname, lastname, gender, username, followers, following, likesRoommate, likesRoom });
     } else {
       res.status(404).json("No such user exists");
     }

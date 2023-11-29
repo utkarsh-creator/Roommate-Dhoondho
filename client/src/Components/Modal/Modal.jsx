@@ -6,7 +6,7 @@ import "./Modal.css";
 import  secureLocalStorage  from  "react-secure-storage";
 
 function Modal() {
-  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
+  const profileData = JSON.parse(localStorage.getItem("profile"));
   const {
     seletedroommateemail,
     seletedroommatephone,

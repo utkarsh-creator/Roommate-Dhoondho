@@ -11,7 +11,7 @@ import  secureLocalStorage  from  "react-secure-storage";
 
 const ChatComponent = () => {
   const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);
-  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
+  const profileData = JSON.parse(localStorage.getItem("profile"));
   const location = useLocation();
   const navigate = useNavigate();
   const [isChatLoaded, setIsChatLoaded] = useState(false);

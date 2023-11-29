@@ -8,7 +8,7 @@ import  secureLocalStorage  from  "react-secure-storage";
 
 function DisplayRoomListingCard() {
   const { showModal2, selectRoomDetail } = useContext(ListingContext);
-  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
+  const profileData = JSON.parse(localStorage.getItem("profile"));
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import  secureLocalStorage  from  "react-secure-storage";
 
 const ChatMobile = () => {
   const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);
-  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
+  const profileData = JSON.parse(localStorage.getItem("profile"));
   const navigate = useNavigate();
   const [scriptAppended, setScriptAppended] = useState(false);
 

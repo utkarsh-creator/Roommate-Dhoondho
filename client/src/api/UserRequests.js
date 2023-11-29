@@ -4,8 +4,8 @@ import  secureLocalStorage  from  "react-secure-storage";
 const API = axios.create({ baseURL: "https://roommate-finder-theta.vercel.app/" });
 
 API.interceptors.request.use((req) => {
-    if (secureLocalStorage.getItem('profile')) {
-      req.headers.Authorization = `Bearer ${JSON.parse(secureLocalStorage.getItem('profile')).token}`;
+    if (localStorage.getItem('profile')) {
+      req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
     }
   
     return req;

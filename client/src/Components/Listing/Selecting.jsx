@@ -21,7 +21,7 @@ export const Listing = () => {
     selectRoomPhone,
   } = useContext(ListingContext);
 
-  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
+  const profileData = JSON.parse(localStorage.getItem("profile"));
 
   const [following, setFollowing] = useState(new Set());
   const [likeRoom, setLikeRoom] = useState(new Set());
