@@ -232,13 +232,13 @@ function DisplayRoommateCard() {
         "https://roommate-finder-theta.vercel.app/roommate/all"
       );
 
-      const otherUserData = usersResponse.data.find(
+      const otherUserData = usersResponse?.data?.find(
         (user) => user._id === otherUserId
       );
 
       if (otherUserData) {
-        const otherUserGender = otherUserData.gender;
-        const roommateuserId = otherUserData.userId;
+        const otherUserGender = otherUserData?.gender;
+        const roommateuserId = otherUserData?.userId;
         // console.log(otherUserGender);
         if (roommateuserId !== userId) {
           if (
@@ -263,7 +263,7 @@ function DisplayRoommateCard() {
                 return null;
               });
 
-            // console.log("result: ", result);
+            console.log("result: ", result);
 
             if (result.status === 200) {
               // Update the check-icon immediately
