@@ -48,8 +48,8 @@ export const getUser = async (req, res) => {
     if (user) {
       const { password, ...userDetails } = user._doc;
       // Extract specific fields
-      const { _id, gender, username, followers, following, likesRoommate, likesRoom } = userDetails;
-      res.status(200).json({ _id, gender, username, followers, following, likesRoommate, likesRoom });
+      const { _id, firstname, lastname, gender, username, followers, following, likesRoommate, likesRoom } = userDetails;
+      res.status(200).json({ _id, firstname, lastname, gender, username, followers, following, likesRoommate, likesRoom });
     } else {
       res.status(404).json("No such user exists");
     }
