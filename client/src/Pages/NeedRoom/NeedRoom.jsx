@@ -48,11 +48,15 @@ function NeedRoom() {
   const [showPlaceholder, setShowPlaceholder] = useState(false);
 
   useEffect(() => {
-    if (profileData && profileData.user.gender) {
-      const userGender = profileData.user.gender;
-      if (userGender === "F") {
+    if (profileData?.user?.gender) {
+      console.log("Going into 3L07", profileData);
+      console.log("Going into 3L07-1", profileData?.user?.gender);
+      const userGender = profileData?.user?.gender;
+      if (userGender === 'F') {
         setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
-      } else if (userGender === "M") {
+        setShowPlaceholder(false);
+      } else if (userGender === 'M') {
+        console.log("Entered 3L07-2", userGender);
         setBlocks([
           "A",
           "B",
@@ -74,22 +78,28 @@ function NeedRoom() {
           "Q",
           "R",
         ]);
+        console.log("Exited from 3L07-3", userGender);
+        setShowPlaceholder(false);
       }
       else {
+        console.log("Failed to fetch 3L02", profileData);
         setShowPlaceholder(true);
       }
     } else {
       // If user's gender is not present in local storage, fetch it from the API
       const fetchUserGender = async () => {
+        console.log("Going into 3L09", profileData);
         try {
-          const userId = profileData.user._id;
+          const userId = profileData?.user?._id;
+          console.log("Gender not found in local storage for user:", profileData);
           const response = await axios.get(
             `${process.env.REACT_APP_SERVER_URL}/user/${userId}`
           );
-          const userGender = response.data.gender;
+          const userGender = response?.data?.gender;
 
           if (userGender === "F") {
             setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
+            setShowPlaceholder(false);
           } else if (userGender === "M")  {
             setBlocks([
               "A",
@@ -112,6 +122,7 @@ function NeedRoom() {
               "Q",
               "R",
             ]);
+            setShowPlaceholder(false);
           }
           else {
             setShowPlaceholder(true);
@@ -121,7 +132,6 @@ function NeedRoom() {
           setShowPlaceholder(true);
         }
       };
-
       fetchUserGender();
     }
   }, [profileData]);
