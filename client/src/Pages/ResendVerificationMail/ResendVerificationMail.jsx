@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./ResendVerificationMail.css";
+import signinImage from "../../Assets/signin.png";  // Import the image
 
 function ResendVerificationMail() {
   const [email, setEmail] = useState("");
@@ -31,24 +32,34 @@ function ResendVerificationMail() {
   };
 
   return (
-    <div className="flex flex-col h-screen">
-      <div className="w-full mb-6">
-        <span className="text-[#3C4242] text-[16px]">Resend Verification Email</span>
-        <input
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="mfc.vit2023@vitstudent.ac.in"
-          className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem]"
-        />
-      </div>
+    <div className="custom-container">
+      <div
+        className="md:inline-block md:w-[45%] bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${signinImage})`,  // Use the imported image
+        }}
+      ></div>
+      <div className="resend-verification-form">
+        <div className="flex flex-col h-screen">
+          <div className="w-full mb-6">
+            <span className="text-[#3C4242] text-[16px]">Resend Verification Email</span>
+            <input
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="mfc.vit2023@vitstudent.ac.in"
+              className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem]"
+            />
+          </div>
 
-      <button
-        onClick={sendEmailToken}
-        className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
-      >
-        Resend
-      </button>
+          <button
+            onClick={sendEmailToken}
+            className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
+          >
+            Resend
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
