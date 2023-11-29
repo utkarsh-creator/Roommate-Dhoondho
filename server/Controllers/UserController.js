@@ -28,8 +28,8 @@ export const getUser = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (domain !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: 'Access Forbidden', domain: url });
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: 'Access Forbidden', url: url });
     return;
   }
 
