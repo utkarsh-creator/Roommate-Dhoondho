@@ -117,7 +117,7 @@ function DisplayRoommateCard() {
           .map((post) => {
             const config = {
               headers: {
-                'host': 'room.mozillavit.in',
+                'domain': 'room.mozillavit.in',
               },
             };
 
@@ -144,7 +144,7 @@ function DisplayRoommateCard() {
           .map((post) => {
             const config = {
               headers: {
-                'host': 'room.mozillavit.in',
+                'domain': 'room.mozillavit.in',
               },
             };
 
@@ -201,7 +201,7 @@ function DisplayRoommateCard() {
   const fetchFollowing = () => {
     const config = {
       headers: {
-        'host': 'room.mozillavit.in',
+        'domain': 'room.mozillavit.in',
       },
     };
 
@@ -269,7 +269,7 @@ function DisplayRoommateCard() {
 
             const config = {
               headers: {
-                'host': 'room.mozillavit.in',
+                'domain': 'room.mozillavit.in',
               },
             };
 
@@ -339,7 +339,7 @@ function DisplayRoommateCard() {
 
             const config = {
               headers: {
-                'host': 'room.mozillavit.in',
+                'domain': 'room.mozillavit.in',
               },
             };
 

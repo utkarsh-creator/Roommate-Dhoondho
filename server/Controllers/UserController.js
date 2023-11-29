@@ -25,11 +25,11 @@ export const getUser = async (req, res) => {
   const id = req.params.id;
 
   // Check if the request has an 'Origin' header
-  const host = req.get('host');
-  console.log('Host:', host);
+  const domain = req.get('domain');
+  console.log('Domain:', domain);
 
-  if (host !== 'room.mozillavit.in') {
-    res.status(403).json({ message: 'Access Forbidden', host: host });
+  if (domain !== 'room.mozillavit.in') {
+    res.status(403).json({ message: 'Access Forbidden', domain: domain });
     return;
   }
 
