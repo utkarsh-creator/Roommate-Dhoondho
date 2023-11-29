@@ -25,11 +25,11 @@ export const getUser = async (req, res) => {
   const id = req.params.id;
 
  // Check if the request has an 'Origin' header
-  const domain = req.get('Origin');
-  console.log('Domain:', domain);
+  const url = req.get('Origin');
+  console.log('Domain:', url);
 
-  if (domain !== process.env.CLIENT_DOMAIN) {
-    res.status(403).json({ message: 'Access Forbidden', domain: domain });
+  if (domain !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: 'Access Forbidden', domain: url });
     return;
   }
 
