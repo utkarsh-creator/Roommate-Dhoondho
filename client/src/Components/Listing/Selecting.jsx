@@ -57,7 +57,7 @@ export const Listing = () => {
           (post) => {
             return axios
               .get(
-                `https://roommate-finder-theta.vercel.app/user/${post.userId}`
+                `https://roommate-finder-theta.vercel.app/user/${post?.userId}`
               )
               .then((userResponse) => {
                 const userDetails = userResponse.data;
@@ -69,7 +69,7 @@ export const Listing = () => {
               .catch((error) => {
                 // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
                 console.log(
-                  `Error fetching user details for user ID ${post.userId}:`,
+                  `Error fetching user details for user ID ${post?.userId}:`,
                   error
                 );
                 return null;
@@ -91,7 +91,7 @@ export const Listing = () => {
       .then((response) => {
         const roomPostsWithUserDetailsPromises = response.data.map((post) => {
           return axios
-            .get(`https://roommate-finder-theta.vercel.app/user/${post.userId}`)
+            .get(`https://roommate-finder-theta.vercel.app/user/${post?.userId}`)
             .then((userResponse) => {
               const userDetails = userResponse.data;
               return {
@@ -102,7 +102,7 @@ export const Listing = () => {
             .catch((error) => {
               // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
               console.log(
-                `Error fetching user details for user ID ${post.userId}:`,
+                `Error fetching user details for user ID ${post?.userId}:`,
                 error
               );
               return null;
@@ -152,12 +152,12 @@ export const Listing = () => {
   }, []);
 
   const matchingRoommateData = roommatePosts.filter((post) =>
-    following.has(post._id)
+    following.has(post?._id)
   );
 
-  // const matchingRoomData = roomPosts.filter((post) => likeRoom.has(post._id));
+  // const matchingRoomData = roomPosts.filter((post) => likeRoom.has(post?._id));
   const matchingRoomData = roomPosts
-  .filter((post) => post?.hasOwnProperty('_id') && likeRoom.has(post._id));
+  .filter((post) => post?.hasOwnProperty('_id') && likeRoom.has(post?._id));
 
 
   // console.log("Following:", following);

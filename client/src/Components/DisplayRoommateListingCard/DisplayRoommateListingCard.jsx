@@ -52,7 +52,7 @@ function DisplayRoommateListingCard() {
       // console.log("Roommate deleted:", response);
       toast.success("Roommate deleted successfully!");
       setRoommates((prevRoommates) =>
-        prevRoommates.filter((roommate) => roommate._id !== roommate_id)
+        prevRoommates.filter((roommate) => roommate?._id !== roommate_id)
       );
     } catch (error) {
       // console.error("Error deleting roommate:", error);
@@ -63,7 +63,7 @@ function DisplayRoommateListingCard() {
     <>
       {showModal && <Modal />}
       {roommates.map((roommate) => (
-        <div className="each-card" key={roommate.id}>
+        <div className="each-card" key={roommate?.id}>
           <span className="cards">
             <div className="main-card">
               <div className="card-details">
@@ -82,7 +82,7 @@ function DisplayRoommateListingCard() {
                     <div className="card-name">Roommate Posting</div>
                     <div
                       className="card-add"
-                      onClick={() => deleteRoommate(roommate._id)}
+                      onClick={() => deleteRoommate(roommate?._id)}
                     >
                       <img
                         src="./image/minus-icon.png"
@@ -95,7 +95,7 @@ function DisplayRoommateListingCard() {
                     <div className="card-rank">
                       <div className="card-preference-title">Rank</div>
                       <div className="card-preference-content">
-                        {roommate.rank}
+                        {roommate?.rank}
                       </div>
                     </div>
                     <div className="card-block">
@@ -103,7 +103,7 @@ function DisplayRoommateListingCard() {
                         Prefered Block
                       </div>
                       <div className="card-preference-content">
-                        {roommate.preferredBlock}
+                        {roommate?.preferredBlock}
                       </div>
                     </div>
                     <div className="card-bed">
@@ -111,7 +111,7 @@ function DisplayRoommateListingCard() {
                         Prefered Bed Type
                       </div>
                       <div className="card-preference-content">
-                        {roommate.preferredBed}
+                        {roommate?.preferredBed}
                       </div>
                     </div>
                   </div>
@@ -119,13 +119,13 @@ function DisplayRoommateListingCard() {
                     <div className="card-year">
                       <div className="card-preference-title">Year</div>
                       <div className="card-preference-Year">
-                        {roommate.year}
+                        {roommate?.year}
                       </div>
                     </div>
                     <div className="card-gender">
                       <div className="card-preference-title">Gender</div>
                       <div className="card-preference-Gender">
-                        {roommate.gender}
+                        {roommate?.gender}
                       </div>
                     </div>
                   </div>
@@ -138,7 +138,7 @@ function DisplayRoommateListingCard() {
                 <div className="card-habit">For Description - Click on the button</div>
                 <div
                   className="card-habit-details"
-                  onClick={() => selectRoommateDetail(roommate.desc)}
+                  onClick={() => selectRoommateDetail(roommate?.desc)}
                 >
                   <div>
                     <img

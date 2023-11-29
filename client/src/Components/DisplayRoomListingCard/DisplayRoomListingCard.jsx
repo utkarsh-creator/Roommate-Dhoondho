@@ -51,7 +51,7 @@ function DisplayRoomListingCard() {
       );
         toast.success("Room deleted successfully!");
       // console.log("Room deleted:", response);
-      setRooms((prevRooms) => prevRooms.filter((room) => room._id !== room_id));
+      setRooms((prevRooms) => prevRooms.filter((room) => room?._id !== room_id));
     } catch (error) {
       // console.error("Error deleting room:", error);
     }
@@ -60,7 +60,7 @@ function DisplayRoomListingCard() {
     <>
       {showModal2 && <Modal2 />}
       {rooms.map((room) => (
-        <div className="each-card" key={room.id}>
+        <div className="each-card" key={room?.id}>
           <div className="cards">
             <div className="main-card">
               <div className="card-details">
@@ -76,10 +76,10 @@ function DisplayRoomListingCard() {
               ></div>
                 <div className="card-info">
                   <div className="card-informatios">
-                    <div className="card-name">{room.preferredBlock} Block Posting</div>
+                    <div className="card-name">{room?.preferredBlock} Block Posting</div>
                     <div
                       className="card-add"
-                      onClick={() => deleteRoom(room._id)}
+                      onClick={() => deleteRoom(room?._id)}
                     >
                       <img
                         src="./image/minus-icon.png"
@@ -91,32 +91,32 @@ function DisplayRoomListingCard() {
                   <div className="card-preference">
                     <div className="card-rank">
                       <div className="card-preference-title">Rank</div>
-                      <div className="card-preference-content">{room.rank}</div>
+                      <div className="card-preference-content">{room?.rank}</div>
                     </div>
                     <div className="card-block">
                       <div className="card-preference-title">
                         Prefered Block
                       </div>
                       <div className="card-preference-content">
-                        {room.preferredBlock}
+                        {room?.preferredBlock}
                       </div>
                     </div>
                     <div className="card-bed">
                       <div className="card-preference-title">Remaining</div>
                       <div className="card-preference-content">
-                        {room.preferredBed}
+                        {room?.preferredBed}
                       </div>
                     </div>
                   </div>
                   <div className="card-downers2">
                     <div className="card-year">
                       <div className="card-preference-title">Year</div>
-                      <div className="card-preference-Year">{room.year}</div>
+                      <div className="card-preference-Year">{room?.year}</div>
                     </div>
                     <div className="card-gender">
                       <div className="card-preference-title">Gender</div>
                       <div className="card-preference-Gender">
-                        {room.gender}
+                        {room?.gender}
                       </div>
                     </div>
                   </div>
@@ -129,7 +129,7 @@ function DisplayRoomListingCard() {
                 <div className="card-habit">For Description - Click on the button</div>
                 <div
                   className="card-habit-details"
-                  onClick={() => selectRoomDetail(room.desc)}
+                  onClick={() => selectRoomDetail(room?.desc)}
                 >
                   <div>
                     <img
