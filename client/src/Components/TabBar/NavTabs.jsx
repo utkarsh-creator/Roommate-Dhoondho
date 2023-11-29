@@ -92,32 +92,32 @@ function DisplayRoommateCard() {
     const fetchRoommateAndRoomCards = async () => {
       try {
         const roomLengthResponse = await axios.get(
-          `https://roommate-finder-theta.vercel.app/room/all?gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+          `${process.env.REACT_APP_SERVER_URL}/room/all?gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
         );
         const roomLengthPosts = roomLengthResponse.data;
 
         const roommateLengthResponse = await axios.get(
-          `https://roommate-finder-theta.vercel.app/roommate/all?gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+          `${process.env.REACT_APP_SERVER_URL}/roommate/all?gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
         );
         const roommateLengthPosts = roommateLengthResponse.data;
 
         console.log(roommateLengthPosts);
         // Fetch roommate posts in batches
         const roommateResponse = await axios.get(
-          `https://roommate-finder-theta.vercel.app/roommate/all?page=${page}&limit=${perPage}&gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+          `${process.env.REACT_APP_SERVER_URL}/roommate/all?page=${page}&limit=${perPage}&gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
         );
         const roommatePosts = roommateResponse.data;
 
         // Fetch room posts in batches
         const roomResponse = await axios.get(
-          `https://roommate-finder-theta.vercel.app/room/all?page=${page}&limit=${perPage}&gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+          `${process.env.REACT_APP_SERVER_URL}/room/all?page=${page}&limit=${perPage}&gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
         );
         const roomPosts = roomResponse.data;
 
         const roommatePostsWithUserDetailsPromises = roommatePosts
           .map((post) => {
             return axios
-              .get(`https://roommate-finder-theta.vercel.app/user/${post?.userId}`)
+              .get(`${process.env.REACT_APP_SERVER_URL}/user/${post?.userId}`)
               .then((userResponse) => {
                 const userDetails = userResponse.data;
                 return {
@@ -139,7 +139,7 @@ function DisplayRoommateCard() {
           .map((post) => {
 
             return axios
-              .get(`https://roommate-finder-theta.vercel.app/user/${post?.userId}`)
+              .get(`${process.env.REACT_APP_SERVER_URL}/user/${post?.userId}`)
               .then((userResponse) => {
                 const userDetails = userResponse.data;
                 return {
@@ -192,7 +192,7 @@ function DisplayRoommateCard() {
 
     return axios
       .get(
-        `https://roommate-finder-theta.vercel.app/user/${profileData.user._id}`
+        `${process.env.REACT_APP_SERVER_URL}/user/${profileData.user._id}`
       )
       .then((response) => {
         console.log("Profile fetched:", response.data);
@@ -231,7 +231,7 @@ function DisplayRoommateCard() {
   async function likeRoommate(otherUserId) {
     try {
       const usersResponse = await axios.get(
-        "https://roommate-finder-theta.vercel.app/roommate/all"
+        `${process.env.REACT_APP_SERVER_URL}/roommate/all`
       );
 
       const otherUserData = usersResponse.data.find(
@@ -254,7 +254,7 @@ function DisplayRoommateCard() {
 
             let result = await axios
               .put(
-                `https://roommate-finder-theta.vercel.app/user/${myUserId}/likesRoommate`,
+                `${process.env.REACT_APP_SERVER_URL}/user/${myUserId}/likesRoommate`,
                 requestBody
               )
               .catch((error) => {
@@ -295,7 +295,7 @@ function DisplayRoommateCard() {
   async function RoomLiking(otherRoomId) {
     try {
       const roomResponse = await axios.get(
-        "https://roommate-finder-theta.vercel.app/room/all"
+        `${process.env.REACT_APP_SERVER_URL}/room/all`
       );
 
       const roomDataResponse = roomResponse.data.find(
@@ -317,7 +317,7 @@ function DisplayRoommateCard() {
 
             let result = await axios
               .put(
-                `https://roommate-finder-theta.vercel.app/user/${myUserId}/likesroom`,
+                `${process.env.REACT_APP_SERVER_URL}/user/${myUserId}/likesroom`,
                 requestBody
               )
               .catch((error) => {

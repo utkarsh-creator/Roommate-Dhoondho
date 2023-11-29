@@ -33,7 +33,7 @@ export const Listing = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://roommate-finder-theta.vercel.app/user/${profileData.user._id}`
+          `${process.env.REACT_APP_SERVER_URL}/user/${profileData.user._id}`
         );
 
         console.log("Profile fetched:", response.data);
@@ -52,13 +52,13 @@ export const Listing = () => {
   }, [profileData.user._id]);
   useEffect(() => {
     axios
-      .get("https://roommate-finder-theta.vercel.app/roommate/all")
+      .get(`${process.env.REACT_APP_SERVER_URL}/roommate/all`)
       .then((response) => {
         const roommatePostsWithUserDetailsPromises = response.data.map(
           (post) => {
             return axios
               .get(
-                `https://roommate-finder-theta.vercel.app/user/${post?.userId}`
+                `${process.env.REACT_APP_SERVER_URL}/user/${post?.userId}`
               )
               .then((userResponse) => {
                 const userDetails = userResponse.data;
@@ -88,11 +88,11 @@ export const Listing = () => {
       });
 
     axios
-      .get("https://roommate-finder-theta.vercel.app/room/all")
+      .get(`${process.env.REACT_APP_SERVER_URL}/room/all`)
       .then((response) => {
         const roomPostsWithUserDetailsPromises = response.data.map((post) => {
           return axios
-            .get(`https://roommate-finder-theta.vercel.app/user/${post?.userId}`)
+            .get(`${process.env.REACT_APP_SERVER_URL}/user/${post?.userId}`)
             .then((userResponse) => {
               const userDetails = userResponse.data;
               return {
@@ -125,8 +125,8 @@ export const Listing = () => {
     const fetchData = async () => {
       try {
         const [roommateResponse, roomResponse] = await Promise.all([
-          axios.get("https://roommate-finder-theta.vercel.app/roommate/all"),
-          axios.get("https://roommate-finder-theta.vercel.app/room/all"),
+          axios.get(`${process.env.REACT_APP_SERVER_URL}/roommate/all`),
+          axios.get(`${process.env.REACT_APP_SERVER_URL}/room/all`),
         ]);
 
         const roommateData = roommateResponse.data.map((post) => ({

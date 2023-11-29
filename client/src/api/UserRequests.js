@@ -1,7 +1,7 @@
 import axios from "axios";
 import  secureLocalStorage  from  "react-secure-storage";
 
-const API = axios.create({ baseURL: "https://roommate-finder-theta.vercel.app/" });
+const API = axios.create({ baseURL: `${process.env.REACT_APP_SERVER_URL}/` });
 
 API.interceptors.request.use((req) => {
     if (secureLocalStorage.getItem('profile')) {

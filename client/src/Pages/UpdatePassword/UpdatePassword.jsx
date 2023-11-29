@@ -57,7 +57,7 @@ function UpdatePassword() {
     // If passwords match, proceed with the update
     try {
       const response = await axios.post(
-        "https://roommate-finder-theta.vercel.app/auth/update-password",
+        `${process.env.REACT_APP_SERVER_URL}/auth/update-password`,
         {
           username: email,
           password: password,

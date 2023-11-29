@@ -20,7 +20,7 @@ function Reset() {
 
     try {
       const response = await axios.post(
-        "https://roommate-finder-theta.vercel.app/auth/password-reset",
+        `${process.env.REACT_APP_SERVER_URL}/auth/password-reset`,
         {
           username: email,
         }

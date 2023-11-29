@@ -16,7 +16,7 @@ const VerifyEmail = () => {
           throw new Error('Email token not found');
         }
 
-        const baseUrl = 'https://roommate-finder-theta.vercel.app';
+        const baseUrl = `${process.env.REACT_APP_SERVER_URL}`;
         const response = await postRequest(`${baseUrl}/auth/verify-email`, {
           emailToken: emailToken
         });

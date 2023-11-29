@@ -16,7 +16,7 @@ function ResendVerificationMail() {
 
     try {
       const response = await axios.post(
-        "https://roommate-finder-theta.vercel.app/auth/resend-verify-email",
+        `${process.env.REACT_APP_SERVER_URL}/auth/resend-verify-email`,
         {
           username: email,
         }

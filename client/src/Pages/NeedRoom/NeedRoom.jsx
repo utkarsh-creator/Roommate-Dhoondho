@@ -84,7 +84,7 @@ function NeedRoom() {
         try {
           const userId = profileData.user._id;
           const response = await axios.get(
-            `https://roommate-finder-theta.vercel.app/user/${userId}`
+            `${process.env.REACT_APP_SERVER_URL}/user/${userId}`
           );
           const userGender = response.data.gender;
 
@@ -204,7 +204,7 @@ function NeedRoom() {
       };
       // Make an API request to get the user's room postings
       const response = await axios.post(
-        `https://roommate-finder-theta.vercel.app/room/my/${userId}`,
+        `${process.env.REACT_APP_SERVER_URL}/room/my/${userId}`,
         requestData
       );
 
@@ -238,7 +238,7 @@ function NeedRoom() {
       };
 
       let result = await axios.post(
-        `https://roommate-finder-theta.vercel.app/room/${userId}`,
+        `${process.env.REACT_APP_SERVER_URL}/room/${userId}`,
         requestBody
       );
 
@@ -276,7 +276,7 @@ function NeedRoom() {
       };
       // Make an API request to get the user's roommate postings
       const response = await axios.post(
-        `https://roommate-finder-theta.vercel.app/roommate/my/${userId}`,
+        `${process.env.REACT_APP_SERVER_URL}/roommate/my/${userId}`,
         requestData
       );
 
@@ -298,7 +298,7 @@ function NeedRoom() {
 
       // Proceed with form submission if the user has less than 7 roommate postings
       let result = await axios.post(
-        `https://roommate-finder-theta.vercel.app/roommate/${userId}`,
+        `${process.env.REACT_APP_SERVER_URL}/roommate/${userId}`,
         requestBody
       );
 

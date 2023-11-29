@@ -66,7 +66,7 @@ const Profilepage = () => {
   useEffect(() => {
     axios
       .get(
-        `https://roommate-finder-theta.vercel.app/user/personal/${profileData.user._id}`
+        `${process.env.REACT_APP_SERVER_URL}/user/personal/${profileData.user._id}`
       )
       .then((response) => {
         const data = response.data;
@@ -210,7 +210,7 @@ const Profilepage = () => {
 
       axios
         .put(
-          `https://roommate-finder-theta.vercel.app/user/${profileData.user._id}`,
+          `${process.env.REACT_APP_SERVER_URL}/user/${profileData.user._id}`,
           updatedData
         )
         .then((response) => {

@@ -11,6 +11,8 @@ import { logIn } from "../../actions/AuthActions.js";
 import { useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 
+console.log("Server URL ", process.env.REACT_APP_SERVER_URL);
+
 let initialFormState = { email: "", password: "" };
 function SignIn() {
   const [showPassword, setShowPassword] = useState(true);

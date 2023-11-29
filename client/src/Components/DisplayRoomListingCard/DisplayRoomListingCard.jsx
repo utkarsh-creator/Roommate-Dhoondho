@@ -24,7 +24,7 @@ function DisplayRoomListingCard() {
         // console.log("requestData:", requestData);
 
         const response = await axios.post(
-          `https://roommate-finder-theta.vercel.app/room/my/${user_Id}`,
+          `${process.env.REACT_APP_SERVER_URL}/room/my/${user_Id}`,
           requestData
         );
         setRooms(response.data);
@@ -45,7 +45,7 @@ function DisplayRoomListingCard() {
       };
 
       const response = await axios.delete(
-        `https://roommate-finder-theta.vercel.app/room/${room_id}`,
+        `${process.env.REACT_APP_SERVER_URL}/room/${room_id}`,
         {
           data: requestBody,
         }
