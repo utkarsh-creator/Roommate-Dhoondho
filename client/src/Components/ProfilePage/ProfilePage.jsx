@@ -223,7 +223,7 @@ const Profilepage = () => {
         })
         .catch((error) => {
           console.error("Error updating profile:", error);
-          setNotification("Error saving changes. Please try again.");
+          toast.error("Error saving changes. Check your password and try again.");
         });
     }
   };
