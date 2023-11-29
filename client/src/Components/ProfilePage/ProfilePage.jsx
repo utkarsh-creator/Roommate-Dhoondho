@@ -35,7 +35,16 @@ const Profilepage = () => {
   const [isGenderEditable, setIsGenderEditable] = useState(
     profileData.user.gender === null
   );
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const validatePassword = () => {
+    return !!password;
+  };
 
   const handleConfirmationOpen = (e) => {
     e.preventDefault();
@@ -56,7 +65,7 @@ const Profilepage = () => {
   useEffect(() => {
     axios
       .get(
-        `https://roommate-finder-theta.vercel.app/user/${profileData.user._id}`
+        `https://roommate-finder-theta.vercel.app/user/personal/${profileData.user._id}`
       )
       .then((response) => {
         const data = response.data;
@@ -179,18 +188,23 @@ const Profilepage = () => {
 
   const submituserRegistrationForm = (e, gender) => {
     e.preventDefault();
-    console.log("submitting form", gender);
+    if (!validatePassword()) {
+      toast.error("Please enter your password for confirmation.");
+      return;
+    }
+    console.log("submitting form gender", gender);
     if (validateForm()) {
       const updatedData = {
         currentUserId: profileData.user._id,
-        username: email,
+        password: password,
+        // username: email,
         firstname: firstName,
         lastname: lastName,
         regnum: regnum,
         gender: gender,
         rank: rank,
         mobile: contactNumber,
-        currentUserAdminStatus: false,
+        // currentUserAdminStatus: false,
       };
 
       axios
@@ -391,17 +405,16 @@ const Profilepage = () => {
                       <div className="form-section-2">
                         <div className="form-section-2a">
                           <label>Email*</label>
-                          <div
+                          <input
+                            type="label"
                             name="emailid"
-                            style={{
-                              backgroundColor: 'white',
-                              padding: '8px',
-                              border: '1px solid #000000',
-                              borderRadius: '8px',
+                            value={email}
+                            onChange={(e) => {
+                              // handleChange(e);
+                              // setEmail(e.target.value);
+                              setChangesMade(true);
                             }}
-                          >
-                            {email}
-                          </div>
+                          />
                           {/* <div className="errorMsg">{errors.emailid}</div> */}
                         </div>
                         <div className="form-section-2b">
@@ -417,6 +430,15 @@ const Profilepage = () => {
                             }}
                           />
                           <div className="errorMsg">{errors.mobileno}</div>
+                        </div>
+                        <div className="form-section-6">
+                          <label>Password*</label>
+                          <input
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={handleChangePassword}
+                          />
                         </div>
                       </div>
                       <div className="form-section-4">

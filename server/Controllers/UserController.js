@@ -58,6 +58,34 @@ export const getUser = async (req, res) => {
   }
 };
 
+// get personal details of a User
+export const getPersonalUser = async (req, res) => {
+  
+  const id = req.params.id;
+
+ // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
+  try {
+    const user = await UserModel.findById(id);
+    if (user) {
+      const userDetails = user._doc;
+      delete userDetails.password;
+      res.status(200).json(userDetails);
+    } else {
+      res.status(404).json("No such user exists");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 // update a user
 export const updateUser = async (req, res) => {
   const id = req.params.id;
