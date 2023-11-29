@@ -30,7 +30,6 @@ export const createRoom = async (req, res) => {
 };
 
 // Get Room
-
 export const getRoom = async (req, res) => {
   const id = req.params.userid;
 
@@ -70,18 +69,76 @@ export const getAllRoom = async (req, res) => {
   }
 
   try {
-    const page = parseInt(req.query.page) || 1;
+    const page = parseInt(req.query.page) - 1 || 0;
     const limit = parseInt(req.query.limit) || 10000000;
-    const skip = (page - 1) * limit;
+    const skip = page * limit;
+
+    let sort = req.query.sort || "createdAt";
+
+    req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
+    let sortBy = {};
+    if (sort[1]) {
+      sortBy[sort[0]] = sort[1];
+    } else {
+      sortBy[sort[0]] = "asc";
+    }
+
+    let gender = req.query.gender || "All";
+    const genderOptions = ["M", "F"];
+
+    gender === "All"
+      ? (gender = [...genderOptions])
+      : (gender = gender.split(","));
+
+    let year = req.query.year || "All";
+    const yearOptions = [1, 2, 3, 4];
+
+    year === "All" ? (year = [...yearOptions]) : (year = year.split(","));
+
+    let preferredBlock = req.query.preferredBlock || "All";
+
+    const blockOptions = [
+      "A",
+      "B",
+      "B ANNEX",
+      "C",
+      "D",
+      "D ANNEX",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "M",
+      "M ANNEX",
+      "N",
+      "P",
+      "Q",
+      "R",
+    ];
+
+    preferredBlock === "All"
+      ? (preferredBlock = [...blockOptions])
+      : (preferredBlock = preferredBlock.split(","));
 
     const rooms = await needRoomModel
-      .find()
+      .where("gender")
+      .in([...gender])
+      .where("year")
+      .in([...year])
+      .where("preferredBlock")
+      .in([...preferredBlock])
+      .sort(sortBy)
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .exec();
 
     res.status(200).json(rooms);
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
