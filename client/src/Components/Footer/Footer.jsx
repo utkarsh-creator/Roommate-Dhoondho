@@ -19,7 +19,7 @@ const Footer = () => {
                 </a>
               </li>
               <li className="footer__list-item">
-                <a href="https://sdeysocial.canny.io/issue" target="_blank" className="footer__list-link">
+                <a href="https://mfc.canny.io/issue" target="_blank" className="footer__list-link">
                   Report Bugs
                 </a>
               </li>
@@ -104,7 +104,7 @@ const Footer = () => {
                 {/* Status Indicator */}
                 <div className="footer__status">
                   <div className="status-dot" id="system-status-dot"></div>
-                  <a href="http://sdeysocial.hyperping.app/" target="_blank">
+                  <a href="http://mfc.hyperping.app/" target="_blank">
                     <span id="system-status-message">All Systems Operational</span>
                   </a>
                 </div>
@@ -125,12 +125,12 @@ const Footer = () => {
           {`
             var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
             (function(){
-              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-              s1.async=true;
-              s1.src='https://embed.tawk.to/65660e221db16644c5558560/1hgbaeehq';
-              s1.charset='UTF-8';
-              s1.setAttribute('crossorigin','*');
-              s0.parentNode.insertBefore(s1,s0);
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6567144e26949f791135dd26/1hgdael2d';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
             })();
           `}
         </script>

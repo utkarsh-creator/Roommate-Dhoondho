@@ -571,7 +571,7 @@ function DisplayRoommateCard() {
                   <p>
                     If you face any problem, please report to us at
                     <br />
-                    mfc.sdeysocial@dewdata.com
+                    mozillavit@gmail.com
                   </p>
                 </div>
               ) : (
