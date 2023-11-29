@@ -383,7 +383,7 @@ function DisplayRoommateCard() {
                   <p>
                     If you face any problem, please report to us at
                     <br />
-                    mozillavit@gmail.com
+                    support@mozillavit.in
                   </p>
                 </div>
               ) : (
@@ -574,7 +574,7 @@ function DisplayRoommateCard() {
                   <p>
                     If you face any problem, please report to us at
                     <br />
-                    mozillavit@gmail.com
+                    support@mozillavit.in
                   </p>
                 </div>
               ) : (
