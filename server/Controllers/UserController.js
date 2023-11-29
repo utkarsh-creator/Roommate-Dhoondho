@@ -7,7 +7,7 @@ export const getAllUser = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -37,7 +37,7 @@ export const getUser = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -65,7 +65,7 @@ export const updateUser = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -100,7 +100,7 @@ export const deleteUser = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -127,7 +127,7 @@ export const followUser = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -174,7 +174,7 @@ export const UnFollowUser = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -221,7 +221,7 @@ export const likeRoom = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -250,7 +250,7 @@ export const likeRoommate = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }

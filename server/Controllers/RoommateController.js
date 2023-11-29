@@ -8,7 +8,7 @@ export const createRoommate = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -38,7 +38,7 @@ export const getRoommate = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -64,7 +64,7 @@ export const getAllRoommate = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -94,7 +94,7 @@ export const updateRoommate = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -122,7 +122,7 @@ export const deleteRoommate = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }

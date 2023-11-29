@@ -13,7 +13,7 @@ export const registerUser = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -52,7 +52,7 @@ export const verifyEmail = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -91,7 +91,7 @@ export const resendVerificationEmail = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -125,7 +125,7 @@ export const loginUser = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -168,7 +168,7 @@ export const requestPasswordReset = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
@@ -200,7 +200,7 @@ export const updatePassword = async (req, res) => {
   const url = req.get('Origin');
   console.log('Domain:', url);
 
-  if (url !== process.env.CLIENT_URL) {
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
     res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
