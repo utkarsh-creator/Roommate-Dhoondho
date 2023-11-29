@@ -115,8 +115,14 @@ function DisplayRoommateCard() {
 
         const roommatePostsWithUserDetailsPromises = roommatePosts
           .map((post) => {
+            const config = {
+              headers: {
+                'host': 'room.mozillavit.in',
+              },
+            };
+
             return axios
-              .get(`https://roommate-finder-theta.vercel.app/user/${post?.userId}`)
+              .get(`https://roommate-finder-theta.vercel.app/user/${post?.userId}`, config)
               .then((userResponse) => {
                 const userDetails = userResponse.data;
                 return {
@@ -136,8 +142,14 @@ function DisplayRoommateCard() {
         
         const roomPostsWithUserDetailsPromises = roomPosts
           .map((post) => {
+            const config = {
+              headers: {
+                'host': 'room.mozillavit.in',
+              },
+            };
+
             return axios
-              .get(`https://roommate-finder-theta.vercel.app/user/${post?.userId}`)
+              .get(`https://roommate-finder-theta.vercel.app/user/${post?.userId}`, config)
               .then((userResponse) => {
                 const userDetails = userResponse.data;
                 return {
@@ -187,9 +199,15 @@ function DisplayRoommateCard() {
   }, [page, selectedBlock, selectedYear, rankOrder]);
 
   const fetchFollowing = () => {
-    axios
+    const config = {
+      headers: {
+        'host': 'room.mozillavit.in',
+      },
+    };
+
+    return axios
       .get(
-        `https://roommate-finder-theta.vercel.app/user/${profileData.user._id}`
+        `https://roommate-finder-theta.vercel.app/user/${profileData.user._id}`, config
       )
       .then((response) => {
         console.log("Profile fetched:", response.data);
@@ -249,10 +267,17 @@ function DisplayRoommateCard() {
               roommateId: otherUserId,
             };
 
+            const config = {
+              headers: {
+                'host': 'room.mozillavit.in',
+              },
+            };
+
             let result = await axios
               .put(
                 `https://roommate-finder-theta.vercel.app/user/${myUserId}/likesRoommate`,
-                requestBody
+                requestBody,
+                config
               )
               .catch((error) => {
                 // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
@@ -312,10 +337,17 @@ function DisplayRoommateCard() {
               roomId: otherRoomId,
             };
 
+            const config = {
+              headers: {
+                'host': 'room.mozillavit.in',
+              },
+            };
+
             let result = await axios
               .put(
                 `https://roommate-finder-theta.vercel.app/user/${myUserId}/likesroom`,
-                requestBody
+                requestBody,
+                config
               )
               .catch((error) => {
                 // Handle 404 errors here, you can simply ignore the error and return null or any other default value.
