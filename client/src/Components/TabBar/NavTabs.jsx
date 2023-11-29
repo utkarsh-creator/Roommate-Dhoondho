@@ -708,7 +708,7 @@ function DisplayRoommateCard() {
               {/* <ReactPaginate
                 activeClassName="active-pagination-button bg-purple text-blue"
                 key={resetPaginationKey}
-                pageCount={totalPagesroommate}
+                pageCount={totalPages}
                 pageRangeDisplayed={5}
                 marginPagesDisplayed={2}
                 onPageChange={async (selected) => {
