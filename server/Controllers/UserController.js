@@ -25,9 +25,12 @@ export const getUser = async (req, res) => {
   const id = req.params.id;
 
   // Check if the request has an 'Origin' header
-  if (req.get('host') !== 'room.mozillavit.in') {
-      res.send('Nope');
-      return;
+  const host = req.get('host');
+  console.log('Host:', host);
+
+  if (host !== 'room.mozillavit.in') {
+    res.status(403).json({ message: 'Access Forbidden', host: host });
+    return;
   }
 
   try {
