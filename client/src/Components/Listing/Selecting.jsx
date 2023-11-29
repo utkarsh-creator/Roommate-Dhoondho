@@ -7,6 +7,7 @@ import Modal from "../../Components/Modal/Modal";
 import Modal2 from "../Modal/Modal2";
 import CircularProgress from "@mui/material/CircularProgress";
 import { toast } from "react-toastify";
+import  secureLocalStorage  from  "react-secure-storage";
 
 export const Listing = () => {
   const {
@@ -20,7 +21,7 @@ export const Listing = () => {
     selectRoomPhone,
   } = useContext(ListingContext);
 
-  const profileData = JSON.parse(localStorage.getItem("profile"));
+  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
 
   const [following, setFollowing] = useState(new Set());
   const [likeRoom, setLikeRoom] = useState(new Set());

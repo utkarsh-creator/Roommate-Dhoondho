@@ -5,9 +5,10 @@ import { logout } from "../../actions/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "@mui/material";
 import "./Navbar.css";
+import  secureLocalStorage  from  "react-secure-storage";
 
 function Navbar() {
-  const profileData = JSON.parse(localStorage.getItem("profile")) || {};
+  const profileData = JSON.parse(secureLocalStorage.getItem("profile")) || {};
   const isProfileSet = profileData && !!profileData.user?.firstname;
   const [navbar, setHeader] = useState("navbar");
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function Navbar() {
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
-    localStorage.removeItem("profile");
+    secureLocalStorage.removeItem("profile");
     dispatch(logout());
     navigate("/");
   };

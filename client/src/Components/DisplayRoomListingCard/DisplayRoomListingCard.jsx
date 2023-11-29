@@ -4,10 +4,11 @@ import "../Cards/Cards.css";
 import { ListingContext } from "../../Context/listing-context";
 import Modal2 from "../Modal/Modal2";
 import { toast } from "react-toastify";
+import  secureLocalStorage  from  "react-secure-storage";
 
 function DisplayRoomListingCard() {
   const { showModal2, selectRoomDetail } = useContext(ListingContext);
-  const profileData = JSON.parse(localStorage.getItem("profile"));
+  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {

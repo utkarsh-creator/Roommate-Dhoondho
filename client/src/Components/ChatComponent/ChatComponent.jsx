@@ -7,10 +7,11 @@ import Footer from "../Footer/Footer";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 import "./ChatComponent.css";
+import  secureLocalStorage  from  "react-secure-storage";
 
 const ChatComponent = () => {
   const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);
-  const profileData = JSON.parse(localStorage.getItem("profile"));
+  const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
   const location = useLocation();
   const navigate = useNavigate();
   const [isChatLoaded, setIsChatLoaded] = useState(false);
