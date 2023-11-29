@@ -92,25 +92,25 @@ function DisplayRoommateCard() {
     const fetchRoommateAndRoomCards = async () => {
       try {
         const roomLengthResponse = await axios.get(
-          `https://roommate-dhoondho-backend-test.vercel.app/room/all`
+          `https://roommate-finder-theta.vercel.app/room/all`
         );
         const roomLengthPosts = roomLengthResponse.data;
 
         const roommateLengthResponse = await axios.get(
-          `https://roommate-dhoondho-backend-test.vercel.app/roommate/all`
+          `https://roommate-finder-theta.vercel.app/roommate/all`
         );
         const roommateLengthPosts = roommateLengthResponse.data;
 
         console.log(roommateLengthPosts);
         // Fetch roommate posts in batches
         const roommateResponse = await axios.get(
-          `https://roommate-dhoondho-backend-test.vercel.app/roommate/all`
+          `https://roommate-finder-theta.vercel.app/roommate/all`
         );
         const roommatePosts = roommateResponse.data;
 
         // Fetch room posts in batches
         const roomResponse = await axios.get(
-          `https://roommate-dhoondho-backend-test.vercel.app/room/all`
+          `https://roommate-finder-theta.vercel.app/room/all`
         );
         const roomPosts = roomResponse.data;
 
