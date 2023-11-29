@@ -47,93 +47,100 @@ function NeedRoom() {
   const navigate = useNavigate();
   const [showPlaceholder, setShowPlaceholder] = useState(false);
 
-  useEffect(() => {
-    if (profileData?.user?.gender) {
-      console.log("Going into 3L07", profileData);
-      console.log("Going into 3L07-1", profileData?.user?.gender);
-      const userGender = profileData?.user?.gender;
-      if (userGender === 'F') {
-        setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
-        setShowPlaceholder(false);
-      } else if (userGender === 'M') {
-        console.log("Entered 3L07-2", userGender);
-        setBlocks([
-          "A",
-          "B",
-          "B ANNEX",
-          "C",
-          "D",
-          "D ANNEX",
-          "E",
-          "F",
-          "G",
-          "H",
-          "J",
-          "K",
-          "L",
-          "M",
-          "M ANNEX",
-          "N",
-          "P",
-          "Q",
-          "R",
-        ]);
-        console.log("Exited from 3L07-3", userGender);
-        setShowPlaceholder(false);
-      }
-      else {
-        console.log("Failed to fetch 3L02", profileData);
-        setShowPlaceholder(true);
-      }
-    } else {
-      // If user's gender is not present in local storage, fetch it from the API
-      const fetchUserGender = async () => {
-        console.log("Going into 3L09", profileData);
-        try {
-          const userId = profileData?.user?._id;
-          console.log("Gender not found in local storage for user:", profileData);
-          const response = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/user/${userId}`
-          );
-          const userGender = response?.data?.gender;
+  const handleRefresh = () => {
+    window.location.reload();
+  };
 
-          if (userGender === "F") {
-            setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
-            setShowPlaceholder(false);
-          } else if (userGender === "M")  {
-            setBlocks([
-              "A",
-              "B",
-              "B ANNEX",
-              "C",
-              "D",
-              "D ANNEX",
-              "E",
-              "F",
-              "G",
-              "H",
-              "J",
-              "K",
-              "L",
-              "M",
-              "M ANNEX",
-              "N",
-              "P",
-              "Q",
-              "R",
-            ]);
-            setShowPlaceholder(false);
-          }
-          else {
-            setShowPlaceholder(true);
-          }
-        } catch (error) {
-          console.error("Error fetching user gender:", error);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (profileData?.user?.gender) {
+        console.log("Going into 3L07", profileData);
+        console.log("Going into 3L07-1", profileData?.user?.gender);
+        const userGender = profileData?.user?.gender;
+        if (userGender === 'F') {
+          setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
+          setShowPlaceholder(false);
+        } else if (userGender === 'M') {
+          console.log("Entered 3L07-2", userGender);
+          setBlocks([
+            "A",
+            "B",
+            "B ANNEX",
+            "C",
+            "D",
+            "D ANNEX",
+            "E",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "M",
+            "M ANNEX",
+            "N",
+            "P",
+            "Q",
+            "R",
+          ]);
+          console.log("Exited from 3L07-3", userGender);
+          setShowPlaceholder(false);
+        }
+        else {
+          console.log("Failed to fetch 3L02", profileData);
           setShowPlaceholder(true);
         }
-      };
-      fetchUserGender();
-    }
+      } else {
+        // If user's gender is not present in local storage, fetch it from the API
+        const fetchUserGender = async () => {
+          console.log("Going into 3L09", profileData);
+          try {
+            const userId = profileData?.user?._id;
+            console.log("Gender not found in local storage for user:", profileData);
+            const response = await axios.get(
+              `${process.env.REACT_APP_SERVER_URL}/user/${userId}`
+            );
+            const userGender = response?.data?.gender;
+            console.log("Gender fetched from API for user 3L04-1:", userGender);
+            if (userGender === "F") {
+              setBlocks(["A", "B", "C", "D", "E", "F", "G", "H"]);
+              setShowPlaceholder(false);
+            } else if (userGender === "M")  {
+              setBlocks([
+                "A",
+                "B",
+                "B ANNEX",
+                "C",
+                "D",
+                "D ANNEX",
+                "E",
+                "F",
+                "G",
+                "H",
+                "J",
+                "K",
+                "L",
+                "M",
+                "M ANNEX",
+                "N",
+                "P",
+                "Q",
+                "R",
+              ]);
+              setShowPlaceholder(false);
+            }
+            else {
+              setShowPlaceholder(true);
+            }
+          } catch (error) {
+            console.error("Error fetching user gender:", error);
+            setShowPlaceholder(true);
+          }
+        };
+        fetchUserGender();
+      }
+    };
+    fetchData();
   }, [profileData]);
 
   function needRoomClickHandler(trigger) {
@@ -508,13 +515,21 @@ function NeedRoom() {
           <div align="center">
             <Alert severity="warning">
               Please complete your profile before using this application. If you have already completed the profile
-              and still see this message, please goto your profile and click on "Submit" button again.
+              and still see this message, please "Refresh" or goto your profile and click on "Submit" button again.
             </Alert>
             <br />
             <p>
               If you face any problem, please report to us at
               <br />
               support@mozillavit.in
+              <br /><br />
+              <button
+                onClick={handleRefresh}
+                className="bg-[#140922] px-4 py-2 text-white rounded-md"
+              >
+                Refresh
+              </button>
+              <br /><br />
             </p>
           </div>
         ) : needRoom ? (
