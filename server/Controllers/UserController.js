@@ -3,6 +3,15 @@ import bcrypt from "bcryptjs";
 
 // get all Users
 export const getAllUser = async (req, res) => {
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10000000;
@@ -29,7 +38,7 @@ export const getUser = async (req, res) => {
   console.log('Domain:', url);
 
   if (url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: 'Access Forbidden', url: url });
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
     return;
   }
 
@@ -51,6 +60,15 @@ export const getUser = async (req, res) => {
 // update a user
 export const updateUser = async (req, res) => {
   const id = req.params.id;
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { currentUserId, currentUserAdminStatus, password } = req.body;
 
   if (id === currentUserId || currentUserAdminStatus) {
@@ -77,6 +95,15 @@ export const updateUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   const id = req.params.id;
 
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { currentUserId, currentUserAdminStatus } = req.body;
 
   if (currentUserId === id || currentUserAdminStatus) {
@@ -94,6 +121,15 @@ export const deleteUser = async (req, res) => {
 // Follow a User
 export const followUser = async (req, res) => {
   const id = req.params.id;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
 
   const { currentUserId } = req.body;
 
@@ -133,6 +169,15 @@ export const followUser = async (req, res) => {
 export const UnFollowUser = async (req, res) => {
   const id = req.params.id;
 
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { currentUserId } = req.body;
 
   if (currentUserId === id) {
@@ -170,6 +215,16 @@ export const UnFollowUser = async (req, res) => {
 // follow/unfollow - like/unlike a room (trying 2nd method - smaller version).
 export const likeRoom = async (req, res) => {
   const id = req.params.id;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { roomId } = req.body;
 
   try {
@@ -189,6 +244,16 @@ export const likeRoom = async (req, res) => {
 // like/unlike a roommate
 export const likeRoommate = async (req, res) => {
   const id = req.params.id;
+
+  // Check if the request has an 'Origin' header// Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { roommateId } = req.body;
 
   try {

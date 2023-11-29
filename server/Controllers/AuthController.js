@@ -8,6 +8,16 @@ import { sendPasswordResetMail } from "../utils/sendPasswordResetMail.js";
 // Registering a new User
 export const registerUser = async (req, res) => {
   console.log(req.body);
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(req.body.password, salt);
@@ -37,6 +47,16 @@ export const registerUser = async (req, res) => {
 
 // Verify Email Token
 export const verifyEmail = async (req, res) => {
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   try {
     const emailToken = req.body.emailToken;
     if (!emailToken) {
@@ -66,6 +86,16 @@ export const verifyEmail = async (req, res) => {
 
 // Resend Verification Email
 export const resendVerificationEmail = async (req, res) => {
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { username } = req.body;
   try {
     const user = await UserModel.findOne({ username });
@@ -90,6 +120,16 @@ export const resendVerificationEmail = async (req, res) => {
 
 // login User
 export const loginUser = async (req, res) => {
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { username, password } = req.body;
   try {
     const user = await UserModel.findOne({ username: username });
@@ -123,6 +163,16 @@ export const loginUser = async (req, res) => {
 
 // Generate a new email token for password reset
 export const requestPasswordReset = async (req, res) => {
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { username } = req.body;
   try {
     const user = await UserModel.findOne({ username });
@@ -145,6 +195,16 @@ export const requestPasswordReset = async (req, res) => {
 
 // Update password based on emailToken
 export const updatePassword = async (req, res) => {
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { username, password, emailToken } = req.body;
   try {
     const user = await UserModel.findOne({ username, emailToken });

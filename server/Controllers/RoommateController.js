@@ -3,6 +3,16 @@ import needRoommateModel from "../Models/needRoommate.js";
 // Create new Roommate
 export const createRoommate = async (req, res) => {
   const id = req.params.userid;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { userId } = req.body;
   const newRoommate = new needRoommateModel(req.body);
 
@@ -23,6 +33,16 @@ export const createRoommate = async (req, res) => {
 
 export const getRoommate = async (req, res) => {
   const id = req.params.userid;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { userId } = req.body;
 
   try {
@@ -39,6 +59,16 @@ export const getRoommate = async (req, res) => {
 
 // Get all Roommates
 export const getAllRoommate = async (req, res) => {
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10000000;
@@ -59,6 +89,16 @@ export const getAllRoommate = async (req, res) => {
 // Update a Roommate
 export const updateRoommate = async (req, res) => {
   const id = req.params.id;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { userId } = req.body;
 
   try {
@@ -77,6 +117,16 @@ export const updateRoommate = async (req, res) => {
 // Delete a Roommate
 export const deleteRoommate = async (req, res) => {
   const id = req.params.id;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { userId } = req.body;
 
   try {

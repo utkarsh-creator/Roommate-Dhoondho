@@ -3,6 +3,16 @@ import needRoomModel from "../Models/needRoom.js";
 // Create new Room
 export const createRoom = async (req, res) => {
   const id = req.params.userid;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { userId } = req.body;
   const newRoom = new needRoomModel(req.body);
 
@@ -23,6 +33,16 @@ export const createRoom = async (req, res) => {
 
 export const getRoom = async (req, res) => {
   const id = req.params.userid;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { userId } = req.body;
 
   try {
@@ -39,6 +59,16 @@ export const getRoom = async (req, res) => {
 
 // Get all Rooms
 export const getAllRoom = async (req, res) => {
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10000000;
@@ -59,6 +89,16 @@ export const getAllRoom = async (req, res) => {
 // Update a Room
 export const updateRoom = async (req, res) => {
   const id = req.params.id;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { userId } = req.body;
 
   try {
@@ -77,6 +117,16 @@ export const updateRoom = async (req, res) => {
 // Delete a Room
 export const deleteRoom = async (req, res) => {
   const id = req.params.id;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.AccessForbiddenCustomMsg}`, url: url });
+    return;
+  }
+
   const { userId } = req.body;
 
   try {
