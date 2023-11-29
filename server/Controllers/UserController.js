@@ -1,6 +1,8 @@
 import UserModel from "../Models/userModel.js";
 import bcrypt from "bcryptjs";
 
+require('dotenv').config();
+
 // get all Users
 export const getAllUser = async (req, res) => {
   try {
@@ -24,11 +26,11 @@ export const getUser = async (req, res) => {
   
   const id = req.params.id;
 
-  // Check if the request has an 'Origin' header
-  const domain = req.get('domain');
+ // Check if the request has an 'Origin' header
+  const domain = req.get('Origin');
   console.log('Domain:', domain);
 
-  if (domain !== 'room.mozillavit.in') {
+  if (domain !== process.env.CLIENT_DOMAIN) {
     res.status(403).json({ message: 'Access Forbidden', domain: domain });
     return;
   }
