@@ -91,25 +91,25 @@ function DisplayRoommateCard() {
     const fetchRoommateAndRoomCards = async () => {
       try {
         const roomLengthResponse = await axios.get(
-          `https://roommate-dhoondho-backend-test.vercel.app/room/all?gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+          `https://roommate-dhoondho-backend-test.vercel.app/room/all`
         );
         const roomLengthPosts = roomLengthResponse.data;
 
         const roommateLengthResponse = await axios.get(
-          `https://roommate-dhoondho-backend-test.vercel.app/roommate/all?gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+          `https://roommate-dhoondho-backend-test.vercel.app/roommate/all`
         );
         const roommateLengthPosts = roommateLengthResponse.data;
 
         console.log(roommateLengthPosts);
         // Fetch roommate posts in batches
         const roommateResponse = await axios.get(
-          `https://roommate-dhoondho-backend-test.vercel.app/roommate/all?page=${page}&limit=${perPage}&gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+          `https://roommate-dhoondho-backend-test.vercel.app/roommate/all`
         );
         const roommatePosts = roommateResponse.data;
 
         // Fetch room posts in batches
         const roomResponse = await axios.get(
-          `https://roommate-dhoondho-backend-test.vercel.app/room/all?page=${page}&limit=${perPage}&gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
+          `https://roommate-dhoondho-backend-test.vercel.app/room/all`
         );
         const roomPosts = roomResponse.data;
 
@@ -514,7 +514,7 @@ function DisplayRoommateCard() {
                   <CircularProgress disableShrink color="primary" size={40} />
                 </div>
               )}
-              <ReactPaginate
+              {/* <ReactPaginate
                 activeClassName="active-pagination-button bg-purple text-blue"
                 key={resetPaginationKey}
                 pageCount={totalPagesroommate}
@@ -548,7 +548,7 @@ function DisplayRoommateCard() {
                     <BsChevronLeft />
                   </span>
                 }
-              />
+              /> */}
             </div>
 
 
@@ -704,7 +704,7 @@ function DisplayRoommateCard() {
                   <CircularProgress disableShrink color="primary" size={40} />
                 </div>
               )}
-              <ReactPaginate
+              {/* <ReactPaginate
                 activeClassName="active-pagination-button bg-purple text-blue"
                 key={resetPaginationKey}
                 pageCount={totalPagesroommate}
@@ -738,7 +738,7 @@ function DisplayRoommateCard() {
                     <BsChevronLeft />
                   </span>
                 }
-              />
+              /> */}
             </div>
           </Tab>
         </Tabs>
