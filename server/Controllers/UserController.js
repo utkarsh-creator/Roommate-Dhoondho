@@ -21,7 +21,14 @@ export const getAllUser = async (req, res) => {
 
 // get a User
 export const getUser = async (req, res) => {
+  
   const id = req.params.id;
+
+  // Check if the request has an 'Origin' header
+  const origin = req.get('Origin');
+  if (origin && origin !== 'https://room.mozillavit.in') {
+    return res.status(403).json({ error: 'Forbidden. Access from this origin is not allowed.' });
+  }
 
   try {
     const user = await UserModel.findById(id);
