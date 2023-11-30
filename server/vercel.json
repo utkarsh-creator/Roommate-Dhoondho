@@ -1,15 +1,25 @@
 {
+  "name": "roommate-dhoondho-backend",
   "version": 2,
+  "views": true,
   "builds": [
     {
-      "src": "./index.js",
+      "src": "index.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "views/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/((?!.*\\.\\w+$).*)",
       "dest": "/index.js"
+    },
+    {
+      "src": "/(.+\\.[a-z]+)$",
+      "dest": "/views/$1"
     }
   ]
 }
