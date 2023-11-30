@@ -1,7 +1,6 @@
 {
   "name": "roommate-dhoondho-backend",
   "version": 2,
-  "views": true,
   "builds": [
     {
       "src": "index.js",
