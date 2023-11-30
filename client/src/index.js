@@ -25,11 +25,15 @@ import Privacy from "./Pages/PrivacyPolicy/Privacy";
 import Team from "./Pages/Team/Team";
 import AboutMFC from "./Pages/AboutMFC/AboutMFC";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import ReactGA from 'react-ga4';
 
 import Hotjar from '@hotjar/browser';
 const siteId = 3765543;
 const hotjarVersion = 6;
 Hotjar.init(siteId, hotjarVersion);
+
+const MeasurementId = "G-R2PCM7R0D1";
+ReactGA.initialize(MeasurementId);
 
 console.log(
   "%cDear Developer,\n" +
