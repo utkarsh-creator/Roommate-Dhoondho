@@ -393,3 +393,18 @@ form {
   left: 0;
   background: rgba(255, 255, 255, 0.8);
 }
+.form-section-6{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+.form-section-6 input {
+  margin-bottom: 4px;
+  background-color: #d9d9d9;
+  border-radius: 8px;
+  height: 3rem;
+}
+
+.form-section-6 label {
+  margin-bottom: 4px;
+}
