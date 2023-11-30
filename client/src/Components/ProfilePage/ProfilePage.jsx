@@ -465,15 +465,17 @@ const Profilepage = () => {
                         </div>
                         <div className="form-section-6">
                           <label>Password*</label>
-                          <span onClick={handleResetPasswordClick} style={{ textDecoration: 'underline', cursor: 'pointer', color: 'blue' }}>
-                            Reset Password
-                          </span>
                           <input
                             type="password"
                             name="password"
                             value={password}
                             onChange={handleChangePassword}
                           />
+                          <div className="handlereset">
+                            <span onClick={handleResetPasswordClick}>
+                              Reset Password
+                            </span>
+                          </div>
                         </div>
                       </div>
                       <div className="form-section-4">

@@ -408,3 +408,9 @@ form {
 .form-section-6 label {
   margin-bottom: 4px;
 }
+
+.handlereset{
+  color: #000000;
+  text-decoration: underline;
+  cursor: pointer;
+}
