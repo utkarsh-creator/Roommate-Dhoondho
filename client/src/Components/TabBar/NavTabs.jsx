@@ -73,6 +73,10 @@ function DisplayRoommateCard() {
     console.error('Error accessing user gender:', error);
   }
 
+  const handleGoToProfile = () => {
+    navigate("/profile");
+  };
+
   const {
     addToCart2,
     addToCart,
@@ -414,6 +418,14 @@ function DisplayRoommateCard() {
                     If you face any problem, please report to us at
                     <br />
                     support@mozillavit.in
+                    <br /><br />
+                    <button
+                      onClick={handleGoToProfile}
+                      className="bg-[#140922] px-4 py-2 text-white rounded-md"
+                    >
+                      Profile
+                    </button>
+                    <br /><br />
                   </p>
                 </div>
               ) : (
@@ -605,6 +617,14 @@ function DisplayRoommateCard() {
                     If you face any problem, please report to us at
                     <br />
                     support@mozillavit.in
+                    <br /><br />
+                    <button
+                      onClick={handleGoToProfile}
+                      className="bg-[#140922] px-4 py-2 text-white rounded-md"
+                    >
+                      Profile
+                    </button>
+                    <br /><br />
                   </p>
                 </div>
               ) : (
