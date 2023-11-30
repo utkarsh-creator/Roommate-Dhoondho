@@ -7,6 +7,7 @@ import AuthRoute from './Routes/AuthRoute.js'
 import UserRoute from './Routes/UserRoute.js'
 import RoomRoute from './Routes/RoomRoute.js'
 import RoommateRoute from './Routes/RoommateRoute.js'
+import ServerMsgRoute from './Routes/ServerMsgRoute.js'
 import path from 'path';
 
 if(process.env.NODE_ENV === "production") {
@@ -125,3 +126,4 @@ mongoose
   app.use('/user', UserRoute)
   app.use('/room', RoomRoute)
   app.use('/roommate', RoommateRoute)
+  app.use('/server-messages', ServerMsgRoute)
