@@ -24,6 +24,7 @@ import Terms from "./Pages/Terms/Terms";
 import Privacy from "./Pages/PrivacyPolicy/Privacy";
 import Team from "./Pages/Team/Team";
 import AboutMFC from "./Pages/AboutMFC/AboutMFC";
+import Hotjar from '@hotjar/browser';
 
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 console.log(
@@ -139,6 +140,10 @@ if(process.env.NODE_ENV === "production") {
   console.count = () => {}
   console.countReset = () => {}
 }
+
+const siteId = 3765543;
+const hotjarVersion = 6;
+Hotjar.init(siteId, hotjarVersion);
 
 const router = createBrowserRouter([
   {
