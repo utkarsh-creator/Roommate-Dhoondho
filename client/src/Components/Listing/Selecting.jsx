@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { ListingContext } from "../../Context/listing-context.jsx";
 import "../Cards/Cards.css";
@@ -29,7 +30,7 @@ export const Listing = () => {
   } = useContext(ListingContext);
 
   const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
-
+  const navigate = useNavigate();
   const [following, setFollowing] = useState(new Set());
   const [likeRoom, setLikeRoom] = useState(new Set());
   const [roommatePosts, setRoommatePosts] = useState([]);
@@ -43,10 +44,18 @@ export const Listing = () => {
   });
 
   useEffect(() => {
+    if (!profileData) {
+      console.error('Error accessing user profileData');
+      toast.error('Error L4597E. Please Sign In again.')
+      navigate("/");
+    }
+  }, [profileData, navigate]);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/user/${profileData.user._id}`
+          `${process.env.REACT_APP_SERVER_URL}/user/${profileData?.user?._id}`
         );
 
         console.log("Profile fetched:", response.data);
@@ -62,7 +71,7 @@ export const Listing = () => {
     };
 
     fetchData();
-  }, [profileData.user._id]);
+  }, [profileData?.user?._id]);
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/roommate/all`)

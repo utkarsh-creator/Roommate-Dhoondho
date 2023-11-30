@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import "./styles.css";
 import "./paginationStyles.css";
 import "../Cards/Cards.css";
@@ -23,6 +24,7 @@ Hotjar.stateChange(homePage);
 
 function DisplayRoommateCard() {
   const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [showPlaceholder, setShowPlaceholder] = useState(false);
   const user = useSelector((state) => state.authReducer.authData);
@@ -48,13 +50,28 @@ function DisplayRoommateCard() {
     setResetPaginationKey((prevKey) => prevKey + 1);
   };
   const perPage = 9; // No of items to be displayed in a page
-  const userGenderAll = profileData.user.gender;
 
   Hotjar.identify(profileData?.user?.username, {
     first_name: profileData?.user?.firstname,
     last_name: profileData?.user?.lastname,
     gender: profileData?.user?.gender
   });
+
+  useEffect(() => {
+    if (!profileData) {
+      console.error('Error accessing user profileData');
+      toast.error('Error L1075A. Please Sign In again.')
+      navigate("/");
+    }
+    
+  }, [profileData, navigate]);
+
+  let userGenderAll;
+  try {
+    userGenderAll = profileData?.user?.gender;
+  } catch (error) {
+    console.error('Error accessing user gender:', error);
+  }
 
   const {
     addToCart2,
@@ -205,7 +222,7 @@ function DisplayRoommateCard() {
 
     return axios
       .get(
-        `${process.env.REACT_APP_SERVER_URL}/user/${profileData.user._id}`
+        `${process.env.REACT_APP_SERVER_URL}/user/${profileData?.user?._id}`
       )
       .then((response) => {
         console.log("Profile fetched:", response.data);
@@ -260,7 +277,7 @@ function DisplayRoommateCard() {
             (userGender === "M" && otherUserGender === "M") ||
             (userGender === "F" && otherUserGender === "F")
           ) {
-            let myUserId = profileData.user._id;
+            let myUserId = profileData?.user?._id;
             let requestBody = {
               roommateId: otherUserId,
             };
@@ -323,7 +340,7 @@ function DisplayRoommateCard() {
             (userGender === "M" && roomGender === "M") ||
             (userGender === "F" && roomGender === "F")
           ) {
-            let myUserId = profileData.user._id;
+            let myUserId = profileData?.user?._id;
             let requestBody = {
               roomId: otherRoomId,
             };

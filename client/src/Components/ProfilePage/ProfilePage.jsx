@@ -6,6 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate } from 'react-router-dom';
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -15,6 +16,7 @@ import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
 import DisplayRoommateListingCard from "../DisplayRoommateListingCard/DisplayRoommateListingCard";
 import DisplayRoomListingCard from "../DisplayRoomListingCard/DisplayRoomListingCard";
+import { logout } from "../../actions/AuthActions";
 import { toast } from "react-toastify";
 import  secureLocalStorage  from  "react-secure-storage";
 
@@ -27,6 +29,7 @@ Hotjar.stateChange(profilePage);
 
 const Profilepage = () => {
   const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
+  const navigate = useNavigate();
   const [additionalData, setAdditionalData] = useState({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -41,7 +44,7 @@ const Profilepage = () => {
   const [formEvent, setFormEvent] = useState(null);
   const [showInfoLabel, setShowInfoLabel] = useState(true);
   const [isGenderEditable, setIsGenderEditable] = useState(
-    profileData.user.gender === null
+    profileData?.user?.gender === null
   );
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -52,12 +55,27 @@ const Profilepage = () => {
     gender: profileData?.user?.gender
   });
 
+  useEffect(() => {
+    if (!profileData) {
+      console.error('Error accessing user profileData');
+      toast.error('Error L4781C. Please Sign In again.')
+      navigate("/");
+    }
+  }, [profileData, navigate]);
+
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
 
   const validatePassword = () => {
     return !!password;
+  };
+
+  const dispatch = useDispatch();
+  const handleResetPasswordClick = () => {
+    secureLocalStorage.removeItem("profile");
+    dispatch(logout());
+    navigate('/resetPassword');
   };
 
   const handleConfirmationOpen = (e) => {
@@ -79,7 +97,7 @@ const Profilepage = () => {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_SERVER_URL}/user/personal/${profileData.user._id}`
+        `${process.env.REACT_APP_SERVER_URL}/user/personal/${profileData?.user?._id}`
       )
       .then((response) => {
         const data = response.data;
@@ -209,7 +227,7 @@ const Profilepage = () => {
     console.log("submitting form gender", gender);
     if (validateForm()) {
       const updatedData = {
-        currentUserId: profileData.user._id,
+        currentUserId: profileData?.user?._id,
         password: password,
         // username: email,
         firstname: firstName,
@@ -223,7 +241,7 @@ const Profilepage = () => {
 
       axios
         .put(
-          `${process.env.REACT_APP_SERVER_URL}/user/${profileData.user._id}`,
+          `${process.env.REACT_APP_SERVER_URL}/user/${profileData?.user?._id}`,
           updatedData
         )
         .then((response) => {
@@ -447,6 +465,9 @@ const Profilepage = () => {
                         </div>
                         <div className="form-section-6">
                           <label>Password*</label>
+                          <span onClick={handleResetPasswordClick} style={{ textDecoration: 'underline', cursor: 'pointer', color: 'blue' }}>
+                            Reset Password
+                          </span>
                           <input
                             type="password"
                             name="password"

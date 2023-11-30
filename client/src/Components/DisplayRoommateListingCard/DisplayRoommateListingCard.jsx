@@ -14,7 +14,7 @@ function DisplayRoommateListingCard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const user_Id = profileData.user._id;
+        const user_Id = profileData?.user?._id;
         // console.log("user_Id recorded:", user_Id);
 
         const requestData = {
@@ -34,11 +34,11 @@ function DisplayRoommateListingCard() {
     };
 
     fetchData();
-  }, [profileData.user._id]);
+  }, [profileData?.user?._id]);
 
   const deleteRoommate = async (roommate_id) => {
     try {
-      const user_Id = profileData.user._id;
+      const user_Id = profileData?.user?._id;
       const requestBody = {
         userId: user_Id,
       };
