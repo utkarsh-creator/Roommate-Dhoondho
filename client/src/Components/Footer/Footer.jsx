@@ -15,7 +15,7 @@ const Footer = () => {
             <ul className="footer__list">
               <li className="footer__list-item">
                 <a href="mailto:support@mozillavit.in?subject=Query&body=Help" className="footer__list-link">
-                  Gmail
+                  support@mozillavit.in
                 </a>
               </li>
               <li className="footer__list-item">
