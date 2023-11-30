@@ -111,7 +111,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-        </div> 
+        </div>
 
         <hr className="footer__divider" />
         <div className="footer__bottom">
