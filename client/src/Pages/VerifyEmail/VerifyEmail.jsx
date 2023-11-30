@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { postRequest } from './authRequests.js';
 
-import Hotjar from '@hotjar/browser'
+import Hotjar from '@hotjar/browser';
+const siteId = 3765543;
+const hotjarVersion = 6;
+Hotjar.init(siteId, hotjarVersion);
 const verifyEmailPage = '/verifyEmail';
 Hotjar.stateChange(verifyEmailPage);
 

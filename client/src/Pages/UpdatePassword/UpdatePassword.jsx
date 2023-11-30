@@ -7,7 +7,10 @@ import { toast } from "react-toastify";
 import Header from "../../Components/Header/Header";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
-import Hotjar from '@hotjar/browser'
+import Hotjar from '@hotjar/browser';
+const siteId = 3765543;
+const hotjarVersion = 6;
+Hotjar.init(siteId, hotjarVersion);
 const updatePasswordPage = '/updatePassword';
 Hotjar.stateChange(updatePasswordPage);
 

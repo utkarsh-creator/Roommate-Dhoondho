@@ -24,9 +24,13 @@ import Terms from "./Pages/Terms/Terms";
 import Privacy from "./Pages/PrivacyPolicy/Privacy";
 import Team from "./Pages/Team/Team";
 import AboutMFC from "./Pages/AboutMFC/AboutMFC";
-import Hotjar from '@hotjar/browser';
-
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+
+import Hotjar from '@hotjar/browser';
+const siteId = 3765543;
+const hotjarVersion = 6;
+Hotjar.init(siteId, hotjarVersion);
+
 console.log(
   "%cDear Developer,\n" +
   "Thanks for stopping by the console log. If you've stumbled upon any bugs, please report them at %chttps://sdeysocial.canny.io/issue%c. Together, let's keep this code shipshape for our fellow VITians.\n" +
@@ -140,10 +144,6 @@ if(process.env.NODE_ENV === "production") {
   console.count = () => {}
   console.countReset = () => {}
 }
-
-const siteId = 3765543;
-const hotjarVersion = 6;
-Hotjar.init(siteId, hotjarVersion);
 
 const router = createBrowserRouter([
   {

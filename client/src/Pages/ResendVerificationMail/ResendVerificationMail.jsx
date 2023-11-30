@@ -4,7 +4,10 @@ import { toast } from "react-toastify";
 import "./ResendVerificationMail.css";
 import signinImage from "../../Assets/signin.png";  // Import the image
 
-import Hotjar from '@hotjar/browser'
+import Hotjar from '@hotjar/browser';
+const siteId = 3765543;
+const hotjarVersion = 6;
+Hotjar.init(siteId, hotjarVersion);
 const resendVerificationPage = '/resendVerificationMail';
 Hotjar.stateChange(resendVerificationPage);
 

@@ -6,7 +6,10 @@ import "./Reset.css";
 import Header from "../../Components/Header/Header";
 import { Link } from "react-router-dom";
 
-import Hotjar from '@hotjar/browser'
+import Hotjar from '@hotjar/browser';
+const siteId = 3765543;
+const hotjarVersion = 6;
+Hotjar.init(siteId, hotjarVersion);
 const passwordResetPage = '/resetPassword';
 Hotjar.stateChange(passwordResetPage);
 

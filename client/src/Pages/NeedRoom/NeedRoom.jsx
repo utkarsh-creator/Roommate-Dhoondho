@@ -13,7 +13,10 @@ import "./NeedRoom.css";
 import Alert from "@mui/material/Alert";
 import  secureLocalStorage  from  "react-secure-storage";
 
-import Hotjar from '@hotjar/browser'
+import Hotjar from '@hotjar/browser';
+const siteId = 3765543;
+const hotjarVersion = 6;
+Hotjar.init(siteId, hotjarVersion);
 const needRoomPage = '/need';
 Hotjar.stateChange(needRoomPage);
 
