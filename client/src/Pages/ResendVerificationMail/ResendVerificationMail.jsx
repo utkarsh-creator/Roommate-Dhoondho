@@ -4,6 +4,10 @@ import { toast } from "react-toastify";
 import "./ResendVerificationMail.css";
 import signinImage from "../../Assets/signin.png";  // Import the image
 
+import Hotjar from '@hotjar/browser'
+const resendVerificationPage = '/resendVerificationMail';
+Hotjar.stateChange(resendVerificationPage);
+
 function ResendVerificationMail() {
   const [email, setEmail] = useState("");
   const emailRegex = /^[A-Za-z0-9._%+-]+@vitstudent.ac.in$/;

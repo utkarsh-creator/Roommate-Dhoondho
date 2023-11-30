@@ -14,6 +14,10 @@ import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
 import  secureLocalStorage  from  "react-secure-storage";
 
+import Hotjar from '@hotjar/browser'
+const homePage = '/home';
+Hotjar.stateChange(homePage);
+
 function DisplayRoommateCard() {
   const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
   const [isLoading, setIsLoading] = useState(true);
@@ -42,6 +46,12 @@ function DisplayRoommateCard() {
   };
   const perPage = 9; // No of items to be displayed in a page
   const userGenderAll = profileData.user.gender;
+
+  Hotjar.identify(profileData?.user?.username, {
+    first_name: profileData?.user?.firstname,
+    last_name: profileData?.user?.lastname,
+    gender: profileData?.user?.gender
+  });
 
   const {
     addToCart2,

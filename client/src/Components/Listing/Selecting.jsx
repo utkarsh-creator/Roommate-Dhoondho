@@ -9,6 +9,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { toast } from "react-toastify";
 import  secureLocalStorage  from  "react-secure-storage";
 
+import Hotjar from '@hotjar/browser'
+const selectionsPage = '/selections';
+Hotjar.stateChange(selectionsPage);
+
 export const Listing = () => {
   const {
     selectRoommateEmail,
@@ -28,6 +32,12 @@ export const Listing = () => {
   const [roommatePosts, setRoommatePosts] = useState([]);
   const [roomPosts, setRoomPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  Hotjar.identify(profileData?.user?.username, {
+    first_name: profileData?.user?.firstname,
+    last_name: profileData?.user?.lastname,
+    gender: profileData?.user?.gender
+  });
 
   useEffect(() => {
     const fetchData = async () => {

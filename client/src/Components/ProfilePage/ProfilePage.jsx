@@ -18,6 +18,10 @@ import DisplayRoomListingCard from "../DisplayRoomListingCard/DisplayRoomListing
 import { toast } from "react-toastify";
 import  secureLocalStorage  from  "react-secure-storage";
 
+import Hotjar from '@hotjar/browser'
+const profilePage = '/profile';
+Hotjar.stateChange(profilePage);
+
 const Profilepage = () => {
   const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
   const [additionalData, setAdditionalData] = useState({});
@@ -38,6 +42,12 @@ const Profilepage = () => {
   );
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  Hotjar.identify(profileData?.user?.username, {
+    first_name: profileData?.user?.firstname,
+    last_name: profileData?.user?.lastname,
+    gender: profileData?.user?.gender
+  });
 
   const handleChangePassword = (e) => {
     setPassword(e.target.value);

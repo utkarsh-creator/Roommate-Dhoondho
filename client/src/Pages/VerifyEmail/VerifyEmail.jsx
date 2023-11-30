@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { postRequest } from './authRequests.js';
 
+import Hotjar from '@hotjar/browser'
+const verifyEmailPage = '/verifyEmail';
+Hotjar.stateChange(verifyEmailPage);
+
 const VerifyEmail = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);

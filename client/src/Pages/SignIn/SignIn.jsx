@@ -11,6 +11,10 @@ import { logIn } from "../../actions/AuthActions.js";
 import { useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 
+import Hotjar from '@hotjar/browser'
+const signInPage = '/';
+Hotjar.stateChange(signInPage);
+
 console.log("Server URL ", process.env.REACT_APP_SERVER_URL);
 
 let initialFormState = { email: "", password: "" };

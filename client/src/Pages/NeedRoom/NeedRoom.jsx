@@ -13,7 +13,17 @@ import "./NeedRoom.css";
 import Alert from "@mui/material/Alert";
 import  secureLocalStorage  from  "react-secure-storage";
 
+import Hotjar from '@hotjar/browser'
+const needRoomPage = '/need';
+Hotjar.stateChange(needRoomPage);
+
 const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
+
+Hotjar.identify(profileData?.user?.username, {
+  first_name: profileData?.user?.firstname,
+  last_name: profileData?.user?.lastname,
+  gender: profileData?.user?.gender
+});
 
 const initialNeedRoomFormState = {
   rank: profileData?.user?.rank,

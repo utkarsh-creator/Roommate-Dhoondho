@@ -6,6 +6,10 @@ import "./Reset.css";
 import Header from "../../Components/Header/Header";
 import { Link } from "react-router-dom";
 
+import Hotjar from '@hotjar/browser'
+const passwordResetPage = '/resetPassword';
+Hotjar.stateChange(passwordResetPage);
+
 function Reset() {
   const [email, setEmail] = useState("");
   const emailRegex = /^[A-Za-z0-9._%+-]+@vitstudent.ac.in$/;

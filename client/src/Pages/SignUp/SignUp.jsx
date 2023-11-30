@@ -11,6 +11,10 @@ import { signUp } from "../../actions/AuthActions.js";
 import { useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 
+import Hotjar from '@hotjar/browser'
+const signUpPage = '/signUp';
+Hotjar.stateChange(signUpPage);
+
 let initialFormState = { email: "", password: "", agree: false };
 let verifyInitialFormState = { code: "" };
 function SignUP() {
