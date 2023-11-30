@@ -411,4 +411,6 @@ form {
 
 .handlereset{
   color: #000000;
+  text-decoration: underline;
+  cursor: pointer;
 }
