@@ -3,16 +3,21 @@ import mongoose from "mongoose";
 const postSchema = mongoose.Schema(
   {
     userId: { type: String, required: true },
+    urlParameter: { 
+        type: String, 
+        required: true,
+        unique: true
+    },
     visibility: {
         type: Boolean,
         required: true
     },
     title: {
         type: String,
-        required: true
+        required: false
     },
     severity: {
-        type: Number,
+        type: String,
         required: false
     },
     desc: {

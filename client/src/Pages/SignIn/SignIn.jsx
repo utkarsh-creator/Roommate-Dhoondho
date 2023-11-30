@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SignIn.css";
 import Header from "../../Components/Header/Header";
 import { FcGoogle } from "react-icons/fc";
@@ -10,6 +10,8 @@ import { toast } from "react-toastify";
 import { logIn } from "../../actions/AuthActions.js";
 import { useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
+import Alert from "@mui/material/Alert";
+import axios from "axios";
 
 import Hotjar from '@hotjar/browser';
 const siteId = 3765543;
@@ -27,6 +29,26 @@ function SignIn() {
   const [error, setError] = useState({ email: null, password: null });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [serverMessage, setServerMessage] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/server-messages/656904ddd58f0b4e481e49f1`
+        );
+
+        if (response.data) {
+          setServerMessage(response.data);
+        }
+      } catch (error) {
+        // Handle errors if needed
+        console.error("Error fetching server message:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   function hideOnClickHandler() {
     setShowPassword((prev) => !prev);
@@ -198,14 +220,25 @@ function SignIn() {
               {" "}
               Sign In
             </button>
+
             <span className="text-[#3C4242] text-[14px] mt-2 self-start">
               Don't have an account?{" "}
               <Link to="/signUp">
                 <span className="underline">Sign Up</span>
               </Link>
             </span>
+            <br />
+            <div>
+            {serverMessage && (
+              <Alert severity={serverMessage.severity || "info"}>
+                <strong>{serverMessage.title}</strong>
+                <br />
+                {serverMessage.desc}
+              </Alert>
+            )}
           </div>
-        </div>
+          </div>
+        </div>   
       </div>
     </div>
   );

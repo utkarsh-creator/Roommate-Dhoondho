@@ -11,18 +11,15 @@ export const getServerMessage = async (req, res) => {
         return;
     }
 
-    const { id } = req.params;
+    const { urlParameter } = req.params;
 
     try {
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ error: 'Invalid ObjectId' });
-        }
-
-        const serverMessage = await serverMessageModel.findById(id);
+        const serverMessage = await serverMessageModel.findOne({ urlParameter });
 
         if (!serverMessage) {
-            return res.status(404).json({ error: 'Message not found' });
+            return res.status(404).json();
         }
+
         const serverDetails = serverMessage._doc;
         delete serverDetails.privateInfo;
         delete serverDetails.__v;
@@ -43,7 +40,7 @@ export const getServerMessage = async (req, res) => {
 };
 
 export const createServerMessage = async (req, res) => {
-    const { userId, visibility, title, severity, desc, privateInfo } = req.body;
+    const { userId, visibility, title, severity, desc, urlParameter, privateInfo } = req.body;
     // Check if the request has an 'Origin' header
     const url = req.get('Origin');
     console.log('Domain:', url);
@@ -52,12 +49,20 @@ export const createServerMessage = async (req, res) => {
         return;
     }
     try {
+        // Check if the urlParameter is unique
+        const existingMessage = await serverMessageModel.findOne({ urlParameter });
+
+        if (existingMessage) {
+            return res.status(400).json({ error: 'Duplicate urlParameter' });
+        }
+
         const newServerMessage = new serverMessageModel({
             userId,
             visibility,
             title,
             severity,
             desc,
+            urlParameter,
             privateInfo,
         });
 
@@ -69,7 +74,7 @@ export const createServerMessage = async (req, res) => {
 };
 
 export const updateServerMessage = async (req, res) => {
-    const messageId = req.params.id;
+    const urlParameter = req.params.urlParameter;
     const { userId, visibility, title, severity, desc, privateInfo } = req.body;
     // Check if the request has an 'Origin' header
     const url = req.get('Origin');
@@ -78,9 +83,10 @@ export const updateServerMessage = async (req, res) => {
         res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
         return;
     }
+    
     try {
-        const updatedMessage = await serverMessageModel.findByIdAndUpdate(
-            messageId,
+        const updatedMessage = await serverMessageModel.findOneAndUpdate(
+            { urlParameter: urlParameter },
             {
                 userId,
                 visibility,
@@ -103,7 +109,7 @@ export const updateServerMessage = async (req, res) => {
 };
 
 export const deleteServerMessage = async (req, res) => {
-    const messageId = req.params.id;
+    const urlParameter = req.params.urlParameter;
     // Check if the request has an 'Origin' header
     const url = req.get('Origin');
     console.log('Domain:', url);
@@ -111,8 +117,9 @@ export const deleteServerMessage = async (req, res) => {
         res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
         return;
     }
+    
     try {
-        const deletedMessage = await serverMessageModel.findByIdAndDelete(messageId);
+        const deletedMessage = await serverMessageModel.findOneAndDelete({ urlParameter });
 
         if (!deletedMessage) {
             return res.status(404).json({ error: 'Message not found' });

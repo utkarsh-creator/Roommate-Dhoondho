@@ -4,9 +4,9 @@ import { isAdmin } from '../Middlewares/isAdmin.js';
 
 const router = express.Router()
 
-router.get('/:id', getServerMessage);
+router.get('/:urlParameter', getServerMessage);
 router.post('/', isAdmin, createServerMessage);
-router.put('/:id', isAdmin, updateServerMessage);
-router.delete('/:id', isAdmin, deleteServerMessage);
+router.put('/:urlParameter', isAdmin, updateServerMessage);
+router.delete('/:urlParameter', isAdmin, deleteServerMessage);
 
 export default router; 
