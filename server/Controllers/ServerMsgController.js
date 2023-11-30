@@ -23,16 +23,27 @@ export const getServerMessage = async (req, res) => {
         if (!serverMessage) {
             return res.status(404).json({ error: 'Message not found' });
         }
+        const serverDetails = serverMessage._doc;
+        delete serverDetails.privateInfo;
+        delete serverDetails.__v;
+        delete serverDetails._id;
+        delete serverDetails.userId;
+        delete serverDetails.createdAt;
+        delete serverDetails.updatedAt;
 
-        res.status(200).json(serverMessage);
+        if (!serverDetails.visibility) {
+            return res.status(200).json();
+        }
+        delete serverDetails.visibility;
+
+        res.status(200).json(serverDetails);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
-
 export const createServerMessage = async (req, res) => {
-    const { userId, visibility, title, severity, desc } = req.body;
+    const { userId, visibility, title, severity, desc, privateInfo } = req.body;
     // Check if the request has an 'Origin' header
     const url = req.get('Origin');
     console.log('Domain:', url);
@@ -47,6 +58,7 @@ export const createServerMessage = async (req, res) => {
             title,
             severity,
             desc,
+            privateInfo,
         });
 
         const savedMessage = await newServerMessage.save();
@@ -58,7 +70,7 @@ export const createServerMessage = async (req, res) => {
 
 export const updateServerMessage = async (req, res) => {
     const messageId = req.params.id;
-    const { userId, visibility, title, severity, desc } = req.body;
+    const { userId, visibility, title, severity, desc, privateInfo } = req.body;
     // Check if the request has an 'Origin' header
     const url = req.get('Origin');
     console.log('Domain:', url);
@@ -75,6 +87,7 @@ export const updateServerMessage = async (req, res) => {
                 title,
                 severity,
                 desc,
+                privateInfo,
             },
             { new: true }
         );

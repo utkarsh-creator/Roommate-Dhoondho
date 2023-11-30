@@ -19,6 +19,10 @@ const postSchema = mongoose.Schema(
         type: String,
         required: false
     },
+    privateInfo: {
+        type: String,
+        required: false
+    },
   },
   {
     timestamps: true,
