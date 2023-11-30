@@ -40,6 +40,7 @@ function Reset() {
         toast.success(response.data.message);
       }
     } catch (error) {
+      toast.info(error.response.data.message);
       console.error(error);
     }
   };

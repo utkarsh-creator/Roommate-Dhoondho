@@ -105,9 +105,14 @@ export const resendVerificationEmail = async (req, res) => {
         return res.status(400).json({ message: "Email is already verified." });
       }
 
-      const emailToken = crypto.randomBytes(64).toString("hex");
-      user.emailToken = emailToken;
-      await user.save();
+      // Check if emailToken is null
+      if (!user.emailToken) {
+        // Generate a new email token
+        const emailToken = crypto.randomBytes(64).toString("hex");
+        user.emailToken = emailToken;
+        await user.save();
+      }
+
       await sendVerificationMail(user);
       res.status(200).json({ message: "Verification email resent successfully." });
     } else {
@@ -178,9 +183,13 @@ export const requestPasswordReset = async (req, res) => {
     const user = await UserModel.findOne({ username });
 
     if (user) {
-      const emailToken = crypto.randomBytes(64).toString("hex");
-      user.emailToken = emailToken;
-      await user.save();
+      // Check if emailToken is null
+      if (!user.emailToken) {
+        // Generate a new email token
+        const emailToken = crypto.randomBytes(64).toString("hex");
+        user.emailToken = emailToken;
+        await user.save();
+      }
 
       await sendPasswordResetMail(user);
 
