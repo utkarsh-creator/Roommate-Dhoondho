@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import  secureLocalStorage  from  "react-secure-storage";
 
 function DisplayRoommateListingCard() {
-  const { showModal, selectRoommateDetail } = useContext(ListingContext);
+  const { showModal, selectRoommateDetail, selectRoommatePhone, selectRoommateEmail } = useContext(ListingContext);
   const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
   const [roommates, setRoommates] = useState([]);
 
@@ -139,7 +139,11 @@ function DisplayRoommateListingCard() {
                 <div className="card-habit">For Description - Click on the button</div>
                 <div
                   className="card-habit-details"
-                  onClick={() => selectRoommateDetail(roommate?.desc)}
+                  onClick={() => {
+                    selectRoommateDetail(roommate?.desc);
+                    selectRoommatePhone(roommate?.phone);
+                    selectRoommateEmail(roommate?.username);
+                  }}
                 >
                   <div>
                     <img
