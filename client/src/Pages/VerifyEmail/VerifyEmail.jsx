@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { postRequest } from './authRequests.js';
+import { toast } from "react-toastify";
 
 import Hotjar from '@hotjar/browser';
 const siteId = 3765543;
@@ -11,6 +12,7 @@ Hotjar.stateChange(verifyEmailPage);
 
 const VerifyEmail = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const emailToken = searchParams.get('emailToken');
   const [isLoading, setIsLoading] = useState(true);
@@ -32,11 +34,22 @@ const VerifyEmail = () => {
 
         if (response.error) {
           setError(response.error);
+          toast.error("Email verification failed.");
+          setTimeout(() => {
+            navigate('/resendVerificationMail');
+          }, 3000);
         } else {
-          // Handle success, e.g., redirect to a success page or show a success message
           console.log('Email verified successfully');
+          toast.success("Email verified successfully.");
+          setTimeout(() => {
+            navigate('/');
+          }, 3000);
         }
       } catch (error) {
+        toast.error("Email verification failed.");
+        setTimeout(() => {
+          navigate('/resendVerificationMail');
+        }, 3000);
         setIsLoading(false);
         setError(error.message);
       }
@@ -50,6 +63,28 @@ const VerifyEmail = () => {
       {isLoading && <p>Loading...</p>}
       {!isLoading && error && <p>Error: {error}</p>}
       {!isLoading && !error && <p>Email verified successfully!</p>}
+      <p>
+        <br />
+        <p>
+          If you haven't received the verification email, please click on the Resend button below.
+          <br />
+          If redirection failed, please click on the Login button below.
+          <br />
+        </p>
+        <br />
+        <button
+          onClick={() => window.location.href = "/resendVerificationMail"}
+          className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
+        >
+          Resend
+        </button>
+        <button
+          onClick={() => window.location.href = "/"}
+          className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
+        >
+          Login
+        </button>
+      </p>
     </div>
   );
 };

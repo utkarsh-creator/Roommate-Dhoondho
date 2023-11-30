@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import "./ResendVerificationMail.css";
-import signinImage from "../../Assets/signin.png";  // Import the image
+import signinImage from "../../Assets/signin.png"; 
 
 import Hotjar from '@hotjar/browser';
 const siteId = 3765543;
@@ -12,6 +13,7 @@ const resendVerificationPage = '/resendVerificationMail';
 Hotjar.stateChange(resendVerificationPage);
 
 function ResendVerificationMail() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const emailRegex = /^[A-Za-z0-9._%+-]+@vitstudent.ac.in$/;
 
@@ -30,10 +32,17 @@ function ResendVerificationMail() {
       );
       if (response.data.success) {
         toast.success("Email token sent successfully");
+        setTimeout(() => {
+          navigate('/');
+        }, 3000);
       } else {
         toast.success(response.data.message);
+        setTimeout(() => {
+          navigate('/');
+        }, 3000);
       }
     } catch (error) {
+      toast.error("Error L485. Email may already be verified. Contact MFC support if issue persists.");
       console.error(error);
     }
   };
@@ -58,13 +67,21 @@ function ResendVerificationMail() {
               className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem]"
             />
           </div>
-
-          <button
-            onClick={sendEmailToken}
-            className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
-          >
-            Resend
-          </button>
+          <div>
+            <button
+              onClick={sendEmailToken}
+              className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
+            >
+              Resend
+            </button>
+            
+            <button
+              onClick={() => window.location.href = "/"}
+              className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
+            >
+              Login
+            </button>
+          </div>
         </div>
       </div>
     </div>
