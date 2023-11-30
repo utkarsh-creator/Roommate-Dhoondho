@@ -10,6 +10,7 @@ import  secureLocalStorage  from  "react-secure-storage";
 function Navbar() {
   const profileData = JSON.parse(secureLocalStorage.getItem("profile")) || {};
   const isProfileSet = profileData && !!profileData.user?.firstname;
+  const isAdmin = profileData?.user?.isAdmin;
   const [navbar, setHeader] = useState("navbar");
   const navigate = useNavigate();
   const [click, setClick] = useState(false);
@@ -99,20 +100,22 @@ function Navbar() {
               </button>
             </NavLink>
             <li className="nav-item">
-            <NavLink to="/chat" className="nav-links" onClick={closeMobileMenu}>
-              <button className="chat">
-                {" "}
-                <span className="button_icon" onClick={handleClick}>
-                  <i
-                    className={
-                      click ? "fa-solid fa-comments blue" : "fa-solid fa-comments white"
-                    }
-                  />
-                  Chat
-                </span>
-              </button>
-            </NavLink>
-          </li>
+              {isAdmin && (
+                <NavLink to="/chat" className="nav-links" onClick={closeMobileMenu}>
+                  <button className="chat">
+                    {" "}
+                    <span className="button_icon" onClick={handleClick}>
+                      <i
+                        className={
+                          click ? "fa-solid fa-comments blue" : "fa-solid fa-comments white"
+                        }
+                      />
+                      Chat
+                    </span>
+                  </button>
+                </NavLink>
+              )}
+            </li>
           </li>
           <li className="nav-item">
             <Link
@@ -154,9 +157,11 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item-mobile">
-            <Link to="/chatMobile" className="nav-links-mobile user" onClick={closeMobileMenu}>
-                  Chat
-            </Link>
+            {isAdmin && (
+              <Link to="/chatMobile" className="nav-links-mobile user" onClick={closeMobileMenu}>
+                Chat
+              </Link>
+            )}
           </li>
           <li className="nav-item-mobile">
             <Link
