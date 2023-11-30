@@ -16,21 +16,21 @@ import  secureLocalStorage  from  "react-secure-storage";
 const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
 
 const initialNeedRoomFormState = {
-  rank: "",
+  rank: profileData?.user?.rank,
   // gender: "M",
   bedType: "",
   preferedBlocks: ["A"],
-  contactNumber: "",
+  contactNumber: profileData?.user?.mobile,
   year: "1",
   description: "",
   remaining: "",
 };
 const initialNeedRoomMateFormState = {
-  rank: "",
+  rank: profileData?.user?.rank,
   // gender: "M",
   noOfBeds: "",
   preferedBlocks: ["A"],
-  contactNumber: "",
+  contactNumber: profileData?.user?.mobile,
   year: "1",
   description: "",
   remaining: "",
