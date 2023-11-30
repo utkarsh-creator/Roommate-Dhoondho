@@ -66,7 +66,7 @@ function NeedRoom() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (profileData?.user?.gender === 'M' || 'F') {
+      if (profileData?.user?.gender) {
         console.log("Going into 3L07", profileData);
         console.log("Going into 3L07-1", profileData?.user?.gender);
         const userGender = profileData?.user?.gender;
