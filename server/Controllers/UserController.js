@@ -77,6 +77,7 @@ export const getPersonalUser = async (req, res) => {
     if (user) {
       const userDetails = user._doc;
       delete userDetails.password;
+      delete userDetails.emailToken;
       res.status(200).json(userDetails);
     } else {
       res.status(404).json("No such user exists");

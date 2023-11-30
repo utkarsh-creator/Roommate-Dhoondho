@@ -154,8 +154,10 @@ export const loginUser = async (req, res) => {
             { expiresIn: "1h" }
           );
           // Don't include the password in the response
-          const { password, ...userWithoutPassword } = user._doc;
-          res.status(200).json({ user: userWithoutPassword, token });
+          const userDetails = user._doc;
+          delete userDetails.password;
+          delete userDetails.emailToken;
+          res.status(200).json({ user: userDetails, token });
         }
       }
     } else {
