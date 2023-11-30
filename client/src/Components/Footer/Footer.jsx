@@ -104,7 +104,7 @@ const Footer = () => {
                 {/* Status Indicator */}
                 <div className="footer__status">
                   <div className="status-dot" id="system-status-dot"></div>
-                  <a href="http://mfc.hyperping.app/" target="_blank">
+                  <a href="http://status.mozillavit.in/" target="_blank">
                     <span id="system-status-message">All Systems Operational</span>
                   </a>
                 </div>
