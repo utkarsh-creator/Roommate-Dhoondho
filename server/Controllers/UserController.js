@@ -78,6 +78,10 @@ export const getPersonalUser = async (req, res) => {
       const userDetails = user._doc;
       delete userDetails.password;
       delete userDetails.emailToken;
+      delete userDetails.__v;
+      delete userDetails.createdAt;
+      delete userDetails.updatedAt;
+      delete userDetails.isVerified;
       res.status(200).json(userDetails);
     } else {
       res.status(404).json("No such user exists");
