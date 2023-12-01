@@ -3,7 +3,11 @@ export const CORSProtection  = async (req, res, next) => {
     const url = req.get('Origin');
     console.log('Domain:', url);
 
-    if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
+    // Check if User-Agent contains 'Postman'
+    const userAgent = req.get('User-Agent') || '';
+    const stopPostman = userAgent.includes('Postman') || userAgent.trim() === '';
+
+    if (process.env.NODE_ENV === 'production' && url !== process.env.CLIENT_URL && stopPostman) {
         return res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     }
 
