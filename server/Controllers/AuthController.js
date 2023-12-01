@@ -162,9 +162,9 @@ export const loginUser = async (req, res) => {
         } else {
           const token = jwt.sign(
             { username: user.username, id: user._id },
-            process.env.JWTKEY,
-            { expiresIn: "1h" }
+            process.env.JWTKEY
           );
+          console.log("Generated JWT Token:", token)
           // Don't include the password in the response
           const userDetails = user._doc;
           delete userDetails.password;

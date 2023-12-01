@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from 'cors';
 import { CORSProtection } from './Middlewares/CORS_Protection.js'
+import { verifyJWT_withuserId, verifyJWTForGetRequest } from './Middlewares/verifyJWT.js';
 import AuthRoute from './Routes/AuthRoute.js'
 import UserRoute from './Routes/UserRoute.js'
 import RoomRoute from './Routes/RoomRoute.js'
@@ -64,8 +65,8 @@ mongoose
   });
 
   // usage of routes
-  app.use('/auth', CORSProtection,AuthRoute)
-  app.use('/user', CORSProtection, UserRoute)
-  app.use('/room', CORSProtection,RoomRoute)
-  app.use('/roommate', CORSProtection,RoommateRoute)
-  app.use('/server-messages', CORSProtection,ServerMsgRoute)
+  app.use('/auth', CORSProtection, AuthRoute)
+  app.use('/user', CORSProtection, verifyJWTForGetRequest, UserRoute)
+  app.use('/room', CORSProtection, verifyJWTForGetRequest, RoomRoute)
+  app.use('/roommate', CORSProtection, verifyJWTForGetRequest, RoommateRoute)
+  app.use('/server-messages', CORSProtection, verifyJWTForGetRequest, ServerMsgRoute)

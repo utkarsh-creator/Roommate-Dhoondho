@@ -11,7 +11,7 @@ import Footer from "../Footer/Footer";
 import Navbar from "../NavBar/Navbar";
 import "./NeedRoomComponent.css";
 import Alert from "@mui/material/Alert";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 import Hotjar from '@hotjar/browser';
 const siteId = 3765543;

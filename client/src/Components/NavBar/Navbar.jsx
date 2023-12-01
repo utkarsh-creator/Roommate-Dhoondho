@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "@mui/material";
 import { toast } from "react-toastify";
 import "./Navbar.css";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 function Navbar() {
   const profileData = JSON.parse(secureLocalStorage.getItem("profile")) || {};

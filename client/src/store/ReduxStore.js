@@ -1,4 +1,4 @@
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 import {
   legacy_createStore as createStore,
   applyMiddleware,

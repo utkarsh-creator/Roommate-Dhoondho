@@ -13,7 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 import Hotjar from '@hotjar/browser';
 const siteId = 3765543;

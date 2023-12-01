@@ -1,5 +1,5 @@
 import axios from "axios";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 const API = axios.create({ baseURL: `${process.env.REACT_APP_SERVER_URL}/` });
 

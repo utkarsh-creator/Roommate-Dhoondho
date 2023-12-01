@@ -1,4 +1,4 @@
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 const authReducer = (state = { authData: null, loading: false, error: false, updateLoading: false },action) => {
   switch (action.type) {
@@ -6,6 +6,7 @@ const authReducer = (state = { authData: null, loading: false, error: false, upd
       return {...state, loading: true, error: false };
     case "AUTH_SUCCESS":
       secureLocalStorage.setItem("profile", JSON.stringify({...action?.data}));
+      localStorage.setItem("profile", JSON.stringify({...action?.data}));
 
       return {...state,  authData: action.data, loading: false, error: false };
 

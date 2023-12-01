@@ -4,7 +4,7 @@ import "../Cards/Cards.css";
 import { ListingContext } from "../../Context/listing-context";
 import Modal2 from "../Modal/Modal2";
 import { toast } from "react-toastify";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 function DisplayRoomListingCard() {
   const { showModal2, selectRoomDetail, selectRoomEmail, selectRoomPhone } = useContext(ListingContext);
@@ -28,9 +28,9 @@ function DisplayRoomListingCard() {
           requestData
         );
         setRooms(response.data);
-        // console.log("Room Data:", response.data);
+        console.log("Room Data:", response.data);
       } catch (error) {
-        // console.error("Error fetching rooms:", error);
+        console.error("Error fetching rooms:", error);
       }
     };
 

@@ -1,5 +1,6 @@
 import UserModel from "../Models/userModel.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 // get all Users
 export const getAllUser = async (req, res) => {
@@ -196,6 +197,10 @@ export const updateUser = async (req, res) => {
         });
         // Remove sensitive information
         if (updatedUser) {
+          const token = jwt.sign(
+            { username: updatedUser.username, id: updatedUser._id },
+            process.env.JWTKEY
+          );
           const userDetails = updatedUser._doc;
           delete userDetails.password;
           delete userDetails.emailToken;
@@ -203,7 +208,7 @@ export const updateUser = async (req, res) => {
           delete userDetails.createdAt;
           delete userDetails.updatedAt;
           delete userDetails.isVerified;
-          res.status(200).json(userDetails);
+          res.status(200).json({ user: userDetails, token });
         }
       } else {
         res.status(403).json("Invalid password");
@@ -212,6 +217,7 @@ export const updateUser = async (req, res) => {
       res.status(403).json("Access Denied! You can only update your own profile");
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 };

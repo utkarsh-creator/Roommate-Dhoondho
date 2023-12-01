@@ -4,7 +4,7 @@ import "../Cards/Cards.css";
 import Modal from "../../Components/Modal/Modal";
 import { ListingContext } from "../../Context/listing-context";
 import { toast } from "react-toastify";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 function DisplayRoommateListingCard() {
   const { showModal, selectRoommateDetail, selectRoommatePhone, selectRoommateEmail } = useContext(ListingContext);
@@ -29,7 +29,7 @@ function DisplayRoommateListingCard() {
         );
         setRoommates(response.data);
       } catch (error) {
-        // console.error("Error fetching roommates:", error);
+        console.error("Error fetching roommates:", error);
       }
     };
 

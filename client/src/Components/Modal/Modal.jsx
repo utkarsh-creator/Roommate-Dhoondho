@@ -3,7 +3,7 @@ import React from "react";
 import { ListingContext } from "../../Context/listing-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Modal.css";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 function Modal() {
   const profileData = JSON.parse(secureLocalStorage.getItem("profile"));

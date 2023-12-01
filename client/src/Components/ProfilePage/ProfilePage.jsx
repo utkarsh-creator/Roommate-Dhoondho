@@ -18,7 +18,7 @@ import DisplayRoommateListingCard from "../DisplayRoommateListingCard/DisplayRoo
 import DisplayRoomListingCard from "../DisplayRoomListingCard/DisplayRoomListingCard";
 import { logout } from "../../actions/AuthActions";
 import { toast } from "react-toastify";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 import Hotjar from '@hotjar/browser';
 const siteId = 3765543;
@@ -257,8 +257,7 @@ const Profilepage = () => {
           setChangesMade(true);
           toast.success("Changes saved successfully!");
           // setNotification("Changes saved successfully!");
-          const updatedProfileData = { ...profileData, user: response.data };
-          secureLocalStorage.setItem("profile", JSON.stringify(updatedProfileData));
+          secureLocalStorage.setItem("profile", JSON.stringify(response.data));
           // window.location.reload();
           navigate('/home');
         })

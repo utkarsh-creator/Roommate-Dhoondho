@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 import "./ChatMobile.css";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 const ChatMobile = () => {
   const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);

@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 import "./ChatComponent.css";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 import Hotjar from '@hotjar/browser';
 const siteId = 3765543;
