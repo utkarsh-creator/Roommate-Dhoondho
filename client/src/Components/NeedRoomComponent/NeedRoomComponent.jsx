@@ -35,6 +35,7 @@ export const NeedRoomComponent = () => {
     remaining: "",
   };
   const initialNeedRoomMateFormState = {
+    Insta: "",
     rank: profileData?.user?.rank,
     // gender: "M",
     noOfBeds: "",
@@ -256,7 +257,8 @@ export const NeedRoomComponent = () => {
       phone: profileData.user.mobile,
       year: needRoomMateForm?.year,
       desc: needRoomMateForm?.description,
-      remaining:needRoomMateForm?.remaining
+      remaining:needRoomMateForm?.remaining,
+      instagram: needRoomMateForm?.Insta
     };
 
     try {
@@ -682,8 +684,8 @@ export const NeedRoomComponent = () => {
                 <div className="flex flex-col mb-6">
                   <span>Instagram Account</span>
                   <input
-                    name="noOfBeds"
-                    value={needRoomMateForm["noOfBeds"]}
+                    name="Insta"
+                    value={needRoomMateForm["Insta"]}
                     onChange={needRoomMateFormOnChangeHandler}
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
