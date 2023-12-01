@@ -679,6 +679,15 @@ export const NeedRoomComponent = () => {
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
                 </div>
+                <div className="flex flex-col mb-6">
+                  <span>Instagram Account</span>
+                  <input
+                    name="noOfBeds"
+                    value={needRoomMateForm["noOfBeds"]}
+                    onChange={needRoomMateFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
                 {/* <div className="flex flex-col mb-6">
                   <span>Contact Number*</span>
                   <input
@@ -772,15 +781,7 @@ export const NeedRoomComponent = () => {
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
                 </div>
-                <div className="flex flex-col mb-6">
-                  <span>Instagram Account</span>
-                  <input
-                    name="InstaAccount"
-                    value={needRoomMateForm["noOfBeds"]}
-                    onChange={needRoomMateFormOnChangeHandler}
-                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
-                  />
-                </div>
+
               </div>
             </div>
             <div className="containerr w-[100%] mb-6 mt-6 md:mt-2">
