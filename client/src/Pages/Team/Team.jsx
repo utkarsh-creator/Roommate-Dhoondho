@@ -188,7 +188,7 @@ const Team = () => {
                     Ayush Patil{" "}
                       <a
                         target="_blank"
-                        href="/"
+                        href="https://github.com/Ayush2948"
                       >
                         <small>
                           <i class="fas fa-external-link-alt"></i>
