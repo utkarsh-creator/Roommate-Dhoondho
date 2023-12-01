@@ -251,7 +251,8 @@ const Profilepage = () => {
           // setNotification("Changes saved successfully!");
           const updatedProfileData = { ...profileData, user: response.data };
           secureLocalStorage.setItem("profile", JSON.stringify(updatedProfileData));
-          window.location.reload();
+          // window.location.reload();
+          navigate('/home');
         })
         .catch((error) => {
           console.error("Error updating profile:", error);
