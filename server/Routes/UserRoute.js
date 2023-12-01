@@ -6,7 +6,7 @@ import { deleteUser, followUser, getAllUser, getUser, getPersonalUser, UnFollowU
 
 const router = express.Router();
 
-router.get('/all', getAllUser)
+router.get('/all', dontExecuteAtProduction, isAdmin, getAllUser)
 router.get('/:id', getUser)
 router.get('/personal/:id', getPersonalUser)
 router.put('/:id', updateUser)
