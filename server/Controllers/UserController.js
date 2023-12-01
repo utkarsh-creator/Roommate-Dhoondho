@@ -87,7 +87,51 @@ export const getPersonalUser = async (req, res) => {
   }
 };
 
-// update a user
+// update a user by admin
+export const updateUserByAdmin = async (req, res) => {
+  const id = req.params.id;
+  const { userId, password } = req.body;
+
+  // Check if the request has an 'Origin' header
+  const url = req.get('Origin');
+  console.log('Domain:', url);
+
+  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    return;
+  }
+
+  try {
+    // Retrieve the user from the database
+    const user = await UserModel.findById(id);
+
+    // Compare userId with the retrieved user's id
+    if (id === userId) {
+      // Compare the provided password with the stored hashed password
+      const passwordMatch = await bcrypt.compare(password, user.password);
+
+      if (passwordMatch) {
+        // Update the user's profile
+        const salt = await bcrypt.genSalt(10);
+        req.body.password = await bcrypt.hash(password, salt);
+
+        const updatedUser = await UserModel.findByIdAndUpdate(id, req.body, {
+          new: true,
+        });
+
+        res.status(200).json(updatedUser);
+      } else {
+        res.status(403).json("Invalid password");
+      }
+    } else {
+      res.status(403).json("Access Denied! You can only update your own profile");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+// update a user from client side
 export const updateUser = async (req, res) => {
   const id = req.params.id;
   const { currentUserId, password } = req.body;
@@ -111,11 +155,26 @@ export const updateUser = async (req, res) => {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-        // Update the user's profile
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(password, salt);
+        // Define the allowed fields
+        const allowedFields = ['firstname', 'lastname', 'gender', 'regnum', 'mobile'];
 
-        const updatedUser = await UserModel.findByIdAndUpdate(id, req.body, {
+        // Extract only the allowed fields from the request body
+        const updatedFields = {};
+        allowedFields.forEach(field => {
+          if (req.body[field] !== undefined) {
+            updatedFields[field] = req.body[field];
+          }
+        });
+
+        // Update the gender field only if it is currently null
+        if (user.gender === null) {
+          updatedFields['gender'] = req.body['gender'];
+        } else {
+          delete updatedFields.gender;
+        }
+        
+        // Update the user's profile
+        const updatedUser = await UserModel.findByIdAndUpdate(id, updatedFields, {
           new: true,
         });
 
