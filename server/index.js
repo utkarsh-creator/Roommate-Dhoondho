@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from 'cors';
+import { CORSProtection } from './Middlewares/CORS_Protection.js'
 import AuthRoute from './Routes/AuthRoute.js'
 import UserRoute from './Routes/UserRoute.js'
 import RoomRoute from './Routes/RoomRoute.js'
@@ -63,8 +64,8 @@ mongoose
   });
 
   // usage of routes
-  app.use('/auth', AuthRoute)
-  app.use('/user', UserRoute)
-  app.use('/room', RoomRoute)
-  app.use('/roommate', RoommateRoute)
-  app.use('/server-messages', ServerMsgRoute)
+  app.use('/auth', CORSProtection,AuthRoute)
+  app.use('/user', CORSProtection, UserRoute)
+  app.use('/room', CORSProtection,RoomRoute)
+  app.use('/roommate', CORSProtection,RoommateRoute)
+  app.use('/server-messages', CORSProtection,ServerMsgRoute)

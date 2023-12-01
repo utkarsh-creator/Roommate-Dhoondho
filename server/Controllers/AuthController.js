@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { sendVerificationMail } from "../utils/sendVerificationMail.js";
 import { sendPasswordResetMail } from "../utils/sendPasswordResetMail.js";
-import { vitMailFormat } from "../Middlewares/Format/vitMailFormat.js";
 
 // Registering a new User
 export const registerUser = async (req, res) => {
