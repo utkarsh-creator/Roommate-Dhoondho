@@ -256,9 +256,9 @@ export const NeedRoomComponent = () => {
       preferredBlock: needRoomMateForm?.preferedBlocks[0],
       phone: profileData.user.mobile,
       year: needRoomMateForm?.year,
-      desc: needRoomMateForm?.description,
+      desc: `${needRoomMateForm?.Insta ? 'Insta: ' + needRoomMateForm?.Insta + ' | ' + '\n' : ''}${needRoomMateForm?.description}`,
       remaining:needRoomMateForm?.remaining,
-      instagram: needRoomMateForm?.Insta
+      // instagram: needRoomMateForm?.Insta
     };
 
     try {
