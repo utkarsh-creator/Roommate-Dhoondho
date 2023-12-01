@@ -24,6 +24,12 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: "Username and password are required." });
     }
 
+    // Validate that the username (email) is well-formed and does not contain spaces
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@vitstudent\.ac\.in$/;
+    if (!emailRegex.test(username)) {
+      return res.status(400).json({ message: "Invalid email address format." });
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(password, salt);
 
@@ -85,14 +91,13 @@ export const verifyEmail = async (req, res) => {
         name: user.name,
         email: user.email,
         token,
-        isVerified: user.isVerified,
       });
     } else {
       res.status(404).json("Email verification failed, invalid token!");
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json(error.message);
+    res.status(500).json("Server Error 500");
   }
 };
 
@@ -131,7 +136,8 @@ export const resendVerificationEmail = async (req, res) => {
       res.status(404).json("User not found");
     }
   } catch (err) {
-    res.status(500).json(err.message);
+    console.log("ResendVerificationMail Error: ", err);
+    res.status(500).json("Server Error 500");
   }
 };
 
