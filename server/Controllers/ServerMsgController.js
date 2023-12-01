@@ -7,7 +7,7 @@ export const getServerMessage = async (req, res) => {
     console.log('Domain:', url);
 
     if (process.env.NODE_ENV === 'production' && url !== process.env.CLIENT_URL) {
-        res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+        res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
         return;
     }
 
@@ -45,7 +45,7 @@ export const createServerMessage = async (req, res) => {
     const url = req.get('Origin');
     console.log('Domain:', url);
     if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-        res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+        res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
         return;
     }
     try {
@@ -80,7 +80,7 @@ export const updateServerMessage = async (req, res) => {
     const url = req.get('Origin');
     console.log('Domain:', url);
     if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-        res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+        res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
         return;
     }
     
@@ -114,7 +114,7 @@ export const deleteServerMessage = async (req, res) => {
     const url = req.get('Origin');
     console.log('Domain:', url);
     if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-        res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+        res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
         return;
     }
     

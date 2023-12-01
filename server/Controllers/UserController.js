@@ -8,7 +8,7 @@ export const getAllUser = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 
@@ -21,6 +21,8 @@ export const getAllUser = async (req, res) => {
       .select('-password')
       .skip(skip)
       .limit(limit);
+    const { _id, firstname, lastname, gender, username, followers, following, likesRoommate, likesRoom } = users;
+    res.status(200).json({ _id, firstname, lastname, gender, username, followers, following, likesRoommate, likesRoom });
 
     res.status(200).json(users);
   } catch (error) {
@@ -38,7 +40,7 @@ export const getUser = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 
@@ -68,7 +70,7 @@ export const getPersonalUser = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 
@@ -101,7 +103,7 @@ export const updateUserByAdmin = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 
@@ -145,7 +147,7 @@ export const updateUser = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 
@@ -212,7 +214,7 @@ export const deleteUser = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 
@@ -239,7 +241,7 @@ export const followUser = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 
@@ -286,7 +288,7 @@ export const UnFollowUser = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 
@@ -333,7 +335,7 @@ export const likeRoom = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 
@@ -362,7 +364,7 @@ export const likeRoommate = async (req, res) => {
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     return;
   }
 

@@ -4,7 +4,7 @@ export const dontExecuteAtProduction = async (req, res, next) => {
     console.log('Domain:', url);
 
     if (process.env.NODE_ENV === "production") {
-        return res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
+        return res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
     }
 
     next();
