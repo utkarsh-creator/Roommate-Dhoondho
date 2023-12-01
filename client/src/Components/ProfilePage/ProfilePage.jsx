@@ -48,6 +48,7 @@ const Profilepage = () => {
   );
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isListingButtonActive, setIsListingButtonActive] = useState(false);
 
   Hotjar.identify(profileData?.user?.username, {
     first_name: profileData?.user?.firstname,
@@ -90,7 +91,11 @@ const Profilepage = () => {
     if (confirmed && formEvent && gender) {
       submituserRegistrationForm(formEvent, gender);
     }
-  };  
+  };
+  
+  const handleListingButtonClick = () => {
+    navigate('/need');
+  };
 
   console.log("user specific data: ", profileData);
 
@@ -509,7 +514,20 @@ const Profilepage = () => {
           <div className="listing">
             <div className="listing-buttons">
               <button className="activelisting">
+                <div>
                 <p className="listing-text">Your Listing</p>
+                </div>
+                <div className="add-button">
+                <button
+                  className={`add-button-inner ${isListingButtonActive ? 'active' : ''}`}
+                  onClick={handleListingButtonClick}
+                  onMouseDown={() => setIsListingButtonActive(true)}
+                  onMouseUp={() => setIsListingButtonActive(false)}
+                  onMouseLeave={() => setIsListingButtonActive(false)}
+                >
+                  +
+                </button>
+              </div>
               </button>
             </div>
             <div className="tab-content">
