@@ -39,7 +39,7 @@ export const registerUser = async (req, res) => {
       { expiresIn: "1h" }
     );
     await sendVerificationMail(user);
-    res.status(200).json({ user, token });
+    res.status(200).json( "User Registration Successful." );
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

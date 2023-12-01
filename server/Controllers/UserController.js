@@ -181,8 +181,17 @@ export const updateUser = async (req, res) => {
         const updatedUser = await UserModel.findByIdAndUpdate(id, updatedFields, {
           new: true,
         });
-
-        res.status(200).json(updatedUser);
+        // Remove sensitive information
+        if (updatedUser) {
+          const userDetails = updatedUser._doc;
+          delete userDetails.password;
+          delete userDetails.emailToken;
+          delete userDetails.__v;
+          delete userDetails.createdAt;
+          delete userDetails.updatedAt;
+          delete userDetails.isVerified;
+          res.status(200).json(userDetails);
+        }
       } else {
         res.status(403).json("Invalid password");
       }
