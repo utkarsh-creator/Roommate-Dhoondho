@@ -7,26 +7,35 @@ import { sendPasswordResetMail } from "../utils/sendPasswordResetMail.js";
 
 // Registering a new User
 export const registerUser = async (req, res) => {
-  console.log(req.body);
-
   // Check if the request has an 'Origin' header
   const url = req.get('Origin');
   console.log('Domain:', url);
 
   if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
+    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}`, url: url });
     return;
   }
 
   try {
+    const { username, password } = req.body;
+
+    // Validate that username and password are present
+    if (!username || !password) {
+      return res.status(400).json({ message: "Username and password are required." });
+    }
+
     const salt = await bcrypt.genSalt(10);
-    const hashedPass = await bcrypt.hash(req.body.password, salt);
-    req.body.password = hashedPass;
-    const newUser = new UserModel(req.body);
-    const { username } = req.body;
+    const hashedPass = await bcrypt.hash(password, salt);
+
+    const newUser = new UserModel({
+      username: username,
+      password: hashedPass,
+    });
 
     const oldUser = await UserModel.findOne({ username });
-    if (oldUser) return res.status(400).json({ message: "User already exists" });
+    if (oldUser) {
+      return res.status(400).json({ message: "User already exists." });
+    }
 
     const emailToken = crypto.randomBytes(64).toString("hex");
     newUser.emailToken = emailToken;
@@ -38,10 +47,13 @@ export const registerUser = async (req, res) => {
       process.env.JWTKEY,
       { expiresIn: "1h" }
     );
+
     await sendVerificationMail(user);
-    res.status(200).json( "User Registration Successful." );
+
+    res.status(200).json("User registration successful.");
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log(error);
+    res.status(500).json( "Server Error 500" );
   }
 };
 

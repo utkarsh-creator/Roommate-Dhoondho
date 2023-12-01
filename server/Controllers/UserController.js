@@ -21,10 +21,21 @@ export const getAllUser = async (req, res) => {
       .select('-password')
       .skip(skip)
       .limit(limit);
-    const { _id, firstname, lastname, gender, username, followers, following, likesRoommate, likesRoom } = users;
-    res.status(200).json({ _id, firstname, lastname, gender, username, followers, following, likesRoommate, likesRoom });
 
-    res.status(200).json(users);
+    // Extracting required fields for each user
+    const extractedUsers = users.map(user => ({
+      _id: user._id,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      gender: user.gender,
+      username: user.username,
+      followers: user.followers,
+      following: user.following,
+      likesRoommate: user.likesRoommate,
+      likesRoom: user.likesRoom,
+    }));
+
+    res.status(200).json(extractedUsers);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
