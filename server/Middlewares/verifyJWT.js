@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 export const verifyJWT_withuserId = (req, res, next) => {
   // Extract the JWT token from the Authorization header
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.x_authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ message: 'Unauthorized: No token provided' });
@@ -37,7 +37,7 @@ export const verifyJWT_withuserId = (req, res, next) => {
 
 export const verifyJWTForGetRequest = (req, res, next) => {
   // Extract the JWT token from the Authorization header
-  const token = req.headers.authorization?.split(' ')[1];
+  const token = req.headers.x_authorization?.split(' ')[1];
 
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized: No token provided' });
