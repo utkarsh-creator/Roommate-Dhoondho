@@ -764,11 +764,20 @@ export const NeedRoomComponent = () => {
                   />
                 </div>
                 <div className="flex flex-col mb-6 md:mr-4">
-                  <span>Vacancy</span>
+                  <span>Vacancy*</span>
                   <input
                     name="remaining"
                     value={needRoomForm["remaining"]}
                     onChange={needRoomFormOnChangeHandler}
+                    className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
+                  />
+                </div>
+                <div className="flex flex-col mb-6">
+                  <span>Instagram Account</span>
+                  <input
+                    name="InstaAccount"
+                    value={needRoomMateForm["noOfBeds"]}
+                    onChange={needRoomMateFormOnChangeHandler}
                     className="bg-[#D9D9D9] rounded-[8px] mt-1 h-[3rem] p-4"
                   />
                 </div>
