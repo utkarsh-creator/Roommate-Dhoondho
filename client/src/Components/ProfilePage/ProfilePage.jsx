@@ -50,6 +50,9 @@ const Profilepage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isListingButtonActive, setIsListingButtonActive] = useState(false);
 
+  // Constants for preventing XSS Attacks
+
+
   Hotjar.identify(profileData?.user?.username, {
     first_name: profileData?.user?.firstname,
     last_name: profileData?.user?.lastname,
@@ -514,20 +517,18 @@ const Profilepage = () => {
           <div className="listing">
             <div className="listing-buttons">
               <button className="activelisting">
-                <div>
                 <p className="listing-text">Your Listing</p>
-                </div>
                 <div className="add-button">
-                <button
-                  className={`add-button-inner ${isListingButtonActive ? 'active' : ''}`}
-                  onClick={handleListingButtonClick}
-                  onMouseDown={() => setIsListingButtonActive(true)}
-                  onMouseUp={() => setIsListingButtonActive(false)}
-                  onMouseLeave={() => setIsListingButtonActive(false)}
-                >
-                  +
-                </button>
-              </div>
+                  <button
+                    className={`add-button-inner ${isListingButtonActive ? 'active' : ''}`}
+                    onClick={handleListingButtonClick}
+                    onMouseDown={() => setIsListingButtonActive(true)}
+                    onMouseUp={() => setIsListingButtonActive(false)}
+                    onMouseLeave={() => setIsListingButtonActive(false)}
+                  >
+                    +
+                  </button>
+                </div>
               </button>
             </div>
             <div className="tab-content">
