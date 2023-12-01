@@ -1,12 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
+import { vitMailFormat } from "../Middlewares/Format/vitMailFormat.js";
 import { loginUser, registerUser, verifyEmail, resendVerificationEmail, requestPasswordReset, updatePassword } from "../Controllers/AuthController.js";
 
 const router = express.Router();
 
 router.use(bodyParser.json());
 
-router.post('/register', async (req, res) => {
+router.post('/register', vitMailFormat, async (req, res) => {
     await registerUser(req, res);
   });
   

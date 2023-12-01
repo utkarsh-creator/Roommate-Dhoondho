@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { sendVerificationMail } from "../utils/sendVerificationMail.js";
 import { sendPasswordResetMail } from "../utils/sendPasswordResetMail.js";
+import { vitMailFormat } from "../Middlewares/Format/vitMailFormat.js";
 
 // Registering a new User
 export const registerUser = async (req, res) => {
@@ -22,12 +23,6 @@ export const registerUser = async (req, res) => {
     // Validate that username and password are present
     if (!username || !password) {
       return res.status(400).json({ message: "Username and password are required." });
-    }
-
-    // Validate that the username (email) is well-formed and does not contain spaces
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@vitstudent\.ac\.in$/;
-    if (!emailRegex.test(username)) {
-      return res.status(400).json({ message: "Invalid email address format." });
     }
 
     const salt = await bcrypt.genSalt(10);
