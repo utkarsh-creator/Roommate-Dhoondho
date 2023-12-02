@@ -517,7 +517,7 @@ const Profilepage = () => {
             <div className="listing-buttons">
               <button className="activelisting">
                 <p className="listing-text">Your Listing</p>
-                <div className="add-button">
+                {/* <div className="add-button">
                   <button
                     className={`add-button-inner ${isListingButtonActive ? 'active' : ''}`}
                     onClick={handleListingButtonClick}
@@ -527,7 +527,7 @@ const Profilepage = () => {
                   >
                     +
                   </button>
-                </div>
+                </div> */}
               </button>
             </div>
             <div className="tab-content">
