@@ -20,8 +20,6 @@ Hotjar.init(siteId, hotjarVersion);
 const signInPage = '/';
 Hotjar.stateChange(signInPage);
 
-console.log("Server URL ", process.env.REACT_APP_SERVER_URL);
-
 let initialFormState = { email: "", password: "" };
 function SignIn() {
   const [showPassword, setShowPassword] = useState(true);
