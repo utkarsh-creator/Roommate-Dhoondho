@@ -134,7 +134,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/chatMobile",
-    element: <Chat />,
+    element: <ChatMobile />,
   },
   {
     path: "/TermsAndConditions",
