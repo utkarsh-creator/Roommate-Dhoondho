@@ -4,37 +4,58 @@ const UserSchema = mongoose.Schema(
   {
     username: {
       type: String,
-      required: true
+      required: true,
+      unique: true,
+      match: /^[a-zA-Z0-9._%+-]+@vitstudent\.ac\.in$/,
     },
     password: {
       type: String,
-      required: true
+      required: true,
+      minlength: 8,
     },
     firstname: {
       type: String,
+      default: null,
+      minlength: 1,
+      maxlength: 20,
     },
     lastname: {
       type: String,
+      default: null,
+      minlength: 1,
+      maxlength: 20,
     },
     regnum: {
       type: String,
+      default: null,
+      minlength: 7,
+      maxlength: 12,
     },
     gender: {
       type: String,
-      default: null
+      default: null,
     },
     rank: {
       type: Number,
+      default: null,
+      min: 1,
+      max: 5,
     },
     year: {
       type: Number,
+      default: null,
+      min: 1,
+      max: 8,
     },
     mobile: {
       type: Number,
+      default: null,
+      min: 9,
+      max: 15,
     },
     isAdmin: {
       type: Boolean,
-      default: false
+      default: false,
     },
     profilePicture: {
       type: String,
@@ -47,27 +68,27 @@ const UserSchema = mongoose.Schema(
     },
     isVerified: {
       type: Boolean,
-      default: false
+      default: false,
     },
     emailToken: {
       type: String,
     },
     followers: {
       type: Array,
-      default: []
+      default: [],
     },
     following: {
       type: Array,
-      default: [] 
+      default: [],
     },
     likesRoommate: {
       type: Array,
-      default: [] 
+      default: [],
     },
     likesRoom: {
       type: Array,
-      default: []
-    }
+      default: [],
+    },
   },
   { timestamps: true }
 );

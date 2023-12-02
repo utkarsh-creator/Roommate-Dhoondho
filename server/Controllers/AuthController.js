@@ -44,8 +44,7 @@ export const registerUser = async (req, res) => {
 
     const token = jwt.sign(
       { username: user.username, id: user._id, emailToken: user.emailToken },
-      process.env.JWTKEY,
-      { expiresIn: "1h" }
+      process.env.JWTKEY
     );
 
     await sendVerificationMail(user);
@@ -79,7 +78,7 @@ export const verifyEmail = async (req, res) => {
       user.emailToken = null;
       user.isVerified = true;
       await user.save();
-      const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWTKEY, { expiresIn: "1h" });
+      const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWTKEY);
       res.status(200).json({
         _id: user._id,
         name: user.name,

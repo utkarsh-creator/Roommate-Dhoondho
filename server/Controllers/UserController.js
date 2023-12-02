@@ -107,45 +107,63 @@ export const getPersonalUser = async (req, res) => {
 
 // update a user by admin
 export const updateUserByAdmin = async (req, res) => {
-  const id = req.params.id;
-  const { userId, password } = req.body;
-
-  // Check if the request has an 'Origin' header
-  const url = req.get('Origin');
-  console.log('Domain:', url);
-
-  if (process.env.NODE_ENV === "production" && url !== process.env.CLIENT_URL) {
-    res.status(403).json({ message: `${process.env.ACCESS_FORBIDDEN_MSG}` });
-    return;
-  }
-
   try {
-    // Retrieve the user from the database
-    const user = await UserModel.findById(id);
+    // Extract necessary information from the request
+    const { adminUsername, adminPassword } = req.body;
+    const username = req.params.username;
 
-    // Compare userId with the retrieved user's id
-    if (id === userId) {
-      // Compare the provided password with the stored hashed password
-      const passwordMatch = await bcrypt.compare(password, user.password);
+    // Verify admin credentials
+    const isValidAdmin = await verifyAdminCredentials(adminUsername, adminPassword);
 
-      if (passwordMatch) {
-        // Update the user's profile
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(password, salt);
+    if (!isValidAdmin) {
+      return res.status(401).json({ message: 'Invalid admin credentials' });
+    }
 
-        const updatedUser = await UserModel.findByIdAndUpdate(id, req.body, {
-          new: true,
-        });
+    // If admin credentials are valid, proceed to update user
+    const user = await UserModel.findOne({ username });
 
-        res.status(200).json(updatedUser);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if the admin has the authority to update the user (isAdmin == true)
+    if (user.isAdmin) {
+      // Update the user with the provided data from req.body
+      const updatedFields = { ...req.body };
+      delete updatedFields.adminUsername;
+      delete updatedFields.adminPassword;
+
+      const updatedUser = await UserModel.findOneAndUpdate({ username }, updatedFields, {
+        new: true,
+      });
+
+      if (updatedUser) {
+        return res.status(200).json({ message: 'User updated successfully', user: updatedUser });
       } else {
-        res.status(403).json("Invalid password");
+        return res.status(500).json({ message: 'Error updating user' });
       }
     } else {
-      res.status(403).json("Access Denied! You can only update your own profile");
+      return res.status(403).json({ message: 'Unauthorized: Admin privileges required' });
     }
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+};
+
+// Helper function to verify admin credentials
+const verifyAdminCredentials = async (adminUsername, adminPassword) => {
+  try {
+    // Verify Admin credentials
+    const adminUser = await UserModel.findOne({ username: adminUsername, isAdmin: true });
+
+    if (!adminUser) {
+      return false;
+    }
+
+    const isPasswordValid = await bcrypt.compare(adminPassword, adminUser.password);
+    return isPasswordValid;
+  } catch (error) {
+    throw error;
   }
 };
 
