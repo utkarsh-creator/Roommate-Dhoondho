@@ -42,7 +42,7 @@ const Profilepage = () => {
   const [notification, setNotification] = useState(null);
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [formEvent, setFormEvent] = useState(null);
-  const [showInfoLabel, setShowInfoLabel] = useState(true);
+  const [showInfoLabel, setShowInfoLabel] = useState(false);
   const [isGenderEditable, setIsGenderEditable] = useState(
     profileData?.user?.gender === null
   );
