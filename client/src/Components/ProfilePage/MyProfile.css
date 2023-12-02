@@ -418,13 +418,14 @@ form {
 
 .add-button-inner {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border: 2px solid #000;
   border-radius: 10px;
   background-color: #fff;
   color: #000;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  margin-bottom: 10px;
 }
 
 .add-button-inner.active {
