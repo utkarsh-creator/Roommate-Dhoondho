@@ -10,7 +10,11 @@ import UserRoute from './Routes/UserRoute.js'
 import RoomRoute from './Routes/RoomRoute.js'
 import RoommateRoute from './Routes/RoommateRoute.js'
 import ServerMsgRoute from './Routes/ServerMsgRoute.js'
-import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // if(process.env.NODE_ENV === "production") {
 //   console.log(
@@ -58,8 +62,9 @@ mongoose
   .catch((error) => console.log(error));
 
   // Static Route
-  app.set('view engine', 'ejs');
-  app.set('views', path.resolve('./views'));
+  app.set("views", __dirname + "/views");
+  app.set("view engine", "ejs");
+  app.use(express.static(__dirname + "public"));
   app.get('/', (req, res) => {
     return res.render('index');
   });

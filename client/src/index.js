@@ -26,8 +26,6 @@ import Team from "./Pages/Team/Team";
 import AboutMFC from "./Pages/AboutMFC/AboutMFC";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 import ReactGA from 'react-ga4';
-import secureLocalStorage from "react-secure-storage";
-import setAuthToken from "./actions/setAuthToken";
 
 import Hotjar from '@hotjar/browser';
 const siteId = 3765543;
@@ -86,12 +84,6 @@ if(process.env.NODE_ENV === "production") {
   console.count = () => {}
   console.countReset = () => {}
 }
-
-const profile = JSON.parse(secureLocalStorage.getItem('profile'));
-const token = profile?.token;
-setAuthToken(token);
-console.log("token: ", token);
-console.log("profile: ", profile);
 
 const router = createBrowserRouter([
   {
