@@ -187,7 +187,7 @@ export const deleteRoommate = async (req, res) => {
 
   try {
     const Roommate = await needRoommateModel.findById(id);
-    if (Roommate.userId === userId) {
+    if (Roommate.userId.toString() === userId) {
       await Roommate.deleteOne();
       res.status(200).json("Roommate deleted successfully");
     } else {

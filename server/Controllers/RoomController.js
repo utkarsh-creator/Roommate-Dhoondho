@@ -188,7 +188,8 @@ export const deleteRoom = async (req, res) => {
 
   try {
     const Room = await needRoomModel.findById(id);
-    if (Room.userId === userId) {
+    console.log("Room userId: ", Room.userId, " userId: ", userId);
+    if (Room.userId.toString() === userId) {
       await Room.deleteOne();
       res.status(200).json("Room deleted successfully");
     } else {
