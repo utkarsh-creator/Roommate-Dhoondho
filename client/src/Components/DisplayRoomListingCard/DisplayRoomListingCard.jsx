@@ -102,12 +102,12 @@ function DisplayRoomListingCard() {
                         {room?.preferredBlock}
                       </div>
                     </div>
-                    <div className="card-bed">
+                    {/* <div className="card-bed">
                       <div className="card-preference-title">Vacancy</div>
                       <div className="card-preference-content">
                         {room?.remaining}
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="card-downers2">
                     <div className="card-year">

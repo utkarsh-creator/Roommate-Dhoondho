@@ -115,6 +115,12 @@ function DisplayRoommateListingCard() {
                         {roommate?.preferredBed}
                       </div>
                     </div>
+                    <div className="card-bed">
+                      <div className="card-preference-title">Vacancy</div>
+                      <div className="card-preference-content">
+                        {roommate?.remaining}
+                      </div>
+                    </div>
                   </div>
                   <div className="card-downers">
                     <div className="card-year">
