@@ -46,7 +46,7 @@ const Profilepage = () => {
   const [isGenderEditable, setIsGenderEditable] = useState(
     profileData?.user?.gender === null
   );
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isListingButtonActive, setIsListingButtonActive] = useState(false);
 
@@ -67,20 +67,20 @@ const Profilepage = () => {
     }
   }, [profileData, navigate]);
 
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  // const handleChangePassword = (e) => {
+  //   setPassword(e.target.value);
+  // };
 
-  const validatePassword = () => {
-    return !!password;
-  };
+  // const validatePassword = () => {
+  //   return !!password;
+  // };
 
-  const dispatch = useDispatch();
-  const handleResetPasswordClick = () => {
-    secureLocalStorage.removeItem("profile");
-    dispatch(logout());
-    navigate('/resetPassword');
-  };
+  // const dispatch = useDispatch();
+  // const handleResetPasswordClick = () => {
+  //   secureLocalStorage.removeItem("profile");
+  //   dispatch(logout());
+  //   navigate('/resetPassword');
+  // };
 
   const handleConfirmationOpen = (e) => {
     e.preventDefault();
@@ -228,15 +228,15 @@ const Profilepage = () => {
 
   const submituserRegistrationForm = (e, gender) => {
     e.preventDefault();
-    if (!validatePassword()) {
-      toast.error("Please enter your password for confirmation.");
-      return;
-    }
+    // if (!validatePassword()) {
+    //   toast.error("Please enter your password for confirmation.");
+    //   return;
+    // }
     console.log("submitting form gender", gender);
     if (validateForm()) {
       const updatedData = {
         currentUserId: profileData?.user?._id,
-        password: password,
+        // password: password,
         // username: email,
         firstname: firstName,
         lastname: lastName,
@@ -471,7 +471,7 @@ const Profilepage = () => {
                           />
                           <div className="errorMsg">{errors.mobileno}</div>
                         </div>
-                        <div className="form-section-6">
+                        {/* <div className="form-section-6">
                           <label>Password*</label>
                           <input
                             type="password"
@@ -484,7 +484,7 @@ const Profilepage = () => {
                               Reset Password
                             </span>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                       <div className="form-section-4">
                         {changesMade && (

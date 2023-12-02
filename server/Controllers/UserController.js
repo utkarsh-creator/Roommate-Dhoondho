@@ -170,7 +170,7 @@ const verifyAdminCredentials = async (adminUsername, adminPassword) => {
 // update a user from client side
 export const updateUser = async (req, res) => {
   const id = req.params.id;
-  const { currentUserId, password } = req.body;
+  const { currentUserId } = req.body;
 
   // Check if the request has an 'Origin' header
   const url = req.get('Origin');
@@ -187,10 +187,8 @@ export const updateUser = async (req, res) => {
 
     // Compare currentUserId with the retrieved user's id
     if (id === currentUserId) {
-      // Compare the provided password with the stored hashed password
-      const passwordMatch = await bcrypt.compare(password, user.password);
 
-      if (passwordMatch) {
+
         // Define the allowed fields
         const allowedFields = ['firstname', 'lastname', 'gender', 'regnum', 'mobile'];
 
@@ -228,9 +226,7 @@ export const updateUser = async (req, res) => {
           delete userDetails.isVerified;
           res.status(200).json({ user: userDetails, token });
         }
-      } else {
-        res.status(403).json("Invalid password");
-      }
+
     } else {
       res.status(403).json("Access Denied! You can only update your own profile");
     }
