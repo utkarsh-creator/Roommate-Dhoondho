@@ -72,12 +72,12 @@ const VerifyEmail = () => {
           <br />
         </p>
         <br />
-        <button
+        {/* <button
           onClick={() => window.location.href = "/resendVerificationMail"}
           className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
         >
           Resend
-        </button>
+        </button> */}
         <button
           onClick={() => window.location.href = "/"}
           className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"

@@ -30,7 +30,6 @@ export const createRoommate = async (req, res) => {
 };
 
 // Get Roommate
-
 export const getRoommate = async (req, res) => {
   const id = req.params.userid;
 
