@@ -25,6 +25,8 @@ import Privacy from "./Pages/PrivacyPolicy/Privacy";
 import Team from "./Pages/Team/Team";
 import AboutMFC from "./Pages/AboutMFC/AboutMFC";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import secureLocalStorage from "react-secure-storage";
+import setAuthToken from "./actions/setAuthToken";
 import ReactGA from 'react-ga4';
 
 import Hotjar from '@hotjar/browser';
@@ -151,6 +153,12 @@ const router = createBrowserRouter([
     element: <AboutMFC />,
   },
 ]);
+
+const profile = JSON.parse(secureLocalStorage.getItem('profile'));
+if(profile){
+  const token = profile?.token;
+  setAuthToken(token);
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

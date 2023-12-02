@@ -47,11 +47,10 @@ const UserSchema = mongoose.Schema(
       min: 1,
       max: 8,
     },
-    mobile: {
+    phone: {
       type: Number,
-      default: null,
-      min: 9,
-      max: 15,
+      min: 10000000,
+      max: 999999999999999,
     },
     isAdmin: {
       type: Boolean,
