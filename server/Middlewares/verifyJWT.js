@@ -36,9 +36,6 @@ export const verifyJWT_withuserId = (req, res, next) => {
 };
 
 export const verifyJWTForGetRequest = (req, res, next) => {
-  if (process.env.NODE_ENV === 'production') {
-    return next();
-  }
 
   // Extract the JWT token from the Authorization header
   const token = req.headers.x_authorization?.split(' ')[1];
