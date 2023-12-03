@@ -263,7 +263,7 @@ const Profilepage = () => {
         })
         .catch((error) => {
           console.error("Error updating profile:", error);
-          toast.error("Error saving changes. Check your password and try again.");
+          toast.error("Error saving changes. Please try again.");
         });
     }
   };
