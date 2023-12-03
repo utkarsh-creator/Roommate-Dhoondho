@@ -116,7 +116,7 @@ function SignIn() {
         toast.error("Please verify your email.");
         navigate("/resendVerificationMail");
       } else { 
-        toast.error("An error occurred. Verify your email or check your credentials.");
+        toast.error("Wrong credentials. Try resetting your password.");
       }
     }
   }  

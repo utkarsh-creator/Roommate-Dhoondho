@@ -42,7 +42,7 @@ function ResendVerificationMail() {
         }, 3000);
       }
     } catch (error) {
-      toast.error("Error L485. Email may already be verified. Contact MFC support if issue persists.");
+      toast.error("Error L485. Email already be verified. Try resetting password.");
       console.error(error);
     }
   };

@@ -60,16 +60,16 @@ const VerifyEmail = () => {
 
   return (
     <div>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p>Loading...Verifying your email. This usually takes few seconds.</p>}
       {!isLoading && error && <p>Error: {error}</p>}
       {!isLoading && !error && <p>Email verified successfully!</p>}
       <p>
         <br />
         <p>
-          If you haven't received the verification email, please click on the Resend button below.
-          <br />
-          If redirection failed, please click on the Login button below.
-          <br />
+          {/* If you haven't received the verification email, please click on the Resend button below.
+          <br /> */}
+          {/* If redirection failed, please click on the Login button below.
+          <br /> */}
         </p>
         <br />
         {/* <button
@@ -78,12 +78,12 @@ const VerifyEmail = () => {
         >
           Resend
         </button> */}
-        <button
+        {/* <button
           onClick={() => window.location.href = "/"}
           className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start"
         >
           Login
-        </button>
+        </button> */}
       </p>
     </div>
   );
