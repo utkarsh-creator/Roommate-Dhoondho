@@ -681,7 +681,7 @@ export const NeedRoomComponent = () => {
                   />
                 </div>
                 <div className="flex flex-col mb-6">
-                  <span>Instagram Account</span>
+                  <span>Instagram Account (optional and only username)</span>
                   <input
                     name="Insta"
                     value={needRoomMateForm["Insta"]}

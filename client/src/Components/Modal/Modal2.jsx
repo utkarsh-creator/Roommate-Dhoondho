@@ -15,6 +15,29 @@ function Modal2() {
   const whatsappLink = `https://wa.me/${countryCode}${seletedroomphone}?text=${encodeURIComponent(
     whatsappMessage
   )}`;
+
+  const instagramPrefix = "Insta: ";
+  let instagramUID = "";
+  let instagramLink = "";
+  let descriptionOnly = "";
+  if (seletedroomdetail.startsWith(instagramPrefix)) {
+    const parts = seletedroomdetail.split("|");
+    if (parts.length > 0) {
+      instagramUID = parts[0].replace(instagramPrefix, "").trim();
+      instagramLink = `https://instagram.com/${instagramUID}`;
+    }
+    if (seletedroomdetail.includes("| ")) {
+      const parts = seletedroomdetail.split("| ");
+      if (parts.length > 1 && parts[1].trim() !== "") {
+        descriptionOnly = parts[1];
+      } else {
+        descriptionOnly = "";
+      }
+    }
+  } else {
+    descriptionOnly = seletedroomdetail;
+  }
+
   return (
     <aside className="modal-overlay">
       <div className="modal-container">
@@ -24,6 +47,9 @@ function Modal2() {
               <div className="activehabits">
                 <p className="habits-text">Description</p>
               </div>
+            </div>
+            <div>
+              <p><small><font color="grey">Click on the phone no. to open WhatsApp chat</font></small></p>
             </div>
             <div className="habitstab-hr">
               <hr />
@@ -40,12 +66,25 @@ function Modal2() {
             <br />
             <p>
               <b>Email Id: </b>
-
-              {seletedroomemail}
+              <a href={seletedroomemail} target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon="fa-regular fa-envelope" />
+                <i class="fa-regular fa-envelope"></i> {seletedroomemail}
+              </a>
             </p>
             <br />
-            <b>Details:</b>
-            <p>{seletedroomdetail}</p>
+            <p>
+              {instagramUID && <><b>Instagram: </b>
+                <a href={instagramLink} target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon="fab fa-instagram" />
+                  <i class="fab fa-instagram"></i> {instagramUID}
+                </a>
+              <br /><br /></>}
+              
+              <b>Details: </b>
+              <p>
+                {descriptionOnly ? descriptionOnly : <small><i><font color="grey">(empty)</font></i></small>}
+              </p>
+            </p>
           </div>
           <button
             onClick={closeModal2}

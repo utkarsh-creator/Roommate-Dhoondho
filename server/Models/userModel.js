@@ -41,6 +41,10 @@ const UserSchema = mongoose.Schema(
       min: 1,
       max: 5,
     },
+    isRankVerified : {
+      type: Boolean,
+      default: false,
+    },
     year: {
       type: Number,
       default: null,
