@@ -450,6 +450,10 @@ export const NeedRoomComponent = () => {
     return true;
   }
 
+  const handleGoToProfile = () => {
+    navigate("/profile");
+  };
+
   return (
     <Fragment>
       <Navbar />
@@ -504,6 +508,12 @@ export const NeedRoomComponent = () => {
               <br />
               support@mozillavit.in
               <br /><br />
+              <button
+                onClick={handleGoToProfile}
+                className="bg-[#140922] px-4 py-2 text-white rounded-md"
+              >
+                Profile
+              </button>
               {/* <button
                 onClick={handleRefresh}
                 className="bg-[#140922] px-4 py-2 text-white rounded-md"

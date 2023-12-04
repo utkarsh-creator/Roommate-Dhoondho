@@ -126,24 +126,19 @@ export const updateUserByAdmin = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Check if the admin has the authority to update the user (isAdmin == true)
-    if (user.isAdmin) {
-      // Update the user with the provided data from req.body
-      const updatedFields = { ...req.body };
-      delete updatedFields.adminUsername;
-      delete updatedFields.adminPassword;
+    // Update the user with the provided data from req.body
+    const updatedFields = { ...req.body };
+    delete updatedFields.adminUsername;
+    delete updatedFields.adminPassword;
 
-      const updatedUser = await UserModel.findOneAndUpdate({ username }, updatedFields, {
-        new: true,
-      });
+    const updatedUser = await UserModel.findOneAndUpdate({ username }, updatedFields, {
+      new: true,
+    });
 
-      if (updatedUser) {
-        return res.status(200).json({ message: 'User updated successfully', user: updatedUser });
-      } else {
-        return res.status(500).json({ message: 'Error updating user' });
-      }
+    if (updatedUser) {
+      return res.status(200).json({ message: 'User updated successfully', user: updatedUser });
     } else {
-      return res.status(403).json({ message: 'Unauthorized: Admin privileges required' });
+      return res.status(500).json({ message: 'Error updating user' });
     }
   } catch (error) {
     return res.status(500).json({ message: 'Internal server error', error: error.message });
