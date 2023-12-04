@@ -54,13 +54,13 @@ function SignUP() {
     });
   }
 
-  function verifyFormOnChangeHandler(e) {
-    let change = {};
-    change[e.target.name] = e.target.value;
-    setVerifyForm((prev) => {
-      return { ...prev, ...change };
-    });
-  }
+  // function verifyFormOnChangeHandler(e) {
+  //   let change = {};
+  //   change[e.target.name] = e.target.value;
+  //   setVerifyForm((prev) => {
+  //     return { ...prev, ...change };
+  //   });
+  // }
 
   function validateEmail(email) {
     const emailRegex = /^[A-Za-z0-9._%+-]+@vitstudent.ac.in$/;
@@ -232,21 +232,21 @@ function SignUP() {
                 ) : null}
               </div>
 
-              <div className="flex items-center text-[#807D7E] text-[14px] w-full mb-10">
+              {/* <div className="flex items-center text-[#807D7E] text-[14px] w-full mb-10">
                 <input
                   name="agree"
                   checked={form.agree}
-                  onChange={(e) => formOnChangeHandler(e, !form.agree)}
+                  // onChange={(e) => formOnChangeHandler(e, !form.agree)}
                   className="mr-2"
                   type="checkbox"
                 />
                 <label>Agree to our Terms of use and Privacy Policy </label>
-              </div>
+              </div> */}
 
               <button
                 onClick={signUpClickHandler}
                 disabled={
-                  formError.email || formError.password || !form.agree
+                  formError.email || formError.password || form.agree
                     ? true
                     : false
                 }
@@ -279,7 +279,7 @@ function SignUP() {
                 <input
                   name="code"
                   value={verifyForm.code}
-                  onChange={verifyFormOnChangeHandler}
+                  // onChange={verifyFormOnChangeHandler}
                   className=" mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
                 />
               </div>
