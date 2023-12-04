@@ -47,7 +47,7 @@ const ChatEmbed = () => {
   };
 
   return (
-    <div id="tlkio" data-channel="mfc" data-theme="theme--minimal" data-custom-css={chatStyle} style={chatStyle}>
+    <div id="tlkio" data-channel="mfc" data-theme="theme--day" data-nickname={profileData?.user?.username} data-custom-css={chatStyle} style={chatStyle}>
       <center>
         If blue cloud doesn't appear in the middle of screen, consider refreshing page. We are currently trying to fix this bug.
       </center>
