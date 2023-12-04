@@ -332,7 +332,7 @@ export const Listing = () => {
                         <div className="card-info">
                           <div className="card-informatios">
                             <div className="card-name">
-                            R: {item?.rank ?? ""} | {item?.preferredBlock ?? "Loading "} Block
+                            Rank: {item?.rank ?? ""} | {item?.preferredBlock ?? "Loading "} Block
                             </div>
                             <div className="card-add">
                               <img

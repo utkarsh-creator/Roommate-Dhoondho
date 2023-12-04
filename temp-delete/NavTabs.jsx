@@ -502,17 +502,17 @@ function DisplayRoommateCard() {
                                     {post?.rank}
                                   </div>
                                 </div>
-                                {/* <div className="card-block">
+                                <div className="card-block">
                                   <div className="card-preference-title">
-                                    Preferred Block
+                                    Prefered Block
                                   </div>
                                   <div className="card-preference-content">
                                     {post?.preferredBlock}
                                   </div>
-                                </div> */}
+                                </div>
                                 <div className="card-bed">
                                   <div className="card-preference-title">
-                                    Preferred Bed Type
+                                    Prefered Bed Type
                                   </div>
                                   <div className="card-preference-content">
                                     {post?.preferredBed}
@@ -679,7 +679,7 @@ function DisplayRoommateCard() {
                           <div className="card-info">
                             <div className="card-informatios">
                               <div className="card-name">
-                              Rank: {post?.rank} - {post?.preferredBlock} Block
+                                {post?.preferredBlock} Block
                               </div>
                               <div
                                 className="card-add"
@@ -713,20 +713,20 @@ function DisplayRoommateCard() {
                               </div>
                               <div className="card-block">
                                 <div className="card-preference-title">
-                                Preferred Bed
+                                  Prefered Bed
                                 </div>
                                 <div className="card-preference-content">
                                   {post?.preferredBed}
                                 </div>
                               </div>
-                              <div className="card-bed">
+                              {/* <div className="card-bed">
                                 <div className="card-preference-title">
-                                  Block
+                                  Vacancy
                                 </div>
                                 <div className="card-preference-content">
-                                  {post?.preferredBlock}
+                                  {post?.remaining}
                                 </div>
-                              </div>
+                              </div> */}
                             </div>
                             <div className="card-downers2">
                               <div className="card-year">
@@ -906,14 +906,14 @@ const TabButtons = ({
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/roommatesicon.png" alt="" />
-                        <div className="tab-text">Need Room</div>
+                        <div className="tab-text">Roommates Listing</div>
                       </div>
                     </span>
                   ) : (
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/bed2.png" alt="" />
-                        <div className="tab-text">Need Roommates</div>
+                        <div className="tab-text">Rooms Listing</div>
                       </div>
                     </span>
                   )}
@@ -925,14 +925,14 @@ const TabButtons = ({
                       <div className="roomate-icon">
                         <img src="./image/roommatesicon2.png" alt="" />
                       </div>
-                      <div className="tab-text"> Need Room</div>
+                      <div className="tab-text"> Roommates Listing</div>
                     </span>
                   ) : (
                     <span className="tab-elements">
                       <div className="roomate-icon">
                         <img src="./image/bed.png" alt="" />
                       </div>
-                      <div className="tab-text">Need Roommates</div>
+                      <div className="tab-text">Rooms Listing</div>
                     </span>
                   )}
                 </React.Fragment>
