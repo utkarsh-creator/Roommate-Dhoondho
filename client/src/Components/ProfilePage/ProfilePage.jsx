@@ -21,6 +21,7 @@ import { toast } from "react-toastify";
 import secureLocalStorage from "react-secure-storage";
 
 import Hotjar from '@hotjar/browser';
+import { Helmet } from "react-helmet";
 const siteId = 3765543;
 const hotjarVersion = 6;
 Hotjar.init(siteId, hotjarVersion);
@@ -267,6 +268,7 @@ const Profilepage = () => {
         });
     }
   };
+
   return (
     <>
       <div>
@@ -539,6 +541,19 @@ const Profilepage = () => {
           </div>
         </div>
       )}
+      
+      <div>
+        <p>
+          <center>
+            <a href="https://vimeo.com/891016429" target="_blank">
+              How to use this app:{' '}
+              
+                Demo
+            </a>
+          </center>
+        </p>
+      </div>
+
       <div>
         <Footer />
       </div>

@@ -238,6 +238,17 @@ function SignIn() {
           </div>
         </div>   
       </div>
+      <div>
+        <p>
+          <center>
+            <a href="https://vimeo.com/891016429" target="_blank">
+              How to use this app:{' '}
+              
+                Demo
+            </a>
+          </center>
+        </p>
+      </div>
     </div>
   );
 }
