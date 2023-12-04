@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
+import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../Assets/logo.png";
 import "./Header.css";
@@ -7,6 +10,8 @@ function Header() {
   const navigation = useNavigate();
   let isLogin = pathname === "/";
   const [sideBarOpen, setSideBarOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const languageSelectRef = useRef(null);
 
   const navSideBarOpen = () => {
     setSideBarOpen(true);
@@ -32,6 +37,24 @@ function Header() {
       loginNotRequired: true,
     },
   ];
+
+  const handleLanguageChange = (e) => {
+    if (e.target.value === "kr-KR") {
+      setShowModal(true);
+      languageSelectRef.current.value = "en-US";
+    }
+  };
+
+  useEffect(() => {
+    if (showModal) {
+      toast.info("Do you know this language even.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000,
+      });
+      setShowModal(false);
+    }
+  }, [showModal]);
+
   return (
     <header className="flex justify-between px-[1rem] border-b-[#BEBCBD] border-b-[1px]">
       <img
@@ -43,9 +66,12 @@ function Header() {
         className="h-[60px] cursor-pointer "
       />
       <div className="mr-[2rem] hidden md:flex justify-center items-center">
-        <select className="mr-8 p-[0.5rem]">
+      <select ref={languageSelectRef} className="mr-8 p-[0.5rem]" onChange={e => handleLanguageChange(e)}>
           <option value="en-US" selected>
             English (United States)
+          </option>
+          <option value="kr-KR">
+            한국어 (대한민국)
           </option>
           {/* <option value="en-GB">English (United Kingdom)</option>
           <option value="es">Spanish</option>
