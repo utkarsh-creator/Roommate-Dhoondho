@@ -77,7 +77,7 @@ function DisplayRoomListingCard() {
               ></div>
                 <div className="card-info">
                   <div className="card-informatios">
-                    <div className="card-name">R: {room?.rank} | {room?.preferredBlock} Block Posting</div>
+                    <div className="card-name">R: {room?.rank} - {room?.preferredBlock} Block Posting</div>
                     <div
                       className="card-add"
                       onClick={() => deleteRoom(room?._id)}
