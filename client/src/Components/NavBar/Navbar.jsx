@@ -101,7 +101,7 @@ function Navbar() {
               </button>
             </NavLink>
             <li className="nav-item">
-              {isAdmin && (
+              { (
                 <NavLink to="/chat" className="nav-links" onClick={closeMobileMenu}>
                   <button className="chat">
                     {" "}
@@ -158,7 +158,7 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item-mobile">
-            {isAdmin && (
+            { (
               <Link to="/chatMobile" className="nav-links-mobile user" onClick={closeMobileMenu}>
                 Chat
               </Link>
