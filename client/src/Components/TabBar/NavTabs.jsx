@@ -654,7 +654,7 @@ function DisplayRoommateCard() {
                           <div className="card-info">
                             <div className="card-informatios">
                               <div className="card-name">
-                                {post?.preferredBlock} Block
+                              R: {post?.rank} | {post?.preferredBlock} Block
                               </div>
                               <div
                                 className="card-add"
