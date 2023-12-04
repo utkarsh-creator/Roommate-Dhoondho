@@ -7,7 +7,13 @@ export const logIn = (formData, navigate) => async (dispatch) => {
     const { data } = await AuthApi.logIn(formData);
     dispatch({ type: "AUTH_SUCCESS", data: data });
     toast.success("Logged in successfully.");
-    navigate("../profile", { replace: true });
+    console.log("data: ", data);
+    if(data?.user?.gender !== null){
+      navigate("../home", { replace: true });
+    }
+    else{
+      navigate("../profile", { replace: true });
+    }
   } catch (error) {
     //console.log(error.response.data);
     throw new Error(error.response.data);
