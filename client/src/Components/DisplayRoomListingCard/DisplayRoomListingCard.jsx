@@ -94,20 +94,20 @@ function DisplayRoomListingCard() {
                       <div className="card-preference-title">Rank</div>
                       <div className="card-preference-content">{room?.rank}</div>
                     </div>
+                    <div className="card-bed">
+                      <div className="card-preference-title">Preferred bed</div>
+                      <div className="card-preference-content">
+                        {room?.preferredBed}
+                      </div>
+                    </div>
                     <div className="card-block">
                       <div className="card-preference-title">
-                        Prefered Block
+                        Block
                       </div>
                       <div className="card-preference-content">
                         {room?.preferredBlock}
                       </div>
                     </div>
-                    {/* <div className="card-bed">
-                      <div className="card-preference-title">Vacancy</div>
-                      <div className="card-preference-content">
-                        {room?.remaining}
-                      </div>
-                    </div> */}
                   </div>
                   <div className="card-downers2">
                     <div className="card-year">

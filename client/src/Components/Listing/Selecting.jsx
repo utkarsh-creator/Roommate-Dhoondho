@@ -246,7 +246,7 @@ export const Listing = () => {
                             </div>
                             <div className="card-block">
                               <div className="card-preference-title">
-                                Prefered Block
+                                Preferred Block
                               </div>
                               <div className="card-preference-content">
                                 {" "}
@@ -255,7 +255,7 @@ export const Listing = () => {
                             </div>
                             <div className="card-bed">
                               <div className="card-preference-title">
-                                Prefered Bed Type
+                                Preferred Bed Type
                               </div>
                               <div className="card-preference-content">
                                 {" "}
@@ -351,7 +351,7 @@ export const Listing = () => {
                             </div>
                             <div className="card-block">
                               <div className="card-preference-title">
-                                Prefered Bed
+                                Preferred Bed
                               </div>
                               <div className="card-preference-content">
                                 {item.preferredBed}

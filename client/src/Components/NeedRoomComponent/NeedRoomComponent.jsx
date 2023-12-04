@@ -28,7 +28,7 @@ export const NeedRoomComponent = () => {
     rank: profileData?.user?.rank,
     // gender: "M",
     bedType: "",
-    preferedBlocks: ["A"],
+    PreferredBlocks: ["A"],
     contactNumber: profileData?.user?.mobile,
     year: "1",
     description: "",
@@ -39,7 +39,7 @@ export const NeedRoomComponent = () => {
     rank: profileData?.user?.rank,
     // gender: "M",
     noOfBeds: "",
-    preferedBlocks: ["A"],
+    PreferredBlocks: ["A"],
     contactNumber: profileData?.user?.mobile,
     year: "1",
     description: "",
@@ -128,9 +128,9 @@ export const NeedRoomComponent = () => {
     let { name, value } = e.target;
     if (name === "prefferedBlocks") {
       setNeedRoomForm((prev) => {
-        const updatedBlocks = [...prev.preferedBlocks];
+        const updatedBlocks = [...prev.PreferredBlocks];
         updatedBlocks[index] = value;
-        return { ...prev, preferedBlocks: updatedBlocks };
+        return { ...prev, PreferredBlocks: updatedBlocks };
       });
     }
 
@@ -156,9 +156,9 @@ export const NeedRoomComponent = () => {
     //manage preferred blocks state
     if (name === "prefferedBlocks") {
       setNeedRoomMateForm((prev) => {
-        const updatedBlocks = [...prev.preferedBlocks];
+        const updatedBlocks = [...prev.PreferredBlocks];
         updatedBlocks[index] = value;
-        return { ...prev, preferedBlocks: updatedBlocks };
+        return { ...prev, PreferredBlocks: updatedBlocks };
       });
     }
 
@@ -220,7 +220,7 @@ export const NeedRoomComponent = () => {
         rank: needRoomForm?.rank,
         gender: profileData.user.gender,
         preferredBed: needRoomForm?.bedType,
-        preferredBlock: needRoomForm?.preferedBlocks[0],
+        preferredBlock: needRoomForm?.PreferredBlocks[0],
         phone: profileData.user.mobile,
         year: needRoomForm?.year,
         desc: needRoomForm?.description,
@@ -253,7 +253,7 @@ export const NeedRoomComponent = () => {
       rank: needRoomMateForm?.rank,
       gender: profileData.user.gender,
       preferredBed: needRoomMateForm?.noOfBeds,
-      preferredBlock: needRoomMateForm?.preferedBlocks[0],
+      preferredBlock: needRoomMateForm?.PreferredBlocks[0],
       phone: profileData.user.mobile,
       year: needRoomMateForm?.year,
       desc: `${needRoomMateForm?.Insta ? 'Insta: ' + needRoomMateForm?.Insta + ' | ' + '\n' : ''}${needRoomMateForm?.description}`,
@@ -361,8 +361,8 @@ export const NeedRoomComponent = () => {
     //     return false;
     //   }
     // } 
-    else if (needRoomForm["preferedBlocks"]) {
-      let isValid = areValuesUnique(needRoomForm["preferedBlocks"]);
+    else if (needRoomForm["PreferredBlocks"]) {
+      let isValid = areValuesUnique(needRoomForm["PreferredBlocks"]);
       if (!isValid) {
         toast.error("Please choose block");
         return false;
@@ -429,8 +429,8 @@ export const NeedRoomComponent = () => {
     //     return false;
     //   }
     // } 
-    else if (needRoomMateForm["preferedBlocks"]) {
-      let isValid = areValuesUnique(needRoomMateForm["preferedBlocks"]);
+    else if (needRoomMateForm["PreferredBlocks"]) {
+      let isValid = areValuesUnique(needRoomMateForm["PreferredBlocks"]);
       if (!isValid) {
         toast.error("Please choose block");
         return false;
@@ -531,7 +531,7 @@ export const NeedRoomComponent = () => {
                   />
                 </div>
                 <div className="flex flex-col mb-6 md:mr-4">
-                  <span>Prefered Bed Type*</span>
+                  <span>Preferred Bed Type*</span>
                   <input
                     name="bedType"
                     value={needRoomForm["bedType"]}
@@ -563,12 +563,12 @@ export const NeedRoomComponent = () => {
                 className="grid grid-cols-1 items-center"
               >
                 <div className="containerr max-h-[80px]">
-                  <div className="label">Prefered Block*</div>
+                  <div className="label">Preferred Block*</div>
                   <div className="flex gap-6">
                     <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
                       <select
                         name="prefferedBlocks"
-                        value={needRoomForm["preferedBlocks"][0]}
+                        value={needRoomForm["PreferredBlocks"][0]}
                         onChange={(e) => needRoomFormOnChangeHandler(e, 0)}
                         className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
                       >
@@ -584,7 +584,7 @@ export const NeedRoomComponent = () => {
                     <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
                       <select
                         name="prefferedBlocks"
-                        value={needRoomForm["preferedBlocks"][1]}
+                        value={needRoomForm["PreferredBlocks"][1]}
                         onChange={(e) => needRoomFormOnChangeHandler(e, 1)}
                         className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
                       >
@@ -600,7 +600,7 @@ export const NeedRoomComponent = () => {
                     <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
                       <select
                         name="prefferedBlocks"
-                        value={needRoomForm["preferedBlocks"][2]}
+                        value={needRoomForm["PreferredBlocks"][2]}
                         onChange={(e) => needRoomFormOnChangeHandler(e, 2)}
                         className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
                       >
@@ -713,12 +713,12 @@ export const NeedRoomComponent = () => {
                 className="grid grid-cols-1 items-center"
               >
                 <div className="containerr max-h-[80px]">
-                  <div className="label">Prefered Block*</div>
+                  <div className="label">Preferred Block*</div>
                   <div className="flex gap-6">
                     <div className="bg-[#D9D9D9] rounded-[10px] flex items-center">
                       <select
                         name="prefferedBlocks"
-                        value={needRoomMateForm["preferedBlocks"][0]}
+                        value={needRoomMateForm["PreferredBlocks"][0]}
                         onChange={(e) => needRoomMateFormOnChangeHandler(e, 0)}
                         className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer"
                       >
@@ -734,7 +734,7 @@ export const NeedRoomComponent = () => {
                     <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center ">
                       <select
                         name="prefferedBlocks"
-                        value={needRoomMateForm["preferedBlocks"][1]}
+                        value={needRoomMateForm["PreferredBlocks"][1]}
                         onChange={(e) => needRoomMateFormOnChangeHandler(e, 1)}
                         className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
                       >
@@ -750,7 +750,7 @@ export const NeedRoomComponent = () => {
                     <div className="hidden bg-[#D9D9D9] rounded-[10px] flex items-center">
                       <select
                         name="prefferedBlocks"
-                        value={needRoomMateForm["preferedBlocks"][2]}
+                        value={needRoomMateForm["PreferredBlocks"][2]}
                         onChange={(e) => needRoomMateFormOnChangeHandler(e, 2)}
                         className="bg-[transparent] w-[100%] py-3 px-6 outline-none focus:border-none cursor-pointer "
                       >

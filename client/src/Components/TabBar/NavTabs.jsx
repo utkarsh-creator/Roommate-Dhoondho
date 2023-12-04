@@ -480,17 +480,17 @@ function DisplayRoommateCard() {
                                   {post?.rank}
                                 </div>
                               </div>
-                              <div className="card-block">
+                              {/* <div className="card-block">
                                 <div className="card-preference-title">
-                                  Prefered Block
+                                  Preferred Block
                                 </div>
                                 <div className="card-preference-content">
                                   {post?.preferredBlock}
                                 </div>
-                              </div>
+                              </div> */}
                               <div className="card-bed">
                                 <div className="card-preference-title">
-                                  Prefered Bed Type
+                                  Preferred Bed Type
                                 </div>
                                 <div className="card-preference-content">
                                   {post?.preferredBed}
@@ -688,20 +688,20 @@ function DisplayRoommateCard() {
                               </div>
                               <div className="card-block">
                                 <div className="card-preference-title">
-                                  Prefered Bed
+                                Preferred Bed
                                 </div>
                                 <div className="card-preference-content">
                                   {post?.preferredBed}
                                 </div>
                               </div>
-                              {/* <div className="card-bed">
+                              <div className="card-bed">
                                 <div className="card-preference-title">
-                                  Vacancy
+                                Block
                                 </div>
                                 <div className="card-preference-content">
-                                  {post?.remaining}
+                                  {post?.preferredBlock}
                                 </div>
-                              </div> */}
+                              </div>
                             </div>
                             <div className="card-downers2">
                               <div className="card-year">
