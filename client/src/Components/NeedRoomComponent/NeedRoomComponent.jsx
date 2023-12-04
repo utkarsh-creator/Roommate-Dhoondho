@@ -496,8 +496,7 @@ export const NeedRoomComponent = () => {
         {showPlaceholder ? (
           <div align="center">
             <Alert severity="warning">
-              Please complete your profile before using this application. If you have already completed the profile
-              and still see this message, please "Refresh" or goto your profile and click on "Submit" button again.
+              Please complete your profile before using this application.
             </Alert>
             <br />
             <p>
@@ -505,12 +504,12 @@ export const NeedRoomComponent = () => {
               <br />
               support@mozillavit.in
               <br /><br />
-              <button
+              {/* <button
                 onClick={handleRefresh}
                 className="bg-[#140922] px-4 py-2 text-white rounded-md"
               >
                 Refresh
-              </button>
+              </button> */}
               <br /><br />
             </p>
           </div>
