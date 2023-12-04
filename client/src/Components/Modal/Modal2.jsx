@@ -15,6 +15,9 @@ function Modal2() {
   const whatsappLink = `https://wa.me/${countryCode}${seletedroomphone}?text=${encodeURIComponent(
     whatsappMessage
   )}`;
+  const emailSubject = `${profileData.user.firstname} ${profileData.user.lastname} - Roommate Dhoondho`;
+  const emailBody = `Hello! I am ${profileData.user.firstname} ${profileData.user.lastname}, I found your listing from Roommate Dhoondho app and I am interested in your listing.`;
+  const emailLink = `mailto:${seletedroomemail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
   const instagramPrefix = "Insta: ";
   let instagramUID = "";
@@ -66,7 +69,7 @@ function Modal2() {
             <br />
             <p>
               <b>Email Id: </b>
-              <a href={seletedroomemail} target="_blank" rel="noopener noreferrer">
+              <a href={emailLink} target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon="fa-regular fa-envelope" />
                 <i class="fa-regular fa-envelope"></i> {seletedroomemail}
               </a>
