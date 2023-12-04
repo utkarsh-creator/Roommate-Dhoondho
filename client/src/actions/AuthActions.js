@@ -29,8 +29,9 @@ export const signUp = (formData, navigate) => async (dispatch) => {
     navigate("../", { replace: true });
   } catch (error) {
     // console.log(error);
-    toast.error("Error. Account may already exist.");
+    toast.error("Error. Account may already exist. Try resetting password.");
     dispatch({ type: "AUTH_FAIL" });
+    navigate("../", { replace: true });
   }
 };
 
