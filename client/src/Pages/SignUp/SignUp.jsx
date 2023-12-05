@@ -213,7 +213,7 @@ function SignUP() {
                   value={form.password}
                   onChange={formOnChangeHandler}
                   name="password"
-                  placeholder="Why do programmers prefer dark mode? Cause light attracts bugs."
+                  placeholder=""
                   type={showPassword ? "text" : "password"}
                   className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
                 />
