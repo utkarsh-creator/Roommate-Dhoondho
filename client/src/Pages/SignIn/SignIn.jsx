@@ -201,7 +201,7 @@ function SignIn() {
                 value={form.password}
                 onChange={formOnChangeHandler}
                 type={showPassword ? "password" : ""}
-                placeholder="There is a C level. Everything above that is High level, eveything below that is Low level."
+                placeholder=""
                 className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
               />
               <Link className="ml-auto" to="/resetPassword">
