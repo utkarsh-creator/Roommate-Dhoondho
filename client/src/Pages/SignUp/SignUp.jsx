@@ -4,6 +4,8 @@ import Header from "../../Components/Header/Header";
 import { FcGoogle } from "react-icons/fc";
 import { BsEyeFill } from "react-icons/bs";
 import { BsEyeSlashFill } from "react-icons/bs";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -98,16 +100,6 @@ function SignUP() {
   }
 
   async function signUpClickHandler() {
-    setIsVerification(true);
-    let data = {
-      username: form.email,
-      password: form.password,
-    };
-    dispatch(signUp(data, navigate));
-    setForm(initialFormState);
-  }
-
-  async function signUpClickHandler() {
     const isEmailValid = validateEmail(form.email);
     const isPasswordValid = validatePassword(form.password);
     if (!isEmailValid) {
@@ -118,15 +110,19 @@ function SignUP() {
       toast.error("Password must be at least 8 characters long and include a mix of letters, numbers, and symbols.");
       return;
     }
-
-    let data = {
-      username: form.email,
-      password: form.password,
-    };
-    dispatch(signUp(data, navigate));
-    setForm(initialFormState);
+    try {
+      let data = {
+        username: form.email,
+        password: form.password,
+      };
+      dispatch(signUp(data, navigate));
+      setForm(initialFormState);
+    } catch (error) {
+      toast.error("Error L423. Something went wrong. Please try again.");
+      console.error(error);
+    } finally {
+    }
   }
-  
 
   function verifyCodeClickHandler() {
     console.log("verifyform", verifyForm);
@@ -162,7 +158,7 @@ function SignUP() {
           {!isVerification ? (
             <div className="flex flex-col pt-[2rem] items-center w-[80%]">
               <h1 className="text-[#333] text-[1.75rem] font-[600] w-full">
-                Sign Up
+                Create New Account
               </h1>
               <p className="mb-5 text-[#3C4242] text-[14px] w-full">
                 Sign up for free to access Roommate Dhoondho
@@ -217,6 +213,7 @@ function SignUP() {
                   value={form.password}
                   onChange={formOnChangeHandler}
                   name="password"
+                  placeholder="Why do programmers prefer dark mode? Cause light attracts bugs."
                   type={showPassword ? "text" : "password"}
                   className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
                 />
@@ -244,7 +241,9 @@ function SignUP() {
               </div> */}
 
               <button
-                onClick={signUpClickHandler}
+                onClick={
+                  signUpClickHandler
+                }
                 disabled={
                   formError.email || formError.password || form.agree
                     ? true
@@ -252,8 +251,7 @@ function SignUP() {
                 }
                 className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start disabled:hover:cursor-not-allowed"
               >
-                {" "}
-                Sign Up
+                Create Account
               </button>
               <span className="text-[#3C4242] text-[14px] mt-2 self-start">
                 Already have an account?{" "}

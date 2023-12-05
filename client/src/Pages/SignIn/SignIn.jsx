@@ -149,7 +149,7 @@ function SignIn() {
         <div className="w-[100%] md:w-[55%] flex justify-center">
           <div className="flex flex-col pt-[2rem] items-center w-[80%]">
             <h1 className="text-[#333] text-[1.75rem] font-[600] w-full  ">
-              Sign In
+              Welcome Back
             </h1>
             <p className="mb-5 text-[#3C4242] text-[14px] w-full">
               Sign in using your credentials
@@ -201,6 +201,7 @@ function SignIn() {
                 value={form.password}
                 onChange={formOnChangeHandler}
                 type={showPassword ? "password" : ""}
+                placeholder="There is a C level. Everything above that is High level, eveything below that is Low level."
                 className="mt-2 rounded-[8px] border-[#3C4242] border-[1px] w-full p-[0.75rem] "
               />
               <Link className="ml-auto" to="/resetPassword">
@@ -216,7 +217,7 @@ function SignIn() {
               className="bg-[#06105A] px-[2rem] py-[0.75rem] text-white rounded-[8px] self-start disabled:hover:cursor-not-allowed"
             >
               {" "}
-              Sign In
+              Login
             </button>
 
             <span className="text-[#3C4242] text-[14px] mt-2 self-start">

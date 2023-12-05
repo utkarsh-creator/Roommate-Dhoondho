@@ -1,5 +1,7 @@
 import * as AuthApi from "../api/AuthRequests";
 import { toast } from "react-toastify";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 export const logIn = (formData, navigate) => async (dispatch) => {
   dispatch({ type: "AUTH_START" });
@@ -21,6 +23,15 @@ export const logIn = (formData, navigate) => async (dispatch) => {
 };
 
 export const signUp = (formData, navigate) => async (dispatch) => {
+  toast.info("Sending mail...please wait.", {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
   dispatch({ type: "AUTH_START" });
   try {
     const { data } = await AuthApi.signUp(formData);

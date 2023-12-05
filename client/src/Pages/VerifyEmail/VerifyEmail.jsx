@@ -61,8 +61,8 @@ const VerifyEmail = () => {
   return (
     <div>
       {isLoading && <p>Loading...Verifying your email. This usually takes few seconds.</p>}
-      {!isLoading && error && <p>Error: {error}</p>}
-      {!isLoading && !error && <p>Email verified successfully!</p>}
+      {!isLoading && error && <p>Error: Email verification failed. Contact MFC Support if issue persists.</p>}
+      {!isLoading && !error && <p>Email verified successfully. Redirecting to Login Page...</p>}
       <p>
         <br />
         <p>

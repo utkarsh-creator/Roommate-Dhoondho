@@ -74,4 +74,4 @@ mongoose
   app.use('/user', CORSProtection, verifyJWTForGetRequest, UserRoute)
   app.use('/room', CORSProtection, verifyJWTForGetRequest, RoomRoute)
   app.use('/roommate', CORSProtection, verifyJWTForGetRequest, RoommateRoute)
-  app.use('/server-messages', CORSProtection, verifyJWTForGetRequest, ServerMsgRoute)
+  app.use('/server-messages', CORSProtection, ServerMsgRoute)

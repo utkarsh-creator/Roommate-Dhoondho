@@ -5,7 +5,7 @@ import { dontExecuteAtProduction } from '../Middlewares/dontExecuteAtProduction.
 
 const router = express.Router()
 
-router.get('/:urlParameter', dontExecuteAtProduction, getServerMessage);
+router.get('/:urlParameter', getServerMessage);
 router.post('/', isAdmin, dontExecuteAtProduction, createServerMessage);
 router.put('/:urlParameter', isAdmin, dontExecuteAtProduction, updateServerMessage);
 router.delete('/:urlParameter', isAdmin, dontExecuteAtProduction, deleteServerMessage);

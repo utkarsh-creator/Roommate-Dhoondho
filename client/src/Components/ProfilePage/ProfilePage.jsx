@@ -50,6 +50,26 @@ const Profilepage = () => {
   // const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isListingButtonActive, setIsListingButtonActive] = useState(false);
+  const [serverMessage, setServerMessage] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/server-messages/profile-yourlisting-1`
+        );
+
+        if (response.data) {
+          setServerMessage(response.data);
+        }
+      } catch (error) {
+        // Handle errors if needed
+        console.error("Error fetching server message:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Constants for preventing XSS Attacks
 
@@ -538,6 +558,13 @@ const Profilepage = () => {
                 <DisplayRoomListingCard />
               </div>
             </div>
+            {serverMessage && (
+            <Alert severity={serverMessage.severity || "info"}>
+              <strong>{serverMessage.title}</strong>
+              <br />
+              {serverMessage.desc}
+            </Alert>
+          )}
           </div>
         </div>
       )}

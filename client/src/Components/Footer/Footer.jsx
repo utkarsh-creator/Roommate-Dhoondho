@@ -14,13 +14,13 @@ const Footer = () => {
             <h6 className="footer__title">Contact Us</h6>
             <ul className="footer__list">
               <li className="footer__list-item">
-                <a href="mailto:support@mozillavit.in?subject=Query&body=Help" className="footer__list-link">
-                  Mail
+                <a href="https://forms.gle/srKbHdG9oPshAGXF9" target="_blank" className="footer__list-link">
+                  Support Form
                 </a>
               </li>
               <li className="footer__list-item">
-                <a href="https://mfc.canny.io/issue" target="_blank" className="footer__list-link">
-                  Report Bugs
+                <a href="mailto:support@mozillavit.in?subject=Query&body=Help" className="footer__list-link">
+                  Mail
                 </a>
               </li>
             </ul>

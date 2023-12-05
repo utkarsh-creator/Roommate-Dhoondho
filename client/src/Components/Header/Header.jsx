@@ -36,6 +36,7 @@ function Header() {
       href: "/signUp",
       loginNotRequired: true,
     },
+    { name: "Support", href: "https://forms.gle/srKbHdG9oPshAGXF9", target: "_blank", loginNotRequired: true },
   ];
 
   const handleLanguageChange = (e) => {
@@ -47,7 +48,7 @@ function Header() {
 
   useEffect(() => {
     if (showModal) {
-      toast.info("Do you know this language even.", {
+      toast.info("Do you even know this language. Why bother selecting ;)", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 3000,
       });
@@ -100,6 +101,13 @@ function Header() {
             Sign Up
           </button>
         </Link>
+        <a href="https://forms.gle/srKbHdG9oPshAGXF9" target="_blank" rel="noopener noreferrer">
+          <button
+            className={`rounded-[8px] md:px-[2.25rem] md:py-[0.5rem]  ml-[2rem]`}
+          >
+            Support
+          </button>
+        </a>
       </div>
       <div className="flex items-center justify-center md:hidden">
         {!sideBarOpen ? (
@@ -128,24 +136,47 @@ function Header() {
             </div>
             {navItems.map((nav) =>
               nav.loginNotRequired ? (
-                <Link
-                  key={nav.name}
-                  onClick={navSideBarClose}
-                  className={classNames(
-                    `text-xl flex items-center mt-2 py-4 px-8 border-white hover:border-orange transform duration-short ease-in`
-                  )}
-                  role="button"
-                  to={{ pathname: nav.href, hash: nav.hash }}
-                >
-                  <div className="flex flex-col w-fit">
-                    <span className={`text-base font-normal capitalize `}>
-                      {nav.name}
-                    </span>
-                    {isActiveLink(nav) ? (
-                      <span className="w-[100%] h-[4px] bg-[#06105A]"></span>
-                    ) : null}
-                  </div>
-                </Link>
+                nav.target ? (
+                  <a
+                    key={nav.name}
+                    onClick={navSideBarClose}
+                    className={classNames(
+                      `text-xl flex items-center mt-2 py-4 px-8 border-white hover:border-orange transform duration-short ease-in`
+                    )}
+                    role="button"
+                    href={nav.href}
+                    target={nav.target}
+                    rel="noopener noreferrer"
+                  >
+                    <div className="flex flex-col w-fit">
+                      <span className={`text-base font-normal capitalize `}>
+                        {nav.name}
+                      </span>
+                      {isActiveLink(nav) ? (
+                        <span className="w-[100%] h-[4px] bg-[#06105A]"></span>
+                      ) : null}
+                    </div>
+                  </a>
+                ) : (
+                  <Link
+                    key={nav.name}
+                    onClick={navSideBarClose}
+                    className={classNames(
+                      `text-xl flex items-center mt-2 py-4 px-8 border-white hover:border-orange transform duration-short ease-in`
+                    )}
+                    role="button"
+                    to={{ pathname: nav.href, hash: nav.hash }}
+                  >
+                    <div className="flex flex-col w-fit">
+                      <span className={`text-base font-normal capitalize `}>
+                        {nav.name}
+                      </span>
+                      {isActiveLink(nav) ? (
+                        <span className="w-[100%] h-[4px] bg-[#06105A]"></span>
+                      ) : null}
+                    </div>
+                  </Link>
+                )
               ) : null
             )}
           </div>
