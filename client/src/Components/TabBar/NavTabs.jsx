@@ -31,7 +31,7 @@ function DisplayRoommateCard() {
   const profileData = JSON.parse(secureLocalStorage.getItem("profile"));
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingpost, setIsLoadingpost] = useState(true);
+
   const [showPlaceholder, setShowPlaceholder] = useState(false);
   const user = useSelector((state) => state.authReducer.authData);
   const [roommatePosts, setRoommatePosts] = useState([]);
@@ -130,7 +130,7 @@ function DisplayRoommateCard() {
   useEffect(() => {
     const fetchRoommateAndRoomCards = async () => {
       try {
-        setIsLoadingpost(true);
+        
         const roomLengthResponse = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/room/all?gender=${userGenderAll}&year=${selectedYear}&preferredBlock=${selectedBlock}&sort=${rankOrder}`
         );
@@ -216,7 +216,7 @@ function DisplayRoommateCard() {
         console.error(error);
         setIsLoading(false);
       } finally {
-        setIsLoadingpost(false); // Set loading back to false when all posts are fetched
+        setIsLoading(false); // Set loading back to false when all posts are fetched
       }
     };
 
@@ -439,11 +439,7 @@ function DisplayRoommateCard() {
                 </div>
               ) : (
                 roommatePosts.map((post) =>
-                  isLoadingpost ? (
-                    <div className="loading-indicator-container">
-                      <CircularProgress disableShrink color="black" size={40} />
-                    </div>
-                  ) : (
+                (
                     <div className="each-card" key={post?.id}>
                       <span className="cards">
                         <div className="main-card">
