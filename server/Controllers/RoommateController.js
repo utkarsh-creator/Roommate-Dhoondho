@@ -117,6 +117,8 @@ export const getAllRoommate = async (req, res) => {
       "P",
       "Q",
       "R",
+      "S",
+      "T",
     ];
 
     preferredBlock === "All"
