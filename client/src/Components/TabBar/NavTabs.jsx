@@ -117,6 +117,8 @@ function DisplayRoommateCard() {
       "P",
       "Q",
       "R",
+      "S",
+      "T",
       "All",
     ];
     const womenHostels = ["A", "B", "C", "D", "E", "F", "G", "H", "All"];
