@@ -88,6 +88,8 @@ export const NeedRoomComponent = () => {
           "P",
           "Q",
           "R",
+          "S",
+          "T",
         ]);
         setShowPlaceholder(false);
       } else {
