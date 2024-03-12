@@ -117,6 +117,8 @@ export const getAllRoom = async (req, res) => {
       "P",
       "Q",
       "R",
+      "S",
+      "T",
     ];
 
     preferredBlock === "All"
