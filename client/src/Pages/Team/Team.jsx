@@ -126,7 +126,7 @@ const Team = () => {
                     </a>
                   </h4>
                   <p class="pb-2 mb-1 block Inter-Regular text-s leading-relaxed  text-[#3E3E59] ">
-                    Project Lead
+                    Project Lead / Frontend Developer
                   </p>
 
                   <div class="flex justify-center  gap-4">

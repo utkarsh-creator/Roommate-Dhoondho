@@ -100,7 +100,7 @@
   font-size: 13px;
   font-family: Causten-Semi-Bold, Helvetica;
 }
- {
+ 
   /*.card-habit-details {
   cursor: pointer;
   justify-content: center;
@@ -108,7 +108,7 @@
   border-radius: 4px;
   background: rgba(6, 16, 90, 0.1);
 }*/
-}
+
 
 @media screen and (max-width: 468px) {
   .main-card {

@@ -15,7 +15,7 @@ const Footer = () => {
             <ul className="footer__list">
               <li className="footer__list-item">
                 <a href="https://forms.gle/srKbHdG9oPshAGXF9" target="_blank" className="footer__list-link">
-                  Support Form
+                  Support 
                 </a>
               </li>
               <li className="footer__list-item">

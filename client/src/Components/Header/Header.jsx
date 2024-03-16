@@ -101,13 +101,13 @@ function Header() {
             Sign Up
           </button>
         </Link>
-        <a href="https://forms.gle/srKbHdG9oPshAGXF9" target="_blank" rel="noopener noreferrer">
+        {/* <a href="https://forms.gle/srKbHdG9oPshAGXF9" target="_blank" rel="noopener noreferrer">
           <button
             className={`rounded-[8px] md:px-[2.25rem] md:py-[0.5rem]  ml-[2rem]`}
           >
             Support
           </button>
-        </a>
+        </a> */}
       </div>
       <div className="flex items-center justify-center md:hidden">
         {!sideBarOpen ? (
